@@ -1,0 +1,4 @@
+# Keep team-room and agent settings off the website; only the decks go online.
+.agentslack
+.claude
+.env*
