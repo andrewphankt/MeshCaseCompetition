@@ -1,0 +1,70 @@
+/* Apple product-page finish, loaded last.
+   Apple's light grey behind every slide so Mesh's white screens and cards pop; Apple's text colors;
+   more room around everything; a subtle gradient on a few key words. */
+:root { --apple-grey: #f5f5f7; --ink: #1d1d1f; --muted: #6e6e73; }
+
+#stage { background: var(--apple-grey); }
+.slide { background: var(--apple-grey); padding: 110px 180px 160px; }
+.slide.dark { background: #000; }
+
+/* Type: tighter headlines, calmer greys, more space between lines of meaning */
+.h1, .h2, .display { color: var(--ink); }
+.dark .h1, .dark .h2, .dark .display { color: #f5f5f7; }
+.h2 { letter-spacing: -0.04em; }
+.kicker { margin-bottom: 30px; color: var(--muted); letter-spacing: .14em; }
+.sub { color: var(--muted); margin-top: 40px; }
+
+/* White cards on the grey (no grey-on-white boxes) */
+.kpi, .bet { background: #fff; box-shadow: none; border-radius: 22px; }
+.kpis { gap: 22px; margin-top: 72px; }
+.bets { gap: 22px; margin-top: 72px; }
+.feed, .panel, .pushdemo, .reqcard, .byo .tile { box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 30px 70px -40px rgba(0,0,0,.25); }
+.tabsdemo .tb.on { background: #fff; }
+
+/* More room between headline and the thing it introduces */
+.desk { margin-top: 52px; }
+.terms { margin-top: 80px; }
+.feed { margin-top: 64px; }
+.panel { margin-top: 64px; }
+.pushdemo { margin-top: 80px; }
+.req { margin-top: 72px; }
+.steps-cap { margin-top: 36px; }
+
+/* The subtle Apple gradient, only on a few key words */
+.grad { background: linear-gradient(90deg, #5b5bf0 0%, #a259ff 45%, #f0569d 75%, #ff8a3d 100%); -webkit-background-clip: text; background-clip: text; color: transparent !important; -webkit-text-fill-color: transparent; }
+.dark .grad { background: linear-gradient(90deg, #7c7cff 0%, #c084fc 45%, #ff6fae 75%, #ffa45c 100%); -webkit-background-clip: text; background-clip: text; }
+
+/* Close: no colored wash any more, just the grey, the words and the plane */
+.slide.wash::before, .slide.wash::after { display: none; }
+.closelines .grey { color: var(--ink); }
+
+/* Proof numbers in Apple ink */
+.stat .v, .num { color: var(--ink); }
+
+/* Slide 13: a big laptop that runs off the left edge, the real room inside, the words on the right */
+.slide.bleed { align-items: flex-end; text-align: left; }
+.bleed-copy { width: 520px; margin-right: -40px; }
+.bleed-copy .h2 { font-size: 72px; }
+.bleed-copy .sub { font-size: 30px; margin-top: 28px; }
+.bleed-dev { position: absolute; left: -330px; top: 120px; width: 1560px; }
+.bleed-dev .lid { background: #0b0b0c; border-radius: 34px; padding: 26px; box-shadow: 0 0 0 2px #2a2a2e inset, 0 60px 120px -50px rgba(0,0,0,.45); }
+.bleed-dev .scr { border-radius: 10px; overflow: hidden; background: #fff; height: 800px; }
+.room.big { width: 100%; height: 100%; font-size: 17px; }
+.room.big .side { width: 270px; padding: 0 14px; }
+.room.big .proj { height: 60px; font-size: 17px; } .room.big .proj svg { width: 24px; height: 24px; }
+.room.big .nav { height: 38px; font-size: 16px; } .room.big .nav svg { width: 18px; height: 18px; }
+.room.big .h { font-size: 12px; margin-top: 22px; }
+.room.big .ch { height: 32px; font-size: 16px; }
+.room.big .ag .av { width: 30px; height: 30px; } .room.big .ag b { font-size: 15.5px; } .room.big .ag small { font-size: 13px; }
+.room.big .top { height: 60px; padding: 0 20px; } .room.big .top b { font-size: 19px; }
+.room.big .top .btn-k { height: 36px; padding: 0 16px; font-size: 15px; }
+.room.big .seg { font-size: 13.5px; }
+.room.big .canvas { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; padding: 18px 26px 0; place-items: initial; }
+.room.big .strip { height: 56px; padding: 0; }
+.room.big .tb { height: 44px; font-size: 18px; padding: 0 20px; }
+.room.big .plus { width: 40px; height: 40px; font-size: 26px; }
+.room.big .frame { flex: 1; height: auto; border-radius: 0 10px 0 0; }
+.room.big .page.real iframe { width: 1920px; height: 1300px; transform: scale(.6145); }
+.room.big.tabsdemo { width: 100%; margin-top: 0; }
+.bleed-dev { left: -360px; }
+.room.big .page.real iframe { height: 1080px; transform: scale(.6177); }
