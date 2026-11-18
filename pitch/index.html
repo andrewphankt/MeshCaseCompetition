@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="deck.css">
 <link rel="stylesheet" href="live.css">
+<link rel="stylesheet" href="room.css">
 </head>
 <body>
 <!--
@@ -81,9 +82,14 @@
   <!-- 4 Who it's for -->
   <section class="slide" data-title="Who it's for" data-section="The problem">
     <p class="kicker rise">Who it's for</p>
-    <h2 class="h1 rise">Student teams where not everyone codes.</h2>
-    <p class="sub rise">One person has the idea. One can code. Everyone has an agent.</p>
-    <div class="script">Our first user is a student team: a club, a class project, a hackathon team. Mixed skills, on purpose. The person with the idea is often not the person who codes, and words like branch, merge and pull request lock them out of the work.</div>
+    <h2 class="h2 rise" style="max-width:1450px">A student on a team project, building with Claude Code, who has never used version control.</h2>
+    <div class="persona rise">
+      <span data-step="1"><b>Builds alone today.</b>Prompts an agent in plain English.</span>
+      <span data-step="2"><b>Now on a team.</b>Three people, three agents, one repo.</span>
+      <span data-step="3"><b>Never learned git.</b>Branch, merge and pull request mean nothing.</span>
+    </div>
+    <p class="sub" data-step="4" style="margin-top:44px">Mesh skips the engineering workflow. It fits how vibecoders already work solo.</p>
+    <div class="script">Here's exactly who we're building for: a student on a team project, building with Claude Code, who has never used version control. [click] Today they build alone, prompting an agent in plain English, and it works. [click] Then they join a team: three people, three agents, one repo. [click] And they've never learned git. Branch, merge, pull request: those words mean nothing to them, and they shouldn't have to. [click] So Mesh doesn't teach them the engineering workflow. It skips it, and fits the way vibecoders already work on their own.</div>
   </section>
 
   <!-- 5 The proof -->
@@ -131,14 +137,14 @@
             <div class="center"><h3>Which agent do you use?</h3>
               <div class="agents">
                 <div class="agent"><svg viewBox="0 0 48 48" aria-hidden="true"><g stroke="#D97757" stroke-width="4.2" stroke-linecap="round"><line x1="24" y1="24" x2="38.7" y2="27.0"/><line x1="24" y1="24" x2="38.2" y2="36.6"/><line x1="24" y1="24" x2="28.8" y2="38.2"/><line x1="24" y1="24" x2="20.2" y2="42.6"/><line x1="24" y1="24" x2="14.1" y2="35.2"/><line x1="24" y1="24" x2="6.0" y2="30.0"/><line x1="24" y1="24" x2="9.3" y2="21.0"/><line x1="24" y1="24" x2="9.8" y2="11.4"/><line x1="24" y1="24" x2="19.2" y2="9.8"/><line x1="24" y1="24" x2="27.8" y2="5.4"/><line x1="24" y1="24" x2="33.9" y2="12.8"/><line x1="24" y1="24" x2="42.0" y2="18.0"/></g></svg>Claude</div>
-                <div class="agent choose"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><g transform="translate(24 24)"><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(0)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(60)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(120)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(180)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(240)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(300)"/></g></svg>Codex</div>
+                <div class="agent choose"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="translate(24 24)"><path transform="rotate(0)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(60)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(120)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(180)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(240)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(300)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/></g></svg>Codex</div>
                 <div class="agent"><svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="gem" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f8df5"/><stop offset=".55" stop-color="#9b72e8"/><stop offset="1" stop-color="#d96fa8"/></linearGradient></defs><path fill="url(#gem)" d="M24 3c1.6 11.2 8.8 18.4 21 21-12.2 2.6-19.4 9.8-21 21-1.6-11.2-8.8-18.4-21-21C15.2 21.4 22.4 14.2 24 3z"/></svg>Gemini CLI</div>
               </div>
             </div>
           </div>
           <div class="lv" data-step="3" data-orbits="ic-codex" data-act="paste">
             <span class="x">&#215;</span>
-            <div class="center"><span class="logo" style="color:#18181b"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><g transform="translate(24 24)"><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(0)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(60)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(120)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(180)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(240)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(300)"/></g></svg></span>
+            <div class="center"><span class="logo" style="color:#18181b"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="translate(24 24)"><path transform="rotate(0)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(60)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(120)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(180)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(240)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(300)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/></g></svg></span>
               <h3 style="margin-top:18px">Paste this into Codex</h3>
               <span class="btn copy"><span class="c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>Copy</span><span class="c2">&#10003; Copied</span></span>
               <div class="show">&#9656; Show the text</div>
@@ -157,52 +163,107 @@
     <div class="script">Here's the whole setup, the way Mesh really works. One: sign in with GitHub. [click] Two: pick your project, which is just your GitHub repo. [click] Three: pick the agent you already use: Claude, Codex or Gemini. [click] Then Mesh gives you one message. Copy it, paste it into your agent, and your agent sets itself up. Nobody types a git command. Remember the 33 minutes? This is the fix.</div>
   </section>
 
-  <!-- 7 The room, with two features lifted out -->
+  <!-- 9 The room, live: changes come in, then a person pushes -->
   <section class="slide" data-title="The room" data-section="Mesh">
     <h2 class="h2 rise">Everyone's work. One shared draft.</h2>
-    <div class="desk tallshot rise">
-      <div class="browser">
+    <div class="desk roomdesk rise">
+      <div class="browser float">
         <div class="chrome"><span class="dots"><i></i><i></i><i></i></span><span class="tab"><svg class="fav" aria-hidden="true"></svg>Mesh</span></div>
         <div class="bar"><span class="nav">&#8592; &#8594;</span><span class="url">agentslack-production.up.railway.app</span></div>
-        <div class="screen tall">
-          <img src="screens/preview.jpg" alt="Mesh's Preview tab: the team's draft as a live page, with tabs for each preview and the saved changes under it">
-          <div class="slot"><b>Mesh · Preview</b><span>screens/preview.jpg</span></div>
+        <div class="room mr" data-act="room">
+          <aside class="side">
+            <div class="proj"><svg class="fav" aria-hidden="true"></svg>study-sprint</div>
+            <div class="nav on"><i></i>Preview<small class="count-s">draft</small></div>
+            <div class="nav"><i></i>Pushed<small>main</small></div>
+            <div class="nav"><i></i>Changes</div>
+            <div class="h">CHANNELS</div><div class="ch"># general</div>
+            <div class="h">AGENTS</div>
+            <div class="ag" data-ag="S"><span class="av" style="background:#e8613f">S</span><div><b>Sarah's Claude</b><small>Idle</small></div><span class="live-dot"></span></div>
+            <div class="ag" data-ag="I"><span class="av" style="background:#2a9d66">I</span><div><b>Iris's Codex</b><small>Idle</small></div><span class="live-dot"></span></div>
+            <div class="ag" data-ag="T"><span class="av" style="background:#8a5cf0">T</span><div><b>Tony's Gemini</b><small>Idle</small></div><span class="live-dot"></span></div>
+          </aside>
+          <div class="main">
+            <div class="top"><b>Preview</b><span class="seg"><span>Desktop</span><span>Phone</span></span><span class="btn-k">Invite</span></div>
+            <div class="canvas">
+              <div class="chip"></div>
+              <div class="site"><div class="sb"><i></i><i></i><i></i>&nbsp;study-sprint-git-draft.vercel.app</div>
+                <div class="pg"><div class="nv">Study Sprint<span></span><span style="margin-left:6px"></span></div>
+                  <div class="hero">Study together.</div><div class="ln" style="width:62%"></div><div class="ln" style="width:44%"></div><span class="cta">Sign up</span></div></div>
+            </div>
+            <div class="dock"><div class="dh"><b class="count">2 new</b><span>Looks good?</span><span class="btn-k">Push</span></div><div class="rows"></div><div class="uptodate">Everything is pushed.</div></div>
+          </div>
+          <svg class="plane" viewBox="0 0 24 24" fill="#fff" stroke="#18181b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 15 22l-4-9-9-4 20-7z"/><path d="M22 2 11 13" fill="none"/></svg>
         </div>
       </div>
-      <div class="pop" data-step="1" data-nw="1189" data-region="356,70,130,34" data-zoom="2.6" data-dx="-300" data-dy="-20"></div>
-      <div class="callout" data-step="1" data-side="below"><span class="tag">New</span><b>A tab for every preview.</b><span>The deck, the app, a prototype. The whole team flips between them.</span></div>
-      <div class="pop" data-step="2" data-nw="1189" data-region="240,556,949,150" data-zoom="1.08" data-dx="-150" data-dy="30"></div>
-      <div class="callout" data-step="2" data-side="right"><b>Push sends it public.</b><span>Every saved change waits here until a person says go.</span></div>
     </div>
-    <div class="script">This is the room, our real one. Every agent's work saves into one shared draft, and the Preview shows that draft as a live page anyone can open, coder or not. Yes, that's this deck inside it: we built this pitch in Mesh. [click] Up top, a tab for every preview: the deck, the app, a prototype. We added that this week. [click] And under it, every saved change waits. Nothing goes public until a person presses Push.</div>
+    <div class="script">This is the room. Every agent's work lands in one shared draft, and the Preview shows it as a live page anyone can open, coder or not. Watch: Sarah's agent is working. It finishes, the preview rebuilds, and the title gets bigger. A new line appears at the bottom: "Hero title is bigger." Now Iris's agent adds a sign-up button. Nothing is public yet. Everything waits in the draft until a person presses Push. There it goes.</div>
   </section>
 
-  <!-- 8 Changes -->
+  <!-- 10 Changes: plain-English notes -->
   <section class="slide" data-title="Changes" data-section="Mesh">
     <h2 class="h2 rise">Every agent says what it changed.</h2>
-    <div class="desk rise">
-      <div class="browser">
-        <div class="chrome"><span class="dots"><i></i><i></i><i></i></span><span class="tab"><svg class="fav" aria-hidden="true"></svg>Mesh</span></div>
-        <div class="bar"><span class="nav">&#8592; &#8594;</span><span class="url">agentslack-production.up.railway.app</span></div>
-        <div class="screen">
-          <img src="screens/changes.jpg" alt="Mesh's Changes tab: one plain-English note from each agent about what it changed, and who is working right now">
-          <div class="slot"><b>Mesh · Changes</b><span>screens/changes.jpg</span></div>
-        </div>
-      </div>
-      <div class="pop" data-step="1" data-nw="1189" data-region="872,64,317,124" data-zoom="1.75" data-dx="190" data-dy="-30"></div>
-      <div class="callout" data-step="1" data-side="below"><b>See who's working, live.</b><span>Every agent's task, right now, so two people never start the same thing.</span></div>
+    <div class="feed mr rise" data-act="changes">
+      <div class="fh">Changes<span>IN PLAIN ENGLISH</span></div>
+      <div class="list"></div>
     </div>
-    <div class="script">This is Changes. Each time an agent finishes, it writes one plain sentence about what's different, the kind anyone on the team can read. [click] On the right: who's working right now, and on what. Nobody pastes updates into the group chat anymore.</div>
+    <div class="script">Every time an agent finishes, it writes one plain sentence about what's different. Not a diff, not a commit message: a sentence anyone on the team can read. "There is now a sign-up button right under the title." Nobody pastes updates into the group chat anymore.</div>
+  </section>
+
+  <!-- 11 Working now -->
+  <section class="slide" data-title="Working now" data-section="Mesh">
+    <h2 class="h2 rise">See who's working. Live.</h2>
+    <div class="panel mr rise" data-act="working">
+      <div class="ph">WORKING · <span class="wc">2</span></div>
+      <div class="w-list"></div>
+      <hr>
+      <div class="ph">IDLE · <span class="ic">1</span></div>
+      <div class="i-list"></div>
+    </div>
+    <div class="script">The room always shows who's working, and on what. Tony's agent picks up the footer. Sarah's finishes, goes idle, then starts on pricing. Before you ask your agent for something, you can see whether a teammate's agent is already on it.</div>
+  </section>
+
+  <!-- 12 Preview tabs -->
+  <section class="slide" data-title="Preview tabs" data-section="Mesh">
+    <p class="kicker rise">New this week</p>
+    <h2 class="h2 rise">A tab for every preview.</h2>
+    <div class="tabsdemo mr rise" data-act="tabs">
+      <div class="strip">
+        <span class="tb on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/></svg>pitch</span>
+        <span class="tb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/></svg>app</span>
+        <span class="plus">+</span>
+        <div class="menu"><div data-p="0">Pitch deck<small>/pitch/</small></div><div data-p="1">The app<small>/app/</small></div><div data-p="2">Prototype<small>/prototype/</small></div></div>
+      </div>
+      <div class="frame">
+        <div class="page"><b>Mesh</b><span>the pitch deck</span><i></i></div>
+        <div class="page off"><b>Study Sprint</b><span>the app</span><i></i></div>
+        <div class="page off"><b>Prototype</b><span>a new idea, side by side</span><i></i></div>
+      </div>
+    </div>
+    <div class="script">New this week: a tab for every preview. Our project has the deck and the app. Press plus, pick another page, and it opens in its own tab. The whole team flips between them, all from the same shared draft.</div>
+  </section>
+
+  <!-- 13 Push -->
+  <section class="slide" data-title="Push" data-section="Mesh">
+    <h2 class="h2 rise">Nothing goes public until a person says go.</h2>
+    <div class="pushdemo mr rise" data-act="push">
+      <div class="dh"><b class="count">3 new</b><span>Looks good?</span><span class="btn-o">Not Yet</span><span class="btn-k">Push</span></div>
+      <div class="rows"></div>
+      <div class="uptodate">Everything is pushed.</div>
+      <span class="pushed">&#10003; Pushed</span>
+      <svg class="plane" viewBox="0 0 24 24" fill="#fff" stroke="#18181b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 15 22l-4-9-9-4 20-7z"/><path d="M22 2 11 13" fill="none"/></svg>
+    </div>
+    <div class="script">Agents can save all day, but nothing goes public on its own. Every change waits here. When the team is happy, a person presses Push, and the draft becomes the public project. One button. No merge, no pull request.</div>
   </section>
 
   <div id="progress" aria-hidden="true"></div>
 </main>
 
-<div id="ic-codex" hidden><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><g transform="translate(24 24)"><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(0)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(60)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(120)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(180)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(240)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(300)"/></g></svg></div>
+<div id="ic-codex" hidden><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="translate(24 24)"><path transform="rotate(0)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(60)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(120)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(180)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(240)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(300)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/></g></svg></div>
 <div id="notes" hidden></div>
 <div id="scriptview" hidden></div>
 <div id="hint">N script · S full script · F full screen</div>
 <script src="deck.js"></script>
 <script src="live.js"></script>
+<script src="room.js"></script>
 </body>
 </html>

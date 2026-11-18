@@ -169,3 +169,8 @@ body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: anti
 .browser .screen.tall { aspect-ratio: 1189 / 799; }
 .desk.tallshot .browser { width: 820px; }
 .screen.has-img .slot { display: none; }
+
+/* Persona lines on "Who it's for" */
+.persona { display: flex; gap: 28px; margin-top: 56px; }
+.persona span { width: 400px; padding: 26px 28px; border-radius: 14px; background: var(--soft); text-align: left; font: 500 22px/1.4 var(--font); color: var(--ink-2); }
+.persona b { display: block; margin-bottom: 8px; font: 700 26px/1.2 var(--font); color: var(--ink); letter-spacing: -0.01em; }

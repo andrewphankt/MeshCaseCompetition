@@ -36,7 +36,8 @@
   });
 
   /* What each live screen does while it is showing */
-  var acts = {
+  var acts = window.liveActs = window.liveActs || {};
+  var own = {
     project: function (lv, later) {
       var box = lv.querySelector('.search'), txt = box.querySelector('.t'), repos = lv.querySelectorAll('.repo');
       var word = box.dataset.type || '', i = 0;
@@ -62,7 +63,7 @@
   var running = new Map();
   function visible(lv) { var s = lv.closest('.slide'); return s && s.classList.contains('on') && !lv.classList.contains('hide'); }
   function sync() {
-    document.querySelectorAll('.lv').forEach(function (lv) {
+    document.querySelectorAll('.lv, [data-act]').forEach(function (lv) {
       var on = visible(lv), was = running.has(lv);
       if (on && !was) {
         var timers = []; running.set(lv, timers);
