@@ -855,9 +855,6 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .room.mesh-ui .m-strip .ms-sun, .room.mesh-ui .m-strip .ms-ground { display: none; }
 .room.mesh-ui .m-strip img { bottom: 2px; }
 
-/* ---------- Agents as small characters, sized like Mesh's Working now icons ---------- */
-.room.mesh-ui .m-crit { width: 30px; height: 30px; border-radius: 50%; background: #f1f1f4; display: grid; place-items: center; flex: none; overflow: hidden; }
-.room.mesh-ui .m-crit .crit { width: 30px; height: 30px; }
 .room.mesh-ui .wn-av.wn-crit { background: #f1f1f4; overflow: hidden; width: 44px; height: 44px; }
 .room.mesh-ui .wn-crit .crit { width: 42px; height: 42px; }
 .room.mesh-ui .wn-row.busy .crit { animation: critwork .55s ease-in-out infinite; transform-origin: 50% 90%; }
@@ -887,6 +884,18 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .room.mesh-ui .file.wn .wn-head { order: 0; } .room.mesh-ui .file.wn .felix { order: 1; } .room.mesh-ui .file.wn .wn-list { order: 2; } .room.mesh-ui .file.wn .file-foot { order: 3; }
 .room.mesh-ui:not([data-felix="idle"]) .wn-empty { display: none; }
 .room.mesh-ui .file.wn .felix { padding-top: 10px; }
+
+/* ---------- Teammates' agent characters ---------- */
+.room.mesh-ui .m-face { width: 30px; height: 30px; border-radius: 50%; flex: none; background: #f1f1f4 no-repeat 50% 4% / 260%; border: 2px solid #e6e6e9; }
+.room.mesh-ui .wn-pic { flex: none; position: relative; width: 92px; height: 62px; border-radius: 10px; background: #f6f6f8; overflow: hidden; }
+.room.mesh-ui .wn-pic img { position: absolute; left: 50%; bottom: 2px; height: 56px; transform: translateX(-50%); transform-origin: 50% 100%; }
+.room.mesh-ui .wn-row.busy .wn-pic img { animation: picwork .7s ease-in-out infinite; }
+.room.mesh-ui .wn-row.wait .wn-pic img { animation: picwait 1.6s ease-in-out infinite; }
+.room.mesh-ui .wn-row.done .wn-pic img { animation: pichop .8s ease-in-out infinite; }
+@keyframes picwork { 0%, 100% { transform: translateX(-50%) rotate(-3deg); } 50% { transform: translateX(-50%) translateY(-2px) rotate(3deg); } }
+@keyframes picwait { 0%, 100% { transform: translateX(-50%) rotate(-2deg); } 50% { transform: translateX(-50%) rotate(2deg); } }
+@keyframes pichop { 0%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-6px); } }
+@media (prefers-reduced-motion: reduce) { .wn-pic img { animation: none !important; } }
 </style>
 </head>
 <body>
@@ -1104,10 +1113,10 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       <div class="m-h">People</div>
       <div class="m-people"><i style="background:var(--jordan)">A</i><i style="background:var(--sam)">I</i><i style="background:var(--maya)">S</i><i style="background:var(--priya)">T</i><i style="background:var(--accent)">E</i></div>
       <div class="m-h">Agents<span>+</span></div>
-      <div class="m-agent"><i class="m-crit"><svg class="crit" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 8 L18 18 L12 24Z M40 8 L30 18 L36 24Z" fill="#e8763b"/><circle cx="24" cy="28" r="15" fill="#f08a4b"/><path d="M11 30 Q24 46 37 30 Q30 38 24 38 Q18 38 11 30Z" fill="#fff4ea"/><circle cx="19" cy="27" r="2.4" fill="#2b2b33"/><circle cx="29" cy="27" r="2.4" fill="#2b2b33"/><circle cx="24" cy="33" r="2" fill="#2b2b33"/><path d="M6 6 L16 16" stroke="#378ADD" stroke-width="0"/><rect x="14" y="40" width="20" height="5" rx="2.5" fill="#378ADD"/></svg></i><div>Andrew's AI<small id="st-a">Idle</small></div></div>
-      <div class="m-agent"><i class="m-crit"><svg class="crit" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 10 L20 18 L12 24Z M38 10 L28 18 L36 24Z" fill="#5c6670"/><circle cx="24" cy="28" r="15" fill="#7b8794"/><circle cx="19" cy="27" r="2.6" fill="#1a9e5c"/><circle cx="29" cy="27" r="2.6" fill="#1a9e5c"/><path d="M22 32 L26 32 L24 34Z" fill="#f4a3b5"/><path d="M12 31 H6 M12 34 H7 M36 31 H42 M36 34 H41" stroke="#e5e7eb" stroke-width="1.4" stroke-linecap="round"/><rect x="14" y="40" width="20" height="5" rx="2.5" fill="#1a9e5c"/></svg></i><div>Iris's AI<small id="st-i">Idle</small></div></div>
-      <div class="m-agent"><i class="m-crit"><svg class="crit" viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="17" cy="11" rx="4.5" ry="11" fill="#f3e8ff"/><ellipse cx="31" cy="11" rx="4.5" ry="11" fill="#f3e8ff"/><ellipse cx="17" cy="11" rx="2" ry="7" fill="#f9a8d4"/><ellipse cx="31" cy="11" rx="2" ry="7" fill="#f9a8d4"/><circle cx="24" cy="29" r="14" fill="#f3e8ff"/><circle cx="19" cy="28" r="2.3" fill="#2b2b33"/><circle cx="29" cy="28" r="2.3" fill="#2b2b33"/><circle cx="24" cy="33" r="1.8" fill="#f472b6"/><rect x="14" y="40" width="20" height="5" rx="2.5" fill="#e8613f"/></svg></i><div>Sarah's AI<small>Idle</small></div></div>
-      <div class="m-agent"><i class="m-crit"><svg class="crit" viewBox="0 0 48 48" aria-hidden="true"><circle cx="12" cy="15" r="6" fill="#8a5a36"/><circle cx="36" cy="15" r="6" fill="#8a5a36"/><circle cx="24" cy="28" r="15" fill="#a06c44"/><ellipse cx="24" cy="33" rx="7" ry="5" fill="#e9c9a4"/><circle cx="19" cy="26" r="2.3" fill="#2b2b33"/><circle cx="29" cy="26" r="2.3" fill="#2b2b33"/><circle cx="24" cy="31" r="2" fill="#2b2b33"/><rect x="14" y="40" width="20" height="5" rx="2.5" fill="#8a5cf0"/></svg></i><div>Tony's AI<small>Idle</small></div></div>
+      <div class="m-agent"><i class="m-face" style="background-image:url(sprites/fox_stand.png)" aria-hidden="true"></i><div>Andrew's AI<small id="st-a">Idle</small></div></div>
+      <div class="m-agent"><i class="m-face" style="background-image:url(sprites/cat_stand.png)" aria-hidden="true"></i><div>Iris's AI<small id="st-i">Idle</small></div></div>
+      <div class="m-agent"><i class="m-face" style="background-image:url(sprites/bunny_stand.png)" aria-hidden="true"></i><div>Sarah's AI<small>Idle</small></div></div>
+      <div class="m-agent"><i class="m-face" style="background-image:url(sprites/bear_stand.png)" aria-hidden="true"></i><div>Tony's AI<small>Idle</small></div></div>
       <div class="m-agent"><i class="m-felix" aria-hidden="true"></i><div>Felix · Evelyn's AI<small id="st-e">Idle</small></div></div>
       <div class="m-strip" aria-hidden="true"><span class="ms-sun"></span><span class="ms-ground"></span><span class="ms-note">&#9834;</span><span class="ms-note n2">&#9835;</span><img src="sprites/idle.png" alt=""></div>
       <span class="sim sim-side">Simulated scene</span>
@@ -1678,19 +1687,21 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   var timers = [];
   var wnList = $('wn-list');
   function st(id, txt, cls) { var n = $(id); if (n) { n.textContent = txt; n.className = cls || ''; } }
-  var CRITS = {"a": "<svg class=\"crit\" viewBox=\"0 0 48 48\" aria-hidden=\"true\"><path d=\"M8 8 L18 18 L12 24Z M40 8 L30 18 L36 24Z\" fill=\"#e8763b\"/><circle cx=\"24\" cy=\"28\" r=\"15\" fill=\"#f08a4b\"/><path d=\"M11 30 Q24 46 37 30 Q30 38 24 38 Q18 38 11 30Z\" fill=\"#fff4ea\"/><circle cx=\"19\" cy=\"27\" r=\"2.4\" fill=\"#2b2b33\"/><circle cx=\"29\" cy=\"27\" r=\"2.4\" fill=\"#2b2b33\"/><circle cx=\"24\" cy=\"33\" r=\"2\" fill=\"#2b2b33\"/><path d=\"M6 6 L16 16\" stroke=\"#378ADD\" stroke-width=\"0\"/><rect x=\"14\" y=\"40\" width=\"20\" height=\"5\" rx=\"2.5\" fill=\"#378ADD\"/></svg>", "i": "<svg class=\"crit\" viewBox=\"0 0 48 48\" aria-hidden=\"true\"><path d=\"M10 10 L20 18 L12 24Z M38 10 L28 18 L36 24Z\" fill=\"#5c6670\"/><circle cx=\"24\" cy=\"28\" r=\"15\" fill=\"#7b8794\"/><circle cx=\"19\" cy=\"27\" r=\"2.6\" fill=\"#1a9e5c\"/><circle cx=\"29\" cy=\"27\" r=\"2.6\" fill=\"#1a9e5c\"/><path d=\"M22 32 L26 32 L24 34Z\" fill=\"#f4a3b5\"/><path d=\"M12 31 H6 M12 34 H7 M36 31 H42 M36 34 H41\" stroke=\"#e5e7eb\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><rect x=\"14\" y=\"40\" width=\"20\" height=\"5\" rx=\"2.5\" fill=\"#1a9e5c\"/></svg>"};
+  var SPR = { a: 'fox', i: 'cat' }, POSE = { busy: 'work', wait: 'stand', done: 'gem' };
+  ['fox', 'cat'].forEach(function (c) { ['work', 'stand', 'gem'].forEach(function (p) { var im = new Image(); im.src = 'sprites/' + c + '_' + p + '.png'; }); });
   function busy() { var rm = document.querySelector('.room.mesh-ui'); if (!rm) return; var on = !!wnList.querySelector('.wn-row') || rm.getAttribute('data-felix') !== 'idle'; rm.setAttribute('data-busy', on ? '1' : '0'); }
   function wnClear() { wnList.innerHTML = '<div class="wn-empty">No one is working yet.</div>'; busy(); }
   function wnRow(id, file, sub, state, color, init) {
     var r = $('wn-' + id);
     if (!r) {
       r = el('div', 'wn-row'); r.id = 'wn-' + id;
-      r.innerHTML = '<span class="wn-av wn-crit">' + (CRITS[id] || init) + '</span><div><b></b><small></small></div><span class="wn-dot"></span>';
+      r.innerHTML = (SPR[id] ? '<span class="wn-pic"><img alt=""></span>' : '<span class="wn-av" style="background:' + color + '">' + init + '</span>') + '<div><b></b><small></small></div><span class="wn-dot"></span>';
       var e = wnList.querySelector('.wn-empty'); if (e) e.remove();
       wnList.appendChild(r);
     }
     r.querySelector('b').textContent = file; r.querySelector('small').textContent = sub;
     r.className = 'wn-row ' + (state || '');
+    var im = r.querySelector('.wn-pic img'); if (im && SPR[id]) im.src = 'sprites/' + SPR[id] + '_' + (POSE[state] || 'stand') + '.png';
     busy();
   }
   var FELIX = {
