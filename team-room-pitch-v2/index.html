@@ -904,11 +904,11 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 @media (prefers-reduced-motion: reduce) { .m-strip img, .ms-note { animation: none !important; } }
 
 /* Working now only appears while agents are active */
-.demo-full .room.mesh-ui[data-busy="1"] .file.wn > * { animation: enter .35s ease both; }
+.demo-full .room.mesh-ui[data-busy="1"] .file.wn > *:not(.stamp) { animation: enter .35s ease both; }
 :root[data-look] .demo-full .room.mesh-ui[data-busy="0"] { grid-template-columns: 270px 1fr 0px; }
 .demo-full .room.mesh-ui .file.wn { overflow: hidden; min-width: 0; }
 .demo-full .room.mesh-ui[data-busy="0"] .file.wn { border-left: 0; }
-.demo-full .room.mesh-ui .file.wn > * { min-width: 440px; }
+.demo-full .room.mesh-ui .file.wn > *:not(.stamp) { min-width: 440px; }
 </style>
 </head>
 <body>
