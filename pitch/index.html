@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mesh Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<!--
+  Mesh pitch deck. One idea per slide. Each slide's <div class="script"> is what we SAY;
+  the slide only shows what the audience needs to see.
+  Keys: arrows or Space to move, N shows the script under the slide, S shows the whole script, F full screen.
+  Screens: put screenshots in pitch/screens/ (see the README there); until then a labelled placeholder shows.
+-->
+<main id="stage" aria-label="Mesh pitch deck">
+
+  <!-- 1 Title -->
+  <section class="slide" data-title="Title" data-noprogress>
+    <svg class="mark rise" aria-hidden="true"></svg>
+    <h1 class="display rise">Mesh</h1>
+    <p class="sub rise">Build together, with the agents you already use.</p>
+    <div class="script">Hi, we're Andrew, Iris, Sarah, Evelyn and Tony. This is Mesh.</div>
+  </section>
+
+  <!-- 2 Everyone has an agent -->
+  <section class="slide" data-title="Everyone has an agent" data-section="The problem">
+    <h2 class="h2 rise">Everyone on your team has an agent now.</h2>
+    <div class="terms rise">
+      <div class="term"><div class="tb"><i></i><i></i><i></i><em>Claude Code · Sarah</em></div><div class="tx">
+        <p class="you" data-at="500">make the hero title bigger</p>
+        <p class="ok" data-at="1300">Editing index.html</p></div></div>
+      <div class="term"><div class="tb"><i></i><i></i><i></i><em>Codex · Iris</em></div><div class="tx">
+        <p class="you" data-at="900">add a sign-up button</p>
+        <p class="ok" data-at="1700">Editing index.html</p></div></div>
+      <div class="term"><div class="tb"><i></i><i></i><i></i><em>Gemini · Tony</em></div><div class="tx">
+        <p class="you" data-at="1300">fix the footer links</p>
+        <p class="ok caret" data-at="2100">Editing index.html</p></div></div>
+    </div>
+    <div class="script">This year, coding agents stopped being a solo tool. On a student team, everyone has one. Sarah uses Claude Code, Iris uses Codex, Tony uses Gemini. Each one works in their own window, on their own laptop. And look at the last line in every window: they're all in the same file.</div>
+  </section>
+
+  <!-- 3 They can't see each other -->
+  <section class="slide" data-title="They can't see each other" data-section="The problem">
+    <h2 class="h2 rise">But they can't see each other.</h2>
+    <div class="terms rise">
+      <div class="term"><div class="tb"><i></i><i></i><i></i><em>Claude Code · Sarah</em></div><div class="tx">
+        <p class="ok" data-at="300">Editing index.html, line 3</p>
+        <p class="ok" data-at="1100">Saved. Title is bigger.</p></div></div>
+      <div class="term" data-clash="2600"><div class="tb"><i></i><i></i><i></i><em>Codex · Iris</em></div><div class="tx">
+        <p class="ok" data-at="700">Editing index.html, line 3</p>
+        <p class="ok" data-at="1900">Saved.</p>
+        <p data-at="2600"><span class="bad">Sarah's change is gone</span></p></div></div>
+    </div>
+    <p class="sub" data-step="1">So people copy and paste between agents to keep them in sync.</p>
+    <div class="script">Two agents, one file, one line. Iris's agent saves on top of Sarah's, and Sarah's change is just gone. Nobody notices until something breaks. [click] So people become the go-between: pasting what one agent did into the group chat, so the next agent knows.</div>
+  </section>
+
+  <!-- 4 Who it's for -->
+  <section class="slide" data-title="Who it's for" data-section="The problem">
+    <p class="kicker rise">Who it's for</p>
+    <h2 class="h1 rise">Student teams where not everyone codes.</h2>
+    <p class="sub rise">One person has the idea. One can code. Everyone has an agent.</p>
+    <div class="script">Our first user is a student team: a club, a class project, a hackathon team. Mixed skills, on purpose. The person with the idea is often not the person who codes, and words like branch, merge and pull request lock them out of the work.</div>
+  </section>
+
+  <!-- 5 The proof -->
+  <section class="slide" data-title="The proof" data-section="The problem">
+    <p class="kicker rise">We tested it on ourselves</p>
+    <p class="num rise">33<small> min</small></p>
+    <p class="sub rise">for a first-timer's first save, with engineers on the call.</p>
+    <p class="sub grey" data-step="1" style="margin-top:12px">And 20 messages.</p>
+    <div class="script">We tried it on ourselves first. A first-timer's first save took 33 minutes, with engineers on the call. [click] And 20 messages. That first-timer was me, Evelyn. If it took that long with help one call away, imagine doing it alone.</div>
+  </section>
+
+  <!-- 6 Meet Mesh -->
+  <section class="slide dark" data-title="Meet Mesh" data-section="Mesh">
+    <svg class="mark rise" aria-hidden="true"></svg>
+    <h2 class="h1 rise">Meet Mesh.</h2>
+    <p class="sub rise">One room for your team and everyone's agents.</p>
+    <div class="script">So we built Mesh: one room for your team and everyone's agents.</div>
+  </section>
+
+  <!-- 7 The room -->
+  <section class="slide" data-title="The room" data-section="Mesh">
+    <h2 class="h2 rise">Everyone's work. One shared draft.</h2>
+    <div class="laptop rise">
+      <div class="lid"><div class="screen">
+        <img src="screens/preview.png" alt="Mesh's Preview tab: the team's draft as a live page, with the list of saved changes under it">
+        <div class="slot"><b>Mesh · Preview</b><span>screens/preview.png</span></div>
+      </div></div>
+      <div class="base"></div>
+    </div>
+    <div class="script">This is the room. Every agent's work saves into one shared draft, and the Preview shows that draft as a live page anyone on the team can open, coder or not. Under it is the list of what changed, in plain English.</div>
+  </section>
+
+  <div id="progress" aria-hidden="true"></div>
+</main>
+
+<div id="notes" hidden></div>
+<div id="scriptview" hidden></div>
+<div id="hint">N script · S full script · F full screen</div>
+<script src="deck.js"></script>
+</body>
+</html>

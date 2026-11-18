@@ -1,0 +1,139 @@
+/* Mesh pitch deck: look and motion. Black and white, Inter, zinc greys, 4px corners (Mesh's own look). */
+:root {
+  --ink: #18181b;
+  --ink-2: #3f3f46;
+  --muted: #71717a;
+  --line: #e4e4e7;
+  --soft: #f4f4f5;
+  --paper: #ffffff;
+  --night: #0a0a0a;
+  --live: #22c55e;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);      /* settle */
+  --ease-fly: cubic-bezier(0.4, 0, 0.3, 1);   /* the publish plane's curve */
+  --font: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* Fixed 1920x1080 stage, scaled to fit the window */
+#stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: center; background: var(--paper); overflow: hidden; }
+
+/* Slides */
+.slide { position: absolute; inset: 0; padding: 120px 160px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+  visibility: hidden; opacity: 0; transition: opacity .7s var(--ease), transform .9s var(--ease), filter .7s var(--ease), visibility 0s linear .9s; }
+.slide.on { visibility: visible; opacity: 1; transform: none; filter: none; transition-delay: .12s, .12s, .12s, 0s; }
+.slide.before { transform: translateY(-28px) scale(.985); filter: blur(8px); }
+.slide.after  { transform: translateY(36px); filter: blur(8px); }
+.slide.dark { background: var(--night); color: #fafafa; }
+.slide.left { align-items: flex-start; text-align: left; }
+
+/* Type: few words, big */
+.kicker { font: 600 22px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin: 0 0 36px; }
+.display { font: 700 156px/0.95 var(--font); letter-spacing: -0.055em; margin: 0; }
+.h1 { font: 700 112px/1.0 var(--font); letter-spacing: -0.045em; margin: 0; max-width: 1500px; }
+.h2 { font: 700 76px/1.05 var(--font); letter-spacing: -0.035em; margin: 0; max-width: 1400px; }
+.sub { font: 500 38px/1.3 var(--font); letter-spacing: -0.015em; color: var(--muted); margin: 36px 0 0; max-width: 1200px; }
+.dark .sub, .dark .kicker { color: #a1a1aa; }
+.grey { color: #a1a1aa; }
+.dark .grey { color: #52525b; }
+
+/* Things that rise in when a slide opens, one after another */
+.rise { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease), transform 1s var(--ease); }
+.slide.on .rise { opacity: 1; transform: none; }
+.slide.on .rise:nth-child(1) { transition-delay: .25s; }
+.slide.on .rise:nth-child(2) { transition-delay: .4s; }
+.slide.on .rise:nth-child(3) { transition-delay: .55s; }
+.slide.on .rise:nth-child(4) { transition-delay: .7s; }
+.slide.on .rise:nth-child(5) { transition-delay: .85s; }
+
+/* Click-to-reveal steps */
+[data-step] { transition: opacity .6s var(--ease), transform .8s var(--ease), filter .6s var(--ease); }
+[data-step].hide { opacity: 0 !important; transform: translateY(18px) !important; filter: blur(4px); pointer-events: none; }
+
+/* The Mesh mark: a cluster of dots that gathers when a section opens */
+.mark { width: 220px; height: 220px; margin-bottom: 56px; overflow: visible; }
+.mark circle { fill: currentColor; transition: transform 1.4s var(--ease), opacity 1s var(--ease); }
+.mark.scatter circle { transition: none; }
+
+/* Section progress along the bottom */
+#progress { position: absolute; left: 160px; right: 160px; bottom: 54px; display: flex; gap: 14px; z-index: 5; pointer-events: none; }
+#progress .seg { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+#progress .bar { height: 3px; background: rgba(113,113,122,.25); border-radius: 2px; overflow: hidden; }
+#progress .bar i { display: block; height: 100%; width: 0; background: var(--ink); transition: width .9s var(--ease); }
+#progress .lab { font: 600 15px/1 var(--font); letter-spacing: .08em; text-transform: uppercase; color: #a1a1aa; transition: color .6s; }
+#progress .seg.now .lab { color: var(--ink); }
+#stage.is-dark #progress .bar i { background: #fafafa; }
+#stage.is-dark #progress .seg.now .lab { color: #fafafa; }
+#stage.no-progress #progress { opacity: 0; }
+#progress { transition: opacity .6s var(--ease); }
+
+/* Laptop mock (screen is a slot: a screenshot goes in screens/, else a labelled placeholder) */
+.laptop { position: relative; width: 1180px; margin-top: 64px; }
+.laptop .lid { position: relative; background: #0b0b0c; border-radius: 26px 26px 8px 8px; padding: 22px 22px 30px; box-shadow: 0 0 0 2px #2a2a2e inset, 0 50px 120px -40px rgba(0,0,0,.45); }
+.laptop .lid::before { content: ""; position: absolute; left: 50%; top: 0; width: 150px; height: 18px; transform: translateX(-50%); background: #0b0b0c; border-radius: 0 0 10px 10px; z-index: 2; }
+.laptop .screen { position: relative; aspect-ratio: 16 / 10; border-radius: 6px; overflow: hidden; background: var(--soft); }
+.laptop .screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.laptop .base { position: relative; height: 26px; margin: 0 -70px; background: linear-gradient(#d4d4d8, #a1a1aa); border-radius: 0 0 28px 28px; }
+.laptop .base::before { content: ""; position: absolute; left: 50%; top: 0; width: 200px; height: 9px; transform: translateX(-50%); background: #b4b4bb; border-radius: 0 0 10px 10px; }
+.slot { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 14px; background-color: var(--soft);
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 28px 28px; color: var(--muted); }
+.slot b { font: 700 30px/1 var(--font); color: var(--ink); letter-spacing: -0.02em; }
+.slot span { font: 500 19px/1 var(--mono); }
+.screen.has-img .slot { display: none; }
+
+/* Terminal mock */
+.terms { display: flex; gap: 36px; margin-top: 72px; align-items: flex-start; }
+.term { width: 500px; border-radius: 12px; background: #111113; color: #e4e4e7; text-align: left; box-shadow: 0 40px 90px -40px rgba(0,0,0,.5), 0 0 0 1px #27272a; overflow: hidden; }
+.term .tb { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; background: #1c1c1f; border-bottom: 1px solid #27272a; font: 500 15px/1 var(--font); color: #a1a1aa; }
+.term .tb i { width: 12px; height: 12px; border-radius: 50%; background: #3f3f46; }
+.term .tb em { font-style: normal; margin-left: 10px; }
+.term .tx { padding: 22px 22px 26px; min-height: 210px; font: 400 19px/1.65 var(--mono); }
+.term .tx p { margin: 0; white-space: pre-wrap; }
+.term .you { color: #fafafa; }
+.term .you::before { content: "> "; color: #71717a; }
+.term .ok { color: #a1a1aa; }
+.term .bad { color: #fafafa; background: #b91c1c; padding: 1px 8px; border-radius: 4px; }
+.term .live { color: var(--live); }
+.term .caret::after { content: ""; display: inline-block; width: 10px; height: 20px; margin-left: 3px; vertical-align: -3px; background: #a1a1aa; animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.term.clash { box-shadow: 0 40px 90px -40px rgba(0,0,0,.5), 0 0 0 2px #b91c1c; transition: box-shadow .5s; }
+
+/* Big number */
+.num { font: 700 300px/0.85 var(--font); letter-spacing: -0.07em; margin: 0; font-variant-numeric: tabular-nums; }
+.num small { font-size: 96px; letter-spacing: -0.04em; }
+
+/* People row */
+.people { display: flex; gap: 44px; margin-top: 80px; }
+.person { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.person .av { width: 124px; height: 124px; border-radius: 50%; background: var(--ink); color: #fff; display: grid; place-items: center; font: 700 44px/1 var(--font); }
+.person .av.off { background: var(--soft); color: var(--muted); box-shadow: 0 0 0 2px var(--line) inset; }
+.person span { font: 600 22px/1.2 var(--font); color: var(--ink-2); }
+
+/* Script panel (press N) and script view (press S) */
+#notes { position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto; padding: 22px 32px 26px; background: rgba(9,9,11,.94); color: #e4e4e7; font: 400 20px/1.55 var(--font); z-index: 20; backdrop-filter: blur(12px); }
+#notes b { display: block; font: 600 13px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: #71717a; margin-bottom: 10px; }
+#scriptview { position: fixed; inset: 0; overflow: auto; background: #fff; color: var(--ink); z-index: 30; padding: 64px max(32px, calc(50% - 420px)); font: 400 20px/1.6 var(--font); }
+#scriptview h1 { font: 700 44px/1.1 var(--font); letter-spacing: -0.03em; margin: 0 0 8px; }
+#scriptview .hint { color: var(--muted); margin: 0 0 40px; }
+#scriptview section { padding: 24px 0; border-top: 1px solid var(--line); }
+#scriptview h2 { font: 600 15px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+#scriptview p { margin: 0; }
+
+.slide .script { display: none; }
+
+/* Corner hint */
+#hint { position: fixed; right: 18px; bottom: 14px; font: 500 13px/1 var(--font); color: #52525b; z-index: 10; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slide, .rise, [data-step], .mark circle, #progress .bar i { transition-duration: .01s !important; transition-delay: 0s !important; }
+  .term .caret::after { animation: none; }
+}
+@media print {
+  html, body { background: #fff; overflow: visible; height: auto; }
+  #stage { position: relative; left: 0; top: 0; transform: none !important; width: 1920px; height: auto; }
+  .slide { position: relative; visibility: visible; opacity: 1; transform: none; filter: none; height: 1080px; page-break-after: always; }
+  .rise, [data-step].hide { opacity: 1 !important; transform: none !important; filter: none !important; }
+  #progress, #notes, #hint { display: none !important; }
+}
