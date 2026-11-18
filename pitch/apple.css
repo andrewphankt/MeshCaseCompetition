@@ -86,3 +86,5 @@
 .bleed-copy { width: 470px; margin-right: -20px; }
 .room.big .page.real iframe { transform: scale(.482) !important; }
 .bleed-copy .h2 { font-size: 62px; } .bleed-copy .sub { font-size: 27px; }
+/* Push stays Mesh black when pushed; only its label changes */
+.pushdemo .dh .btn-k.done { background: var(--ink) !important; }
