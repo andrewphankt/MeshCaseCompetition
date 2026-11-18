@@ -660,7 +660,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 :root[data-look="paper"] .rm-carlabel b, :root[data-look="paper"] .rm-hint { color: var(--pen); }
 .rm-hint { position: absolute; left: 110px; top: -14px; font: 700 30px var(--hand); color: var(--accent); transform: rotate(-3deg); }
 .rm-sign { position: absolute; transform: translate(-50%, -100%); background: var(--panel); color: var(--text); border: 3px solid var(--text); border-radius: 10px; padding: 10px 18px; font: 700 24px/1.15 var(--body); text-align: center; cursor: pointer; box-shadow: 0 6px 0 rgba(0,0,0,.12); }
-.rm-sign::after { content: ""; position: absolute; left: 50%; top: 100%; width: 4px; height: 92px; background: var(--text); transform: translateX(-50%); margin-top: 3px; }
+.rm-sign::after { content: ""; position: absolute; left: 50%; top: 100%; width: 4px; height: var(--post, 92px); background: var(--text); transform: translateX(-50%); margin-top: 3px; }
 .rm-sign small { display: block; font: 700 14px var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
 :root[data-look="paper"] .rm-sign small { color: var(--pen); }
 .rm-sign:hover, .rm-sign[aria-expanded="true"] { background: #ffd84d; color: #13151d; }
@@ -690,6 +690,19 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .rm-k-arrow { font: 700 22px/1 var(--body); color: var(--muted); }
 .rm-k-goal { font: 800 34px/1.05 var(--display); color: var(--text); }
 .rm-k-sub { font: 500 16px/1.3 var(--body); color: var(--muted); }
+
+/* Problem slide: stat under the headline */
+.prob-stat .stat2 { margin-top: 26px; grid-template-columns: 1fr 380px; gap: 40px; }
+.prob-stat .big { font-size: 128px; min-width: 300px; }
+.prob-stat .numrow + .numrow { margin-top: 18px; }
+.prob-stat .numrow p { font-size: 26px; }
+.prob-stat .dots { gap: 8px; }
+/* Road map: five signs, smaller */
+.rm-sign { padding: 8px 14px; font-size: 20px; }
+.rm-sign small { font-size: 12px; }
+.rm-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 18px; }
+.rm-tier { display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--line); border-top: 5px solid var(--accent); border-radius: 12px; padding: 16px 18px 18px; }
+:root[data-look="paper"] .rm-tier { border-top-color: var(--pen); background: rgba(255,255,255,.55); }
 </style>
 </head>
 <body>
@@ -744,23 +757,42 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 </section>
 
 <!-- 3 The problem -->
-<section class="slide" data-title="The problem">
+<section class="slide" data-title="The problem" data-hook="stat">
   <div class="eyebrow"><i></i>The problem</div>
   <h2 class="h-l" style="max-width:1300px">AI made it possible to build alone. Not <span class="hl">together</span>.</h2>
+  <div class="prob-stat">
+  <div class="stat2">
+    <div>
+      <div class="numrow"><span class="big dim" data-count="84">84%</span><p>of developers use or plan to use AI tools.</p></div>
+      <div class="numrow" data-step="1"><span class="big hl" data-count="17">17%</span><p>say AI agents improved how their team works together.</p></div>
+    </div>
+    <div>
+      <div class="dots" id="dots" aria-hidden="true"></div>
+      <div class="dots-cap">Each dot is 1 in 100 developers</div>
+    </div>
+  </div>
+  </div>
+  <div class="src">Stack Overflow Developer Survey 2025, via SD Times and The New Stack</div>
+  <aside class="notes">This is the problem the whole pitch answers. Read the headline, let the 84 dots fill: almost every developer uses AI. Then click: only 17 in 100 say AI agents made their team work better together. AI made building alone easy; building together is still broken.</aside>
+</section>
+<!-- 3b Where people get stuck -->
+<section class="slide" data-title="Where people get stuck">
+  <div class="eyebrow"><i></i>Where people get stuck</div>
+  <h2 class="h-l" style="max-width:1300px">People with ideas can get an AI to write code. Then they get stuck.</h2>
   <ol class="prob-lines">
     <li data-step="1"><b>1</b>You don't know the words.</li>
     <li data-step="2"><b>2</b>You can't follow what your AI, or your team's, just did.</li>
     <li data-step="3"><b>3</b>You don't know who could help.</li>
   </ol>
-  <aside class="notes">This is the problem the whole pitch answers. People with ideas can get an AI to write code, but they get stuck on everything around it. Pause after each line.</aside>
+  <aside class="notes">This is who Mesh is for: people with ideas, not engineers. Pause after each line.</aside>
 </section>
 
 <!-- 4 Reframe -->
 <section class="slide center" data-title="The proof" data-hook="reframe">
   <h2 class="h-l" style="max-width:1300px">We tested it on ourselves.</h2>
-  <h2 class="h-l typed" style="max-width:1300px; margin-top:20px" data-step="1" id="reframe-2">With engineers on the call, a first-timer's first save took <span class="hl">22 minutes and 15 messages</span>.</h2>
+  <h2 class="h-l typed" style="max-width:1300px; margin-top:20px" data-step="1" id="reframe-2">With engineers on the call, a first-timer's first save took <span class="hl">33 minutes and 20 messages</span>.</h2>
   <p class="lede proof-small" data-step="2">Two GitHub tokens were pasted by accident.</p>
-  <aside class="notes">Evelyn: "That first-timer was me." If it took that long with help one call away, imagine doing it alone. One beat per line: the second line types itself out, the third comes on the next click. Source: Evelyn's write-up, Starting From Zero.</aside>
+  <aside class="notes">Evelyn: "That first-timer was me." If it took that long with help one call away, imagine doing it alone. One beat per line: the second line types itself out, the third comes on the next click.</aside>
 </section>
 
 <!-- 5 Three reasons -->
@@ -900,27 +932,27 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 </section>
 
 <!-- 9 Training mode -->
-<section class="slide" data-title="Training mode" data-hook="training" style="padding:60px 80px 40px">
+<section class="slide" data-title="Practice room" data-hook="training" style="padding:60px 80px 40px">
   <div class="eyebrow"><i></i>Layer 2 · Easy to start</div>
-  <h2 class="h-m">Training mode: the easiest way to start.</h2>
+  <h2 class="h-m">Practice first. Tooltips until you're ready.</h2>
   <div class="train" data-interactive>
     <div class="train-side">
       <div class="found"><span class="lab">Our goal</span>A first-timer's first save in <b>under <span class="rm-tbd">5</span> minutes</b>, with no help messages.</div>
-      <div class="so">So we built training mode:</div>
+      <div class="so">Two ways we make it easy to start:</div>
       <ul class="train-list">
-        <li>Hover anything to see what it means.</li>
+        <li><span><b>Practice room:</b> a safe team room with practice teammates.</span></li>
+        <li><span><b>Training mode:</b> tooltips you turn off when you're ready.</span></li>
         <li>A one-minute “Start here” tour.</li>
-        <li>A failed save shows up with a one-click fix.</li>
         <li>Pasted passwords get blocked.</li>
       </ul>
-      <a class="btn primary train-open" id="train-open" href="training/index.html?from=deck&amp;slide=10" target="_blank" rel="noopener">Open it full screen ↗</a>
+      <a class="btn primary train-open" id="train-open" href="training/index.html?from=deck&amp;slide=11" target="_blank" rel="noopener">Open it full screen ↗</a>
     </div>
     <div class="tframe">
-      <div class="tbar"><i></i><i></i><i></i><span class="u">mesh · training mode on · prototype</span><span class="try">Hover anything, or press Start here</span></div>
+      <div class="tbar"><i></i><i></i><i></i><span class="u">mesh · practice room · training mode on</span><span class="try">Hover anything, or press Start here</span></div>
       <div class="tview"><div class="tload">Loading the room…</div><iframe id="train-iframe" title="Mesh room with training mode on (clickable prototype)" data-src="training/index.html?embed=1"></iframe></div>
     </div>
   </div>
-  <aside class="notes">This is a clickable prototype; you can use it right on the slide. Hover the Changes tab to show a training note, then press "Start here" in the frame for the tour. Paste a fake "ghp_" token into the message box to show it gets blocked. The proof (22 minutes, 15 messages) now lives on the proof slide; here, say the goal. The 5-minute goal is a placeholder target: Evelyn confirms the number. Arrow keys still move the deck. "Open it full screen" opens it in a new tab; close that tab to come back.</aside>
+  <aside class="notes">This is the practice room, a safe copy of a team room with practice teammates, and you can use it right on the slide. Training mode is the switch at the top right: tooltips that explain everything, which you turn off once you're comfortable. Hover the Changes tab to show a training note, then press "Start here" for the tour. Paste a fake "ghp_" token into the message box to show it gets blocked. The 5-minute goal is a placeholder target: Evelyn confirms the number. "Open it full screen" opens it in a new tab.</aside>
 </section>
 
 
@@ -954,7 +986,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 <section class="slide" data-title="The road map" data-hook="roadmap">
   <div class="eyebrow"><i></i>The road map</div>
   <h2 class="h-m">Where Mesh goes from here.</h2>
-  <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i></span>
+  <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i><i data-step="5"></i><i data-step="6"></i><i data-step="7"></i><i data-step="8"></i><i data-step="9"></i><i data-step="10"></i></span>
   <div class="rm" id="rm" data-interactive>
     <svg class="rm-svg" viewBox="0 0 1600 640" width="1600" height="640" aria-hidden="true">
       <circle class="rm-sun" cx="1450" cy="120" r="46"/>
@@ -971,6 +1003,9 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <div class="rm-carlabel" id="rm-carlabel"><b>Now: the team room</b>We're building Mesh with Mesh.</div>
     <div class="rm-hint">Click a sign</div>
     <button type="button" class="rm-sign" id="rm-sign-b" data-stop="b" aria-expanded="false" aria-controls="rm-card-b"><small>Next</small>Community hub</button>
+    <button type="button" class="rm-sign" id="rm-sign-p" data-stop="p" aria-expanded="false" aria-controls="rm-card-p"><small>Then</small>Pricing</button>
+    <button type="button" class="rm-sign" id="rm-sign-s" data-stop="s" aria-expanded="false" aria-controls="rm-card-s"><small>Then</small>Partners</button>
+    <button type="button" class="rm-sign" id="rm-sign-o" data-stop="o" aria-expanded="false" aria-controls="rm-card-o"><small>Then</small>Open source</button>
     <button type="button" class="rm-sign" id="rm-sign-c" data-stop="c" aria-expanded="false" aria-controls="rm-card-c"><small>Future</small>Where we're headed</button>
     <div class="rm-dim" id="rm-dim" hidden></div>
     <div class="rm-card" id="rm-card-b" role="dialog" aria-modal="false" aria-labelledby="rm-b-h" hidden>
@@ -993,6 +1028,39 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     </div>
       </div>
     </div>
+    <div class="rm-card" id="rm-card-p" role="dialog" aria-modal="false" aria-labelledby="rm-p-h" hidden>
+      <button type="button" class="rm-x" aria-label="Close">&times;</button>
+      <span class="rm-corner">Planned</span>
+      <h3 id="rm-p-h">Pricing: campuses pay, students don't</h3>
+      <p class="rm-lead">A campus licenses Mesh and offers it to its students as a free resource, for students who want to make things but need introductory help with coding.</p>
+      <div class="rm-tiers">
+        <div class="rm-tier"><span class="rm-k-l">Students</span><span class="rm-k-goal">Free</span><span class="rm-k-sub">Through their campus, on the AI plan they already have. Mesh never charges for AI.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Campuses</span><span class="rm-k-goal"><span class="rm-tbd">$X</span> / year</span><span class="rm-k-sub">A campus-wide license. We get to see how creative students on every campus can get.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">First stop</span><span class="rm-k-goal">USC</span><span class="rm-k-sub">Start with one club or hackathon, then license the whole campus.</span></div>
+      </div>
+    </div>
+    <div class="rm-card" id="rm-card-s" role="dialog" aria-modal="false" aria-labelledby="rm-s-h" hidden>
+      <button type="button" class="rm-x" aria-label="Close">&times;</button>
+      <span class="rm-corner">Planned · not confirmed</span>
+      <h3 id="rm-s-h">Partners and sponsors</h3>
+      <p class="rm-lead">AI companies want student builders. We bring them a room full of them.</p>
+      <ul class="rm-cant">
+        <li>Sponsorship and marketing support for the campus launch</li>
+        <li>More AI tools in the room, starting with ones our team already uses, like Wajo</li>
+        <li>Prizes and credits for club and hackathon teams</li>
+      </ul>
+    </div>
+    <div class="rm-card" id="rm-card-o" role="dialog" aria-modal="false" aria-labelledby="rm-o-h" hidden>
+      <button type="button" class="rm-x" aria-label="Close">&times;</button>
+      <span class="rm-corner">Planned</span>
+      <h3 id="rm-o-h">Open source</h3>
+      <p class="rm-lead">Make Mesh's code public, so the students who use it can help build it.</p>
+      <ul class="rm-cant">
+        <li>Students and clubs contribute features they need</li>
+        <li>Schools can check exactly what runs on their students' computers</li>
+        <li>The community keeps Mesh working with new AI tools as they come out</li>
+      </ul>
+    </div>
     <div class="rm-card" id="rm-card-c" role="dialog" aria-modal="false" aria-labelledby="rm-c-h" hidden>
       <button type="button" class="rm-x" aria-label="Close">&times;</button>
       <span class="rm-corner">Goals, not results</span>
@@ -1005,14 +1073,13 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
             <li>Tooltips inside the real room</li>
             <li>@mention any teammate's agent in the chat</li>
             <li>Plug in any AI: Antigravity, Wajo and more</li>
-            <li>Schools license Mesh for their students</li>
-            <li>Rooms on more campuses</li>
+                        <li>Rooms on more campuses</li>
           </ul>
         </div>
         <div>
           <h4>How we'll know it's working</h4>
           <div class="rm-kpis">
-            <div class="rm-kpi"><span class="rm-k-l">A first-timer's first save</span><span class="rm-k-now">Today: 22 min, 15 messages</span><span class="rm-k-arrow" aria-hidden="true">&darr;</span><span class="rm-k-goal">Under <span class="rm-tbd">5</span> min</span></div>
+            <div class="rm-kpi"><span class="rm-k-l">A first-timer's first save</span><span class="rm-k-now">Today: 33 min, 20 messages</span><span class="rm-k-arrow" aria-hidden="true">&darr;</span><span class="rm-k-goal">Under <span class="rm-tbd">5</span> min</span></div>
             <div class="rm-kpi"><span class="rm-k-l">Teams building in Mesh</span><span class="rm-k-now">Today: 1 (us)</span><span class="rm-k-arrow" aria-hidden="true">&darr;</span><span class="rm-k-goal"><span class="rm-tbd">10</span> teams</span><span class="rm-k-sub">in one club or hackathon</span></div>
             <div class="rm-kpi"><span class="rm-k-l">Campuses</span><span class="rm-k-now">Today: 0</span><span class="rm-k-arrow" aria-hidden="true">&darr;</span><span class="rm-k-goal">USC</span><span class="rm-k-sub">then <span class="rm-tbd">3</span> more</span></div>
           </div>
@@ -1020,7 +1087,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       </div>
     </div>
   </div>
-  <aside class="notes">Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built. Click "Where we're headed": these are things we can't do yet, and three goals that will tell us it's working: today, then the target. Clicker: next opens the hub, next closes it, next opens "Where we're headed", next closes it, then on to the close. Numbers with a dashed outline are placeholder targets for Evelyn to confirm.</aside>
+  <aside class="notes">Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built. Then Pricing: campuses pay, students use it free. Partners: AI companies want student builders (not confirmed yet). Open source: the students who use it help build it. Click "Where we're headed": things we can't do yet, and three goals that will tell us it's working. Clicker: each press opens the next stop, the next press closes it. Numbers with a dashed outline are placeholder targets for Evelyn to confirm.</aside>
 </section>
 
 <!-- 13 Close -->
@@ -1069,22 +1136,6 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <aside class="notes">For Q&amp;A. If asked "doesn't Buzz already do this?": Buzz is built for companies; we're built for student teams, with a guide for first-time builders and a campus hub.</aside>
 </section>
 
-<!-- Appendix: developer stat -->
-<section class="slide" data-title="Appendix: the developer stat" data-hook="stat">
-  <div class="eyebrow"><i></i>Appendix · The developer stat</div>
-  <div class="stat2">
-    <div>
-      <div class="numrow"><span class="big dim" data-count="84">84%</span><p>of developers use or plan to use AI tools.</p></div>
-      <div class="numrow" data-step="1"><span class="big hl" data-count="17">17%</span><p>say AI agents improved how their team works together.</p></div>
-    </div>
-    <div>
-      <div class="dots" id="dots" aria-hidden="true"></div>
-      <div class="dots-cap">Each dot is 1 in 100 developers</div>
-    </div>
-  </div>
-  <div class="src">Stack Overflow Developer Survey 2025, via SD Times and The New Stack</div>
-  <aside class="notes">Backup for Q&amp;A, moved from the main story. Let the 84 dots fill, then click. "Almost everyone uses AI. Only 17 in 100 say agents made teamwork better."</aside>
-</section>
 
 <!-- 16 Sources -->
 <section class="slide" data-title="Appendix: sources" style="padding-top:70px">
@@ -1252,15 +1303,15 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     var rm = $('rm'); if (!rm) return;
     var road = $('rm-road'), car = $('rm-car'), dim = $('rm-dim');
     var total = road.getTotalLength();
-    var STOP = { start: 0.12, b: 0.47, c: 0.86 };
+    var STOP = { start: 0.08, b: 0.30, p: 0.45, s: 0.60, o: 0.74, c: 0.90 }, ORDER = ['b', 'p', 's', 'o', 'c'];
     var at = STOP.start, anim = null, openId = null;
     function place(f) {
       var L = total * f, p = road.getPointAtLength(L), q = road.getPointAtLength(Math.min(total, L + 2));
       var a = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
       car.setAttribute('transform', 'translate(' + p.x + ' ' + (p.y - 14) + ') rotate(' + a + ')');
     }
-    function signAt(id, f) { var p = road.getPointAtLength(total * f); var b = $(id); b.style.left = p.x + 'px'; b.style.top = (p.y - 150) + 'px'; }
-    signAt('rm-sign-b', STOP.b); signAt('rm-sign-c', STOP.c);
+    function signAt(id, f, lift) { var p = road.getPointAtLength(total * f); var b = $(id); b.style.left = p.x + 'px'; b.style.top = (p.y - lift) + 'px'; b.style.setProperty('--post', (lift - b.offsetHeight - 30) + 'px'); }
+    ORDER.forEach(function (k, i) { signAt('rm-sign-' + k, STOP[k], i % 2 ? 230 : 140); });
     function drive(to, done) {
       if (anim) cancelAnimationFrame(anim);
       car.classList.remove('idle');
@@ -1284,7 +1335,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       each(rm.querySelectorAll('.rm-card'), function (c) { c.hidden = true; });
       each(rm.querySelectorAll('.rm-sign'), function (b) { b.setAttribute('aria-expanded', 'false'); });
       dim.hidden = true; var was = openId; openId = null;
-      if (!silent && was) { var k = Array.prototype.indexOf.call(slides, rm.closest('section')); if (k > -1 && (stepState[k] === 1 || stepState[k] === 3)) { stepState[k]++; applySteps(k); } }
+      if (!silent && was) { var k = Array.prototype.indexOf.call(slides, rm.closest('section')); if (k > -1 && stepState[k] % 2 === 1) { stepState[k]++; applySteps(k); } }
     }
     function goStop(k, step) {
       var si = Array.prototype.indexOf.call(slides, rm.closest('section'));
@@ -1295,13 +1346,13 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     function render(s, animate) {
       if (anim) { cancelAnimationFrame(anim); anim = null; }
       closeCard(true);
-      var target = s >= 3 ? STOP.c : s >= 1 ? STOP.b : STOP.start;
-      var openK = s === 1 ? 'b' : s === 3 ? 'c' : null;
+      var idx = s > 0 ? Math.ceil(s / 2) - 1 : -1;
+      var target = idx >= 0 ? STOP[ORDER[idx]] : STOP.start;
+      var openK = s % 2 === 1 ? ORDER[idx] : null;
       if (animate) drive(target, function () { if (openK) openCard(openK); });
       else { at = target; place(at); car.classList.add('idle'); if (openK) openCard(openK); }
     }
-    $('rm-sign-b').addEventListener('click', function () { goStop('b', 1); });
-    $('rm-sign-c').addEventListener('click', function () { goStop('c', 3); });
+    ORDER.forEach(function (k, i) { $('rm-sign-' + k).addEventListener('click', function () { goStop(k, i * 2 + 1); }); });
     each(rm.querySelectorAll('.rm-x'), function (x) { x.addEventListener('click', function () { closeCard(false); }); });
     dim.addEventListener('click', function () { closeCard(false); });
     document.addEventListener('keydown', function (e) {
@@ -1309,7 +1360,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     }, true);
     hooks.roadmap = {
       enter: function () { var si = Array.prototype.indexOf.call(slides, rm.closest('section')); render(si > -1 ? stepState[si] : 0, false); },
-      step: function (s) { render(s, s === 1 || s === 3); }
+      step: function (s) { render(s, s % 2 === 1); }
     };
     place(at); car.classList.add('idle');
   })();
@@ -1624,7 +1675,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   /* ---------- Three layers: the tower ---------- */
   var floors = [
     { status: 'Being built now', t: 'The team room', items: ['A private room for each project', 'Every AI posts what it is about to change', 'A plain-English feed anyone can follow', 'Nothing goes live until a person approves it'] },
-    { status: 'Clickable prototype', t: 'Easy to start', items: ['Training mode: hover anything to see what it means', 'A one-minute "Start here" tour on day one', "Taught on your team's real project, not a separate course"] },
+    { status: 'Clickable prototype', t: 'Easy to start', items: ['Practice room: try a team room with practice teammates, risk-free', 'Training mode: tooltips you turn on or off', 'A one-minute "Start here" tour on day one'] },
     { status: 'Vision', t: 'The campus hub', items: ['Verified students from one school', 'See what other teams are building', 'Ask for help, or join another team', 'Private rooms stay private'] }
   ];
   function selectFloor(k) {
