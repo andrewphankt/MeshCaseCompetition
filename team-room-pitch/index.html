@@ -703,7 +703,38 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <div class="intro">Introducing</div>
   <h1 class="h-xl"><span class="pname" data-name>[Name]</span></h1>
   <p class="lede" style="margin-top:22px">One room for your team and every AI on it.</p>
-  <aside class="notes">Say the name, then go straight to the live room.</aside>
+  <aside class="notes">Say the name, then give the four-step picture on the next slide.</aside>
+</section>
+
+<!-- 6b How it works -->
+<section class="slide" data-title="How it works">
+  <div class="eyebrow"><i></i>How it works</div>
+  <h2 class="h-m">A normal day in the room, in four steps.</h2>
+  <div class="road road-4">
+    <div class="fill"></div>
+    <div class="stop"><div class="pin">1</div><div class="when">You</div><h3>Ask your AI</h3><p>Say what you want in plain English, on your own schedule. Your work saves to the team's shared draft by itself.</p></div>
+    <div class="stop" data-step="1"><div class="pin">2</div><div class="when">The AIs</div><h3>AIs talk to each other</h3><p>Need something from a teammate's part? Your AI asks theirs, even while they're offline. Nobody plays messenger.</p></div>
+    <div class="stop" data-step="2"><div class="pin">3</div><div class="when">A person</div><h3>The right person approves</h3><p>Anything that changes someone's work waits for their OK. No AI acts behind a teammate's back.</p></div>
+    <div class="stop" data-step="3"><div class="pin">4</div><div class="when">The team</div><h3>Publish when ready</h3><p>Everyone sees the draft live. When the team agrees, one click makes it real.</p></div>
+  </div>
+  <p class="how-line" data-step="4"><span class="hl">AIs coordinate.</span> People approve.</p>
+  <aside class="notes">Click once per step. "Here's a normal day in the room. One: you tell your AI what you want, in plain English, whenever you have time, and it saves to the team's shared draft. Two: if it needs something from a teammate's part, it asks their AI directly, so nobody has to play messenger. Three: anything that changes someone's work waits for that person's OK. Four: everyone sees the draft live, and when the team is ready, one click publishes it." Last click: "AIs coordinate. People approve." About 30 seconds.</aside>
+</section>
+
+<!-- 8 Three layers -->
+<section class="slide" data-title="Three layers" data-hook="layers">
+  <div class="eyebrow"><i></i>What makes it different</div>
+  <h2 class="h-m">Three layers, built for students.</h2>
+  <div class="layers2" data-interactive>
+    <div class="tower" id="tower">
+      <button type="button" class="floor f1" data-step="1" data-floor="0" aria-pressed="false"><div class="fn">1</div><div><h3>The team room</h3><div class="role">Makes teams work</div></div></button>
+      <button type="button" class="floor f2" data-step="2" data-floor="1" aria-pressed="false"><div class="fn">2</div><div><h3>Learn as you build</h3><div class="role">Keeps beginners</div></div></button>
+      <button type="button" class="floor f3" data-step="3" data-floor="2" aria-pressed="false"><div class="fn">3</div><div><h3>The campus hub</h3><div class="role">Makes it grow</div></div></button>
+    </div>
+    <div class="floor-detail" id="floor-detail"></div>
+  </div>
+  <div class="story" data-step="4">The room makes teams <span>work</span>. The guide makes beginners <span>stay</span>. The hub makes it <span>grow</span>.</div>
+  <aside class="notes">Each click adds a floor to the building. Click any floor to show its details. This is the differentiation slide: features alone aren't unique, the three layers for students are.</aside>
 </section>
 
 <!-- 7 Demo -->
@@ -749,37 +780,6 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     </div>
   </div>
   <aside class="notes">Press Play and point at the file on the right: Andrew's AI claims the title, and Iris's AI heads for the same line. When the warning appears, ask the audience: "Wait, or take the footer?" and click their pick. Flip to Technical to show it's the same update, just translated. End by approving the preview as Evelyn, the teammate who doesn't write the code.</aside>
-</section>
-
-<!-- 7b How it works -->
-<section class="slide" data-title="How it works">
-  <div class="eyebrow"><i></i>How it works</div>
-  <h2 class="h-m">A normal day in the room, in four steps.</h2>
-  <div class="road road-4">
-    <div class="fill"></div>
-    <div class="stop"><div class="pin">1</div><div class="when">You</div><h3>Ask your AI</h3><p>Say what you want in plain English, on your own schedule. Your work saves to the team's shared draft by itself.</p></div>
-    <div class="stop" data-step="1"><div class="pin">2</div><div class="when">The AIs</div><h3>AIs talk to each other</h3><p>Need something from a teammate's part? Your AI asks theirs, even while they're offline. Nobody plays messenger.</p></div>
-    <div class="stop" data-step="2"><div class="pin">3</div><div class="when">A person</div><h3>The right person approves</h3><p>Anything that changes someone's work waits for their OK. No AI acts behind a teammate's back.</p></div>
-    <div class="stop" data-step="3"><div class="pin">4</div><div class="when">The team</div><h3>Publish when ready</h3><p>Everyone sees the draft live. When the team agrees, one click makes it real.</p></div>
-  </div>
-  <p class="how-line" data-step="4"><span class="hl">AIs coordinate.</span> People approve.</p>
-  <aside class="notes">Click once per step. "So that's what you just saw, as a normal day. One: you tell your AI what you want, in plain English, whenever you have time, and it saves to the team's shared draft. Two: if it needs something from a teammate's part, it asks their AI directly, so nobody has to play messenger. Three: anything that changes someone's work waits for that person's OK. Four: everyone sees the draft live, and when the team is ready, one click publishes it." Last click: "AIs coordinate. People approve." About 30 seconds.</aside>
-</section>
-
-<!-- 8 Three layers -->
-<section class="slide" data-title="Three layers" data-hook="layers">
-  <div class="eyebrow"><i></i>What makes it different</div>
-  <h2 class="h-m">Three layers, built for students.</h2>
-  <div class="layers2" data-interactive>
-    <div class="tower" id="tower">
-      <button type="button" class="floor f1" data-step="1" data-floor="0" aria-pressed="false"><div class="fn">1</div><div><h3>The team room</h3><div class="role">Makes teams work</div></div></button>
-      <button type="button" class="floor f2" data-step="2" data-floor="1" aria-pressed="false"><div class="fn">2</div><div><h3>Learn as you build</h3><div class="role">Keeps beginners</div></div></button>
-      <button type="button" class="floor f3" data-step="3" data-floor="2" aria-pressed="false"><div class="fn">3</div><div><h3>The campus hub</h3><div class="role">Makes it grow</div></div></button>
-    </div>
-    <div class="floor-detail" id="floor-detail"></div>
-  </div>
-  <div class="story" data-step="4">The room makes teams <span>work</span>. The guide makes beginners <span>stay</span>. The hub makes it <span>grow</span>.</div>
-  <aside class="notes">Each click adds a floor to the building. Click any floor to show its details. This is the differentiation slide: features alone aren't unique, the three layers for students are.</aside>
 </section>
 
 <!-- 9 Training mode -->
