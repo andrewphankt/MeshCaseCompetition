@@ -171,3 +171,21 @@
 .tabsdemo .page.real { left: 0; top: 0; width: 100%; height: 100%; margin: 0; border: 0; border-radius: 0; background: #fff; overflow: hidden; display: block; }
 .tabsdemo .page.real iframe { width: 1920px; height: 873px; border: 0; transform: scale(.5729); transform-origin: 0 0; pointer-events: none; background: #fff; }
 .tabsdemo .tb { max-width: 300px; }
+
+/* Profile pictures (avatars.js) and the small agent badge on an agent's picture */
+.av.pic { position: relative; overflow: visible; background: none !important; padding: 0; }
+.av.pic > svg { width: 100%; height: 100%; display: block; border-radius: 50%; }
+.av.pic .agent-face { width: 100%; height: 100%; display: grid; place-items: center; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 1px #e4e4e7; color: #111; }
+.av.pic .agent-face svg { width: 62%; height: 62%; display: block; }
+.av.pic .owner-badge { position: absolute; right: -10%; bottom: -10%; width: 48%; height: 48%; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 2px #fff; }
+.av.pic .owner-badge svg { width: 100%; height: 100%; display: block; }
+
+/* Real Mesh sidebar icons in the room and chat */
+.room .nav svg, .mchat .side .nav svg { width: 15px; height: 15px; flex-shrink: 0; }
+.room .nav i { display: none; }
+
+/* Changes: more air between the notes and their divider lines */
+.feed { margin-top: 56px; }
+.feed .fh { height: 76px; }
+.feed .note { padding: 28px 0 30px; gap: 22px; }
+.feed .note .files { margin-top: 14px; }

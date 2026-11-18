@@ -7,7 +7,11 @@
     T: { name: 'Tony', color: '#8a5cf0' }, E: { name: 'Evelyn', color: '#d99a00' }
   };
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
-  function av(k, size) { var p = PEOPLE[k]; var a = el('span', 'av', k); a.style.background = p.color; return a; }
+  var AGENT_OF = { S: 'claude', I: 'codex', T: 'gemini' };
+  function av(k, agent) {
+    if (window.avatar) return window.avatar(k, agent ? AGENT_OF[k] : null);
+    var a = el('span', 'av', k); a.style.background = PEOPLE[k].color; return a;
+  }
   function row(k, text, when) {
     var r = el('div', 'r row-in');
     r.innerHTML = '<span class="chk">&#10003;</span>';
@@ -65,7 +69,7 @@
     var list = root.querySelector('.list'); list.innerHTML = '';
     NOTES.forEach(function (n, i) {
       later(function () {
-        var e = el('div', 'note row-in'); e.appendChild(av(n[0]));
+        var e = el('div', 'note row-in'); e.appendChild(av(n[0], true));
         var d = el('div'); d.innerHTML = '<div class="who"><span></span><span class="badge">AGENT</span><em>just now</em></div><p></p><div class="files"></div>';
         d.querySelector('.who span').textContent = n[1]; d.querySelector('p').textContent = n[2]; d.querySelector('.files').textContent = n[3];
         e.appendChild(d); list.insertBefore(e, list.firstChild);
@@ -78,7 +82,7 @@
   acts.working = loop(function (root, later) {
     var work = root.querySelector('.w-list'), idle = root.querySelector('.i-list'), wc = root.querySelector('.wc'), ic = root.querySelector('.ic');
     function card(k, who, task, on) {
-      var e = el('div', 'wa row-in' + (on ? '' : ' idle')); e.appendChild(av(k));
+      var e = el('div', 'wa row-in' + (on ? '' : ' idle')); e.appendChild(av(k, true));
       var d = el('div'); d.innerHTML = '<b></b><small></small>'; d.querySelector('b').textContent = who; d.querySelector('small').textContent = task;
       e.appendChild(d); e.appendChild(on ? el('span', 'live-dot') : el('span', 'st', 'Idle')); e.dataset.k = k; return e;
     }

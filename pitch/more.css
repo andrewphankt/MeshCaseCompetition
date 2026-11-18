@@ -62,15 +62,27 @@
 .bet .moves { margin-top: 10px; padding-top: 16px; border-top: 1px solid var(--line); font: 600 18px/1.3 var(--font); color: var(--ink); }
 .bet .moves span { display: block; font: 600 13px/1 var(--font); letter-spacing: .1em; color: var(--muted); margin-bottom: 6px; }
 
-/* Close: a paper plane crosses the slide */
-.closeplane { position: absolute; left: -80px; top: 760px; width: 64px; height: 64px; opacity: 0; }
-.slide.on .closeplane { animation: crossfly 4.2s var(--ease-fly) 1.6s forwards; }
-@keyframes crossfly {
-  0% { opacity: 0; transform: translate(0, 0) rotate(10deg); }
-  10% { opacity: 1; }
-  55% { transform: translate(1000px, -360px) rotate(-12deg); opacity: 1; }
-  100% { transform: translate(2100px, -760px) rotate(-20deg); opacity: 0; }
+/* Close: a paper plane takes off from the bottom left, loops once, and climbs out of the top right,
+   drawing a dotted trail behind it (the same curve the publish plane uses) */
+.flight { position: absolute; inset: 0; width: 1920px; height: 1080px; pointer-events: none; overflow: visible; }
+.flight .trail { fill: none; stroke: #a1a1aa; stroke-width: 3; stroke-dasharray: 2 13; stroke-linecap: round; }
+.flight .reveal { fill: none; stroke: #fff; stroke-width: 40; stroke-dasharray: 1 1; stroke-dashoffset: 1; }
+.slide.on .flight .reveal { animation: trail 5.2s var(--ease-fly) 1.8s forwards; }
+.slide.on .flight .trail { animation: trailfade 2.4s ease 7s forwards; }
+@keyframes trail { to { stroke-dashoffset: 0; } }
+@keyframes trailfade { to { opacity: 0; } }
+.plane2 { position: absolute; left: 0; top: 0; width: 104px; height: 62px; offset-rotate: auto; offset-distance: 0%; opacity: 0; pointer-events: none;
+  filter: drop-shadow(0 14px 16px rgba(24,24,27,.18)); }
+.plane2 svg { width: 100%; height: 100%; display: block; }
+.slide.on .plane2 { animation: soar 5.2s var(--ease-fly) 1.8s forwards; }
+@keyframes soar {
+  0% { offset-distance: 0%; opacity: 0; transform: scale(.7); }
+  6% { opacity: 1; }
+  60% { transform: scale(1); }
+  92% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; transform: scale(1.25); }
 }
+@media (prefers-reduced-motion: reduce) { .plane2, .flight { display: none; } }
 .closelines { font: 700 84px/1.12 var(--font); letter-spacing: -0.045em; }
 .closelines div { opacity: 0; transform: translateY(20px); transition: opacity .8s var(--ease), transform 1s var(--ease); }
 .slide.on .closelines div { opacity: 1; transform: none; }
@@ -101,3 +113,7 @@ svg.fav circle { fill: currentColor; }
 @keyframes sway { to { transform: translateY(-14px) scaleX(1.02); } }
 @media (prefers-reduced-motion: reduce) { .slide.wash::before, .slide.wash::after { animation: none; } }
 @media print { .slide.wash::before, .slide.wash::after { animation: none; } }
+
+.bets.four { grid-template-columns: repeat(4, 1fr); width: 1560px; margin-top: 28px; }
+.bets.four .bet b { font-size: 30px; }
+.bets.four .bet p { font-size: 20px; }

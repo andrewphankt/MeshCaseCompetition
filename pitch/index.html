@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="room.css">
 <link rel="stylesheet" href="more.css">
 <link rel="stylesheet" href="chat.css">
+<link rel="stylesheet" href="bgfx.css">
 </head>
 <body>
 <!--
@@ -23,7 +24,7 @@
 <main id="stage" aria-label="Mesh pitch deck">
 
   <!-- 1 Title -->
-  <section class="slide wash" data-title="Title" data-noprogress>
+  <section class="slide" data-title="Title" data-noprogress>
     <svg class="mark rise" data-spin aria-hidden="true"></svg>
     <h1 class="display rise">Mesh</h1>
     <p class="sub rise">Build together, with the agents you already use.</p>
@@ -31,7 +32,8 @@
   </section>
 
   <!-- 2 Everyone has an agent -->
-  <section class="slide wash" data-title="Everyone has an agent" data-section="The problem">
+  <section class="slide" data-title="Everyone has an agent" data-section="The problem">
+    <div class="bgfx bg-net" aria-hidden="true"><svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice"><line x1="723" y1="214" x2="872" y2="110"/><line x1="723" y1="214" x2="918" y2="207"/><line x1="158" y1="134" x2="136" y2="148"/><line x1="158" y1="134" x2="300" y2="180"/><line x1="1741" y1="608" x2="1753" y2="639"/><line x1="1741" y1="608" x2="1700" y2="900"/><line x1="252" y1="434" x2="332" y2="356"/><line x1="252" y1="434" x2="203" y2="306"/><line x1="1253" y1="119" x2="1253" y2="123"/><line x1="1253" y1="119" x2="1167" y2="180"/><line x1="1099" y1="279" x2="1167" y2="180"/><line x1="1099" y1="279" x2="918" y2="207"/><line x1="136" y1="148" x2="158" y2="134"/><line x1="136" y1="148" x2="300" y2="180"/><line x1="203" y1="306" x2="313" y2="288"/><line x1="203" y1="306" x2="252" y2="434"/><line x1="245" y1="624" x2="252" y2="434"/><line x1="245" y1="624" x2="220" y2="880"/><line x1="929" y1="120" x2="960" y2="120"/><line x1="929" y1="120" x2="872" y2="110"/><line x1="1753" y1="639" x2="1741" y2="608"/><line x1="1753" y1="639" x2="1700" y2="900"/><line x1="313" y1="288" x2="332" y2="356"/><line x1="313" y1="288" x2="300" y2="180"/><line x1="1253" y1="123" x2="1253" y2="119"/><line x1="1253" y1="123" x2="1167" y2="180"/><line x1="872" y1="110" x2="929" y2="120"/><line x1="872" y1="110" x2="960" y2="120"/><line x1="512" y1="107" x2="300" y2="180"/><line x1="512" y1="107" x2="723" y2="214"/><line x1="1200" y1="939" x2="1207" y2="895"/><line x1="1200" y1="939" x2="980" y2="1000"/><line x1="332" y1="356" x2="313" y2="288"/><line x1="332" y1="356" x2="252" y2="434"/><line x1="918" y1="207" x2="929" y2="120"/><line x1="918" y1="207" x2="960" y2="120"/><line x1="1167" y1="180" x2="1253" y2="123"/><line x1="1167" y1="180" x2="1253" y2="119"/><line x1="1207" y1="895" x2="1200" y2="939"/><line x1="1207" y1="895" x2="980" y2="1000"/><line x1="1456" y1="245" x2="1640" y2="220"/><line x1="1456" y1="245" x2="1253" y2="123"/><line x1="300" y1="180" x2="313" y2="288"/><line x1="300" y1="180" x2="158" y2="134"/><line x1="1640" y1="220" x2="1456" y2="245"/><line x1="1640" y1="220" x2="1253" y2="123"/><line x1="220" y1="880" x2="245" y2="624"/><line x1="220" y1="880" x2="252" y2="434"/><line x1="1700" y1="900" x2="1753" y2="639"/><line x1="1700" y1="900" x2="1741" y2="608"/><line x1="960" y1="120" x2="929" y2="120"/><line x1="960" y1="120" x2="872" y2="110"/><line x1="980" y1="1000" x2="1200" y2="939"/><line x1="980" y1="1000" x2="1207" y2="895"/><circle cx="723" cy="214" r="5"/><circle cx="158" cy="134" r="8"/><circle cx="1741" cy="608" r="8"/><circle cx="252" cy="434" r="8"/><circle cx="1253" cy="119" r="5"/><circle cx="1099" cy="279" r="6"/><circle cx="136" cy="148" r="5"/><circle cx="203" cy="306" r="8"/><circle cx="245" cy="624" r="8"/><circle cx="929" cy="120" r="5"/><circle cx="1753" cy="639" r="8"/><circle cx="313" cy="288" r="5"/><circle cx="1253" cy="123" r="8"/><circle cx="872" cy="110" r="5"/><circle cx="512" cy="107" r="6"/><circle cx="1200" cy="939" r="8"/><circle cx="332" cy="356" r="8"/><circle cx="918" cy="207" r="6"/><circle cx="1167" cy="180" r="6"/><circle cx="1207" cy="895" r="6"/><circle cx="1456" cy="245" r="8"/><circle cx="300" cy="180" r="6"/><circle cx="1640" cy="220" r="6"/><circle cx="220" cy="880" r="6"/><circle cx="1700" cy="900" r="5"/><circle cx="960" cy="120" r="5"/><circle cx="980" cy="1000" r="8"/></svg></div>
     <h2 class="h2 rise">Everyone on your team has an agent now.</h2>
     <div class="terms rise">
       <div class="term"><div class="tb"><i></i><i></i><i></i><em>Claude Code · Sarah</em></div><div class="tx">
@@ -69,12 +71,12 @@
       <div class="chatwin">
         <div class="cw-bar"><span class="dots"><i></i><i></i><i></i></span><b># team-project</b><span class="cw-n">5 members</span></div>
         <div class="cw-feed">
-          <div class="msg" data-at="400"><span class="av" style="background:#e8613f">S</span><div><b>Sarah</b><p>hey I just changed the big title, pls nobody touch index.html</p></div></div>
-          <div class="msg" data-at="1500"><span class="av" style="background:#2a9d66">I</span><div><b>Iris</b><p>oh no. my Codex just rewrote that same line</p></div></div>
-          <div class="msg" data-at="2600"><span class="av" style="background:#e8613f">S</span><div><b>Sarah</b><p>can you paste what your agent changed so I can tell Claude?</p></div></div>
-          <div class="msg" data-at="3700"><span class="av" style="background:#2a9d66">I</span><div><b>Iris</b><p class="paste">Updated index.html<br>- hero title: "Study together"<br>+ sign-up button under the title<br>Saved 2 files.</p></div></div>
-          <div class="msg" data-at="5000"><span class="av" style="background:#8a5cf0">T</span><div><b>Tony</b><p>wait, which version is the real one?</p></div></div>
-          <div class="msg typing" data-at="6000"><span class="av" style="background:#d99a00">E</span><div><p><i></i><i></i><i></i></p></div></div>
+          <div class="msg" data-at="400"><span class="av" data-avatar="S"></span><div><b>Sarah</b><p>hey I just changed the big title, pls nobody touch index.html</p></div></div>
+          <div class="msg" data-at="1500"><span class="av" data-avatar="I"></span><div><b>Iris</b><p>oh no. my Codex just rewrote that same line</p></div></div>
+          <div class="msg" data-at="2600"><span class="av" data-avatar="S"></span><div><b>Sarah</b><p>can you paste what your agent changed so I can tell Claude?</p></div></div>
+          <div class="msg" data-at="3700"><span class="av" data-avatar="I"></span><div><b>Iris</b><p class="paste">Updated index.html<br>- hero title: "Study together"<br>+ sign-up button under the title<br>Saved 2 files.</p></div></div>
+          <div class="msg" data-at="5000"><span class="av" data-avatar="T"></span><div><b>Tony</b><p>wait, which version is the real one?</p></div></div>
+          <div class="msg typing" data-at="6000"><span class="av" data-avatar="E"></span><div><p><i></i><i></i><i></i></p></div></div>
         </div>
       </div>
     </div>
@@ -82,7 +84,8 @@
   </section>
 
   <!-- 4 Who it's for -->
-  <section class="slide wash" data-title="Who it's for" data-section="The problem">
+  <section class="slide" data-title="Who it's for" data-section="The problem">
+    <div class="bgfx bg-orbit" aria-hidden="true"><svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice"><g><ellipse cx="960" cy="540" rx="560" ry="250"/><circle cx="1476" cy="637" r="11" fill="#fb923c"/></g><g><ellipse cx="960" cy="540" rx="760" ry="360"/><circle cx="513" cy="831" r="11" fill="#60a5fa"/></g><g><ellipse cx="960" cy="540" rx="960" ry="470"/><circle cx="408" cy="155" r="11" fill="#c084fc"/></g></svg></div>
     <p class="kicker rise">Who it's for</p>
     <h2 class="h1 rise" style="max-width:1500px">Students building a team project with Claude Code.</h2>
     <p class="sub rise">Who've never used Git, and shouldn't have to.</p>
@@ -90,12 +93,16 @@
   </section>
 
   <!-- 5 The proof -->
-  <section class="slide wash" data-title="The proof" data-section="The problem">
-    <p class="kicker rise">We tested it on ourselves</p>
-    <p class="num rise">33<small> min</small></p>
-    <p class="sub rise">to set up from zero, with engineers on the call.</p>
-    <p class="sub grey" data-step="1" style="margin-top:12px">And 20 messages.</p>
-    <div class="script">We tried it on ourselves first. Setting up from zero took 33 minutes, with engineers on the call. [click] And 20 messages. That was Evelyn's setup. If it took that long with help one call away, imagine doing it alone.</div>
+  <section class="slide" data-title="The proof" data-section="The problem">
+    <div class="bgfx bg-clock" aria-hidden="true"><svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice"><circle class="track" cx="960" cy="540" r="470"/><circle class="ticks" cx="960" cy="540" r="440" pathLength="1188"/><circle class="arc" cx="960" cy="540" r="470" pathLength="60"/></svg></div>
+    <p class="kicker rise">When we set up our own team, from zero</p>
+    <div class="stats rise">
+      <div class="stat"><span class="v">33<small> min</small></span><span class="l">to get one teammate set up</span></div>
+      <div class="stat" data-step="1"><span class="v">20</span><span class="l">messages back and forth</span></div>
+      <div class="stat" data-step="2"><span class="v">2</span><span class="l">GitHub keys pasted into chat by accident</span></div>
+    </div>
+    <p class="sub" data-step="3" style="margin-top:60px">With engineers on the call.</p>
+    <div class="script">When we first set up our own team, from zero, getting one teammate, Evelyn, set up took 33 minutes. [click] Twenty messages back and forth. [click] And two GitHub keys pasted into the chat by accident. [click] That was with engineers on the call. Imagine a team doing it alone.</div>
   </section>
 
   <!-- 6 Meet Mesh -->
@@ -175,9 +182,9 @@
             <div class="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v5l3 2M21 12a9 9 0 1 1-3-6.7M21 4v4h-4"/></svg>Changes</div>
             <div class="h">CHANNELS</div><div class="ch"># general</div>
             <div class="h">AGENTS</div>
-            <div class="ag" data-ag="S"><span class="av" style="background:#e8613f">S</span><div><b>Sarah's Claude</b><small>Idle</small></div><span class="live-dot"></span></div>
-            <div class="ag" data-ag="I"><span class="av" style="background:#2a9d66">I</span><div><b>Iris's Codex</b><small>Idle</small></div><span class="live-dot"></span></div>
-            <div class="ag" data-ag="T"><span class="av" style="background:#8a5cf0">T</span><div><b>Tony's Gemini</b><small>Idle</small></div><span class="live-dot"></span></div>
+            <div class="ag" data-ag="S"><span class="av" data-avatar="S:claude"></span><div><b>Sarah's Claude</b><small>Idle</small></div><span class="live-dot"></span></div>
+            <div class="ag" data-ag="I"><span class="av" data-avatar="I:codex"></span><div><b>Iris's Codex</b><small>Idle</small></div><span class="live-dot"></span></div>
+            <div class="ag" data-ag="T"><span class="av" data-avatar="T:gemini"></span><div><b>Tony's Gemini</b><small>Idle</small></div><span class="live-dot"></span></div>
           </aside>
           <div class="main">
             <div class="top"><b>Preview</b><span class="seg"><span>Desktop</span><span>Phone</span></span><span class="btn-k">Invite</span></div>
@@ -235,11 +242,11 @@
           <div class="main">
             <div class="top"># general</div>
             <div class="feed">
-              <div class="m at" data-at="300"><span class="av" style="background:#2a9d66">I</span><div><div class="nm">Iris<em>9:41 PM</em></div><p>ok who made the hero title neon green</p></div></div>
-              <div class="m at" data-at="1500"><span class="av agent">AG</span><div><div class="nm">Sarah's Claude<span class="badge">AGENT</span><em>9:41 PM</em></div><p>That was me. Sarah asked for "more energy". Want me to tone it down?</p></div></div>
-              <div class="m at" data-at="2900"><span class="av" style="background:#e8613f">S</span><div><div class="reply">replying to Iris</div><div class="nm">Sarah<em>9:42 PM</em></div><p><span class="men">@Iris</span> it's a vibe. look</p>
+              <div class="m at" data-at="300"><span class="av" data-avatar="I"></span><div><div class="nm">Iris<em>9:41 PM</em></div><p>ok who made the hero title neon green</p></div></div>
+              <div class="m at" data-at="1500"><span class="av" data-avatar="S:claude"></span><div><div class="nm">Sarah's Claude<span class="badge">AGENT</span><em>9:41 PM</em></div><p>That was me. Sarah asked for "more energy". Want me to tone it down?</p></div></div>
+              <div class="m at" data-at="2900"><span class="av" data-avatar="S"></span><div><div class="reply">replying to Iris</div><div class="nm">Sarah<em>9:42 PM</em></div><p><span class="men">@Iris</span> it's a vibe. look</p>
                 <div class="shot"><div class="sb"><i></i><i></i><i></i></div><div class="pg"><b>Study together.</b><span style="width:70%"></span><span style="width:46%"></span></div></div></div></div>
-              <div class="m at" data-at="4300"><span class="av" style="background:#d99a00">E</span><div><div class="nm">Evelyn<em>9:42 PM</em></div>
+              <div class="m at" data-at="4300"><span class="av" data-avatar="E"></span><div><div class="nm">Evelyn<em>9:42 PM</em></div>
                 <div class="gif"><i></i><i></i><i></i><i></i><b>LOL</b><small>GIF</small></div>
                 <div class="reacts at" data-at="5300"><span>&#128514; 3</span><span>&#128293; 2</span></div></div></div>
             </div>
@@ -330,7 +337,7 @@
         <p class="good" data-at="5600">Iris approved. Join link added.</p></div></div>
       <div class="reqcard at" data-at="2400" data-cls="-approved:0,approved:4300">
         <div class="k">REQUEST FOR IRIS</div>
-        <div class="from"><span class="av" style="background:#e8613f">S</span>From Sarah's Claude</div>
+        <div class="from"><span class="av" data-avatar="S:claude"></span>From Sarah's Claude</div>
         <p>Add a Join link to the sign-up page.</p>
         <div class="acts"><span class="dec">Decline</span><span class="apr" data-cls="-down:0,down:3900,-down:4150">Approve</span></div>
         <div class="done">&#10003; Approved · Iris's Codex is on it</div>
@@ -347,7 +354,8 @@
   </section>
 
   <!-- 18 What we track -->
-  <section class="slide wash" data-title="What we track" data-section="Success">
+  <section class="slide" data-title="What we track" data-section="Success">
+    <div class="bgfx bg-chart" aria-hidden="true"><svg viewBox="0 0 1920 1080" preserveAspectRatio="none"><defs><linearGradient id="chartfade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfdbfe" stop-opacity=".45"/><stop offset="1" stop-color="#bfdbfe" stop-opacity="0"/></linearGradient></defs><g class="grid"><line x1="0" y1="300" x2="1920" y2="300"/><line x1="0" y1="500" x2="1920" y2="500"/><line x1="0" y1="700" x2="1920" y2="700"/><line x1="0" y1="900" x2="1920" y2="900"/></g><path class="area" d="M 0 980 L 240 950 L 460 965 L 700 900 L 940 910 L 1180 820 L 1420 760 L 1660 640 L 1920 520 L 1920 1080 L 0 1080 Z"/><path class="line" pathLength="1" d="M 0 980 L 240 950 L 460 965 L 700 900 L 940 910 L 1180 820 L 1420 760 L 1660 640 L 1920 520"/></svg></div>
     <h2 class="h2 rise">What we track.</h2>
     <div class="kpis">
       <div class="kpi" data-step="1"><span class="stage">Activation</span><b>Sign-in to first agent connected</b><span class="tgt">&lt; 5 min<small>Our target. It took us 33.</small></span></div>
@@ -360,7 +368,8 @@
   </section>
 
   <!-- 19 What we'd build next -->
-  <section class="slide wash" data-title="What we'd build next" data-section="Next">
+  <section class="slide" data-title="What we'd build next" data-section="Next">
+    <div class="bgfx bg-road" aria-hidden="true"><svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice"><path class="path" d="M 80 1000 C 500 980 620 860 900 900 C 1200 940 1300 800 1500 760 C 1700 720 1780 600 1880 520"/><circle class="stop" cx="80" cy="1000" r="14"/><circle class="stop" cx="900" cy="900" r="14"/><circle class="stop" cx="1500" cy="760" r="14"/><circle class="stop" cx="1880" cy="520" r="14"/></svg></div>
     <h2 class="h2 rise">Three bets. Each one moves a number.</h2>
     <div class="bets">
       <div class="bet" data-step="1"><span class="n">01</span><b>Get the second person in</b><p>An invite that ends in their first save. No terminal: a desktop plugin, and Windows.</p><div class="moves"><span>MOVES</span>Invited teammates who connect</div></div>
@@ -371,7 +380,8 @@
   </section>
 
   <!-- 20 Biggest risk -->
-  <section class="slide wash" data-title="Biggest risk" data-section="Next">
+  <section class="slide" data-title="Biggest risk" data-section="Next">
+    <div class="bgfx bg-files" aria-hidden="true"><svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice"><g class="a"><rect x="1340" y="420" width="380" height="480" rx="22"/><line x1="1390" y1="500" x2="1650" y2="500"/><line x1="1390" y1="556" x2="1590" y2="556"/><line x1="1390" y1="612" x2="1670" y2="612"/><line x1="1390" y1="668" x2="1550" y2="668"/><line x1="1390" y1="724" x2="1630" y2="724"/><line x1="1390" y1="780" x2="1580" y2="780"/></g><g class="b"><rect x="1400" y="470" width="380" height="480" rx="22"/><line x1="1450" y1="550" x2="1710" y2="550"/><line x1="1450" y1="606" x2="1650" y2="606"/><line x1="1450" y1="662" x2="1730" y2="662"/><line x1="1450" y1="718" x2="1610" y2="718"/><line x1="1450" y1="774" x2="1690" y2="774"/><line x1="1450" y1="830" x2="1640" y2="830"/></g></svg></div>
     <p class="kicker rise">Biggest risk</p>
     <h2 class="h1 rise" style="max-width:1450px">Will every agent obey the stop, every time?</h2>
     <p class="sub" data-step="1" style="max-width:1200px">Next test: two agents, one file, again and again, on Claude, Codex and Gemini. Count anything lost.</p>
@@ -386,20 +396,32 @@
       <div>One shared draft.</div>
       <div class="grey">The whole team.</div>
     </div>
-    <svg class="closeplane" viewBox="0 0 24 24" fill="#fff" stroke="#18181b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 15 22l-4-9-9-4 20-7z"/><path d="M22 2 11 13" fill="none"/></svg>
+    <svg class="flight" viewBox="0 0 1920 1080" aria-hidden="true">
+      <defs><mask id="trailmask" maskUnits="userSpaceOnUse"><path class="reveal" pathLength="1" d="M -120 960 C 240 1000 520 880 820 880 C 1120 880 1300 960 1420 880 C 1540 800 1460 700 1360 740 C 1260 780 1320 900 1480 900 C 1700 900 1820 620 2080 240"/></mask></defs>
+      <path class="trail" d="M -120 960 C 240 1000 520 880 820 880 C 1120 880 1300 960 1420 880 C 1540 800 1460 700 1360 740 C 1260 780 1320 900 1480 900 C 1700 900 1820 620 2080 240" mask="url(#trailmask)"/>
+    </svg>
+    <div class="plane2" style="offset-path: path('M -120 960 C 240 1000 520 880 820 880 C 1120 880 1300 960 1420 880 C 1540 800 1460 700 1360 740 C 1260 780 1320 900 1480 900 C 1700 900 1820 620 2080 240')">
+      <svg viewBox="-40 -24 80 48" aria-hidden="true">
+        <path d="M34 0 L-26 -20 L-12 0 Z" fill="#ffffff" stroke="#18181b" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M34 0 L-12 0 L-26 20 Z" fill="#e4e4e7" stroke="#18181b" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M34 0 L-12 0 L-5 9 Z" fill="#a1a1aa" stroke="#18181b" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+    </div>
     <div class="script">Your own agent. One shared draft. The whole team. That's Mesh. We built this deck in it. Thank you, we'd love your questions.</div>
   </section>
 
-  <!-- 22 Appendix: later ideas (Evelyn's) -->
-  <section class="slide" data-title="Appendix: later ideas" data-section="Appendix">
-    <p class="kicker rise">Appendix · Later ideas, from Evelyn</p>
-    <h2 class="h2 rise">Where Mesh could grow after that.</h2>
-    <div class="bets">
-      <div class="bet rise"><span class="n">Later</span><b>Practice room</b><p>A safe first project with practice teammates and tooltips.</p></div>
-      <div class="bet rise"><span class="n">Later</span><b>@mention any agent</b><p>Ask a teammate's agent right from the chat.</p></div>
-      <div class="bet rise"><span class="n">Later</span><b>Campus hub</b><p>Find a team, or the one skill your team is missing.</p></div>
+  <!-- Q&A, with Evelyn's strategies for where Mesh grows -->
+  <section class="slide" data-title="Q&amp;A" data-section="Q&amp;A">
+    <div class="bgfx bg-bubbles" aria-hidden="true"><svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice"><g><rect x="140" y="0" width="220" height="92" rx="46" stroke="#fdba74"/></g><g><rect x="420" y="0" width="160" height="67" rx="33" stroke="#93c5fd"/></g><g><rect x="1500" y="0" width="240" height="100" rx="50" stroke="#c4b5fd"/></g><g><rect x="1760" y="0" width="140" height="58" rx="29" stroke="#f9a8d4"/></g><g><rect x="260" y="0" width="180" height="75" rx="37" stroke="#86efac"/></g></svg></div>
+    <h2 class="display rise">Questions?</h2>
+    <p class="kicker rise" style="margin:56px 0 0">Evelyn's strategies for where Mesh grows</p>
+    <div class="bets four">
+      <div class="bet rise"><span class="n">01</span><b>Practice room</b><p>A safe first project with practice teammates and tooltips.</p></div>
+      <div class="bet rise"><span class="n">02</span><b>@mention any agent</b><p>Ask a teammate's agent right from the chat.</p></div>
+      <div class="bet rise"><span class="n">03</span><b>Campus hub</b><p>Find a team, or the one skill your team is missing.</p></div>
+      <div class="bet rise"><span class="n">04</span><b>Open source</b><p>Students who use Mesh help build it, and schools can see what runs.</p></div>
     </div>
-    <div class="script">For Q&amp;A. Evelyn's ideas for where Mesh grows next: a practice room, mentioning any agent from the chat, and a campus hub. We'd build them after the three bets, once teams are reliably building together.</div>
+    <div class="script">Thank you. We'd love your questions. If you're wondering where Mesh grows after those three bets, Evelyn has mapped out four strategies: a practice room for a safe first project, mentioning any teammate's agent from the chat, a campus hub to find a team or the skill you're missing, and open source, so the students who use Mesh help build it. Evelyn, do you want to take that?</div>
   </section>
 
   <div id="progress" aria-hidden="true"></div>
@@ -411,6 +433,7 @@
 <div id="hint">N script · S full script · F full screen</div>
 <script src="deck.js"></script>
 <script src="agent-icons.js"></script>
+<script src="avatars.js"></script>
 <script src="live.js"></script>
 <script src="room.js"></script>
 </body>
