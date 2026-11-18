@@ -909,6 +909,78 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .demo-full .room.mesh-ui .file.wn { overflow: hidden; min-width: 0; }
 .demo-full .room.mesh-ui[data-busy="0"] .file.wn { border-left: 0; }
 .demo-full .room.mesh-ui .file.wn > *:not(.stamp) { min-width: 440px; }
+
+/* Felix's working card: no background scene, just Felix and her rock */
+.room.mesh-ui .felix-scene { background: transparent; }
+.room.mesh-ui .felix .fx-sun, .room.mesh-ui .felix .fx-ground { display: none; }
+.room.mesh-ui .felix .fx-rock { bottom: 6px; }
+.room.mesh-ui .felix-scene img { bottom: 2px; }
+
+/* Felix idling in the sidebar: no background scene, just Felix */
+.room.mesh-ui .m-strip { background: transparent; }
+.room.mesh-ui .m-strip .ms-sun, .room.mesh-ui .m-strip .ms-ground { display: none; }
+.room.mesh-ui .m-strip img { bottom: 2px; }
+
+.room.mesh-ui .wn-av.wn-crit { background: #f1f1f4; overflow: hidden; width: 44px; height: 44px; }
+.room.mesh-ui .wn-crit .crit { width: 42px; height: 42px; }
+.room.mesh-ui .wn-row.busy .crit { animation: critwork .55s ease-in-out infinite; transform-origin: 50% 90%; }
+.room.mesh-ui .wn-row.wait .crit { animation: critwait 1.6s ease-in-out infinite; transform-origin: 50% 90%; }
+@keyframes critwork { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-3px) rotate(4deg); } }
+@keyframes critwait { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+/* Felix: one row in Working now, not a big card */
+.room.mesh-ui .felix { display: flex; align-items: center; gap: 10px; border-top: 0; padding: 6px 12px; }
+.room.mesh-ui .felix .felix-scene { flex: none; width: 92px; height: 62px; border-radius: 10px; background: #f6f6f8; }
+.room.mesh-ui .felix .felix-av { display: none; }
+.room.mesh-ui .felix .wn-row.me { flex: 1; padding: 0; }
+.room.mesh-ui .felix .felix-scene img { height: 56px !important; bottom: 2px; }
+.felix[data-state="work"] .felix-scene img { left: 4px !important; }
+.felix[data-state="saved"] .felix-scene img { left: 8px !important; height: 52px !important; }
+.room.mesh-ui .felix .fx-rock { right: 4px; bottom: 3px; width: 26px; height: 18px; }
+.room.mesh-ui .felix .fx-chip { right: 26px; bottom: 16px; width: 4px; height: 4px; }
+.room.mesh-ui .felix .fx-spark { right: 10px; top: 4px; font-size: 14px; }
+.room.mesh-ui .felix .fx-note { display: none; }
+.room.mesh-ui .felix .wn-row.me b { font-size: 18px; }
+.room.mesh-ui .file .stamp { bottom: 120px; }
+/* Idle Felix in the sidebar: smaller strip */
+.room.mesh-ui[data-felix="idle"] .m-strip { height: 84px; }
+.room.mesh-ui .m-strip img { height: 76px; left: 10px; }
+.room.mesh-ui .ms-note { left: 74px; top: 12px; font-size: 15px; } .room.mesh-ui .ms-note.n2 { left: 90px; }
+
+/* Felix's row sits at the top of Working now, like any other agent */
+.room.mesh-ui .file.wn .wn-head { order: 0; } .room.mesh-ui .file.wn .felix { order: 1; } .room.mesh-ui .file.wn .wn-list { order: 2; } .room.mesh-ui .file.wn .file-foot { order: 3; }
+.room.mesh-ui:not([data-felix="idle"]) .wn-empty { display: none; }
+.room.mesh-ui .file.wn .felix { padding-top: 10px; }
+
+/* ---------- Teammates' agent characters ---------- */
+.room.mesh-ui .m-face { width: 30px; height: 30px; border-radius: 50%; flex: none; background: #f1f1f4 no-repeat 50% 4% / 260%; border: 2px solid #e6e6e9; }
+.room.mesh-ui .wn-pic { flex: none; position: relative; width: 92px; height: 62px; border-radius: 10px; background: #f6f6f8; overflow: hidden; }
+.room.mesh-ui .wn-pic img { position: absolute; left: 50%; bottom: 2px; height: 56px; transform: translateX(-50%); transform-origin: 50% 100%; }
+.room.mesh-ui .wn-row.busy .wn-pic img { animation: picwork .7s ease-in-out infinite; }
+.room.mesh-ui .wn-row.wait .wn-pic img { animation: picwait 1.6s ease-in-out infinite; }
+.room.mesh-ui .wn-row.done .wn-pic img { animation: pichop .8s ease-in-out infinite; }
+@keyframes picwork { 0%, 100% { transform: translateX(-50%) rotate(-3deg); } 50% { transform: translateX(-50%) translateY(-2px) rotate(3deg); } }
+@keyframes picwait { 0%, 100% { transform: translateX(-50%) rotate(-2deg); } 50% { transform: translateX(-50%) rotate(2deg); } }
+@keyframes pichop { 0%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-6px); } }
+@media (prefers-reduced-motion: reduce) { .wn-pic img { animation: none !important; } }
+
+/* ---------- Idle lounge: every idle agent hangs out under the Agents list ---------- */
+.room.mesh-ui .m-lounge { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 2px 6px; padding: 8px 6px 0; }
+.room.mesh-ui .m-lounge .lg { height: 58px; display: block; animation: enter .35s ease both; }
+.room.mesh-ui .m-lounge .lg.away { display: none; }
+.room.mesh-ui .m-lounge img { height: 100%; display: block; transform-origin: 50% 100%; animation: fsway 2.8s ease-in-out infinite; }
+.room.mesh-ui .m-lounge .lg:nth-child(2) img { animation-delay: -.7s; } .room.mesh-ui .m-lounge .lg:nth-child(3) img { animation-delay: -1.4s; }
+.room.mesh-ui .m-lounge .lg:nth-child(4) img { animation-delay: -2.1s; } .room.mesh-ui .m-lounge .lg:nth-child(5) img { animation-delay: -1s; }
+@media (prefers-reduced-motion: reduce) { .m-lounge img { animation: none !important; } }
+
+/* ---------- Each agent's character sits under its name ---------- */
+.room.mesh-ui .lg-row { display: block; height: 46px; margin: -2px 0 4px 46px; }
+.room.mesh-ui .lg-row.away { visibility: hidden; }
+.room.mesh-ui .lg-row img { height: 100%; display: block; transform-origin: 50% 100%; animation: fsway 2.8s ease-in-out infinite; }
+.room.mesh-ui .lg-row[data-who="i"] img { animation-delay: -.7s; } .room.mesh-ui .lg-row[data-who="s"] img { animation-delay: -1.4s; }
+.room.mesh-ui .lg-row[data-who="t"] img { animation-delay: -2.1s; } .room.mesh-ui .lg-row[data-who="e"] img { animation-delay: -1s; }
+.demo-full .room.mesh-ui .m-nav div { padding: 5px 10px; } .demo-full .room.mesh-ui .chan { padding: 4px 10px; }
+.demo-full .room.mesh-ui .m-h { padding-top: 8px; padding-bottom: 4px; } .demo-full .room.mesh-ui .m-agent { padding: 2px 10px; }
+@media (prefers-reduced-motion: reduce) { .lg-row img { animation: none !important; } }
 </style>
 </head>
 <body>
@@ -1138,12 +1210,16 @@ Saved 2 files.</pre></div></div>
       <div class="m-h">People</div>
       <div class="m-people"><i style="background:var(--jordan)">A</i><i style="background:var(--sam)">I</i><i style="background:var(--maya)">S</i><i style="background:var(--priya)">T</i><i style="background:var(--accent)">E</i></div>
       <div class="m-h">Agents<span>+</span></div>
-      <div class="m-agent"><i style="background:var(--jordan)">A</i><div>Andrew's AI<small id="st-a">Idle</small></div></div>
-      <div class="m-agent"><i style="background:var(--sam)">I</i><div>Iris's AI<small id="st-i">Idle</small></div></div>
-      <div class="m-agent"><i style="background:var(--maya)">S</i><div>Sarah's AI<small>Idle</small></div></div>
-      <div class="m-agent"><i style="background:var(--priya)">T</i><div>Tony's AI<small>Idle</small></div></div>
+      <div class="m-agent"><i class="m-face" style="background-image:url(sprites/fox_stand.png)" aria-hidden="true"></i><div>Andrew's AI<small id="st-a">Idle</small></div></div>
+      <span class="lg lg-row" data-who="a" aria-hidden="true"><img src="sprites/fox_idle.png" alt=""></span>
+      <div class="m-agent"><i class="m-face" style="background-image:url(sprites/cat_stand.png)" aria-hidden="true"></i><div>Iris's AI<small id="st-i">Idle</small></div></div>
+      <span class="lg lg-row" data-who="i" aria-hidden="true"><img src="sprites/cat_idle.png" alt=""></span>
+      <div class="m-agent"><i class="m-face" style="background-image:url(sprites/bunny_stand.png)" aria-hidden="true"></i><div>Sarah's AI<small>Idle</small></div></div>
+      <span class="lg lg-row" data-who="s" aria-hidden="true"><img src="sprites/bunny_idle.png" alt=""></span>
+      <div class="m-agent"><i class="m-face" style="background-image:url(sprites/bear_stand.png)" aria-hidden="true"></i><div>Tony's AI<small>Idle</small></div></div>
+      <span class="lg lg-row" data-who="t" aria-hidden="true"><img src="sprites/bear_idle.png" alt=""></span>
       <div class="m-agent"><i class="m-felix" aria-hidden="true"></i><div>Felix · Evelyn's AI<small id="st-e">Idle</small></div></div>
-      <div class="m-strip" aria-hidden="true"><span class="ms-sun"></span><span class="ms-ground"></span><span class="ms-note">&#9834;</span><span class="ms-note n2">&#9835;</span><img src="sprites/idle.png" alt=""></div>
+      <span class="lg lg-row" data-who="e" aria-hidden="true"><img src="sprites/idle.png" alt=""></span>
       <span class="sim sim-side">Simulated scene</span>
     </aside>
     <div class="feed-wrap">
@@ -1743,18 +1819,26 @@ Saved 2 files.</pre></div></div>
   var timers = [];
   var wnList = $('wn-list');
   function st(id, txt, cls) { var n = $(id); if (n) { n.textContent = txt; n.className = cls || ''; } }
-  function busy() { var rm = document.querySelector('.room.mesh-ui'); if (!rm) return; var on = !!wnList.querySelector('.wn-row') || rm.getAttribute('data-felix') !== 'idle'; rm.setAttribute('data-busy', on ? '1' : '0'); }
+  var SPR = { a: 'fox', i: 'cat' }, POSE = { busy: 'work', wait: 'stand', done: 'gem' };
+  ['fox', 'cat'].forEach(function (c) { ['work', 'stand', 'gem'].forEach(function (p) { var im = new Image(); im.src = 'sprites/' + c + '_' + p + '.png'; }); });
+  function lounge() {
+    var rm = document.querySelector('.room.mesh-ui'); if (!rm) return;
+    var away = { a: !!$('wn-a'), i: !!$('wn-i'), s: false, t: false, e: rm.getAttribute('data-felix') !== 'idle' };
+    each(rm.querySelectorAll('.lg-row'), function (n) { n.classList.toggle('away', !!away[n.getAttribute('data-who')]); });
+  }
+  function busy() { var rm = document.querySelector('.room.mesh-ui'); if (!rm) return; var on = !!wnList.querySelector('.wn-row') || rm.getAttribute('data-felix') !== 'idle'; rm.setAttribute('data-busy', on ? '1' : '0'); lounge(); }
   function wnClear() { wnList.innerHTML = '<div class="wn-empty">No one is working yet.</div>'; busy(); }
   function wnRow(id, file, sub, state, color, init) {
     var r = $('wn-' + id);
     if (!r) {
       r = el('div', 'wn-row'); r.id = 'wn-' + id;
-      r.innerHTML = '<span class="wn-av" style="background:' + color + '">' + init + '</span><div><b></b><small></small></div><span class="wn-dot"></span>';
+      r.innerHTML = (SPR[id] ? '<span class="wn-pic"><img alt=""></span>' : '<span class="wn-av" style="background:' + color + '">' + init + '</span>') + '<div><b></b><small></small></div><span class="wn-dot"></span>';
       var e = wnList.querySelector('.wn-empty'); if (e) e.remove();
       wnList.appendChild(r);
     }
     r.querySelector('b').textContent = file; r.querySelector('small').textContent = sub;
     r.className = 'wn-row ' + (state || '');
+    var im = r.querySelector('.wn-pic img'); if (im && SPR[id]) im.src = 'sprites/' + SPR[id] + '_' + (POSE[state] || 'stand') + '.png';
     busy();
   }
   var FELIX = {
