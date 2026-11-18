@@ -132,6 +132,20 @@ aside.right { padding: 16px; overflow: auto; background: var(--m-bg); }
 .right h3 { font: 700 24px/1 var(--hand); color: var(--red); margin: 0 0 8px; }
 .right h3 + * { margin-bottom: 18px; }
 
+/* Skills */
+.sk-top { display: flex; align-items: flex-start; gap: 16px; margin: 2px 0 12px; }
+.sk-top b { display: block; font-size: 19px; color: var(--m-ink); }
+.sk-top span { display: block; color: var(--m-mute); font-size: 15px; margin-top: 2px; }
+.sk-top .hbtn { margin-left: auto; flex: none; }
+.sk-list { display: grid; gap: 10px; margin-top: 12px; }
+.sk { display: flex; align-items: center; gap: 14px; border: 1px solid var(--m-line); border-radius: 12px; padding: 12px 14px; background: #fff; }
+.sk > div { flex: 1; }
+.sk b { display: block; font-size: 16px; color: var(--m-ink); }
+.sk span { display: block; font-size: 14px; color: #2a2c33; }
+.sk small { display: block; font-size: 12.5px; color: var(--m-mute); margin-top: 3px; }
+.sk-add { flex: none; background: var(--m-ink); color: #fff; border: 0; border-radius: 9px; padding: 7px 14px; font-weight: 600; font-size: 14px; }
+.sk.added .sk-add { background: rgba(42,157,102,.12); color: #1a7f4b; cursor: default; }
+
 /* Changes */
 .save { display: grid; grid-template-columns: 34px 1fr auto; gap: 12px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--line); }
 .save .file { font: 14px var(--mono); color: var(--muted); }
@@ -237,6 +251,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
       <div class="m-nav" role="tablist">
         <button type="button" class="tab" role="tab" aria-selected="false" data-tab="preview" id="tab-preview" data-learn="preview"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>Preview <small>draft</small></button>
         <button type="button" class="tab" role="tab" aria-selected="false" data-tab="changes" id="tab-changes" data-learn="changes"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Changes <small>draft log</small></button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-tab="skills" id="tab-skills" data-learn="skills"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.2 5.6L20 9.3l-4.5 3.9 1.4 5.8L12 16l-4.9 3 1.4-5.8L4 9.3l5.8-.7z"/></svg>Skills <small id="skills-count">0 of 5 added</small></button>
       </div>
       <div id="channels">
         <div class="m-h">Channels<span>+</span></div>
@@ -310,6 +325,21 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
         <div class="pubrow"><span data-learn="hosting">Public site: <span class="code">roomtest-six.vercel.app</span></span><span>Updates when the owner publishes (deploys).</span></div>
       </div>
 
+      <div class="panel" id="panel-skills" role="tabpanel">
+        <div class="sk-top">
+          <div><b>Skills for this project</b><span>This room mostly uses Claude agents. Add the team's skills so your agent works the way everyone else's does.</span></div>
+          <button type="button" class="hbtn primary" id="sk-all">Add all 5</button>
+        </div>
+        <div class="learnline">A skill is a set of instructions your agent follows, like a recipe card. Mesh adds it to your agent for you. Nothing to download or set up.</div>
+        <div class="sk-list" id="sk-list">
+          <div class="sk"><div><b>Mesh room</b><span>Posts before it edits a file and saves to the shared draft, so agents don't collide.</span><small>Required · added by Andrew</small></div><button type="button" class="sk-add">Add</button></div>
+          <div class="sk"><div><b>Pitch deck slides</b><span>Edits slides in our deck and keeps the speaker notes and timing in sync.</span><small>For this project · added by Andrew</small></div><button type="button" class="sk-add">Add</button></div>
+          <div class="sk"><div><b>Explain it simply</b><span>Explains code, errors and terms in plain English when you ask "what does this mean?"</span><small>Recommended for new people</small></div><button type="button" class="sk-add">Add</button></div>
+          <div class="sk"><div><b>Keep secrets safe</b><span>Never pastes passwords, tokens or keys into chats or files.</span><small>Required · added by Andrew</small></div><button type="button" class="sk-add">Add</button></div>
+          <div class="sk"><div><b>Check the preview</b><span>Opens the preview and checks for errors before it saves.</span><small>For this project · added by Iris</small></div><button type="button" class="sk-add">Add</button></div>
+        </div>
+      </div>
+
       <div class="composer" data-learn="composer">
         <form id="composer">
           <label for="msg-input" class="sr" style="position:absolute; left:-9999px">Message the team</label>
@@ -330,6 +360,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
           <div class="check" id="ck-name"><span class="mark">!</span><div><b>Your name is on your saves</b><span>Saves need a name and email, or they fail.</span><br><button type="button" data-fix="name">Fix it</button></div></div>
           <div class="check" id="ck-github"><span class="mark">!</span><div><b>Signed in to GitHub</b><span>Needed to send your saves to the team.</span><br><button type="button" data-fix="github">Sign in with GitHub</button></div></div>
           <div class="check" id="ck-access"><span class="mark">!</span><div><b>Allowed to edit this project</b><span>The owner adds you as a collaborator.</span><br><button type="button" data-fix="access">Ask Andrew</button></div></div>
+          <div class="check" id="ck-skills"><span class="mark">!</span><div><b>Your agent has the team's skills</b><span>So it follows the same rules as everyone else's.</span><br><button type="button" data-fix="skills">Open Skills</button></div></div>
           <div class="check done" id="ck-host"><span class="mark">✓</span><div><b>Hosting connected</b><span>Done by the owner, once.</span></div></div>
         </div>
       </div>
@@ -382,6 +413,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
     previewvs: { t: 'Preview vs public site', m: 'A preview is a test view for checking work. The public site is what everyone else sees.', h: 'Use the preview freely. It never goes public by itself.' },
     hosting: { t: 'Hosting and deploy', m: 'A hosting company (here, Vercel) puts files online at a link. Deploying uploads a new version to it.', h: 'The owner connects hosting once.' },
     composer: { t: 'Message box', m: 'Messages here go to the room, and the room is shared with your team.', h: 'Never paste passwords, tokens or keys. Mesh blocks text that looks like one.' },
+    skills: { t: 'Skills', m: "Instructions your agent follows, picked by the team for this project. Adding them makes every agent work the same way.", h: 'New here? Press <b>Add all</b>. Mesh adds them to your agent for you.' },
     checklist: { t: 'Setup checklist', m: 'Mesh checks your computer before you start, so saves never fail silently.', h: 'Every red item has a one-click fix. No Terminal needed.' },
     places: { t: 'Three places, three jobs', m: 'Your Claude chat is for you and your agent. This room is for the team. The Terminal is your computer, directly.', h: "When in doubt, ask your Claude chat: 'what does this mean?'" }
   };
@@ -396,6 +428,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
     ['Push', 'Sending your saved snapshots from your computer up to GitHub.'],
     ['Owner / collaborator', "The owner controls the repo. Collaborators are invited and can push, but can't change its settings."],
     ['Password, token, key', 'Secrets that prove who you are. A token or API key is a long generated password for a tool. Never paste one into a chat.'],
+    ['Skill', "A set of instructions an agent follows, like a recipe card. The team picks skills for the project in the Skills tab."],
     ['Agent', 'An AI, like Claude, that can read and change your project files and run commands for you.'],
     ['Claude tokens (usage)', 'A different meaning of token: how much AI usage you have left. Not a password.'],
     ['Hooks', 'Small scripts that run automatically at set moments, like when your agent finishes a turn. They keep the room in sync.'],
@@ -452,7 +485,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
     each(document.querySelectorAll('.tab'), function (t) { t.setAttribute('aria-selected', String(t.dataset.tab === name)); });
     each(document.querySelectorAll('.panel'), function (p) { p.classList.toggle('on', p.id === 'panel-' + name); });
     $('tab-chat').classList.toggle('on', name === 'chat');
-    $('ch-title').textContent = { chat: '# general', changes: 'Changes', preview: 'Preview' }[name] || '# general';
+    $('ch-title').textContent = { chat: '# general', changes: 'Changes', preview: 'Preview', skills: 'Skills' }[name] || '# general';
   }
 
   /* Starter requests go to your own Claude chat */
@@ -486,6 +519,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
     }
   }
   function fix(kind) {
+    if (kind === 'skills') { selectTab('skills'); return; }
     if (kind === 'name') { state.name = true; markDone('ck-name', 'Set to Evelyn. Your saves now carry your name.'); toast('Name and email set. No Terminal needed.'); }
     if (kind === 'github') { state.github = true; markDone('ck-github', 'Signed in through your browser. No token to copy or paste.'); toast('Signed in to GitHub through your browser.'); }
     if (kind === 'access') {
@@ -499,7 +533,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
   }
   /* When every item is done, the checklist folds away: you're ready to go */
   function allSet() {
-    if (!(state.name && state.github && state.approved) || $('ck-done')) return;
+    if (!(state.name && state.github && state.approved && state.skills) || $('ck-done')) return;
     setTimeout(function () {
       var box = $('checklist').querySelector('[data-learn="checklist"]');
       box.innerHTML = '<div class="allset" id="ck-done"><span class="mark">✓</span><div><b>All set. You\'re ready to go.</b><span>Setup is done, so the checklist folds away.</span></div></div>';
@@ -510,6 +544,23 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
   $('fix-from-save').addEventListener('click', function () { if (!state.name) fix('name'); fix('github'); });
   $('invite').addEventListener('click', function () { toast('Invite link copied. The owner also adds them on GitHub.'); });
   $('refresh').addEventListener('click', function () { toast('Preview is showing the latest shared draft.'); });
+
+  /* Skills: add the team's skills to your agent */
+  var skills = [].slice.call(document.querySelectorAll('.sk'));
+  function addSkill(sk, quiet) {
+    if (sk.classList.contains('added')) return;
+    sk.classList.add('added'); var b = sk.querySelector('.sk-add'); b.textContent = 'Added ✓'; b.disabled = true;
+    var n = document.querySelectorAll('.sk.added').length;
+    $('skills-count').textContent = n === skills.length ? 'all added' : n + ' of ' + skills.length + ' added';
+    if (!quiet) toast('Added "' + sk.querySelector('b').textContent + '" to Felix.');
+    if (n === skills.length) {
+      state.skills = true; $('sk-all').disabled = true; $('sk-all').textContent = 'All added';
+      if ($('ck-skills')) markDone('ck-skills', 'All 5 skills added to Felix.');
+      allSet();
+    }
+  }
+  skills.forEach(function (sk) { sk.querySelector('.sk-add').addEventListener('click', function () { addSkill(sk); }); });
+  $('sk-all').addEventListener('click', function () { skills.forEach(function (sk) { addSkill(sk, true); }); toast("All 5 skills added. Felix now works the way the team does."); });
 
   /* Secret guard */
   var SECRET = /(ghp_|gho_|github_pat_|as_|sk-|xox[bp]-)[A-Za-z0-9_\-]{6,}/;
@@ -545,9 +596,10 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
   var TOUR = [
     { sel: '#room-head', tab: 'chat', t: 'Welcome to your team room', b: "This is where your teammates and each teammate's AI agent build one project together. Here's a one-minute tour." },
     { sel: '#conn', tab: 'chat', t: 'Are you connected?', b: 'This line tells you whether your work is reaching the team, and when it last did. Red means your saves are only on your computer.' },
-    { sel: '#checklist', tab: 'chat', t: 'Fix setup in one click', b: 'Mesh checks your computer first: your name on saves, a GitHub sign-in, edit access. Every red item has a button. No Terminal, no tokens.' },
+    { sel: '#checklist', tab: 'chat', t: 'Fix setup in one click', b: 'Mesh checks your computer first: your name on saves, a GitHub sign-in, edit access, the team\'s skills. Every red item has a button. No Terminal, no tokens.' },
     { sel: '#tab-changes', tab: 'changes', t: 'Changes: who saved what', b: "When an agent finishes, the work is saved and sent to the team. If a save fails, it shows up in red with the reason. It never fails silently." },
     { sel: '#tab-preview', tab: 'preview', t: 'Preview: see the work', b: 'The latest shared draft, right here. The public site only changes when the owner publishes.' },
+    { sel: '#tab-skills', tab: 'skills', t: 'Skills: set up your agent', b: "The team's skills for this project. Press Add all, and your agent follows the same rules as everyone else's." },
     { sel: '#channels', tab: 'chat', t: 'Talk to your team', b: 'Channels are group chats for the project. Agents post here too, before they change anything.' },
     { sel: '#map', tab: 'chat', t: 'Three places, three jobs', b: 'Your Claude chat is for asking your own agent. This room is for the team. The Terminal is rarely needed.' },
     { sel: '#starter', tab: 'chat', t: 'Try your first change', b: 'Pick a starter request and paste it into your own Claude chat. Watch your save appear in Changes with your name on it.' }
