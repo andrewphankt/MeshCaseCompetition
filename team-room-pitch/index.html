@@ -776,7 +776,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   </div>
   </div>
   <div class="src">Stack Overflow Developer Survey 2025, via SD Times and The New Stack</div>
-  <aside class="notes">This is the problem the whole pitch answers. Read the headline, let the 84 dots fill: almost every developer uses AI. Then click: only 17 in 100 say AI agents made their team work better together. AI made building alone easy; building together is still broken.</aside>
+  <aside class="notes">This is the problem the whole pitch answers. Read the headline, let the 84 dots fill: almost every developer uses AI. Then click: only 17 in 100 say AI agents made their team work better together. AI made building alone easy; building together is still broken. Why now: this year, AI coding tools went from one person to whole teams.</aside>
 </section>
 <!-- 3b Where people get stuck -->
 <section class="slide" data-title="Where people get stuck">
@@ -795,7 +795,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <h2 class="h-l" style="max-width:1300px">We tested it on ourselves.</h2>
   <h2 class="h-l typed" style="max-width:1300px; margin-top:20px" data-step="1" id="reframe-2">With engineers on the call, a first-timer's first save took <span class="hl">33 minutes and 20 messages</span>.</h2>
   <p class="lede proof-small" data-step="2">Two GitHub tokens were pasted by accident.</p>
-  <aside class="notes">Evelyn: "That first-timer was me." If it took that long with help one call away, imagine doing it alone. One beat per line: the second line types itself out, the third comes on the next click.</aside>
+  <aside class="notes">Evelyn: "That first-timer was me." If it took that long with help one call away, imagine doing it alone. One beat per line: the second line types itself out, the third comes on the next click. If asked for more evidence: building this very deck, we ended up with two decks and the preview showing the old one. We fixed Mesh the same day.</aside>
 </section>
 
 <!-- 5 Three reasons -->
@@ -814,7 +814,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
         <div class="boom">OVERWRITTEN</div>
       </div>
       <div class="n">1</div><h3>AIs can't see each other</h3><p>Two teammates' AIs edit the same file and overwrite each other's work.</p><span class="tapme">Tap to see the fix</span></span>
-        <span class="face back"><span class="bk">How the room fixes it</span><h3>Warnings before collisions</h3><p>Every AI posts what it is about to change. The room warns before two AIs touch the same line.</p></span>
+        <span class="face back"><span class="bk">How the room fixes it</span><h3>A stop before collisions</h3><p>If a teammate's AI is already in a file, yours stops and tells you who and why.</p></span>
       </span>
     </button>
     <button type="button" class="flip reason-flip reason" data-step="2" aria-pressed="false" aria-label="Reason 2: tap to see the fix">
@@ -826,7 +826,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
         <div class="clip">copy · paste</div>
       </div>
       <div class="n">2</div><h3>People become the go-between</h3><p>Teammates copy and paste updates from one AI to another to keep them in sync.</p><span class="tapme">Tap to see the fix</span></span>
-        <span class="face back"><span class="bk">How the room fixes it</span><h3>One shared feed</h3><p>The room is the go-between. Every AI reads the same feed, so nobody copies and pastes.</p></span>
+        <span class="face back"><span class="bk">How the room fixes it</span><h3>One shared feed</h3><p>The room is the go-between. Each turn, every AI hears what teammates changed, so nobody copies and pastes.</p></span>
       </span>
     </button>
     <button type="button" class="flip reason-flip reason" data-step="3" aria-pressed="false" aria-label="Reason 3: tap to see the fix">
@@ -838,7 +838,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
         <div class="out"><div class="av">?</div><small>Teammate</small></div>
       </div>
       <div class="n">3</div><h3>Non-coders get locked out</h3><p>The teammate who doesn't code can't follow the work, so they can't help shape it.</p><span class="tapme">Tap to see the fix</span></span>
-        <span class="face back"><span class="bk">How the room fixes it</span><h3>Everyone can follow</h3><p>A plain-English feed. Everyone follows every step, and a person approves what goes live.</p></span>
+        <span class="face back"><span class="bk">How the room fixes it</span><h3>Everyone can follow</h3><p>Every AI writes one plain sentence about what it changed, and only a person can publish.</p></span>
       </span>
     </button>
   </div>
@@ -860,12 +860,12 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <div class="road road-4">
     <div class="fill"></div>
     <div class="stop"><div class="pin">1</div><div class="when">You</div><h3>Ask your AI</h3><p>Say what you want in plain English, on your own schedule. Your work saves to the team's shared draft by itself.</p></div>
-    <div class="stop" data-step="1"><div class="pin">2</div><div class="when">The AIs</div><h3>AIs talk to each other</h3><p>Need something from a teammate's part? Your AI asks theirs, even while they're offline. Nobody plays messenger.</p></div>
-    <div class="stop" data-step="2"><div class="pin">3</div><div class="when">A person</div><h3>The right person approves</h3><p>Anything that changes someone's work waits for their OK. No AI acts behind a teammate's back.</p></div>
+    <div class="stop" data-step="1"><div class="pin">2</div><div class="when">The AIs</div><h3>AIs talk to each other</h3><p>Need something from a teammate's part? Your AI sends theirs a request. Nobody plays messenger.</p></div>
+    <div class="stop" data-step="2"><div class="pin">3</div><div class="when">A person</div><h3>The right person approves</h3><p>The teammate presses Approve or Decline. A teammate's AI can ask, never act on its own.</p></div>
     <div class="stop" data-step="3"><div class="pin">4</div><div class="when">The team</div><h3>Publish when ready</h3><p>Everyone sees the draft live. When the team agrees, one click makes it real.</p></div>
   </div>
   <p class="how-line" data-step="4"><span class="hl">AIs coordinate.</span> People approve.</p>
-  <aside class="notes">Click once per step. "Here's a normal day in the room. One: you tell your AI what you want, in plain English, whenever you have time, and it saves to the team's shared draft. Two: if it needs something from a teammate's part, it asks their AI directly, so nobody has to play messenger. Three: anything that changes someone's work waits for that person's OK. Four: everyone sees the draft live, and when the team is ready, one click publishes it." Last click: "AIs coordinate. People approve." About 30 seconds.</aside>
+  <aside class="notes">Click once per step. "Here's a normal day in the room. One: you tell your AI what you want, in plain English, whenever you have time, and it saves to the team's shared draft. Two: if it needs something from a teammate's part, it sends their AI a request, so nobody has to play messenger. Three: the teammate presses Approve or Decline, and their AI does it on its next turn. A teammate's AI can ask, but never act on its own. Four: everyone sees the draft live, and when the team is ready, one click publishes it." Last click: "AIs coordinate. People approve." About 30 seconds.</aside>
 </section>
 
 <!-- 8 Three layers -->
@@ -936,7 +936,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 
 <!-- 9 Training mode -->
 <section class="slide" data-title="Practice room" data-hook="training" style="padding:60px 80px 40px">
-  <div class="eyebrow"><i></i>Layer 2 · Easy to start</div>
+  <div class="eyebrow"><i></i>Layer 2 · Easy to start · Clickable prototype</div>
   <h2 class="h-m">Practice first. Tooltips until you're ready.</h2>
   <div class="train" data-interactive>
     <div class="train-side">
@@ -968,13 +968,13 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <table class="gridt hide-us" id="gridt">
       <thead><tr><th>What matters</th><th>Replit</th><th>Agentmash</th><th>Buzz</th><th>GitHub Agent HQ</th><th>GitHub Ace</th><th class="us"><span class="pname" data-name>Mesh</span></th></tr></thead>
       <tbody>
-        <tr><td>Warns before two AIs collide</td><td><span class="mk p">Partly</span></td><td><span class="mk y">Yes</span></td><td><span class="mk q">?</span></td><td><span class="mk p">Partly</span></td><td><span class="mk q">?</span></td><td class="us"><span class="mk s">Planned</span></td></tr>
-        <tr><td>Works with different AI tools</td><td><span class="mk n">No</span></td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk q">?</span></td><td class="us"><span class="mk s">Planned</span></td></tr>
-        <tr><td>Plain-English feed for non-coders</td><td><span class="mk p">Partly</span></td><td><span class="mk q">?</span></td><td><span class="mk p">Partly</span></td><td><span class="mk q">?</span></td><td><span class="mk p">Partly</span></td><td class="us"><span class="mk s">Planned</span></td></tr>
+        <tr><td>Stops two AIs editing the same file</td><td><span class="mk p">Partly</span></td><td><span class="mk y">Yes</span></td><td><span class="mk q">?</span></td><td><span class="mk p">Partly</span></td><td><span class="mk q">?</span></td><td class="us"><span class="mk y">Yes</span></td></tr>
+        <tr><td>Works with different AI tools</td><td><span class="mk n">No</span></td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk q">?</span></td><td class="us"><span class="mk y">Yes</span></td></tr>
+        <tr><td>Plain-English feed for non-coders</td><td><span class="mk p">Partly</span></td><td><span class="mk q">?</span></td><td><span class="mk p">Partly</span></td><td><span class="mk q">?</span></td><td><span class="mk p">Partly</span></td><td class="us"><span class="mk y">Yes</span></td></tr>
         <tr class="key"><td>Teaches first-time builders in the tool</td><td><span class="mk p">Partly</span></td><td><span class="mk q">?</span></td><td><span class="mk q">?</span></td><td><span class="mk q">?</span></td><td><span class="mk q">?</span></td><td class="us"><span class="mk s">Planned</span></td></tr>
         <tr class="key"><td>Connects teams across a campus</td><td><span class="mk p">Partly</span></td><td><span class="mk n">No</span></td><td><span class="mk p">Partly</span></td><td><span class="mk n">No</span></td><td><span class="mk n">No</span></td><td class="us"><span class="mk s">Planned</span></td></tr>
         <tr class="key"><td>Built for student teams</td><td><span class="mk p">Partly</span></td><td><span class="mk n">No</span></td><td><span class="mk n">No</span></td><td><span class="mk n">No</span></td><td><span class="mk n">No</span></td><td class="us"><span class="mk y">Yes</span></td></tr>
-        <tr><td>Ready to use today</td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk n">No</span></td><td class="us"><span class="mk n">No</span></td></tr>
+        <tr><td>Ready to use today</td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk n">No</span></td><td class="us"><span class="mk y">Yes</span></td></tr>
       </tbody>
     </table>
     <div class="grid-foot">
@@ -982,7 +982,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       <p>Our reading of public information as of Nov 16. "?" means not found. "Planned" means designed, not built yet.</p>
     </div>
   </div>
-  <aside class="notes">Show the competitors first, then click "Show our column." The three gold rows are where we stand alone. Own the last row: we're not ready today, and saying so makes the rest believable. Verify every mark before Thursday. On the "Teaches first-time builders" row, say: "Every tool we looked at assumes you already know how to work with AI agents. Mesh is the only one with a practice room, where a first-timer learns the whole team flow with practice teammates before they touch a real project." (Thursday is the club showcase, the approval round to pitch to Replit. If the practice room isn't ready to show by then, say "Mesh is the only one building a practice room" at the showcase. Once it's built for the Replit pitch, switch our mark on that row from Planned to Yes.) (As of Nov 17: Replit, Agentmash, Buzz and GitHub showed no built-in beginner practice mode. Recheck Agentmash Wednesday night; it launched this month.)</aside>
+  <aside class="notes">Show the competitors first, then click "Show our column." The three gold rows are where we stand alone. The top three rows are built and working today: we built this deck in Mesh. The practice room and campus hub are still planned; say so plainly, it makes the rest believable. If asked "why not just Slack plus GitHub, or one shared AI?": Slack and GitHub can't stop two AIs editing the same file, and with one shared AI only one person can drive at a time. Verify every mark before Thursday. On the "Teaches first-time builders" row, say: "Every tool we looked at assumes you already know how to work with AI agents. Mesh is the only one with a practice room, where a first-timer learns the whole team flow with practice teammates before they touch a real project." (Thursday is the club showcase, the approval round to pitch to Replit. If the practice room isn't ready to show by then, say "Mesh is the only one building a practice room" at the showcase. Once it's built for the Replit pitch, switch our mark on that row from Planned to Yes.) (As of Nov 17: Replit, Agentmash, Buzz and GitHub showed no built-in beginner practice mode. Recheck Agentmash Wednesday night; it launched this month.)</aside>
 </section>
 
 <!-- Road map -->
@@ -1075,7 +1075,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
             <li>A practice room you can try without logging in</li>
             <li>Tooltips inside the real room</li>
             <li>@mention any teammate's agent in the chat</li>
-            <li>Plug in any AI: Antigravity, Wajo and more</li>
+            <li>Plug in more AIs, like Wajo</li>
                         <li>Rooms on more campuses</li>
           </ul>
         </div>
@@ -1091,6 +1091,24 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     </div>
   </div>
   <aside class="notes">Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built. Then Pricing: campuses pay, students use it free. Partners: AI companies want student builders (not confirmed yet). Open source: the students who use it help build it. Click "Where we're headed": things we can't do yet, and three goals that will tell us it's working. Clicker: each press opens the next stop, the next press closes it. Numbers with a dashed outline are placeholder targets for Evelyn to confirm.</aside>
+</section>
+
+<!-- Metrics: what we measure and why -->
+<section class="slide" data-title="What we measure">
+  <div class="eyebrow"><i></i>Success metrics</div>
+  <h2 class="h-m">What we measure, and why.</h2>
+  <table class="apx" style="font-size:24px; margin-top:30px">
+    <thead><tr><th>What we count</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr><td style="width:46%">North star: projects each week where two or more people's AIs saved to one draft</td><td>It's the only moment Mesh is worth more than working alone</td></tr>
+      <tr data-step="1"><td style="width:46%">Time from sign-in to first AI connected (goal: under 5 minutes)</td><td>Setup is where a non-coder gives up</td></tr>
+      <tr data-step="1"><td style="width:46%">Share of invited teammates who connect an AI</td><td>A room of one is not a team</td></tr>
+      <tr data-step="2"><td style="width:46%">Same-file stops per project each week</td><td>Each one is an overwrite that didn't happen</td></tr>
+      <tr data-step="2"><td style="width:46%">Projects still active in week 2 and week 4</td><td>Does a team come back after the first session?</td></tr>
+    </tbody>
+  </table>
+  <p class="lede" data-step="3" style="margin-top:34px; font-size:26px">Next test: do real AIs obey the stop every time?</p>
+  <aside class="notes">No usage numbers yet, and we won't invent any. But the room already records every one of these events, so we can measure them from day one, no new tracking needed. Lead with the north star: a project where two or more people's AIs saved to the same draft is the only moment Mesh beats working alone. Click: activation. Setup is where non-coders quit, so under 5 minutes from sign-in to a connected AI, and invited teammates actually joining. Click: collaboration and retention. Every same-file stop is an overwrite that didn't happen, and week-2 and week-4 activity tells us teams come back. Last click, the biggest risk and our next test: do real AIs obey the stop every time? About 40 seconds.</aside>
 </section>
 
 <!-- 13 Close -->
@@ -1117,10 +1135,10 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <button type="button" class="flip q-flip" aria-pressed="false"><span class="inner"><span class="face front"><span class="qk">Judges might ask</span><span class="q">Why not Replit's student space?</span><span class="tapme">Tap to flip</span></span><span class="face back"><span class="qk">Our answer</span><span>It helps students build inside Replit. We connect student teams using any AI, and teach them how to build together.</span></span></span></button>
     <button type="button" class="flip q-flip" aria-pressed="false"><span class="inner"><span class="face front"><span class="qk">Judges might ask</span><span class="q">Isn't the campus hub just Discord?</span><span class="tapme">Tap to flip</span></span><span class="face back"><span class="qk">Our answer</span><span>Discord connects students to chat. Ours connects teams to each other's projects and AI setups, so they can build together.</span></span></span></button>
     <button type="button" class="flip q-flip" aria-pressed="false"><span class="inner"><span class="face front"><span class="qk">Judges might ask</span><span class="q">What about academic integrity?</span><span class="tapme">Tap to flip</span></span><span class="face back"><span class="qk">Our answer</span><span>Rooms are private by default. Teams choose what to show, and class projects stay in their private room.</span></span></span></button>
-    <button type="button" class="flip q-flip" aria-pressed="false"><span class="inner"><span class="face front"><span class="qk">Judges might ask</span><span class="q">Who's accountable if an AI breaks something?</span><span class="tapme">Tap to flip</span></span><span class="face back"><span class="qk">Our answer</span><span>Nothing goes live without a person. Changes land in a preview first, and a teammate approves them.</span></span></span></button>
-    <button type="button" class="flip q-flip" aria-pressed="false"><span class="inner"><span class="face front"><span class="qk">Judges might ask</span><span class="q">Could secrets leak into the room?</span><span class="tapme">Tap to flip</span></span><span class="face back"><span class="qk">Our answer</span><span>Keys stay in .env files, which are never shared. <span class="tbd">Confirm with Andrew</span></span></span></span></button>
+    <button type="button" class="flip q-flip" aria-pressed="false"><span class="inner"><span class="face front"><span class="qk">Judges might ask</span><span class="q">Who's accountable if an AI breaks something?</span><span class="tapme">Tap to flip</span></span><span class="face back"><span class="qk">Our answer</span><span>Nothing goes public without a person. Changes land in the team's draft and preview first, and only a person pressing Publish makes them public.</span></span></span></button>
+    <button type="button" class="flip q-flip" aria-pressed="false"><span class="inner"><span class="face front"><span class="qk">Judges might ask</span><span class="q">Could secrets leak into the room?</span><span class="tapme">Tap to flip</span></span><span class="face back"><span class="qk">Our answer</span><span>A message that looks like a password or key is never sent to the room. And a teammate's AI can ask yours for something, but never act on its own.</span></span></span></button>
   </div>
-  <aside class="notes">Use this live during Q&amp;A: tap the question you were asked. Confirm the secrets answer with Andrew before Thursday; the current connect script commits everything except .env files.</aside>
+  <aside class="notes">Use this live during Q&amp;A: tap the question you were asked. The secrets answer comes from the Safety section of Andrew's Mesh brief.</aside>
 </section>
 
 <!-- 15 Appendix: competitors -->
@@ -1677,7 +1695,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 
   /* ---------- Three layers: the tower ---------- */
   var floors = [
-    { status: 'Being built now', t: 'The team room', items: ['A private room for each project', 'Every AI posts what it is about to change', 'A plain-English feed anyone can follow', 'Nothing goes live until a person approves it'] },
+    { status: 'Built and working', t: 'The team room', items: ['One room per project, with channels and a live preview', 'Your AI stops if a teammate\'s AI is already in that file', 'Every AI writes one plain sentence about what it changed', 'Nothing goes public until a person presses Publish'] },
     { status: 'Clickable prototype', t: 'Easy to start', items: ['Practice room: try a team room with practice teammates, risk-free', 'Training mode: tooltips you turn on or off', 'A one-minute "Start here" tour on day one'] },
     { status: 'Vision', t: 'The campus hub', items: ['Verified students from one school', 'See what other teams are building', 'Ask for help, or join another team', 'Private rooms stay private'] }
   ];
