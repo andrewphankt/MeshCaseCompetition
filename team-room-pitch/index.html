@@ -680,6 +680,16 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .rm-goals th { text-align: left; font: 600 13px var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--text); padding: 6px 8px; }
 .rm-goals td { border-bottom: 1px solid var(--line); padding: 10px 8px; vertical-align: top; }
 .rm-tbd { outline: 2px dashed currentColor; outline-offset: 2px; border-radius: 3px; padding: 0 3px; }
+
+.rm-cols { grid-template-columns: 1fr 1.45fr; }
+.rm-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.rm-kpi { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; border: 1px solid var(--line); border-top: 5px solid var(--accent); border-radius: 12px; padding: 16px 16px 18px; background: var(--raise, transparent); }
+:root[data-look="paper"] .rm-kpi { border-top-color: var(--pen); background: rgba(255,255,255,.55); }
+.rm-k-l { font: 600 13px var(--body); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); min-height: 34px; }
+.rm-k-now { font: 500 17px/1.3 var(--body); color: var(--muted); min-height: 44px; }
+.rm-k-arrow { font: 700 22px/1 var(--body); color: var(--muted); }
+.rm-k-goal { font: 800 34px/1.05 var(--display); color: var(--text); }
+.rm-k-sub { font: 500 16px/1.3 var(--body); color: var(--muted); }
 </style>
 </head>
 <body>
@@ -1001,20 +1011,16 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
         </div>
         <div>
           <h4>How we'll know it's working</h4>
-          <table class="rm-goals">
-            <thead><tr><th>Goal</th><th>Today</th><th>Target</th></tr></thead>
-            <tbody>
-              <tr><td>A first-timer's first save</td><td>22 min, 15 messages</td><td>Under <span class="rm-tbd">5</span> min</td></tr>
-              <tr><td>Passwords pasted by accident</td><td>2 on night one</td><td>0, blocked before sending</td></tr>
-              <tr><td>Teams building in Mesh</td><td>1 (us)</td><td><span class="rm-tbd">10</span> in one club or hackathon</td></tr>
-              <tr><td>Campuses</td><td>0</td><td>USC, then <span class="rm-tbd">3</span></td></tr>
-            </tbody>
-          </table>
+          <div class="rm-kpis">
+            <div class="rm-kpi"><span class="rm-k-l">A first-timer's first save</span><span class="rm-k-now">Today: 22 min, 15 messages</span><span class="rm-k-arrow" aria-hidden="true">&darr;</span><span class="rm-k-goal">Under <span class="rm-tbd">5</span> min</span></div>
+            <div class="rm-kpi"><span class="rm-k-l">Teams building in Mesh</span><span class="rm-k-now">Today: 1 (us)</span><span class="rm-k-arrow" aria-hidden="true">&darr;</span><span class="rm-k-goal"><span class="rm-tbd">10</span> teams</span><span class="rm-k-sub">in one club or hackathon</span></div>
+            <div class="rm-kpi"><span class="rm-k-l">Campuses</span><span class="rm-k-now">Today: 0</span><span class="rm-k-arrow" aria-hidden="true">&darr;</span><span class="rm-k-goal">USC</span><span class="rm-k-sub">then <span class="rm-tbd">3</span> more</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <aside class="notes">Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built. Click "Where we're headed": these are things we can't do yet and the numbers that will tell us it's working. Clicker: next opens the hub, next closes it, next opens "Where we're headed", next closes it, then on to the close. Numbers with a dashed outline are placeholder targets for Evelyn to confirm.</aside>
+  <aside class="notes">Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built. Click "Where we're headed": these are things we can't do yet, and three goals that will tell us it's working: today, then the target. Clicker: next opens the hub, next closes it, next opens "Where we're headed", next closes it, then on to the close. Numbers with a dashed outline are placeholder targets for Evelyn to confirm.</aside>
 </section>
 
 <!-- 13 Close -->
@@ -1215,8 +1221,12 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       step: function (s) { if (s >= 1) { paintDots(84, 17); countUp(slides[cur].querySelector('[data-count="17"]'), 17); } else paintDots(84, 0); }
     },
     reframe: {
-      enter: function () { reframe2.innerHTML = reframeHTML; },
-      step: function (s) { if (s >= 1) typeLine(); }
+      enter: function () { clearTimeout(typeTimer); reframe2.innerHTML = reframeHTML; this.last = stepState[cur]; },
+      step: function (s) {
+        var prev = this.last || 0; this.last = s;
+        if (s === 1 && prev === 0) typeLine();   /* type only when the line first appears */
+        else { clearTimeout(typeTimer); reframe2.innerHTML = reframeHTML; }
+      }
     },
     layers: {
       enter: function () {},
