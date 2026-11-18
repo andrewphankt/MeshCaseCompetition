@@ -758,6 +758,26 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .tx-slide.active .tx-list { animation: txup .7s cubic-bezier(.2,.8,.2,1) .28s both; }
 @keyframes txup { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .tx-slide .tl { stroke-dashoffset: 0; } .tx-slide.active * { animation: none !important; } }
+
+/* ---------- Section slides, with the deck's personality ---------- */
+:root[data-look] .slide.tx-slide { background: #0b0b0c radial-gradient(circle, #232328 1.4px, transparent 1.6px) 0 0 / 30px 30px; }
+.tx-ghost { position: absolute; right: 60px; bottom: -70px; font: 800 520px/1 "Inter", -apple-system, Arial, sans-serif; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 3px #26262b; pointer-events: none; }
+.tx-hand { font: 700 44px/1 var(--hand); color: #ED93B1; transform: rotate(-2.5deg); transform-origin: left; margin-bottom: 6px; }
+.tx-mark { position: relative; white-space: nowrap; }
+.tx-mark::before { content: ""; position: absolute; left: -10px; right: -12px; bottom: .1em; height: .38em; background: #ED93B1; opacity: .85; border-radius: 6px 14px 8px 12px; transform: skew(-8deg) rotate(-1deg); z-index: -1; transform-origin: left; }
+.tx-title { position: relative; z-index: 0; }
+.tx-next { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.tx-arrow { font: 700 30px/1 var(--hand); color: #a1a1aa; transform: rotate(-3deg); }
+.tx-list li { transform: rotate(var(--r, -1.5deg)); }
+.tx-list li:nth-child(2) { --r: 1.2deg; } .tx-list li:nth-child(3) { --r: -0.8deg; } .tx-list li:nth-child(4) { --r: 1.6deg; }
+.tx-slide .cursor { z-index: 2; }
+.tx-slide .cursor b { color: #12131a; }
+.tx-slide.active .tx-mark::before { animation: txswipe .55s cubic-bezier(.2,.8,.2,1) .55s both; }
+@keyframes txswipe { from { transform: skew(-8deg) rotate(-1deg) scaleX(0); } to { transform: skew(-8deg) rotate(-1deg) scaleX(1); } }
+.tx-slide.active .tx-hand { animation: txup .6s cubic-bezier(.2,.8,.2,1) both; }
+.tx-slide.active .tx-next { animation: txup .7s cubic-bezier(.2,.8,.2,1) .28s both; }
+.tx-slide.active .tx-ghost { animation: txghost 1.2s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes txghost { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: none; } }
 </style>
 </head>
 <body>
@@ -814,14 +834,17 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 <!-- Section 1: The problem -->
 <section class="slide mx-slide tx-slide" data-title="Section: The problem">
   <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span></div>
-  <div class="tx-main">
-    <div class="tx-num">01</div>
-    <h2 class="tx-title">The problem</h2>
-    <p class="tx-sub">Why building with AI breaks down for teams.</p>
-    <ul class="tx-list"><li>The problem</li><li>Where people get stuck</li><li>The proof</li><li>Why it breaks</li></ul>
-  </div>
+  <div class="tx-ghost" aria-hidden="true">01</div>
   <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
-  <aside class="notes">Section 1 of 4: The problem. One breath, then click on. Coming up: The problem, Where people get stuck, The proof, Why it breaks.</aside>
+  <span class="cursor c-andrew drift-a" style="left:1040px; top:470px" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Claude · editing the title</b></span>
+  <span class="cursor c-iris drift-b" style="left:1180px; top:560px" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Codex · editing the title</b></span>
+  <div class="tx-main">
+    <div class="tx-hand">&mdash; part one</div>
+    <h2 class="tx-title">The <span class="tx-mark">problem</span></h2>
+    <p class="tx-sub">Why building with AI breaks down for teams.</p>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>The problem</li><li>Where people get stuck</li><li>The proof</li><li>Why it breaks</li></ul></div>
+  </div>
+  <aside class="notes">Section 1 of 4: the problem. One breath, then click on. The two cursors are the problem in miniature: two AIs editing the same title.</aside>
 </section>
 <!-- 3 The problem -->
 <section class="slide" data-title="The problem" data-hook="stat">
@@ -912,23 +935,18 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 <!-- Section 2: Meet Mesh -->
 <section class="slide mx-slide tx-slide" data-title="Section: Meet Mesh">
   <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="past"></i><i class="on"></i><i class=""></i><i class=""></i></span></div>
-  <div class="tx-main">
-    <div class="tx-num">02</div>
-    <h2 class="tx-title">Meet Mesh</h2>
-    <p class="tx-sub">One room for your whole team and every AI on it.</p>
-    <ul class="tx-list"><li>Introducing</li><li>How it works</li><li>Three layers</li></ul>
-  </div>
+  <div class="tx-ghost" aria-hidden="true">02</div>
   <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
-  <aside class="notes">Section 2 of 4: Meet Mesh. One breath, then click on. Coming up: Introducing, How it works, Three layers.</aside>
+  <span class="cursor c-evelyn drift-a" style="left:1060px; top:470px" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Your agent · joining the room</b></span>
+  <span class="cursor c-sarah drift-b" style="left:1200px; top:570px" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>A teammate's agent · saying hi</b></span>
+  <div class="tx-main">
+    <div class="tx-hand">&mdash; part two</div>
+    <h2 class="tx-title">Meet <span class="tx-mark"><span data-name>Mesh</span></span></h2>
+    <p class="tx-sub">One room where your whole team builds with AI, whether or not you code.</p>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>How it works</li><li>Three layers</li></ul></div>
+  </div>
+  <aside class="notes">Section 2 of 4, and the name reveal. Say it: Mesh. One room where your whole team builds with AI, whether or not you code. Then the four-step picture on the next slide.</aside>
 </section>
-<!-- 6 Reveal -->
-<section class="slide center reveal" data-title="Introducing">
-  <div class="intro">Introducing</div>
-  <h1 class="h-xl"><span class="pname" data-name>Mesh</span></h1>
-  <p class="lede" style="margin-top:22px">One room where your whole team builds with AI, whether or not you code.</p>
-  <aside class="notes">Say the name, then give the four-step picture on the next slide.</aside>
-</section>
-
 <!-- 6b How it works -->
 <section class="slide" data-title="How it works">
   <div class="eyebrow"><i></i>How it works</div>
@@ -963,14 +981,17 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 <!-- Section 3: See it in action -->
 <section class="slide mx-slide tx-slide" data-title="Section: See it in action">
   <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="past"></i><i class="past"></i><i class="on"></i><i class=""></i></span></div>
-  <div class="tx-main">
-    <div class="tx-num">03</div>
-    <h2 class="tx-title">See it in action</h2>
-    <p class="tx-sub">A live room, then the practice room.</p>
-    <ul class="tx-list"><li>Live demo</li><li>Practice room</li></ul>
-  </div>
+  <div class="tx-ghost" aria-hidden="true">03</div>
   <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
-  <aside class="notes">Section 3 of 4: See it in action. One breath, then click on. Coming up: Live demo, Practice room.</aside>
+  <span class="cursor c-evelyn drift-a" style="left:1040px; top:470px" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Felix · running the demo</b></span>
+  <span class="cursor c-andrew drift-b" style="left:1190px; top:570px" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Andrew's agent · approving</b></span>
+  <div class="tx-main">
+    <div class="tx-hand">&mdash; part three</div>
+    <h2 class="tx-title">See it in <span class="tx-mark">action</span></h2>
+    <p class="tx-sub">A live room, then the practice room.</p>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Live demo</li><li>Practice room</li></ul></div>
+  </div>
+  <aside class="notes">Section 3 of 4: hand over to the demo. Andrew drives the practice room.</aside>
 </section>
 <!-- 7 Demo -->
 <section class="slide" data-title="Live: the team room" style="padding-top:60px">
@@ -1036,7 +1057,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
         <li>A one-minute “Start here” tour.</li>
         <li>Pasted passwords get blocked.</li>
       </ul>
-      <a class="btn primary train-open" id="train-open" href="training/index.html?from=deck&amp;slide=14" target="_blank" rel="noopener">Open it full screen ↗</a>
+      <a class="btn primary train-open" id="train-open" href="training/index.html?from=deck&amp;slide=13" target="_blank" rel="noopener">Open it full screen ↗</a>
     </div>
     <div class="tframe">
       <div class="tbar"><i></i><i></i><i></i><span class="u">mesh · practice room · training mode on</span><span class="try">Hover anything, or press Start here</span></div>
@@ -1050,14 +1071,17 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 <!-- Section 4: What's next -->
 <section class="slide mx-slide tx-slide" data-title="Section: What&#39;s next">
   <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="past"></i><i class="past"></i><i class="past"></i><i class="on"></i></span></div>
-  <div class="tx-main">
-    <div class="tx-num">04</div>
-    <h2 class="tx-title">What&rsquo;s next</h2>
-    <p class="tx-sub">Where Mesh goes, and how we'll know it's working.</p>
-    <ul class="tx-list"><li>Road map</li><li>What we measure</li></ul>
-  </div>
+  <div class="tx-ghost" aria-hidden="true">04</div>
   <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
-  <aside class="notes">Section 4 of 4: What's next. One breath, then click on. Coming up: Road map, What we measure.</aside>
+  <span class="cursor c-tony drift-a" style="left:1060px; top:470px" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Codex · writing tests</b></span>
+  <span class="cursor c-iris drift-b" style="left:1200px; top:570px" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Gemini · packing for the road</b></span>
+  <div class="tx-main">
+    <div class="tx-hand">&mdash; part four</div>
+    <h2 class="tx-title">What&rsquo;s <span class="tx-mark">next</span></h2>
+    <p class="tx-sub">Where Mesh goes, and how we'll know it's working.</p>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Road map</li><li>What we measure</li></ul></div>
+  </div>
+  <aside class="notes">Section 4 of 4: the road ahead, then how we'll measure it.</aside>
 </section>
 <!-- Road map -->
 <section class="slide" data-title="The road map" data-hook="roadmap">
