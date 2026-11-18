@@ -178,6 +178,12 @@ body.training [data-learn]:hover { outline-style: solid; outline-color: var(--re
 @media (max-width: 1100px) { .main { grid-template-columns: 200px minmax(0,1fr); } aside.right { display: none; } }
 @media (max-width: 760px) { .main { grid-template-columns: 1fr; } aside.side:not(.right) { display: none; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* In the deck's frame (?embed=1): one training note at a time; older notes fold into a "?" */
+.ln-q { display: none; }
+body.embed.training .learnline.collapsed { display: none; }
+body.embed.training .ln-q { display: inline-grid; place-items: center; width: 22px; height: 22px; margin-top: 6px; border-radius: 50%; border: 1px solid var(--learn-line); background: var(--learn); color: var(--red); font: 700 14px/1 var(--body, sans-serif); cursor: pointer; padding: 0; }
+body.embed.training .ln-q:hover { filter: brightness(.96); }
 </style>
 </head>
 <body class="training">
@@ -530,6 +536,30 @@ body.training [data-learn]:hover { outline-style: solid; outline-color: var(--re
   /* Opened from the pitch deck: in-slide frame (?embed=1) or full screen (?from=deck) */
   var params = new URLSearchParams(location.search);
   var EMBED = params.get('embed') === '1';
+  if (EMBED) (function () {
+    document.body.classList.add('embed');
+    var busy = false;
+    function tidy() {
+      if (busy) return; busy = true;
+      var all = [].slice.call(document.querySelectorAll('.learnline')), last = new Map();
+      all.forEach(function (n) { last.set(n.closest('.panel') || document.body, n); });
+      all.forEach(function (n) {
+        var newest = last.get(n.closest('.panel') || document.body) === n, q = n.previousElementSibling;
+        var hasQ = q && q.classList && q.classList.contains('ln-q');
+        n.classList.toggle('collapsed', !newest && !n.classList.contains('open'));
+        if (!newest && !hasQ) {
+          var b = document.createElement('button'); b.type = 'button'; b.className = 'ln-q'; b.textContent = '?';
+          b.title = 'Show this training note'; b.setAttribute('aria-label', 'Show this training note');
+          b.addEventListener('click', function (e) { e.stopPropagation(); n.classList.toggle('open'); n.classList.toggle('collapsed', !n.classList.contains('open')); });
+          n.parentNode.insertBefore(b, n);
+        }
+        if (newest && hasQ) q.remove();
+      });
+      busy = false;
+    }
+    tidy();
+    new MutationObserver(function () { setTimeout(tidy, 0); }).observe(document.body, { childList: true, subtree: true });
+  })();
   if (params.get('from') === 'deck') {
     var bd = $('back-deck'); bd.hidden = false;
     bd.href = '../index.html#slide-' + (parseInt(params.get('slide'), 10) || 1);
