@@ -905,6 +905,16 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .room.mesh-ui .m-lounge .lg:nth-child(2) img { animation-delay: -.7s; } .room.mesh-ui .m-lounge .lg:nth-child(3) img { animation-delay: -1.4s; }
 .room.mesh-ui .m-lounge .lg:nth-child(4) img { animation-delay: -2.1s; } .room.mesh-ui .m-lounge .lg:nth-child(5) img { animation-delay: -1s; }
 @media (prefers-reduced-motion: reduce) { .m-lounge img { animation: none !important; } }
+
+/* ---------- Each agent's character sits under its name ---------- */
+.room.mesh-ui .lg-row { display: block; height: 46px; margin: -2px 0 4px 46px; }
+.room.mesh-ui .lg-row.away { visibility: hidden; }
+.room.mesh-ui .lg-row img { height: 100%; display: block; transform-origin: 50% 100%; animation: fsway 2.8s ease-in-out infinite; }
+.room.mesh-ui .lg-row[data-who="i"] img { animation-delay: -.7s; } .room.mesh-ui .lg-row[data-who="s"] img { animation-delay: -1.4s; }
+.room.mesh-ui .lg-row[data-who="t"] img { animation-delay: -2.1s; } .room.mesh-ui .lg-row[data-who="e"] img { animation-delay: -1s; }
+.demo-full .room.mesh-ui .m-nav div { padding: 5px 10px; } .demo-full .room.mesh-ui .chan { padding: 4px 10px; }
+.demo-full .room.mesh-ui .m-h { padding-top: 8px; padding-bottom: 4px; } .demo-full .room.mesh-ui .m-agent { padding: 2px 10px; }
+@media (prefers-reduced-motion: reduce) { .lg-row img { animation: none !important; } }
 </style>
 </head>
 <body>
@@ -1123,17 +1133,15 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       <div class="m-people"><i style="background:var(--jordan)">A</i><i style="background:var(--sam)">I</i><i style="background:var(--maya)">S</i><i style="background:var(--priya)">T</i><i style="background:var(--accent)">E</i></div>
       <div class="m-h">Agents<span>+</span></div>
       <div class="m-agent"><i class="m-face" style="background-image:url(sprites/fox_stand.png)" aria-hidden="true"></i><div>Andrew's AI<small id="st-a">Idle</small></div></div>
+      <span class="lg lg-row" data-who="a" aria-hidden="true"><img src="sprites/fox_idle.png" alt=""></span>
       <div class="m-agent"><i class="m-face" style="background-image:url(sprites/cat_stand.png)" aria-hidden="true"></i><div>Iris's AI<small id="st-i">Idle</small></div></div>
+      <span class="lg lg-row" data-who="i" aria-hidden="true"><img src="sprites/cat_idle.png" alt=""></span>
       <div class="m-agent"><i class="m-face" style="background-image:url(sprites/bunny_stand.png)" aria-hidden="true"></i><div>Sarah's AI<small>Idle</small></div></div>
+      <span class="lg lg-row" data-who="s" aria-hidden="true"><img src="sprites/bunny_idle.png" alt=""></span>
       <div class="m-agent"><i class="m-face" style="background-image:url(sprites/bear_stand.png)" aria-hidden="true"></i><div>Tony's AI<small>Idle</small></div></div>
+      <span class="lg lg-row" data-who="t" aria-hidden="true"><img src="sprites/bear_idle.png" alt=""></span>
       <div class="m-agent"><i class="m-felix" aria-hidden="true"></i><div>Felix · Evelyn's AI<small id="st-e">Idle</small></div></div>
-      <div class="m-lounge" aria-hidden="true">
-        <span class="lg" data-who="a" title="Andrew's AI, idle"><img src="sprites/fox_idle.png" alt=""></span>
-        <span class="lg" data-who="i" title="Iris's AI, idle"><img src="sprites/cat_idle.png" alt=""></span>
-        <span class="lg" data-who="s" title="Sarah's AI, idle"><img src="sprites/bunny_idle.png" alt=""></span>
-        <span class="lg" data-who="t" title="Tony's AI, idle"><img src="sprites/bear_idle.png" alt=""></span>
-        <span class="lg" data-who="e" title="Felix, idle"><img src="sprites/idle.png" alt=""></span>
-      </div>
+      <span class="lg lg-row" data-who="e" aria-hidden="true"><img src="sprites/idle.png" alt=""></span>
       <span class="sim sim-side">Simulated scene</span>
     </aside>
     <div class="feed-wrap">
@@ -1161,7 +1169,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       <div class="stamp" id="stamp-approved">Approved<strong>Live</strong>by Evelyn</div>
     </div>
   </div>
-  <aside class="notes">Press Play and point at Working now on the right, which is what Mesh really shows: Andrew's AI is in index.html, and Iris's AI heads for the same file. Everyone's idle agents hang out at the bottom left: the fox, cat, bunny, bear and Felix the tanuki. When the warning appears, ask the audience: "Wait, or take the footer?" and click their pick. Flip to Technical to show it's the same update, just translated. End by approving the preview as Evelyn, the teammate who doesn't write the code: Felix appears in Working now and gets to work, mining, then holds up the gem when the update is saved, then goes back to idle in the sidebar. This really happened on Nov 17: Evelyn's agent spotted a problem only Andrew could fix and sent his agent a request. She never opened Mesh. Andrew approved it in the room, and his agent picked it up.</aside>
+  <aside class="notes">Press Play and point at Working now on the right, which is what Mesh really shows: Andrew's AI is in index.html, and Iris's AI heads for the same file. Each agent's character sits under its name on the left while it's idle: the fox, cat, bunny, bear and Felix the tanuki. When the warning appears, ask the audience: "Wait, or take the footer?" and click their pick. Flip to Technical to show it's the same update, just translated. End by approving the preview as Evelyn, the teammate who doesn't write the code: Felix appears in Working now and gets to work, mining, then holds up the gem when the update is saved, then goes back to idle in the sidebar. This really happened on Nov 17: Evelyn's agent spotted a problem only Andrew could fix and sent his agent a request. She never opened Mesh. Andrew approved it in the room, and his agent picked it up.</aside>
 </section>
 
 <!-- 9 Training mode -->
@@ -1707,7 +1715,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   function lounge() {
     var rm = document.querySelector('.room.mesh-ui'); if (!rm) return;
     var away = { a: !!$('wn-a'), i: !!$('wn-i'), s: false, t: false, e: rm.getAttribute('data-felix') !== 'idle' };
-    each(rm.querySelectorAll('.m-lounge .lg'), function (n) { n.classList.toggle('away', !!away[n.getAttribute('data-who')]); });
+    each(rm.querySelectorAll('.lg-row'), function (n) { n.classList.toggle('away', !!away[n.getAttribute('data-who')]); });
   }
   function busy() { var rm = document.querySelector('.room.mesh-ui'); if (!rm) return; var on = !!wnList.querySelector('.wn-row') || rm.getAttribute('data-felix') !== 'idle'; rm.setAttribute('data-busy', on ? '1' : '0'); lounge(); }
   function wnClear() { wnList.innerHTML = '<div class="wn-empty">No one is working yet.</div>'; busy(); }
