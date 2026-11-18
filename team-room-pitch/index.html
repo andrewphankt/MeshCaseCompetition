@@ -706,6 +706,11 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .rm-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 18px; }
 .rm-tier { display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--line); border-top: 5px solid var(--accent); border-radius: 12px; padding: 16px 18px 18px; }
 :root[data-look="paper"] .rm-tier { border-top-color: var(--pen); background: rgba(255,255,255,.55); }
+
+.rm-h4 { font: 600 15px var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 18px 0 10px; }
+.rm-cant2 { columns: 2; column-gap: 48px; }
+.rm-foot { margin-top: 16px; font-size: 18px; }
+.kpi-basics { font-size: 24px; margin-top: 18px; }
 </style>
 </head>
 <body>
@@ -989,7 +994,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 <section class="slide" data-title="The road map" data-hook="roadmap">
   <div class="eyebrow"><i></i>The road map</div>
   <h2 class="h-m">Where Mesh goes from here.</h2>
-  <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i><i data-step="5"></i><i data-step="6"></i><i data-step="7"></i><i data-step="8"></i><i data-step="9"></i><i data-step="10"></i></span>
+  <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i><i data-step="5"></i><i data-step="6"></i></span>
   <div class="rm" id="rm" data-interactive>
     <svg class="rm-svg" viewBox="0 0 1600 640" width="1600" height="640" aria-hidden="true">
       <circle class="rm-sun" cx="1450" cy="120" r="46"/>
@@ -1006,8 +1011,6 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <div class="rm-carlabel" id="rm-carlabel"><b>Now: the team room</b>We're building Mesh with Mesh.</div>
     <div class="rm-hint">Click a sign</div>
     <button type="button" class="rm-sign" id="rm-sign-b" data-stop="b" aria-expanded="false" aria-controls="rm-card-b"><small>Next</small>Community hub</button>
-    <button type="button" class="rm-sign" id="rm-sign-p" data-stop="p" aria-expanded="false" aria-controls="rm-card-p"><small>Then</small>Pricing</button>
-    <button type="button" class="rm-sign" id="rm-sign-s" data-stop="s" aria-expanded="false" aria-controls="rm-card-s"><small>Then</small>Partners</button>
     <button type="button" class="rm-sign" id="rm-sign-o" data-stop="o" aria-expanded="false" aria-controls="rm-card-o"><small>Then</small>Open source</button>
     <button type="button" class="rm-sign" id="rm-sign-c" data-stop="c" aria-expanded="false" aria-controls="rm-card-c"><small>Future</small>Where we're headed</button>
     <div class="rm-dim" id="rm-dim" hidden></div>
@@ -1015,7 +1018,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       <button type="button" class="rm-x" aria-label="Close">&times;</button>
       <span class="rm-corner">Planned · Example projects</span>
       <h3 id="rm-b-h">The community hub</h3>
-      <p class="rm-lead">People with ideas post what they're building. People with skills hop on and help. We start with one club or hackathon, then the whole campus.</p>
+      <p class="rm-lead">People with ideas post what they're building. People with skills hop on and help. Teams can also share the skills they've taught their AIs (Skillshare). We start with one club or hackathon, then the whole campus.</p>
       <div class="rm-hub">
     <div class="hub-top">
       <button type="button" class="chip" aria-pressed="true" data-filter="all">All teams</button>
@@ -1031,28 +1034,6 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     </div>
       </div>
     </div>
-    <div class="rm-card" id="rm-card-p" role="dialog" aria-modal="false" aria-labelledby="rm-p-h" hidden>
-      <button type="button" class="rm-x" aria-label="Close">&times;</button>
-      <span class="rm-corner">Planned</span>
-      <h3 id="rm-p-h">Pricing: campuses pay, students don't</h3>
-      <p class="rm-lead">A campus licenses Mesh and offers it to its students as a free resource, for students who want to make things but need introductory help with coding.</p>
-      <div class="rm-tiers">
-        <div class="rm-tier"><span class="rm-k-l">Students</span><span class="rm-k-goal">Free</span><span class="rm-k-sub">Through their campus, on the AI plan they already have. Mesh never charges for AI.</span></div>
-        <div class="rm-tier"><span class="rm-k-l">Campuses</span><span class="rm-k-goal"><span class="rm-tbd">$X</span> / year</span><span class="rm-k-sub">A campus-wide license. We get to see how creative students on every campus can get.</span></div>
-        <div class="rm-tier"><span class="rm-k-l">First stop</span><span class="rm-k-goal">USC</span><span class="rm-k-sub">Start with one club or hackathon, then license the whole campus.</span></div>
-      </div>
-    </div>
-    <div class="rm-card" id="rm-card-s" role="dialog" aria-modal="false" aria-labelledby="rm-s-h" hidden>
-      <button type="button" class="rm-x" aria-label="Close">&times;</button>
-      <span class="rm-corner">Planned · not confirmed</span>
-      <h3 id="rm-s-h">Partners and sponsors</h3>
-      <p class="rm-lead">AI companies want student builders. We bring them a room full of them.</p>
-      <ul class="rm-cant">
-        <li>Sponsorship and marketing support for the campus launch</li>
-        <li>More AI tools in the room, starting with ones our team already uses, like Wajo</li>
-        <li>Prizes and credits for club and hackathon teams</li>
-      </ul>
-    </div>
     <div class="rm-card" id="rm-card-o" role="dialog" aria-modal="false" aria-labelledby="rm-o-h" hidden>
       <button type="button" class="rm-x" aria-label="Close">&times;</button>
       <span class="rm-corner">Planned</span>
@@ -1066,31 +1047,21 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     </div>
     <div class="rm-card" id="rm-card-c" role="dialog" aria-modal="false" aria-labelledby="rm-c-h" hidden>
       <button type="button" class="rm-x" aria-label="Close">&times;</button>
-      <span class="rm-corner">Goals, not results</span>
+      <span class="rm-corner">Planned</span>
       <h3 id="rm-c-h">Where we're headed</h3>
-      <div class="rm-cols">
-        <div>
-          <h4>What we can't do yet</h4>
-          <ul class="rm-cant">
-            <li>A practice room you can try without logging in</li>
-            <li>Tooltips inside the real room</li>
-            <li>@mention any teammate's agent in the chat</li>
-            <li>Plug in more AIs, like Wajo</li>
-                        <li>Rooms on more campuses</li>
-          </ul>
-        </div>
-        <div>
-          <h4>How we'll know it's working</h4>
-          <div class="rm-kpis">
-            <div class="rm-kpi"><span class="rm-k-l">A first-timer's first save</span><span class="rm-k-now">Today: 33 min, 20 messages</span><span class="rm-k-arrow" aria-hidden="true">&darr;</span><span class="rm-k-goal">Under <span class="rm-tbd">5</span> min</span></div>
-            <div class="rm-kpi"><span class="rm-k-l">Teams building in Mesh</span><span class="rm-k-now">Today: 1 (us)</span><span class="rm-k-arrow" aria-hidden="true">&darr;</span><span class="rm-k-goal"><span class="rm-tbd">10</span> teams</span><span class="rm-k-sub">in one club or hackathon</span></div>
-            <div class="rm-kpi"><span class="rm-k-l">Campuses</span><span class="rm-k-now">Today: 0</span><span class="rm-k-arrow" aria-hidden="true">&darr;</span><span class="rm-k-goal">USC</span><span class="rm-k-sub">then <span class="rm-tbd">3</span> more</span></div>
-          </div>
-        </div>
-      </div>
+      <h4 class="rm-h4">What Mesh can't do yet</h4>
+      <ul class="rm-cant rm-cant2">
+        <li>A practice room you can try without logging in</li>
+        <li>Tooltips inside the real room</li>
+        <li>@mention any teammate's agent in the chat</li>
+        <li>Plug in more AIs, like Wajo</li>
+        <li>See which tools each AI is using right now</li>
+        <li>Ask a teammate's AI for help when you run out of tokens</li>
+      </ul>
+      <p class="rm-lead rm-foot">How we'll measure progress is on the next slide.</p>
     </div>
   </div>
-  <aside class="notes">Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built. Then Pricing: campuses pay, students use it free. Partners: AI companies want student builders (not confirmed yet). Open source: the students who use it help build it. Click "Where we're headed": things we can't do yet, and three goals that will tell us it's working. Clicker: each press opens the next stop, the next press closes it. Numbers with a dashed outline are placeholder targets for Evelyn to confirm.</aside>
+  <aside class="notes">Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then Open source: the students who use it help build it. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press opens the next stop, the next press closes it.</aside>
 </section>
 
 <!-- Metrics: what we measure and why -->
@@ -1107,6 +1078,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       <tr data-step="2"><td style="width:46%">Projects still active in week 2 and week 4</td><td>Does a team come back after the first session?</td></tr>
     </tbody>
   </table>
+  <p class="lede kpi-basics" data-step="3">We also track the basics: students signed up, projects connected, messages sent, active agents and tokens used.</p>
   <p class="lede" data-step="3" style="margin-top:34px; font-size:26px">Next test: do real AIs obey the stop every time?</p>
   <aside class="notes">No usage numbers yet, and we won't invent any. But the room already records every one of these events, so we can measure them from day one, no new tracking needed. Lead with the north star: a project where two or more people's AIs saved to the same draft is the only moment Mesh beats working alone. Click: activation. Setup is where non-coders quit, so under 5 minutes from sign-in to a connected AI, and invited teammates actually joining. Click: collaboration and retention. Every same-file stop is an overwrite that didn't happen, and week-2 and week-4 activity tells us teams come back. Last click, the biggest risk and our next test: do real AIs obey the stop every time? About 40 seconds.</aside>
 </section>
@@ -1324,7 +1296,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     var rm = $('rm'); if (!rm) return;
     var road = $('rm-road'), car = $('rm-car'), dim = $('rm-dim');
     var total = road.getTotalLength();
-    var STOP = { start: 0.08, b: 0.30, p: 0.45, s: 0.60, o: 0.74, c: 0.90 }, ORDER = ['b', 'p', 's', 'o', 'c'];
+    var STOP = { start: 0.08, b: 0.34, o: 0.62, c: 0.90 }, ORDER = ['b', 'o', 'c'];
     var at = STOP.start, anim = null, openId = null;
     function place(f) {
       var L = total * f, p = road.getPointAtLength(L), q = road.getPointAtLength(Math.min(total, L + 2));
