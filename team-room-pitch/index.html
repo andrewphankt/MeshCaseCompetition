@@ -731,6 +731,33 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .mx-cap { font: 500 17px var(--body); color: #8b8b93; }
 .mx-tag { position: absolute; right: 18px; top: 20px; font: 600 12px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: #8b8b93; border: 1px dashed #52525b; border-radius: 6px; padding: 4px 8px; }
 .mx-next { margin: 26px 0 0; font: 500 22px var(--body); color: #a1a1aa; }
+
+/* ---------- Section slides: dark, matching the metrics slide ---------- */
+.tx-slide { justify-content: space-between; overflow: hidden; }
+.tx-top { display: flex; justify-content: space-between; align-items: center; }
+.tx-k { font: 600 22px var(--body); color: #e4e4e7; }
+.tx-bars { display: flex; gap: 8px; }
+.tx-bars i { width: 64px; height: 6px; border-radius: 3px; background: #2a2a2e; }
+.tx-bars i.past { background: #6b6b73; }
+.tx-bars i.on { background: #ED93B1; }
+.tx-main { position: relative; z-index: 1; margin-top: -40px; }
+.tx-num { font: 700 30px var(--mono); color: #ED93B1; letter-spacing: .06em; }
+.tx-title { font: 800 150px/0.95 "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; letter-spacing: -0.055em; color: #fafafa; margin: 14px 0 22px; }
+.tx-sub { font: 500 32px/1.3 var(--body); color: #a1a1aa; margin: 0 0 30px; max-width: 1000px; }
+.tx-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.tx-list li { font: 500 19px var(--body); color: #d4d4d8; background: #1c1c1f; border: 1px solid #2a2a2e; border-radius: 999px; padding: 8px 16px; }
+.tx-threads { position: absolute; left: 0; right: 0; top: 150px; width: 100%; height: 220px; opacity: .6; }
+.tx-threads .tl { fill: none; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.tx-threads .t1 { stroke: #378ADD; } .tx-threads .t2 { stroke: #EF9F27; } .tx-threads .t3 { stroke: #ED93B1; }
+.tx-slide.active .tl { animation: txdraw 1.4s cubic-bezier(.45,0,.2,1) .2s forwards; }
+.tx-slide.active .t2 { animation-delay: .35s; } .tx-slide.active .t3 { animation-delay: .5s; }
+@keyframes txdraw { to { stroke-dashoffset: 0; } }
+.tx-slide.active .tx-num { animation: txup .6s cubic-bezier(.2,.8,.2,1) both; }
+.tx-slide.active .tx-title { animation: txup .7s cubic-bezier(.2,.8,.2,1) .08s both; }
+.tx-slide.active .tx-sub { animation: txup .7s cubic-bezier(.2,.8,.2,1) .18s both; }
+.tx-slide.active .tx-list { animation: txup .7s cubic-bezier(.2,.8,.2,1) .28s both; }
+@keyframes txup { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .tx-slide .tl { stroke-dashoffset: 0; } .tx-slide.active * { animation: none !important; } }
 </style>
 </head>
 <body>
@@ -784,6 +811,18 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <aside class="notes">Introduce each person as you tap their photo; the back shows their major and background. Fill in the TEAM list at the top of the script, and put photos in a "team" folder next to this file (for example team/iris.jpg).</aside>
 </section>
 
+<!-- Section 1: The problem -->
+<section class="slide mx-slide tx-slide" data-title="Section: The problem">
+  <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span></div>
+  <div class="tx-main">
+    <div class="tx-num">01</div>
+    <h2 class="tx-title">The problem</h2>
+    <p class="tx-sub">Why building with AI breaks down for teams.</p>
+    <ul class="tx-list"><li>The problem</li><li>Where people get stuck</li><li>The proof</li><li>Why it breaks</li></ul>
+  </div>
+  <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
+  <aside class="notes">Section 1 of 4: The problem. One breath, then click on. Coming up: The problem, Where people get stuck, The proof, Why it breaks.</aside>
+</section>
 <!-- 3 The problem -->
 <section class="slide" data-title="The problem" data-hook="stat">
   <div class="eyebrow"><i></i>The problem</div>
@@ -870,6 +909,18 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <aside class="notes">Click the background once per reason; each plays a tiny scene. Then tap a card to flip it and show how the room fixes it. Reason 3, "Non-coders get locked out," is the heart of the pitch now. Slow down there.</aside>
 </section>
 
+<!-- Section 2: Meet Mesh -->
+<section class="slide mx-slide tx-slide" data-title="Section: Meet Mesh">
+  <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="past"></i><i class="on"></i><i class=""></i><i class=""></i></span></div>
+  <div class="tx-main">
+    <div class="tx-num">02</div>
+    <h2 class="tx-title">Meet Mesh</h2>
+    <p class="tx-sub">One room for your whole team and every AI on it.</p>
+    <ul class="tx-list"><li>Introducing</li><li>How it works</li><li>Three layers</li></ul>
+  </div>
+  <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
+  <aside class="notes">Section 2 of 4: Meet Mesh. One breath, then click on. Coming up: Introducing, How it works, Three layers.</aside>
+</section>
 <!-- 6 Reveal -->
 <section class="slide center reveal" data-title="Introducing">
   <div class="intro">Introducing</div>
@@ -909,6 +960,18 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <aside class="notes">Each click adds a floor to the building. Click any floor to show its details. This is the differentiation slide: features alone aren't unique, the three layers for students are.</aside>
 </section>
 
+<!-- Section 3: See it in action -->
+<section class="slide mx-slide tx-slide" data-title="Section: See it in action">
+  <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="past"></i><i class="past"></i><i class="on"></i><i class=""></i></span></div>
+  <div class="tx-main">
+    <div class="tx-num">03</div>
+    <h2 class="tx-title">See it in action</h2>
+    <p class="tx-sub">A live room, then the practice room.</p>
+    <ul class="tx-list"><li>Live demo</li><li>Practice room</li></ul>
+  </div>
+  <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
+  <aside class="notes">Section 3 of 4: See it in action. One breath, then click on. Coming up: Live demo, Practice room.</aside>
+</section>
 <!-- 7 Demo -->
 <section class="slide" data-title="Live: the team room" style="padding-top:60px">
   <div style="display:flex; align-items:center; gap:16px">
@@ -973,7 +1036,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
         <li>A one-minute “Start here” tour.</li>
         <li>Pasted passwords get blocked.</li>
       </ul>
-      <a class="btn primary train-open" id="train-open" href="training/index.html?from=deck&amp;slide=11" target="_blank" rel="noopener">Open it full screen ↗</a>
+      <a class="btn primary train-open" id="train-open" href="training/index.html?from=deck&amp;slide=14" target="_blank" rel="noopener">Open it full screen ↗</a>
     </div>
     <div class="tframe">
       <div class="tbar"><i></i><i></i><i></i><span class="u">mesh · practice room · training mode on</span><span class="try">Hover anything, or press Start here</span></div>
@@ -984,6 +1047,18 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 </section>
 
 
+<!-- Section 4: What's next -->
+<section class="slide mx-slide tx-slide" data-title="Section: What&#39;s next">
+  <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="past"></i><i class="past"></i><i class="past"></i><i class="on"></i></span></div>
+  <div class="tx-main">
+    <div class="tx-num">04</div>
+    <h2 class="tx-title">What&rsquo;s next</h2>
+    <p class="tx-sub">Where Mesh goes, and how we'll know it's working.</p>
+    <ul class="tx-list"><li>Road map</li><li>What we measure</li></ul>
+  </div>
+  <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
+  <aside class="notes">Section 4 of 4: What's next. One breath, then click on. Coming up: Road map, What we measure.</aside>
+</section>
 <!-- Road map -->
 <section class="slide" data-title="The road map" data-hook="roadmap">
   <div class="eyebrow"><i></i>The road map</div>
