@@ -843,6 +843,12 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .demo-full .room.mesh-ui .file.wn { overflow: hidden; min-width: 0; }
 .demo-full .room.mesh-ui[data-busy="0"] .file.wn { border-left: 0; }
 .demo-full .room.mesh-ui .file.wn > *:not(.stamp) { min-width: 440px; }
+
+/* Felix's working card: no background scene, just Felix and her rock */
+.room.mesh-ui .felix-scene { background: transparent; }
+.room.mesh-ui .felix .fx-sun, .room.mesh-ui .felix .fx-ground { display: none; }
+.room.mesh-ui .felix .fx-rock { bottom: 6px; }
+.room.mesh-ui .felix-scene img { bottom: 2px; }
 </style>
 </head>
 <body>
