@@ -577,6 +577,62 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ---------- Live demo restyled to match the real Mesh app (light, Slack-like) ---------- */
+:root[data-look] .room.mesh-ui { --m-bg:#ffffff; --m-side:#fafafa; --m-line:#e6e6e9; --m-ink:#16171b; --m-mute:#70737d; --m-soft:#f2f2f4;
+  background: var(--m-bg); color: var(--m-ink); border: 1px solid var(--m-line); border-radius: 14px; box-shadow: 0 24px 60px rgba(20,20,30,.18); grid-template-columns: 230px 1fr 430px; }
+:root[data-look] .room.mesh-ui .m-side { background: var(--m-side); border-right: 1px solid var(--m-line); padding: 16px 12px; display: flex; flex-direction: column; gap: 2px; overflow: hidden; }
+.room.mesh-ui .m-ws { display: flex; align-items: center; gap: 9px; font: 700 18px var(--body); color: var(--m-ink); padding: 4px 8px 14px; }
+.room.mesh-ui .m-logo { width: 20px; height: 20px; border-radius: 50%; background: radial-gradient(circle, var(--m-ink) 2px, transparent 2.5px) 0 0/7px 7px; opacity: .8; }
+.room.mesh-ui .m-chev { margin-left: auto; color: var(--m-mute); font-size: 16px; }
+.room.mesh-ui .m-nav div { display: flex; align-items: center; gap: 10px; font: 500 16px var(--body); color: var(--m-ink); padding: 7px 10px; border-radius: 8px; }
+.room.mesh-ui .m-nav svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.room.mesh-ui .m-h { display: flex; justify-content: space-between; font: 600 12px var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--m-mute); padding: 14px 10px 6px; }
+.room.mesh-ui .m-h span { font-size: 16px; letter-spacing: 0; }
+:root[data-look] .room.mesh-ui .chan { font: 500 16px var(--body); color: var(--m-ink); padding: 6px 10px; border-radius: 8px; }
+.room.mesh-ui .chan b { color: var(--m-mute); font-weight: 500; margin-right: 4px; }
+:root[data-look] .room.mesh-ui .chan.on { background: var(--m-ink); color: #fff; }
+.room.mesh-ui .chan.on b { color: rgba(255,255,255,.7); }
+.room.mesh-ui .m-people { display: flex; gap: 6px; padding: 2px 10px; }
+.room.mesh-ui .m-people i, .room.mesh-ui .m-agent i { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 700 12px var(--body); font-style: normal; color: #fff; flex: none; }
+.room.mesh-ui .m-agent { display: flex; align-items: center; gap: 10px; padding: 5px 10px; font: 500 15px/1.15 var(--body); color: var(--m-ink); }
+.room.mesh-ui .m-agent small { display: block; font: 500 12.5px var(--body); color: var(--m-mute); margin-top: 2px; transition: color .3s; }
+.room.mesh-ui .m-agent small.busy { color: #1a7f4b; }
+.room.mesh-ui .m-agent small.wait { color: #b26a00; }
+:root[data-look] .room.mesh-ui .feed-wrap { border-right: 1px solid var(--m-line); background: var(--m-bg); }
+:root[data-look] .room.mesh-ui .feed-bar { border-bottom: 1px solid var(--m-line); padding: 12px 16px; }
+:root[data-look] .room.mesh-ui .feed-bar .ch { font: 700 20px var(--body); color: var(--m-ink); }
+:root[data-look] .room.mesh-ui .seg { border: 1px solid var(--m-line); border-radius: 9px; background: #fff; }
+:root[data-look] .room.mesh-ui .seg button { font: 600 14px var(--body); color: var(--m-mute); padding: 8px 12px; }
+:root[data-look] .room.mesh-ui .seg button[aria-pressed="true"] { background: var(--m-ink); color: #fff; border-radius: 7px; }
+:root[data-look] .room.mesh-ui .btn { background: #fff; color: var(--m-ink); border: 1px solid var(--m-line); border-radius: 9px; font: 600 16px var(--body); padding: 9px 15px; }
+:root[data-look] .room.mesh-ui .btn.primary { background: var(--m-ink); color: #fff; border-color: var(--m-ink); }
+:root[data-look] .room.mesh-ui .btn:hover { filter: brightness(1.08); }
+:root[data-look] .room.mesh-ui .empty-hint { color: var(--m-mute); }
+:root[data-look] .room.mesh-ui .msg .av { border-radius: 50%; color: #fff; }
+:root[data-look] .room.mesh-ui .msg .name { font: 700 16px var(--body); color: var(--m-ink); display: flex; align-items: center; gap: 8px; }
+.room.mesh-ui .msg .badge { font: 600 11px var(--body); letter-spacing: .06em; color: var(--m-mute); border: 1px solid var(--m-line); border-radius: 5px; padding: 2px 6px; }
+.room.mesh-ui .msg .when { font: 500 13px var(--body); color: var(--m-mute); }
+:root[data-look] .room.mesh-ui .msg .name small { font: 600 11px var(--body); letter-spacing: .06em; text-transform: uppercase; color: var(--m-mute); border: 1px solid var(--m-line); border-radius: 5px; padding: 2px 6px; margin-left: 0; }
+:root[data-look] .room.mesh-ui .msg .body { color: #2a2c33; }
+:root[data-look] .room.mesh-ui .msg .body.tech { color: #2a2c33; background: var(--m-soft); border: 1px solid var(--m-line); }
+:root[data-look] .room.mesh-ui .warn-card { background: #fff; border: 1px solid var(--m-line); box-shadow: 0 2px 8px rgba(20,20,30,.06); border-radius: 12px; }
+:root[data-look] .room.mesh-ui .warn-card .wt { color: #b26a00; font: 600 12px var(--body); letter-spacing: .08em; }
+:root[data-look] .room.mesh-ui .typing { color: var(--m-mute); font: 14px var(--body); }
+:root[data-look] .room.mesh-ui .file { background: var(--m-bg); }
+:root[data-look] .room.mesh-ui .file-bar { border-bottom: 1px solid var(--m-line); color: var(--m-mute); font: 600 14px var(--body); }
+.room.mesh-ui .file-bar b { color: var(--m-ink); font-family: var(--mono); }
+:root[data-look] .room.mesh-ui .code .ln em { color: #a3a6af; }
+:root[data-look] .room.mesh-ui .code .ln span { color: #2a2c33; }
+:root[data-look] .room.mesh-ui .code .ln .tg { color: #8a8fa0; }
+:root[data-look] .room.mesh-ui .code .ln.claim-m { background: rgba(47,134,214,.10); }
+:root[data-look] .room.mesh-ui .code .ln.claim-j, :root[data-look] .room.mesh-ui .code .ln.live { background: rgba(26,127,75,.10); }
+:root[data-look] .room.mesh-ui .fcur { color: #fff; }
+:root[data-look] .room.mesh-ui .file-foot { border-top: 1px solid var(--m-line); color: var(--m-mute); font: 600 14px var(--body); }
+:root[data-look] .room.mesh-ui .file-foot.ok { color: #1a7f4b; }
+:root[data-look] .room.mesh-ui .file-foot.warn { color: #b26a00; }
+:root[data-look] .room.mesh-ui .file .stamp { color: #1a7f4b; border-color: #1a7f4b; background: rgba(255,255,255,.92); }
+:root[data-look] .room.mesh-ui .file .stamp strong { color: var(--m-ink); }
 </style>
 </head>
 <body>
@@ -745,20 +801,25 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <div class="eyebrow" style="margin:0"><i></i>Inside the team room</div>
     <span class="sim">Simulated scene</span>
   </div>
-  <div class="room" data-interactive>
-    <aside>
-      <h4>Team 4</h4>
-      <div class="chan">#general</div>
-      <div class="chan on">#landing-page</div>
-      <div class="chan">#decisions</div>
-      <div class="who-list">
-        <h4 style="margin:0">In the room</h4>
-        <span><i style="background:var(--jordan)"></i>Andrew + AI</span>
-        <span><i style="background:var(--sam)"></i>Iris + AI</span>
-        <span><i style="background:var(--maya)"></i>Sarah + AI</span>
-        <span><i style="background:var(--priya)"></i>Tony + AI</span>
-        <span><i style="background:var(--accent)"></i>Evelyn</span>
+  <div class="room mesh-ui" data-interactive>
+    <aside class="m-side">
+      <div class="m-ws"><span class="m-logo" aria-hidden="true"></span>Team 4<span class="m-chev" aria-hidden="true">&#8964;</span></div>
+      <div class="m-nav">
+        <div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>Preview</div>
+        <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>Updates</div>
+        <div><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Changes</div>
       </div>
+      <div class="m-h">Channels<span>+</span></div>
+      <div class="chan"><b>#</b> general</div>
+      <div class="chan on"><b>#</b> landing-page</div>
+      <div class="chan"><b>#</b> decisions</div>
+      <div class="m-h">People</div>
+      <div class="m-people"><i style="background:var(--jordan)">A</i><i style="background:var(--sam)">I</i><i style="background:var(--maya)">S</i><i style="background:var(--priya)">T</i><i style="background:var(--accent)">E</i></div>
+      <div class="m-h">Agents<span>+</span></div>
+      <div class="m-agent"><i style="background:var(--jordan)">A</i><div>Andrew's AI<small id="st-a">Idle</small></div></div>
+      <div class="m-agent"><i style="background:var(--sam)">I</i><div>Iris's AI<small id="st-i">Idle</small></div></div>
+      <div class="m-agent"><i style="background:var(--maya)">S</i><div>Sarah's AI<small>Idle</small></div></div>
+      <div class="m-agent"><i style="background:var(--priya)">T</i><div>Tony's AI<small>Idle</small></div></div>
     </aside>
     <div class="feed-wrap">
       <div class="feed-bar">
@@ -1244,21 +1305,23 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     code.appendChild(curM); code.appendChild(curJ);
     foot.className = 'file-foot'; foot.textContent = 'No one is editing yet.';
     var sa = $('stamp-approved'); if (sa) sa.classList.remove('show');
+    st('st-a', 'Idle'); st('st-i', 'Idle');
   }
+  function st(id, txt, cls) { var n = $(id); if (n) { n.textContent = txt; n.className = cls || ''; } }
   function moveCur(c, line) { c.classList.remove('off'); c.style.top = (PAD + line * LINE_H + 4) + 'px'; }
   function setText(line, txt) { var s = lineEls[line].querySelector('span'); s.textContent = txt; lineEls[line].classList.remove('flash'); void lineEls[line].offsetWidth; lineEls[line].classList.add('flash'); }
   var fx = {
-    mayaClaim: function () { moveCur(curM, 2); lineEls[2].classList.add('claim-m'); foot.className = 'file-foot'; foot.textContent = "Line 3 is claimed by Andrew's AI."; },
-    jordanApproach: function () { moveCur(curJ, 6); setTimeout(function () { moveCur(curJ, 3); }, 500); foot.className = 'file-foot warn'; foot.textContent = "Iris's AI is heading for the same line."; },
-    jordanFooter: function () { moveCur(curJ, 10); lineEls[10].classList.add('claim-j'); foot.className = 'file-foot ok'; foot.textContent = 'No collision. Two AIs, two different lines.'; },
-    jordanWait: function () { moveCur(curJ, 5); curJ.textContent = "Iris's AI · waiting"; foot.className = 'file-foot ok'; foot.textContent = "Iris's AI is waiting its turn."; },
-    mayaDone: function () { setText(2, '  <h1>Build it together</h1>'); },
-    footerDone: function () { setText(10, '  <p>Made at USC</p>'); },
+    mayaClaim: function () { moveCur(curM, 2); lineEls[2].classList.add('claim-m'); foot.className = 'file-foot'; foot.textContent = "Line 3 is claimed by Andrew's AI."; st('st-a', 'Editing the title', 'busy'); },
+    jordanApproach: function () { moveCur(curJ, 6); setTimeout(function () { moveCur(curJ, 3); }, 500); foot.className = 'file-foot warn'; foot.textContent = "Iris's AI is heading for the same line."; st('st-i', 'Heading for the title', 'wait'); },
+    jordanFooter: function () { moveCur(curJ, 10); lineEls[10].classList.add('claim-j'); foot.className = 'file-foot ok'; foot.textContent = 'No collision. Two AIs, two different lines.'; st('st-i', 'Editing the footer', 'busy'); },
+    jordanWait: function () { moveCur(curJ, 5); curJ.textContent = "Iris's AI · waiting"; foot.className = 'file-foot ok'; foot.textContent = "Iris's AI is waiting its turn."; st('st-i', 'Waiting its turn', 'wait'); },
+    mayaDone: function () { setText(2, '  <h1>Build it together</h1>'); st('st-a', 'Saved to draft'); },
+    footerDone: function () { setText(10, '  <p>Made at USC</p>'); st('st-i', 'Saved to draft'); },
     approved: function () {
       each(lineEls, function (r) { r.classList.remove('claim-m', 'claim-j'); });
       lineEls[2].classList.add('live'); if (lineEls[10].textContent.indexOf('Made at USC') > -1) lineEls[10].classList.add('live');
       curM.classList.add('off'); curJ.classList.add('off');
-      foot.className = 'file-foot ok'; foot.textContent = 'Approved by Evelyn. Live for the team.';
+      foot.className = 'file-foot ok'; foot.textContent = 'Approved by Evelyn. Live for the team.'; st('st-a', 'Idle'); st('st-i', 'Idle');
       $('stamp-approved').classList.add('show');
     }
   };
@@ -1278,6 +1341,8 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     var right = el('div');
     var name = el('div', 'name', p.label);
     if (p.sub) name.appendChild(el('small', null, p.sub));
+    if (p.ai && !p.sub) name.appendChild(el('span', 'badge', 'AGENT'));
+    name.appendChild(el('span', 'when', 'now'));
     right.appendChild(name);
     var holder = m.warn ? el('div', 'warn-card') : right;
     if (m.warn) { holder.appendChild(el('div', 'wt', 'Heads up · possible collision')); right.appendChild(holder); }
@@ -1300,7 +1365,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     }
     if (m.approve) {
       var a = el('div', 'choices');
-      var ab = el('button', 'btn primary', 'Approve preview as Evelyn'); ab.type = 'button';
+      var ab = el('button', 'btn primary', 'Approve (as Evelyn)'); ab.type = 'button';
       ab.addEventListener('click', function () {
         ab.disabled = true; ab.textContent = 'Approved by Evelyn';
         run([{ who: 'room', plain: 'Approved. The changes are live for the team.', tech: 'merge draft → main · approved_by=evelyn · deploy ok', fx: 'approved', wait: 700 }]);
