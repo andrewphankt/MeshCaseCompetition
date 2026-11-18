@@ -1,0 +1,153 @@
+/* Timelines for the rebuilt Mesh room parts (room.css). Each runs, and loops, while its slide shows.
+   live.js calls window.liveActs[name](el, later) when an element with data-act="name" starts showing. */
+(function () {
+  var acts = window.liveActs;
+  var PEOPLE = {
+    S: { name: 'Sarah', color: '#e8613f' }, I: { name: 'Iris', color: '#2a9d66' },
+    T: { name: 'Tony', color: '#8a5cf0' }, E: { name: 'Evelyn', color: '#d99a00' }
+  };
+  function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+  var AGENT_OF = { S: 'claude', I: 'codex', T: 'gemini' };
+  function av(k, agent) {
+    if (window.avatar) return window.avatar(k, agent ? AGENT_OF[k] : null);
+    var a = el('span', 'av', k); a.style.background = PEOPLE[k].color; return a;
+  }
+  function row(k, text, when) {
+    var r = el('div', 'r row-in');
+    r.innerHTML = '<span class="chk">&#10003;</span>';
+    r.appendChild(av(k));
+    r.insertAdjacentHTML('beforeend', '<b></b><span class="who"></span><em></em><span class="undo">Undo</span>');
+    r.querySelector('b').textContent = text; r.querySelector('.who').textContent = PEOPLE[k].name; r.querySelector('em').textContent = when;
+    return r;
+  }
+  function clearRows(box, later, then) {
+    var rows = Array.prototype.slice.call(box.children);
+    rows.forEach(function (r, i) { later(function () { r.className = r.className.replace('row-in', '') + ' row-out'; }, i * 160); });
+    later(function () { box.innerHTML = ''; then && then(); }, rows.length * 160 + 600);
+  }
+  function fly(plane, btn, root, later) {
+    var b = btn.getBoundingClientRect(), r = root.getBoundingClientRect(), k = root.offsetWidth / r.width;
+    plane.style.left = ((b.left - r.left) * k + btn.offsetWidth / 2 - plane.offsetWidth / 2) + 'px';
+    plane.style.top = ((b.top - r.top) * k) + 'px';
+    plane.classList.remove('fly'); void plane.offsetWidth; plane.classList.add('fly');
+    btn.classList.add('down'); later(function () { btn.classList.remove('down'); }, 200);
+  }
+  function loop(fn, period) {
+    return function (root, later) {
+      (function go() { fn(root, later); later(go, period); })();
+    };
+  }
+
+  /* 1. The whole room: a change comes in, then another, then a person pushes */
+  acts.room = loop(function (root, later) {
+    var q = function (s) { return root.querySelector(s); };
+    var rows = q('.rows'), count = q('.count'), hero = q('.hero'), cta = q('.cta'), chip = q('.chip'), site = q('.site'), rl = q('.site .rl');
+    var agS = q('[data-ag="S"]'), agI = q('[data-ag="I"]'), n = 2;
+    function status(a, on, txt) { a.classList.toggle('work', on); a.querySelector('small').textContent = txt; }
+    /* While an agent works, its change waits greyed out in the dock. When the save lands, the row turns solid
+       and the Preview (always the newest draft) simply refreshes: Building new save, then Updated. */
+    function working(k, text) { var r = row(k, text, 'saving'); r.classList.add('pending'); rows.insertBefore(r, rows.firstChild); return r; }
+    function saved(r, apply) {
+      r.classList.remove('pending'); r.querySelector('em').textContent = 'now'; n++; count.textContent = n + ' new';
+      chip.innerHTML = '<span class="spin"></span>Building new save'; chip.classList.add('show'); rl.classList.add('spin-once');
+      later(function () { site.classList.add('refresh'); apply(); chip.innerHTML = '&#10003; Updated'; }, 1200);
+      later(function () { site.classList.remove('refresh'); rl.classList.remove('spin-once'); }, 1500);
+      later(function () { chip.classList.remove('show'); }, 2600);
+    }
+    rows.innerHTML = ''; rows.appendChild(row('T', 'Footer links updated', '1h')); rows.appendChild(row('I', 'Pricing section added', '3h'));
+    count.textContent = '2 new'; hero.classList.remove('big'); cta.classList.remove('on'); q('.uptodate').classList.remove('show');
+    status(agS, false, 'Idle'); status(agI, false, 'Idle');
+    var r1, r2;
+    later(function () { status(agS, true, 'In index.html'); r1 = working('S', 'Hero title is bigger'); }, 700);
+    later(function () { status(agS, false, 'Idle'); saved(r1, function () { hero.classList.add('big'); }); }, 2600);
+    later(function () { status(agI, true, 'In signup.html'); r2 = working('I', 'Sign-up button added'); }, 5000);
+    later(function () { status(agI, false, 'Idle'); saved(r2, function () { cta.classList.add('on'); }); }, 6900);
+    later(function () {
+      fly(q('.plane'), q('.dock .btn-k'), root, later);
+      later(function () { clearRows(rows, later, function () { count.textContent = 'Up to date'; q('.uptodate').classList.add('show'); }); }, 500);
+    }, 10200);
+  }, 14500);
+
+  /* 2. Changes: plain-English notes arrive, newest on top */
+  var NOTES = [
+    ['S', "Sarah's Claude", 'The home page title is bigger and bolder, so it reads from across the room.', 'index.html'],
+    ['I', "Iris's Codex", 'There is now a sign-up button right under the title.', 'signup.html · index.html'],
+    ['T', "Tony's Gemini", 'The footer links all go to the right pages now.', 'footer.html']
+  ];
+  acts.changes = loop(function (root, later) {
+    var list = root.querySelector('.list'); list.innerHTML = '';
+    NOTES.forEach(function (n, i) {
+      later(function () {
+        var e = el('div', 'note row-in'); e.appendChild(av(n[0], true));
+        var d = el('div'); d.innerHTML = '<div class="who"><span></span><span class="badge">AGENT</span><em>just now</em></div><p></p><div class="files"></div>';
+        d.querySelector('.who span').textContent = n[1]; d.querySelector('p').textContent = n[2]; d.querySelector('.files').textContent = n[3];
+        e.appendChild(d); list.insertBefore(e, list.firstChild);
+        Array.prototype.slice.call(list.children, 1).forEach(function (o) { o.querySelector('em').textContent = 'a minute ago'; });
+      }, 500 + i * 2300);
+    });
+  }, 10500);
+
+  /* 3. Working now: agents start and finish tasks */
+  acts.working = loop(function (root, later) {
+    var work = root.querySelector('.w-list'), idle = root.querySelector('.i-list'), wc = root.querySelector('.wc'), ic = root.querySelector('.ic');
+    function card(k, who, task, on) {
+      var e = el('div', 'wa row-in' + (on ? '' : ' idle')); e.appendChild(av(k, true));
+      var d = el('div'); d.innerHTML = '<b></b><small></small>'; d.querySelector('b').textContent = who; d.querySelector('small').textContent = task;
+      e.appendChild(d); e.appendChild(on ? el('span', 'live-dot') : el('span', 'st', 'Idle')); e.dataset.k = k; return e;
+    }
+    function counts() { wc.textContent = work.children.length; ic.textContent = idle.children.length; }
+    function move(k, toWork, task) {
+      var old = root.querySelector('.wa[data-k="' + k + '"]'), who = old.querySelector('b').textContent;
+      old.classList.add('row-out');
+      later(function () { old.remove(); (toWork ? work : idle).appendChild(card(k, who, toWork ? task : 'Idle', toWork)); counts(); }, 500);
+    }
+    work.innerHTML = ''; idle.innerHTML = '';
+    work.appendChild(card('S', "Sarah's Claude", 'Making the hero title bigger', true));
+    work.appendChild(card('I', "Iris's Codex", 'Adding a sign-up button', true));
+    idle.appendChild(card('T', "Tony's Gemini", 'Idle', false));
+    counts();
+    later(function () { move('T', true, 'Fixing the footer links'); }, 2200);
+    later(function () { move('S', false); }, 4600);
+    later(function () { move('S', true, 'Writing the pricing section'); }, 7000);
+  }, 10000);
+
+  /* 4. Preview tabs: the real pages in our project, each live in its own tab; add one from the plus */
+  acts.tabs = loop(function (root, later) {
+    var strip = root.querySelector('.strip'), plus = root.querySelector('.plus'), menu = root.querySelector('.menu');
+    var pages = root.querySelectorAll('.page'), tabs = function () { return strip.querySelectorAll('.tb'); };
+    function show(i) {
+      tabs().forEach(function (t, k) { t.classList.toggle('on', k === i); });
+      pages.forEach(function (p, k) {
+        p.classList.toggle('off', k !== i);
+        var f = p.querySelector('iframe[data-src]'); if (k === i && f && !f.src) f.src = f.dataset.src;
+      });
+    }
+    var extra = strip.querySelector('.tb.new'); if (extra) extra.remove();
+    menu.classList.remove('show'); menu.querySelectorAll('div').forEach(function (d) { d.classList.remove('hl'); });
+    show(0);
+    later(function () { show(1); }, 2200);
+    later(function () { show(2); }, 4400);
+    later(function () { plus.classList.add('down'); later(function () { plus.classList.remove('down'); menu.classList.add('show'); }, 180); }, 6400);
+    later(function () { menu.querySelector('.pickme').classList.add('hl'); }, 7300);
+    later(function () {
+      menu.classList.remove('show');
+      var t = el('span', 'tb new', strip.querySelector('.tb svg').outerHTML + 'agent-workspace');
+      strip.insertBefore(t, plus); later(function () { show(3); }, 250);
+    }, 8100);
+  }, 13500);
+
+  /* 5. Push: a person presses Push, the plane leaves, the list clears */
+  var PUSHROWS = [['S', 'Hero title is bigger', '2m'], ['I', 'Sign-up button added', '9m'], ['T', 'Footer links updated', '1h']];
+  acts.push = loop(function (root, later) {
+    var rows = root.querySelector('.rows'), count = root.querySelector('.count'), up = root.querySelector('.uptodate');
+    var btn = root.querySelector('.dh .btn-k');
+    rows.innerHTML = ''; PUSHROWS.forEach(function (r) { rows.appendChild(row(r[0], r[1], r[2])); });
+    count.textContent = '3 new'; btn.classList.remove('done'); up.classList.remove('show');
+    later(function () {
+      fly(root.querySelector('.plane'), root.querySelector('.dh .btn-k'), root, later);
+      later(function () { btn.classList.add('done'); }, 250);
+      later(function () { clearRows(rows, later, function () { count.textContent = 'Up to date'; up.classList.add('show'); }); }, 450);
+    }, 2000);
+  }, 8500);
+  if (window.liveSync) window.liveSync();
+})();

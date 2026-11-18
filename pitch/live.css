@@ -1,0 +1,129 @@
+/* Live app screens drawn in HTML (Mesh's look: Inter, zinc greys, black buttons, 4px corners),
+   and pop-out callouts that lift one feature out of a browser mock. */
+
+/* A live screen is drawn at the app's real size (1278 x 743) and scaled to fit the browser */
+.live { position: absolute; left: 0; top: 0; width: 1278px; height: 743px; transform-origin: 0 0; font-family: var(--font); color: var(--ink); background: #fff; overflow: hidden; }
+.lv { position: absolute; inset: 0; background: #fff; isolation: isolate; z-index: 0; transition: opacity .7s var(--ease), transform .9s var(--ease), filter .7s var(--ease); }
+.lv.hide { opacity: 0 !important; transform: scale(1.015) !important; filter: blur(6px); }
+
+/* Orbits and floating agents behind the onboarding */
+.lv .orbits { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.lv .orbits ellipse { fill: none; stroke: #d4d4d8; stroke-width: 1.4; stroke-dasharray: 1 7; stroke-linecap: round; }
+.lv .orbits .o1 { animation: orbit 90s linear infinite; transform-origin: 640px 400px; }
+.lv .orbits .o2 { animation: orbit 120s linear infinite reverse; transform-origin: 640px 400px; }
+.lv .orbits .o3 { animation: orbit 150s linear infinite; transform-origin: 640px 400px; }
+@keyframes orbit { to { transform: rotate(360deg); } }
+.lv .bot { position: absolute; left: 0; top: 0; width: 34px; height: 34px; color: #b4b4bb; offset-rotate: 0deg; animation: ride linear infinite; }
+.lv .bot.sm { width: 22px; height: 22px; color: #d4d4d8; }
+.lv .bot svg { width: 100%; height: 100%; animation: bob 3.2s ease-in-out infinite; }
+@keyframes ride { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+@keyframes bob { 50% { transform: translateY(-5px) rotate(-6deg); } }
+
+/* Stepper */
+.lv .stepper { position: absolute; top: 26px; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 14px; font: 600 15px/1 var(--font); color: #71717a; z-index: 2; }
+.lv .stepper span { display: flex; align-items: center; gap: 9px; }
+.lv .stepper b { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid #d4d4d8; font-size: 12px; font-weight: 600; color: #71717a; }
+.lv .stepper .now { color: var(--ink); } .lv .stepper .now b { background: var(--ink); border-color: var(--ink); color: #fff; }
+.lv .stepper .done { color: var(--ink); } .lv .stepper .done b { background: var(--ink); border-color: var(--ink); color: #fff; font-size: 13px; }
+.lv .stepper hr { width: 32px; border: 0; border-top: 1.5px solid #d4d4d8; margin: 0; }
+.lv .stepper hr.done { border-color: var(--ink); }
+
+.lv .center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2; }
+.lv h3 { font: 700 30px/1.1 var(--font); letter-spacing: -0.03em; margin: 0; }
+.lv .word { font: 700 15px/1 var(--font); letter-spacing: .28em; margin: 12px 0 22px; }
+.lv .logo { width: 54px; height: 54px; color: var(--ink); }
+.lv .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; height: 52px; padding: 0 34px; border-radius: 5px; background: var(--ink); color: #fff; font: 600 17px/1 var(--font); margin-top: 30px; }
+.lv .btn svg { width: 18px; height: 18px; }
+.lv .foot { position: absolute; bottom: 22px; left: 0; right: 0; text-align: center; font: 500 14px/1.4 var(--font); color: #71717a; }
+.lv .x { position: absolute; top: 28px; right: 26px; width: 36px; height: 36px; border: 1px solid #e4e4e7; border-radius: 5px; display: grid; place-items: center; font: 400 20px/1 var(--font); z-index: 3; }
+
+/* Sign in: the button gets a soft press */
+.lv.play .btn.press { animation: press 3.4s var(--ease) 1.4s infinite; }
+@keyframes press { 0%, 70%, 100% { transform: scale(1); } 76% { transform: scale(.95); } 84% { transform: scale(1); } }
+
+/* Pick your project */
+.lv .pick { width: 480px; display: flex; flex-direction: column; gap: 12px; }
+.lv .pick h3 { text-align: center; margin-bottom: 18px; }
+.lv .search { height: 42px; border: 1px solid #d4d4d8; border-radius: 5px; padding: 0 13px; display: flex; align-items: center; font: 400 15px/1 var(--font); color: #a1a1aa; }
+.lv .search.typing { border: 2px solid var(--ink); color: var(--ink); }
+.lv .search .tcaret { display: inline-block; width: 1.5px; height: 18px; background: var(--ink); margin-left: 1px; animation: blink 1.1s steps(1) infinite; }
+.lv .repos { border: 1px solid #e4e4e7; border-radius: 5px; overflow: hidden; }
+.lv .repo { display: flex; align-items: center; gap: 12px; height: 45px; padding: 0 15px; border-top: 1px solid #e4e4e7; font: 400 15px/1 var(--font); color: #71717a; transition: height .5s var(--ease), opacity .4s, background .3s; overflow: hidden; }
+.lv .repo:first-child { border-top: 0; }
+.lv .repo b { color: var(--ink); font-weight: 600; }
+.lv .repo em { margin-left: auto; font-style: normal; font-size: 13px; }
+.lv .repo svg { width: 15px; height: 15px; color: var(--ink); flex-shrink: 0; }
+.lv .repo.gone { height: 0; opacity: 0; border-top-width: 0; }
+.lv .repo.pick-me { background: #f4f4f5; }
+.lv .row2 { display: flex; gap: 8px; }
+.lv .row2 .search { flex: 1; }
+.lv .ghost { height: 42px; padding: 0 16px; border: 1px solid #e4e4e7; border-radius: 5px; display: flex; align-items: center; font: 600 15px/1 var(--font); color: #a1a1aa; }
+.lv .link { text-align: center; font: 500 14px/1 var(--font); color: #71717a; margin-top: 14px; }
+
+/* Which agent do you use? */
+.lv .agents { display: flex; gap: 18px; margin-top: 40px; }
+.lv .agent { width: 186px; height: 186px; border: 1px solid #e4e4e7; border-radius: 6px; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; font: 600 17px/1 var(--font); transition: border-color .4s, box-shadow .4s, transform .5s var(--ease); }
+.lv .agent svg { width: 48px; height: 48px; }
+.lv.play .agent.choose { animation: choose 1s var(--ease) 1.6s forwards; }
+@keyframes choose { to { border-color: var(--ink); box-shadow: 0 0 0 1.5px var(--ink), 0 18px 40px -18px rgba(0,0,0,.35); transform: translateY(-4px); } }
+
+/* Paste this into your agent */
+.lv .copy { min-width: 190px; height: 60px; font-size: 19px; border-radius: 6px; position: relative; }
+.lv .copy span { display: inline-flex; align-items: center; gap: 12px; }
+.lv .copy .c2 { display: none; }
+.lv .copy.done .c1 { display: none; }
+.lv .copy.done .c2 { display: inline-flex; }
+.lv .copy.down { transform: scale(.95); }
+.lv .copy { transition: transform .25s var(--ease); }
+.lv .show { margin-top: 30px; font: 500 15px/1 var(--font); color: #71717a; align-self: center; margin-right: 210px; }
+.lv .links { display: flex; gap: 20px; margin-top: 30px; font: 500 15px/1 var(--font); color: #71717a; }
+
+/* Entrance for content on a live screen when it starts playing */
+.lv .in { opacity: 0; transform: translateY(14px); }
+.lv.play .in { animation: lvin .9s var(--ease) forwards; }
+.lv.play .in:nth-of-type(2) { animation-delay: .1s; }
+@keyframes lvin { to { opacity: 1; transform: none; } }
+
+/* ---------- Pop-out callouts ---------- */
+.desk { overflow: visible; }
+.browser { position: relative; transition: filter .6s var(--ease), transform .9s var(--ease); }
+.desk:has(.pop:not(.hide)) .browser { filter: brightness(.9) saturate(.85); transform: scale(.985); }
+.pop { position: absolute; z-index: 4; border-radius: 10px; background-repeat: no-repeat; background-color: #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 30px 60px -18px rgba(15,15,40,.45), 0 10px 20px -10px rgba(15,15,40,.3);
+  transition: opacity .6s var(--ease), transform .8s var(--ease) !important; }
+.pop.hide { opacity: 0 !important; transform: scale(.72) !important; filter: none !important; }
+.lv span.logo { display: block; }
+.lv .logo svg { width: 100%; height: 100%; }
+.callout { position: absolute; z-index: 5; width: 380px; text-align: left; padding: 20px 22px 22px; border-radius: 12px; background: rgba(255,255,255,.92); backdrop-filter: blur(14px); box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 24px 50px -20px rgba(15,15,40,.35); transition: opacity .6s var(--ease) .15s, transform .8s var(--ease) .15s !important; }
+.callout.hide { transform: translateY(10px) !important; filter: none !important; }
+.callout b { display: block; font: 700 28px/1.15 var(--font); letter-spacing: -0.02em; color: var(--ink); }
+.callout span { display: block; margin-top: 8px; font: 500 19px/1.4 var(--font); color: var(--ink-2); }
+.callout .tag { display: inline-block; margin-bottom: 10px; padding: 5px 10px; border-radius: 4px; background: var(--ink); color: #fff; font: 600 13px/1 var(--font); letter-spacing: .06em; text-transform: uppercase; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lv *, .lv { animation-duration: .01s !important; animation-iteration-count: 1 !important; }
+}
+
+/* Group chat window (a generic team chat, not any real app) with bubbles that pop in */
+.desk.chatdesk { height: 640px; }
+.chatwin { width: 860px; height: 560px; border-radius: 14px; overflow: hidden; background: #fff; text-align: left; display: flex; flex-direction: column;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 30px 70px -20px rgba(15,15,40,.45); }
+.cw-bar { display: flex; align-items: center; gap: 16px; height: 52px; padding: 0 18px; border-bottom: 1px solid var(--line); background: #fafafa; }
+.cw-bar .dots { display: flex; gap: 8px; } .cw-bar .dots i { width: 12px; height: 12px; border-radius: 50%; }
+.cw-bar .dots i:nth-child(1) { background: #ff5f57; } .cw-bar .dots i:nth-child(2) { background: #febc2e; } .cw-bar .dots i:nth-child(3) { background: #28c840; }
+.cw-bar b { font: 700 19px/1 var(--font); } .cw-n { margin-left: auto; font: 500 15px/1 var(--font); color: var(--muted); }
+.cw-feed { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 16px; padding: 22px 26px; overflow: hidden; }
+.msg { display: flex; gap: 14px; align-items: flex-start; transform-origin: 0 100%; transition: opacity .45s var(--ease), transform .6s cubic-bezier(.34,1.56,.64,1), max-height .5s var(--ease); max-height: 200px; }
+.msg.wait { opacity: 0; transform: translateY(14px) scale(.92); max-height: 0; }
+.msg .av { width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 700 17px/1 var(--font); }
+.msg b { font: 700 16px/1 var(--font); }
+.msg p { margin: 6px 0 0; display: inline-block; padding: 11px 15px; border-radius: 4px 14px 14px 14px; background: var(--soft); font: 500 19px/1.4 var(--font); color: var(--ink); }
+.msg p.paste { font: 400 16px/1.55 var(--mono); background: #f4f4f5; border-left: 3px solid #d4d4d8; color: var(--ink-2); }
+.msg.typing p { display: inline-flex; gap: 5px; padding: 14px 16px; margin-top: 0; }
+.msg.typing i { width: 8px; height: 8px; border-radius: 50%; background: #a1a1aa; animation: dot 1.2s ease-in-out infinite; }
+.msg.typing i:nth-child(2) { animation-delay: .15s; } .msg.typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes dot { 0%, 60%, 100% { transform: none; opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+
+/* Slide number */
+#num { position: absolute; right: 70px; bottom: 46px; z-index: 6; font: 600 17px/1 var(--font); color: #a1a1aa; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+#stage.is-dark #num { color: #52525b; }

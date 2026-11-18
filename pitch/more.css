@@ -1,0 +1,119 @@
+/* Slides 14 onward: bring your own agent, the stop, requests, KPIs, next, risk, close. */
+
+/* Anything with class "at" and data-at appears on a timeline when its slide opens (deck.js) */
+.at { transition: opacity .6s var(--ease), transform .8s var(--ease); }
+.at.wait { opacity: 0; transform: translateY(12px); }
+
+/* Bring your own agent: three agents wired into one room */
+.byo { position: relative; width: 1240px; height: 560px; margin-top: 30px; }
+.byo .tiles { display: flex; justify-content: space-between; padding: 0 70px; }
+.byo .tile { width: 300px; display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 30px 0 26px; border-radius: 18px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.07), 0 30px 60px -34px rgba(15,15,40,.4); }
+.byo .tile .aico { width: 64px; height: 64px; }
+.byo .tile b { font: 700 28px/1 var(--font); letter-spacing: -0.02em; }
+.byo .tile span { font: 500 18px/1 var(--font); color: var(--muted); }
+.byo svg.wires { position: absolute; left: 0; top: 190px; width: 1240px; height: 250px; overflow: visible; }
+.byo .wires path { fill: none; stroke: #d4d4d8; stroke-width: 2.5; }
+.byo .wires path.flow { stroke: var(--ink); stroke-dasharray: 2 16; stroke-linecap: round; stroke-width: 4; animation: flow 1.4s linear infinite; }
+@keyframes flow { to { stroke-dashoffset: -18; } }
+.byo .hub { position: absolute; left: 50%; top: 432px; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; padding: 16px 26px; border-radius: 16px; background: var(--ink); color: #fff; font: 700 26px/1 var(--font); box-shadow: 0 30px 60px -24px rgba(0,0,0,.5); }
+.byo .hub svg { width: 34px; height: 34px; color: #fff; }
+
+/* The stop and requests: a wide terminal */
+.term.wide { width: 980px; }
+.term.wide .tx { min-height: 330px; font-size: 22px; }
+.term .warn { display: inline-block; margin: 4px 0; padding: 8px 14px; border-radius: 6px; background: #fafafa; color: #18181b; font-family: var(--font); font-weight: 600; }
+.term .opt { color: #fafafa; }
+.term .opt b { color: #18181b; background: #e4e4e7; padding: 1px 8px; border-radius: 4px; font-weight: 600; margin-right: 6px; }
+
+.req { display: flex; gap: 44px; align-items: center; margin-top: 64px; }
+.req .term { width: 640px; }
+.req .term .tx { min-height: 290px; font-size: 20px; }
+.reqcard { width: 520px; border-radius: 16px; background: #fff; text-align: left; padding: 30px 32px; box-shadow: 0 0 0 1px rgba(0,0,0,.07), 0 40px 90px -40px rgba(15,15,40,.45); }
+.reqcard .k { font: 600 15px/1 var(--font); letter-spacing: .1em; color: var(--muted); }
+.reqcard .from { display: flex; align-items: center; gap: 12px; margin-top: 18px; font: 700 21px/1 var(--font); }
+.reqcard .from .av { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 700 17px/1 var(--font); }
+.reqcard p { margin: 18px 0 0; font: 500 25px/1.35 var(--font); letter-spacing: -0.01em; }
+.reqcard .acts { display: flex; gap: 12px; margin-top: 26px; }
+.reqcard .acts span { flex: 1; height: 54px; border-radius: 6px; display: grid; place-items: center; font: 600 20px/1 var(--font); }
+.reqcard .dec { border: 1px solid #d4d4d8; }
+.reqcard .apr { background: var(--ink); color: #fff; transition: transform .2s var(--ease); }
+.reqcard .apr.down { transform: scale(.94); }
+.reqcard .done { display: none; margin-top: 26px; height: 54px; border-radius: 6px; background: #ecfdf3; color: #166534; font: 600 20px/54px var(--font); text-align: center; }
+.reqcard.approved .acts { display: none; }
+.reqcard.approved .done { display: block; animation: lvin .6s var(--ease); }
+
+/* KPIs */
+.north { max-width: 1500px; }
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; width: 1500px; margin-top: 60px; }
+.kpi { text-align: left; padding: 30px 30px 32px; border-radius: 18px; background: var(--soft); display: flex; flex-direction: column; gap: 14px; }
+.kpi .stage { font: 600 15px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.kpi b { font: 700 27px/1.2 var(--font); letter-spacing: -0.015em; min-height: 98px; }
+.kpi .tgt { margin-top: auto; font: 700 54px/1 var(--font); letter-spacing: -0.04em; }
+.kpi .tgt small { display: block; margin-top: 8px; font: 500 16px/1.3 var(--font); letter-spacing: 0; color: var(--muted); }
+.guard { margin-top: 36px; font: 500 24px/1.3 var(--font); color: var(--ink-2); }
+.guard b { color: var(--ink); }
+
+/* What we'd build next */
+.bets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; width: 1400px; margin-top: 60px; }
+.bet { text-align: left; padding: 34px 32px; border-radius: 18px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.07), 0 30px 60px -34px rgba(15,15,40,.35); display: flex; flex-direction: column; gap: 14px; }
+.bet .n { font: 700 22px/1 var(--font); color: var(--muted); }
+.bet b { font: 700 34px/1.1 var(--font); letter-spacing: -0.025em; }
+.bet p { margin: 0; font: 500 22px/1.4 var(--font); color: var(--ink-2); }
+.bet .moves { margin-top: 10px; padding-top: 16px; border-top: 1px solid var(--line); font: 600 18px/1.3 var(--font); color: var(--ink); }
+.bet .moves span { display: block; font: 600 13px/1 var(--font); letter-spacing: .1em; color: var(--muted); margin-bottom: 6px; }
+
+/* Close: a paper plane takes off from the bottom left, loops once, and climbs out of the top right,
+   drawing a dotted trail behind it (the same curve the publish plane uses) */
+.flight { position: absolute; inset: 0; width: 1920px; height: 1080px; pointer-events: none; overflow: visible; }
+.flight .trail { fill: none; stroke: #a1a1aa; stroke-width: 3; stroke-dasharray: 2 13; stroke-linecap: round; }
+.flight .reveal { fill: none; stroke: #fff; stroke-width: 40; stroke-dasharray: 1 1; stroke-dashoffset: 1; }
+.slide.on .flight .reveal { animation: trail 5.2s var(--ease-fly) 1.8s forwards; }
+.slide.on .flight .trail { animation: trailfade 2.4s ease 7s forwards; }
+@keyframes trail { to { stroke-dashoffset: 0; } }
+@keyframes trailfade { to { opacity: 0; } }
+.plane2 { position: absolute; left: 0; top: 0; width: 104px; height: 62px; offset-rotate: auto; offset-distance: 0%; opacity: 0; pointer-events: none;
+  filter: drop-shadow(0 14px 16px rgba(24,24,27,.18)); }
+.plane2 svg { width: 100%; height: 100%; display: block; }
+.slide.on .plane2 { animation: soar 5.2s var(--ease-fly) 1.8s forwards; }
+@keyframes soar {
+  0% { offset-distance: 0%; opacity: 0; transform: scale(.7); }
+  6% { opacity: 1; }
+  60% { transform: scale(1); }
+  92% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; transform: scale(1.25); }
+}
+@media (prefers-reduced-motion: reduce) { .plane2, .flight { display: none; } }
+.closelines { font: 700 84px/1.12 var(--font); letter-spacing: -0.045em; }
+.closelines div { opacity: 0; transform: translateY(20px); transition: opacity .8s var(--ease), transform 1s var(--ease); }
+.slide.on .closelines div { opacity: 1; transform: none; }
+.slide.on .closelines div:nth-child(1) { transition-delay: .5s; }
+.slide.on .closelines div:nth-child(2) { transition-delay: .9s; }
+.slide.on .closelines div:nth-child(3) { transition-delay: 1.3s; }
+.closelines .grey { color: #a1a1aa; }
+
+/* The Mesh mark inside small spots (tab icon, room header, hub pill) takes the text color */
+svg.fav circle { fill: currentColor; }
+
+/* Terminal lines that end well */
+.term .good { color: var(--live); }
+
+/* A splash of color behind mostly-white slides: soft paint that drifts */
+.slide { isolation: isolate; }
+.slide.wash::before { content: ""; position: absolute; inset: -12%; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(32% 42% at 10% 16%, rgba(249, 200, 170, .85), transparent 70%),
+    radial-gradient(30% 40% at 90% 14%, rgba(176, 198, 252, .9), transparent 70%),
+    radial-gradient(38% 42% at 84% 96%, rgba(125, 147, 232, .45), transparent 70%),
+    radial-gradient(34% 40% at 4% 94%, rgba(231, 160, 192, .6), transparent 70%);
+  filter: blur(18px); animation: drift 26s ease-in-out infinite alternate; }
+.slide.wash::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .55;
+  background: no-repeat center / 100% 100% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080' preserveAspectRatio='none'%3E%3Cpath d='M-40 860 C 380 700 620 980 1000 820 S 1640 640 1980 760' fill='none' stroke='%23c7d2fe' stroke-width='3' stroke-linecap='round' opacity='.8'/%3E%3Cpath d='M-40 920 C 420 780 700 1040 1080 880 S 1700 720 1980 830' fill='none' stroke='%23fbcfe8' stroke-width='2' stroke-linecap='round' opacity='.8'/%3E%3Cpath d='M-40 220 C 300 120 520 300 860 190 S 1500 60 1980 150' fill='none' stroke='%23fed7aa' stroke-width='2' stroke-linecap='round' opacity='.7'/%3E%3C/svg%3E");
+  animation: sway 18s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: translate(2.5%, -2%) scale(1.06) rotate(2deg); } }
+@keyframes sway { to { transform: translateY(-14px) scaleX(1.02); } }
+@media (prefers-reduced-motion: reduce) { .slide.wash::before, .slide.wash::after { animation: none; } }
+@media print { .slide.wash::before, .slide.wash::after { animation: none; } }
+
+.bets.four { grid-template-columns: repeat(4, 1fr); width: 1560px; margin-top: 28px; }
+.bets.four .bet b { font-size: 30px; }
+.bets.four .bet p { font-size: 20px; }

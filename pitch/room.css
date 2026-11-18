@@ -1,0 +1,295 @@
+/* Mesh room parts rebuilt in HTML, big and moving: the room, Changes, Working now, preview tabs, Push.
+   Mesh's look: Inter, zinc greys, black buttons, 4px corners, green = working. */
+
+.mr { font-family: var(--font); color: var(--ink); text-align: left; }
+.mr .av { display: grid; place-items: center; flex-shrink: 0; border-radius: 50%; color: #fff; font-weight: 700; }
+.mr .badge { display: inline-flex; align-items: center; height: 20px; padding: 0 7px; border-radius: 4px; background: var(--ink); color: #fff; font: 700 11px/1 var(--font); letter-spacing: .06em; }
+.mr .live-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 0 rgba(34,197,94,.5); animation: ping 1.8s ease-out infinite; }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,.45); } 80%, 100% { box-shadow: 0 0 0 9px rgba(34,197,94,0); } }
+.mr .btn-k { display: inline-flex; align-items: center; justify-content: center; border-radius: 5px; background: var(--ink); color: #fff; font-weight: 600; transition: transform .2s var(--ease); }
+.mr .btn-k.down { transform: scale(.93); }
+.mr .btn-o { display: inline-flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid #d4d4d8; background: #fff; color: var(--ink); font-weight: 600; }
+.mr .chk { display: grid; place-items: center; flex-shrink: 0; border-radius: 3px; background: var(--ink); color: #fff; font-weight: 700; }
+
+/* Rows that slide in, and rows that clear */
+.mr .row-in { animation: rowin .7s var(--ease) both; }
+@keyframes rowin { from { opacity: 0; transform: translateY(-14px); max-height: 0; } to { opacity: 1; transform: none; max-height: 120px; } }
+.mr .row-out { animation: rowout .55s var(--ease) both; }
+@keyframes rowout { to { opacity: 0; transform: translateX(30px); max-height: 0; padding-top: 0; padding-bottom: 0; border-width: 0; } }
+.mr .flash { animation: flash 1.6s var(--ease); }
+@keyframes flash { 0% { background: #ecfdf3; } 100% { background: transparent; } }
+
+/* Paper plane (Push) */
+.mr .plane { position: absolute; width: 30px; height: 30px; pointer-events: none; opacity: 0; z-index: 9; }
+.mr .plane.fly { animation: plane 1.9s var(--ease-fly) forwards; }
+@keyframes plane {
+  0% { opacity: 0; transform: translate(0, 0) rotate(-45deg) scale(.4); }
+  8% { opacity: 1; transform: translate(4px, -22px) rotate(-45deg) scale(1); }
+  30% { transform: translate(-10px, -140px) rotate(-80deg) scale(1.05); }
+  60% { opacity: 1; transform: translate(-260px, -300px) rotate(-120deg) scale(1.15); }
+  100% { opacity: 0; transform: translate(-620px, -460px) rotate(-118deg) scale(1.25); }
+}
+.mr .pushed { position: absolute; display: inline-flex; align-items: center; gap: 8px; border-radius: 5px; background: var(--ink); color: #fff; font-weight: 600; opacity: 0; transform: translateY(6px) scale(.96); transition: opacity .4s var(--ease), transform .6s var(--ease); z-index: 8; }
+.mr .pushed.show { opacity: 1; transform: none; }
+
+/* ---------- 1. The whole room, in a browser (overview) ---------- */
+.float { animation: floaty 7s ease-in-out infinite; }
+@keyframes floaty { 50% { transform: translateY(-8px); } }
+.room { position: relative; width: 1000px; height: 560px; display: flex; background: #fff; font-size: 14px; overflow: hidden; }
+.room .side { width: 212px; flex-shrink: 0; background: #f4f4f5; border-right: 1px solid var(--line); padding: 0 10px; display: flex; flex-direction: column; gap: 2px; }
+.room .proj { display: flex; align-items: center; gap: 8px; height: 46px; padding: 0 6px; font-weight: 700; }
+.room .proj svg { width: 20px; height: 20px; }
+.room .nav { display: flex; align-items: center; gap: 9px; height: 30px; padding: 0 10px; border-radius: 4px; font-weight: 500; color: var(--ink-2); }
+.room .nav.on { background: var(--ink); color: #fff; }
+.room .nav small { margin-left: auto; font-size: 12px; opacity: .8; }
+.room .nav i { width: 11px; height: 11px; border: 1.6px solid currentColor; border-radius: 2px; }
+.room .h { margin: 16px 0 4px; padding: 0 10px; font: 600 10.5px/1 var(--font); letter-spacing: .09em; color: var(--muted); }
+.room .ch { padding: 0 10px; height: 26px; display: flex; align-items: center; color: var(--ink-2); }
+.room .ag { display: flex; align-items: center; gap: 9px; padding: 5px 10px; border-radius: 4px; }
+.room .ag .av { width: 24px; height: 24px; font-size: 11px; }
+.room .ag div { flex: 1; min-width: 0; line-height: 1.2; }
+.room .ag b { display: block; font-weight: 500; font-size: 13.5px; }
+.room .ag small { display: block; font-size: 12px; color: var(--muted); transition: color .3s; }
+.room .ag.work small { color: var(--ink); }
+.room .ag .live-dot { opacity: 0; transition: opacity .3s; }
+.room .ag.work .live-dot { opacity: 1; }
+.room .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.room .top { display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 14px; border-bottom: 1px solid var(--line); }
+.room .top b { font-size: 15px; }
+.room .seg { display: inline-flex; padding: 2px; border: 1px solid #d4d4d8; border-radius: 4px; font: 600 12px/1 var(--font); }
+.room .seg span { padding: 5px 9px; border-radius: 2px; color: #52525b; } .room .seg span:first-child { background: var(--ink); color: #fff; }
+.room .top .btn-k { margin-left: auto; height: 30px; padding: 0 13px; font-size: 13px; }
+.room .canvas { position: relative; flex: 1; min-height: 0; display: grid; place-items: center; background-color: #f4f4f5;
+  background-image: linear-gradient(#e4e4e7 1px, transparent 1px), linear-gradient(90deg, #e4e4e7 1px, transparent 1px); background-size: 22px 22px; }
+.room .site { position: relative; width: 470px; height: 214px; background: #fff; border: 1px solid #d4d4d8; border-radius: 4px; overflow: hidden; box-shadow: 0 18px 40px -24px rgba(0,0,0,.35); transition: filter .4s; }
+.room .site.reload { filter: blur(3px) brightness(1.05); }
+.room .site .sb { display: flex; align-items: center; gap: 5px; height: 24px; padding: 0 10px; border-bottom: 1px solid var(--line); font-size: 11px; color: var(--muted); }
+.room .site .sb i { width: 7px; height: 7px; border-radius: 50%; background: #e4e4e7; }
+.room .site .pg { padding: 18px 24px; display: flex; flex-direction: column; gap: 9px; }
+.room .site .nv { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 12px; }
+.room .site .nv span { margin-left: auto; width: 34px; height: 7px; border-radius: 2px; background: #e4e4e7; }
+.room .site .hero { font-weight: 700; font-size: 22px; letter-spacing: -0.02em; margin-top: 8px; transition: font-size .8s var(--ease); }
+.room .site .hero.big { font-size: 34px; }
+.room .site .ln { height: 7px; border-radius: 2px; background: #e4e4e7; }
+.room .site .cta { align-self: flex-start; height: 26px; padding: 0 12px; border-radius: 4px; background: var(--ink); color: #fff; font: 600 11px/26px var(--font); opacity: 0; transform: scale(.8); transition: opacity .5s, transform .6s var(--ease); }
+.room .site .cta.on { opacity: 1; transform: none; }
+.room .chip { position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(-6px); display: inline-flex; align-items: center; gap: 7px; height: 26px; padding: 0 11px; border-radius: 13px; background: #fff; border: 1px solid var(--line); font: 600 12px/1 var(--font); opacity: 0; transition: opacity .3s, transform .5s var(--ease); box-shadow: 0 6px 16px -8px rgba(0,0,0,.25); }
+.room .chip.show { opacity: 1; transform: translateX(-50%); }
+.room .chip .spin { width: 11px; height: 11px; border-radius: 50%; border: 2px solid #d4d4d8; border-top-color: var(--ink); animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.room .dock { position: relative; border-top: 1px solid var(--line); background: #fff; }
+.room .dock .dh { display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px; }
+.room .dock .dh b { font-size: 15px; }
+.room .dock .dh span { color: var(--muted); }
+.room .dock .dh .btn-k { margin-left: auto; height: 30px; padding: 0 14px; font-size: 13px; }
+.room .rows { height: 102px; overflow: hidden; }
+.room .r { display: flex; align-items: center; gap: 10px; height: 34px; padding: 0 14px; border-top: 1px solid var(--line); overflow: hidden; }
+.room .r .chk { width: 14px; height: 14px; font-size: 10px; }
+.room .r .av { width: 18px; height: 18px; font-size: 9px; }
+.room .r b { flex: 1; font-weight: 600; font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.room .r .who { color: var(--muted); font-size: 12.5px; width: 70px; }
+.room .r em { font-style: normal; color: var(--muted); font-size: 12.5px; width: 30px; text-align: right; }
+.room .uptodate { position: absolute; left: 14px; top: 58px; color: var(--muted); font-size: 14px; opacity: 0; transition: opacity .5s; }
+.room .uptodate.show { opacity: 1; }
+
+/* ---------- 2. Changes: big plain-English notes ---------- */
+.feed { width: 1060px; height: 610px; margin-top: 44px; border-radius: 16px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.07), 0 40px 90px -40px rgba(15,15,40,.4); overflow: hidden; display: flex; flex-direction: column; }
+.feed .fh { display: flex; align-items: center; gap: 14px; height: 70px; padding: 0 30px; border-bottom: 1px solid var(--line); font: 700 24px/1 var(--font); }
+.feed .fh span { font: 600 14px/1 var(--font); letter-spacing: .1em; color: var(--muted); margin-left: auto; }
+.feed .list { flex: 1; overflow: hidden; padding: 8px 30px; }
+.feed .note { display: flex; gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--line); overflow: hidden; }
+.feed .note .av { width: 50px; height: 50px; font-size: 20px; }
+.feed .note .who { display: flex; align-items: center; gap: 10px; font: 700 20px/1 var(--font); }
+.feed .note .who em { font-style: normal; font-weight: 500; color: var(--muted); font-size: 17px; }
+.feed .note p { margin: 12px 0 0; font: 500 26px/1.35 var(--font); letter-spacing: -0.01em; }
+.feed .note .files { margin-top: 10px; font: 400 16px/1 var(--mono); color: var(--muted); }
+
+/* ---------- 3. Working now ---------- */
+.panel { width: 760px; margin-top: 50px; border-radius: 16px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.07), 0 40px 90px -40px rgba(15,15,40,.4); padding: 14px 0 18px; }
+.panel .ph { padding: 18px 32px 8px; font: 600 16px/1 var(--font); letter-spacing: .1em; color: var(--muted); }
+.panel .wa { display: flex; align-items: center; gap: 18px; padding: 16px 32px; overflow: hidden; }
+.panel .wa .av { width: 52px; height: 52px; font-size: 21px; }
+.panel .wa div { flex: 1; min-width: 0; }
+.panel .wa b { display: block; font: 700 23px/1.2 var(--font); }
+.panel .wa small { display: block; margin-top: 5px; font: 500 20px/1.3 var(--font); color: var(--ink-2); }
+.panel .wa.idle b { font-weight: 500; color: var(--ink-2); }
+.panel .wa.idle small { color: var(--muted); }
+.panel .wa .live-dot { width: 13px; height: 13px; }
+.panel .wa .st { font: 500 18px/1 var(--font); color: var(--muted); }
+.panel hr { border: 0; border-top: 1px solid var(--line); margin: 10px 0; }
+
+/* ---------- 4. Preview tabs ---------- */
+.tabsdemo { width: 1100px; margin-top: 46px; }
+.tabsdemo .strip { position: relative; display: flex; align-items: center; gap: 6px; height: 70px; padding: 0 10px; }
+.tabsdemo .tb { display: flex; align-items: center; gap: 10px; height: 52px; padding: 0 22px; border-radius: 10px 10px 0 0; font: 600 22px/1 var(--font); color: var(--muted); transition: color .3s, background .3s; overflow: hidden; white-space: nowrap; }
+.tabsdemo .tb.on { color: var(--ink); background: #fff; box-shadow: 0 -1px 0 1px rgba(0,0,0,.06); }
+.tabsdemo .tb svg { width: 16px; height: 16px; }
+.tabsdemo .plus { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 8px; font: 400 30px/1 var(--font); color: var(--ink-2); transition: background .2s, transform .2s; }
+.tabsdemo .plus.down { background: #e4e4e7; transform: scale(.92); }
+.tabsdemo .menu { position: absolute; top: 68px; left: 0; width: 360px; padding: 8px; border-radius: 10px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 24px 50px -16px rgba(15,15,40,.4); z-index: 5; opacity: 0; transform: translateY(-8px); transition: opacity .3s, transform .5s var(--ease); pointer-events: none; }
+.tabsdemo .menu.show { opacity: 1; transform: none; }
+.tabsdemo .menu div { padding: 13px 14px; border-radius: 6px; font: 500 19px/1 var(--font); color: var(--ink-2); }
+.tabsdemo .menu div small { display: block; margin-top: 6px; font: 400 14px/1 var(--mono); color: var(--muted); }
+.tabsdemo .menu div.hl { background: #f4f4f5; color: var(--ink); }
+.tabsdemo .frame { position: relative; height: 500px; border-radius: 0 12px 12px 12px; background-color: #f4f4f5; overflow: hidden;
+  background-image: linear-gradient(#e4e4e7 1px, transparent 1px), linear-gradient(90deg, #e4e4e7 1px, transparent 1px); background-size: 26px 26px; box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 40px 90px -40px rgba(15,15,40,.4); }
+.tabsdemo .page { position: absolute; left: 50%; top: 50%; width: 640px; height: 380px; margin: -190px 0 0 -320px; background: #fff; border: 1px solid #d4d4d8; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; transition: opacity .5s var(--ease), transform .7s var(--ease); }
+.tabsdemo .page.off { opacity: 0; transform: translateY(14px) scale(.98); }
+.tabsdemo .page b { font: 700 46px/1 var(--font); letter-spacing: -0.03em; }
+.tabsdemo .page span { font: 500 20px/1 var(--font); color: var(--muted); }
+.tabsdemo .page i { display: block; width: 300px; height: 10px; border-radius: 3px; background: #e4e4e7; }
+.tabsdemo .tb.new { animation: tabin .7s var(--ease) both; }
+@keyframes tabin { from { max-width: 0; padding: 0; opacity: 0; } to { max-width: 260px; opacity: 1; } }
+
+/* ---------- 5. Push ---------- */
+.pushdemo { position: relative; width: 1100px; margin-top: 70px; border-radius: 16px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.07), 0 40px 90px -40px rgba(15,15,40,.4); }
+.pushdemo .dh { display: flex; align-items: center; gap: 16px; height: 92px; padding: 0 32px; }
+.pushdemo .dh b { font: 700 30px/1 var(--font); }
+.pushdemo .dh span { font: 500 24px/1 var(--font); color: var(--muted); }
+.pushdemo .dh .btn-o { margin-left: auto; height: 54px; padding: 0 24px; font-size: 21px; }
+.pushdemo .dh .btn-k { height: 54px; padding: 0 28px; font-size: 21px; }
+.pushdemo .rows { min-height: 240px; }
+.pushdemo .r { display: flex; align-items: center; gap: 18px; height: 80px; padding: 0 32px; border-top: 1px solid var(--line); overflow: hidden; }
+.pushdemo .r .chk { width: 24px; height: 24px; font-size: 15px; }
+.pushdemo .r .av { width: 34px; height: 34px; font-size: 15px; }
+.pushdemo .r b { flex: 1; font: 600 24px/1.2 var(--font); }
+.pushdemo .r .who { font: 500 20px/1 var(--font); color: var(--muted); width: 120px; }
+.pushdemo .r em { font: 500 20px/1 var(--font); font-style: normal; color: var(--muted); }
+.pushdemo .uptodate { position: absolute; left: 32px; top: 150px; font: 500 26px/1 var(--font); color: var(--muted); opacity: 0; transition: opacity .6s .3s; }
+.pushdemo .uptodate.show { opacity: 1; }
+.pushdemo .pushed { left: 250px; top: 19px; height: 54px; padding: 0 22px; font-size: 21px; }
+.pushdemo .plane { width: 44px; height: 44px; }
+
+@media (prefers-reduced-motion: reduce) { .float, .mr .live-dot { animation: none; } }
+.desk.roomdesk .browser { width: 1000px; }
+
+.aico { display: block; width: 48px; height: 48px; color: #111; }
+.aico svg { width: 100%; height: 100%; display: block; }
+.lv .logo .aico { width: 100%; height: 100%; }
+
+/* Real pages inside the preview tabs: each tab shows a page from our draft, scaled to fit */
+.tabsdemo .page.real { left: 0; top: 0; width: 100%; height: 100%; margin: 0; border: 0; border-radius: 0; background: #fff; overflow: hidden; display: block; }
+.tabsdemo .page.real iframe { width: 1920px; height: 873px; border: 0; transform: scale(.5729); transform-origin: 0 0; pointer-events: none; background: #fff; }
+.tabsdemo .tb { max-width: 300px; }
+
+/* Profile pictures (avatars.js) and the small agent badge on an agent's picture */
+.av.pic { position: relative; overflow: visible; background: none !important; padding: 0; }
+.av.pic > svg { width: 100%; height: 100%; display: block; border-radius: 50%; }
+.av.pic .agent-face { width: 100%; height: 100%; display: grid; place-items: center; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 1px #e4e4e7; color: #111; }
+.av.pic .agent-face svg { width: 62%; height: 62%; display: block; }
+.av.pic .owner-badge { position: absolute; right: -10%; bottom: -10%; width: 48%; height: 48%; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 2px #fff; }
+.av.pic .owner-badge svg { width: 100%; height: 100%; display: block; }
+
+/* Real Mesh sidebar icons in the room and chat */
+.room .nav svg, .mchat .side .nav svg { width: 15px; height: 15px; flex-shrink: 0; }
+.room .nav i { display: none; }
+
+/* Changes: more air between the notes and their divider lines */
+.feed { margin-top: 56px; }
+.feed .fh { height: 76px; }
+.feed .note { padding: 28px 0 30px; gap: 22px; }
+.feed .note .files { margin-top: 14px; }
+
+/* Study Sprint, the team's demo site in the room preview: a real-looking landing page */
+.room .site { width: 640px; height: 330px; }
+.room .ss { height: calc(100% - 24px); padding: 0 26px; background: linear-gradient(180deg, #fff 0%, #fafaff 100%); display: flex; flex-direction: column; font-family: var(--font); }
+.room .ss-nav { display: flex; align-items: center; gap: 16px; height: 48px; border-bottom: 1px solid #f1f1f4; font-size: 11.5px; }
+.room .ss-logo { display: flex; align-items: center; gap: 7px; font-weight: 700; font-size: 13px; color: #111; }
+.room .ss-logo i { width: 16px; height: 16px; border-radius: 5px; background: linear-gradient(135deg, #6366f1, #a855f7); }
+.room .ss-links { display: flex; gap: 14px; margin-left: 10px; color: #71717a; }
+.room .ss-in { margin-left: auto; color: #3f3f46; font-weight: 500; }
+.room .ss-go { padding: 6px 11px; border-radius: 999px; background: #111; color: #fff; font-weight: 600; }
+.room .ss-body { flex: 1; display: flex; align-items: center; gap: 26px; }
+.room .ss-copy { flex: 1; min-width: 0; }
+.room .ss-pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px 3px 4px; border-radius: 999px; background: #eef2ff; color: #4338ca; font-size: 10.5px; font-weight: 500; }
+.room .ss-pill b { padding: 1px 6px; border-radius: 999px; background: #6366f1; color: #fff; font-size: 9.5px; }
+.room .site .hero { margin-top: 10px; font-size: 30px; line-height: 1.02; letter-spacing: -0.035em; color: #111; }
+.room .site .hero.big { font-size: 44px; }
+.room .ss-copy p { margin: 10px 0 0; font-size: 11.5px; line-height: 1.5; color: #71717a; max-width: 260px; }
+.room .ss-btns { display: flex; align-items: center; gap: 12px; margin-top: 14px; min-height: 28px; }
+.room .site .cta { height: 28px; padding: 0 14px; border-radius: 999px; background: linear-gradient(135deg, #6366f1, #8b5cf6); font: 600 11.5px/28px var(--font); box-shadow: 0 6px 14px -6px rgba(99,102,241,.7); }
+.room .ss-link { font-size: 11.5px; font-weight: 600; color: #3f3f46; }
+.room .ss-card { width: 190px; padding: 16px; border-radius: 14px; background: #fff; box-shadow: 0 0 0 1px #eceef3, 0 18px 34px -18px rgba(30,27,75,.35); }
+.room .ss-ring { position: relative; width: 112px; height: 112px; margin: 0 auto; }
+.room .ss-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.room .ss-ring circle { fill: none; stroke: #eef2ff; stroke-width: 9; }
+.room .ss-ring circle.p { stroke: #6366f1; stroke-linecap: round; stroke-dasharray: 62 100; animation: tick 30s linear infinite; }
+@keyframes tick { from { stroke-dasharray: 62 100; } to { stroke-dasharray: 52 100; } }
+.room .ss-ring div { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.room .ss-ring b { font-size: 21px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.room .ss-ring small { font-size: 9.5px; color: #71717a; margin-top: 2px; }
+.room .ss-who { display: flex; align-items: center; margin-top: 12px; padding-left: 6px; }
+.room .ss-who span { width: 20px; height: 20px; border-radius: 50%; margin-left: -6px; box-shadow: 0 0 0 2px #fff; }
+.room .ss-who em { margin-left: 8px; font-style: normal; font-size: 10.5px; color: #52525b; font-weight: 500; }
+
+/* Changes notes: never clipped by the slide-in, and even space above and below each divider */
+.feed .note.row-in { animation-name: notein; }
+@keyframes notein { from { opacity: 0; transform: translateY(-14px); max-height: 0; } to { opacity: 1; transform: none; max-height: 400px; } }
+.feed .note { padding: 26px 4px; }
+.feed .note:last-child { border-bottom: 0; }
+.feed .list { padding: 6px 30px 0; }
+.feed .note .files { margin-top: 12px; line-height: 1.4; }
+
+/* Study Sprint v2: a template-quality landing page with a real gradient hero */
+.room .site { width: 660px; height: 340px; }
+.room .ss { position: relative; overflow: hidden; background: #0f0b2e; color: #fff; padding: 0 28px; }
+.room .ss-bg { position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(60% 80% at 15% 0%, rgba(129, 140, 248, .95) 0%, transparent 60%),
+    radial-gradient(55% 75% at 95% 20%, rgba(244, 114, 182, .85) 0%, transparent 60%),
+    radial-gradient(70% 70% at 70% 110%, rgba(251, 146, 60, .75) 0%, transparent 60%),
+    linear-gradient(160deg, #312e81 0%, #1e1b4b 55%, #0f0b2e 100%); }
+.room .ss-bg i { position: absolute; border-radius: 50%; filter: blur(24px); opacity: .55; animation: aurora 12s ease-in-out infinite alternate; }
+.room .ss-bg i:nth-child(1) { width: 220px; height: 220px; left: -40px; top: 120px; background: #22d3ee; }
+.room .ss-bg i:nth-child(2) { width: 180px; height: 180px; right: 40px; top: -40px; background: #c084fc; animation-delay: -4s; }
+.room .ss-bg i:nth-child(3) { width: 200px; height: 200px; right: 160px; bottom: -90px; background: #fb7185; animation-delay: -8s; }
+@keyframes aurora { to { transform: translate(30px, -18px) scale(1.15); } }
+.room .ss-nav, .room .ss-body { position: relative; }
+.room .ss-nav { border-bottom: 1px solid rgba(255,255,255,.14); }
+.room .ss-logo { color: #fff; }
+.room .ss-logo i { background: linear-gradient(135deg, #fff, #c7d2fe); }
+.room .ss-links { color: rgba(255,255,255,.75); }
+.room .ss-in { color: rgba(255,255,255,.9); }
+.room .ss-go { background: #fff; color: #1e1b4b; }
+.room .ss-pill { background: rgba(255,255,255,.14); color: #fff; border: 1px solid rgba(255,255,255,.22); backdrop-filter: blur(6px); }
+.room .ss-pill b { background: #fff; color: #4338ca; }
+.room .site .hero { color: #fff; font-size: 32px; font-weight: 800; letter-spacing: -0.04em; }
+.room .site .hero.big { font-size: 46px; }
+.room .ss-copy p { color: rgba(255,255,255,.78); }
+.room .site .cta { background: #fff; color: #1e1b4b; box-shadow: 0 8px 20px -8px rgba(0,0,0,.5); }
+.room .ss-link { color: #fff; }
+.room .ss-link::before { content: "\25B6"; font-size: 8px; margin-right: 6px; opacity: .8; }
+.room .ss-trust { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 10.5px; color: rgba(255,255,255,.7); }
+.room .ss-trust .ss-who { margin: 0; padding-left: 6px; }
+.room .ss-trust .ss-who span { width: 16px; height: 16px; box-shadow: 0 0 0 2px #2a2460; }
+.room .ss-card { width: 200px; color: #18181b; border-radius: 16px; background: rgba(255,255,255,.96); box-shadow: 0 24px 50px -20px rgba(0,0,0,.6); }
+.room .ss-ch { display: flex; align-items: center; justify-content: space-between; font-size: 11px; margin-bottom: 8px; }
+.room .ss-ch em { font-style: normal; font-size: 9.5px; font-weight: 700; color: #16a34a; background: #dcfce7; padding: 2px 7px; border-radius: 999px; }
+.room .ss-row { display: flex; justify-content: space-between; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f1f1f4; font-size: 10.5px; color: #71717a; }
+.room .ss-row b { color: #18181b; }
+.room .ss-ring { width: 104px; height: 104px; }
+
+/* Accurate preview: no blur. A waiting change is greyed out with a spinner; the preview just refreshes. */
+.room .site.reload { filter: none; }
+.room .site .ss { transition: opacity .25s ease; }
+.room .site.refresh .ss { opacity: .35; }
+.room .site .sb .rl { display: inline-block; margin: 0 6px 0 4px; font-size: 12px; color: #71717a; }
+.room .site .sb .rl.spin-once { animation: spin .9s linear infinite; }
+.room .r.pending { opacity: .5; }
+.room .r.pending .chk { background: transparent; border: 1.5px solid #d4d4d8; color: transparent; position: relative; }
+.room .r.pending .chk::after { content: ""; position: absolute; inset: 1px; border-radius: 50%; border: 1.5px solid #d4d4d8; border-top-color: #18181b; animation: spin .8s linear infinite; }
+.room .r.pending b { font-weight: 500; color: #71717a; }
+.room .r { transition: opacity .4s var(--ease); }
+
+/* Push, the way Mesh's dock really is: "N new" and one Push button, Undo on each change.
+   The button itself turns into "Pushed" for a moment (nothing floats over the card). */
+.pushdemo .dh .btn-k { margin-left: auto; min-width: 150px; }
+.pushdemo .dh .btn-k .pd { display: none; }
+.pushdemo .dh .btn-k.done { background: #16a34a; }
+.pushdemo .dh .btn-k.done .pl { display: none; }
+.pushdemo .dh .btn-k.done .pd { display: inline; }
+.room .dock .dh .btn-k { margin-left: auto; }
+.mr .r .undo { color: var(--muted); font-weight: 500; margin-left: 6px; }
+.pushdemo .r .undo { font: 500 20px/1 var(--font); width: 64px; text-align: right; }
+.room .r .undo { font-size: 12.5px; width: 36px; text-align: right; }
+.pushdemo .pushed { display: none; }
