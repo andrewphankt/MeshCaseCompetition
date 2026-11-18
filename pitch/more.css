@@ -78,3 +78,26 @@
 .slide.on .closelines div:nth-child(2) { transition-delay: .9s; }
 .slide.on .closelines div:nth-child(3) { transition-delay: 1.3s; }
 .closelines .grey { color: #a1a1aa; }
+
+/* The Mesh mark inside small spots (tab icon, room header, hub pill) takes the text color */
+svg.fav circle { fill: currentColor; }
+
+/* Terminal lines that end well */
+.term .good { color: var(--live); }
+
+/* A splash of color behind mostly-white slides: soft paint that drifts */
+.slide { isolation: isolate; }
+.slide.wash::before { content: ""; position: absolute; inset: -12%; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(32% 42% at 10% 16%, rgba(249, 210, 186, .62), transparent 70%),
+    radial-gradient(30% 40% at 90% 14%, rgba(190, 208, 252, .7), transparent 70%),
+    radial-gradient(38% 42% at 84% 96%, rgba(125, 147, 232, .32), transparent 70%),
+    radial-gradient(34% 40% at 4% 94%, rgba(231, 166, 196, .42), transparent 70%);
+  filter: blur(24px); animation: drift 26s ease-in-out infinite alternate; }
+.slide.wash::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .55;
+  background: no-repeat center / 100% 100% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080' preserveAspectRatio='none'%3E%3Cpath d='M-40 860 C 380 700 620 980 1000 820 S 1640 640 1980 760' fill='none' stroke='%23c7d2fe' stroke-width='3' stroke-linecap='round' opacity='.8'/%3E%3Cpath d='M-40 920 C 420 780 700 1040 1080 880 S 1700 720 1980 830' fill='none' stroke='%23fbcfe8' stroke-width='2' stroke-linecap='round' opacity='.8'/%3E%3Cpath d='M-40 220 C 300 120 520 300 860 190 S 1500 60 1980 150' fill='none' stroke='%23fed7aa' stroke-width='2' stroke-linecap='round' opacity='.7'/%3E%3C/svg%3E");
+  animation: sway 18s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: translate(2.5%, -2%) scale(1.06) rotate(2deg); } }
+@keyframes sway { to { transform: translateY(-14px) scaleX(1.02); } }
+@media (prefers-reduced-motion: reduce) { .slide.wash::before, .slide.wash::after { animation: none; } }
+@media print { .slide.wash::before, .slide.wash::after { animation: none; } }

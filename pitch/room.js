@@ -98,24 +98,30 @@
     later(function () { move('S', true, 'Writing the pricing section'); }, 7000);
   }, 10000);
 
-  /* 4. Preview tabs: add a page, it opens in its own tab */
+  /* 4. Preview tabs: the real pages in our project, each live in its own tab; add one from the plus */
   acts.tabs = loop(function (root, later) {
     var strip = root.querySelector('.strip'), plus = root.querySelector('.plus'), menu = root.querySelector('.menu');
     var pages = root.querySelectorAll('.page'), tabs = function () { return strip.querySelectorAll('.tb'); };
-    function show(i) { tabs().forEach(function (t, k) { t.classList.toggle('on', k === i); }); pages.forEach(function (p, k) { p.classList.toggle('off', k !== i); }); }
+    function show(i) {
+      tabs().forEach(function (t, k) { t.classList.toggle('on', k === i); });
+      pages.forEach(function (p, k) {
+        p.classList.toggle('off', k !== i);
+        var f = p.querySelector('iframe[data-src]'); if (k === i && f && !f.src) f.src = f.dataset.src;
+      });
+    }
     var extra = strip.querySelector('.tb.new'); if (extra) extra.remove();
     menu.classList.remove('show'); menu.querySelectorAll('div').forEach(function (d) { d.classList.remove('hl'); });
     show(0);
-    later(function () { show(1); }, 1500);
-    later(function () { plus.classList.add('down'); later(function () { plus.classList.remove('down'); menu.classList.add('show'); }, 180); }, 3000);
-    later(function () { menu.querySelector('[data-p="2"]').classList.add('hl'); }, 3900);
+    later(function () { show(1); }, 2200);
+    later(function () { show(2); }, 4400);
+    later(function () { plus.classList.add('down'); later(function () { plus.classList.remove('down'); menu.classList.add('show'); }, 180); }, 6400);
+    later(function () { menu.querySelector('.pickme').classList.add('hl'); }, 7300);
     later(function () {
       menu.classList.remove('show');
-      var t = el('span', 'tb new', '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/></svg>prototype');
-      strip.insertBefore(t, plus); later(function () { show(2); }, 250);
-    }, 4700);
-    later(function () { show(0); }, 7600);
-  }, 9600);
+      var t = el('span', 'tb new', strip.querySelector('.tb svg').outerHTML + 'agent-workspace');
+      strip.insertBefore(t, plus); later(function () { show(3); }, 250);
+    }, 8100);
+  }, 13500);
 
   /* 5. Push: a person presses Push, the plane leaves, the list clears */
   var PUSHROWS = [['S', 'Hero title is bigger', '2m'], ['I', 'Sign-up button added', '9m'], ['T', 'Footer links updated', '1h']];
