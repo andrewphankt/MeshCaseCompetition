@@ -1,0 +1,80 @@
+/* Slides 14 onward: bring your own agent, the stop, requests, KPIs, next, risk, close. */
+
+/* Anything with class "at" and data-at appears on a timeline when its slide opens (deck.js) */
+.at { transition: opacity .6s var(--ease), transform .8s var(--ease); }
+.at.wait { opacity: 0; transform: translateY(12px); }
+
+/* Bring your own agent: three agents wired into one room */
+.byo { position: relative; width: 1240px; height: 560px; margin-top: 30px; }
+.byo .tiles { display: flex; justify-content: space-between; padding: 0 70px; }
+.byo .tile { width: 300px; display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 30px 0 26px; border-radius: 18px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.07), 0 30px 60px -34px rgba(15,15,40,.4); }
+.byo .tile .aico { width: 64px; height: 64px; }
+.byo .tile b { font: 700 28px/1 var(--font); letter-spacing: -0.02em; }
+.byo .tile span { font: 500 18px/1 var(--font); color: var(--muted); }
+.byo svg.wires { position: absolute; left: 0; top: 190px; width: 1240px; height: 250px; overflow: visible; }
+.byo .wires path { fill: none; stroke: #d4d4d8; stroke-width: 2.5; }
+.byo .wires path.flow { stroke: var(--ink); stroke-dasharray: 2 16; stroke-linecap: round; stroke-width: 4; animation: flow 1.4s linear infinite; }
+@keyframes flow { to { stroke-dashoffset: -18; } }
+.byo .hub { position: absolute; left: 50%; top: 432px; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; padding: 16px 26px; border-radius: 16px; background: var(--ink); color: #fff; font: 700 26px/1 var(--font); box-shadow: 0 30px 60px -24px rgba(0,0,0,.5); }
+.byo .hub svg { width: 34px; height: 34px; color: #fff; }
+
+/* The stop and requests: a wide terminal */
+.term.wide { width: 980px; }
+.term.wide .tx { min-height: 330px; font-size: 22px; }
+.term .warn { display: inline-block; margin: 4px 0; padding: 8px 14px; border-radius: 6px; background: #fafafa; color: #18181b; font-family: var(--font); font-weight: 600; }
+.term .opt { color: #fafafa; }
+.term .opt b { color: #18181b; background: #e4e4e7; padding: 1px 8px; border-radius: 4px; font-weight: 600; margin-right: 6px; }
+
+.req { display: flex; gap: 44px; align-items: center; margin-top: 64px; }
+.req .term { width: 640px; }
+.req .term .tx { min-height: 290px; font-size: 20px; }
+.reqcard { width: 520px; border-radius: 16px; background: #fff; text-align: left; padding: 30px 32px; box-shadow: 0 0 0 1px rgba(0,0,0,.07), 0 40px 90px -40px rgba(15,15,40,.45); }
+.reqcard .k { font: 600 15px/1 var(--font); letter-spacing: .1em; color: var(--muted); }
+.reqcard .from { display: flex; align-items: center; gap: 12px; margin-top: 18px; font: 700 21px/1 var(--font); }
+.reqcard .from .av { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 700 17px/1 var(--font); }
+.reqcard p { margin: 18px 0 0; font: 500 25px/1.35 var(--font); letter-spacing: -0.01em; }
+.reqcard .acts { display: flex; gap: 12px; margin-top: 26px; }
+.reqcard .acts span { flex: 1; height: 54px; border-radius: 6px; display: grid; place-items: center; font: 600 20px/1 var(--font); }
+.reqcard .dec { border: 1px solid #d4d4d8; }
+.reqcard .apr { background: var(--ink); color: #fff; transition: transform .2s var(--ease); }
+.reqcard .apr.down { transform: scale(.94); }
+.reqcard .done { display: none; margin-top: 26px; height: 54px; border-radius: 6px; background: #ecfdf3; color: #166534; font: 600 20px/54px var(--font); text-align: center; }
+.reqcard.approved .acts { display: none; }
+.reqcard.approved .done { display: block; animation: lvin .6s var(--ease); }
+
+/* KPIs */
+.north { max-width: 1500px; }
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; width: 1500px; margin-top: 60px; }
+.kpi { text-align: left; padding: 30px 30px 32px; border-radius: 18px; background: var(--soft); display: flex; flex-direction: column; gap: 14px; }
+.kpi .stage { font: 600 15px/1 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.kpi b { font: 700 27px/1.2 var(--font); letter-spacing: -0.015em; min-height: 98px; }
+.kpi .tgt { margin-top: auto; font: 700 54px/1 var(--font); letter-spacing: -0.04em; }
+.kpi .tgt small { display: block; margin-top: 8px; font: 500 16px/1.3 var(--font); letter-spacing: 0; color: var(--muted); }
+.guard { margin-top: 36px; font: 500 24px/1.3 var(--font); color: var(--ink-2); }
+.guard b { color: var(--ink); }
+
+/* What we'd build next */
+.bets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; width: 1400px; margin-top: 60px; }
+.bet { text-align: left; padding: 34px 32px; border-radius: 18px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.07), 0 30px 60px -34px rgba(15,15,40,.35); display: flex; flex-direction: column; gap: 14px; }
+.bet .n { font: 700 22px/1 var(--font); color: var(--muted); }
+.bet b { font: 700 34px/1.1 var(--font); letter-spacing: -0.025em; }
+.bet p { margin: 0; font: 500 22px/1.4 var(--font); color: var(--ink-2); }
+.bet .moves { margin-top: 10px; padding-top: 16px; border-top: 1px solid var(--line); font: 600 18px/1.3 var(--font); color: var(--ink); }
+.bet .moves span { display: block; font: 600 13px/1 var(--font); letter-spacing: .1em; color: var(--muted); margin-bottom: 6px; }
+
+/* Close: a paper plane crosses the slide */
+.closeplane { position: absolute; left: -80px; top: 760px; width: 64px; height: 64px; opacity: 0; }
+.slide.on .closeplane { animation: crossfly 4.2s var(--ease-fly) 1.6s forwards; }
+@keyframes crossfly {
+  0% { opacity: 0; transform: translate(0, 0) rotate(10deg); }
+  10% { opacity: 1; }
+  55% { transform: translate(1000px, -360px) rotate(-12deg); opacity: 1; }
+  100% { transform: translate(2100px, -760px) rotate(-20deg); opacity: 0; }
+}
+.closelines { font: 700 84px/1.12 var(--font); letter-spacing: -0.045em; }
+.closelines div { opacity: 0; transform: translateY(20px); transition: opacity .8s var(--ease), transform 1s var(--ease); }
+.slide.on .closelines div { opacity: 1; transform: none; }
+.slide.on .closelines div:nth-child(1) { transition-delay: .5s; }
+.slide.on .closelines div:nth-child(2) { transition-delay: .9s; }
+.slide.on .closelines div:nth-child(3) { transition-delay: 1.3s; }
+.closelines .grey { color: #a1a1aa; }

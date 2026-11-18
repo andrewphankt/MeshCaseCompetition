@@ -48,6 +48,19 @@
       p.style.visibility = 'hidden';
       later(function () { p.style.visibility = ''; }, +p.dataset.at);
     });
+    slide.querySelectorAll('.at[data-at]').forEach(function (m) {
+      m.classList.add('wait');
+      later(function () { m.classList.remove('wait'); }, +m.dataset.at);
+    });
+    /* data-cls="name:ms,-name:ms" adds (or with -, removes) a class on a timeline */
+    slide.querySelectorAll('[data-cls]').forEach(function (e) {
+      e.dataset.cls.split(',').forEach(function (part) {
+        var bits = part.trim().split(':'), name = bits[0], off = name[0] === '-';
+        if (off) name = name.slice(1);
+        e.classList.toggle(name, off);
+        later(function () { e.classList.toggle(name, !off); }, +bits[1]);
+      });
+    });
     slide.querySelectorAll('.msg[data-at]').forEach(function (m) {
       m.classList.add('wait');
       later(function () { m.classList.remove('wait'); }, +m.dataset.at);

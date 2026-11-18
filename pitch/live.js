@@ -66,6 +66,7 @@
     document.querySelectorAll('.lv, [data-act]').forEach(function (lv) {
       var on = visible(lv), was = running.has(lv);
       if (on && !was) {
+        if (lv.dataset.act && !acts[lv.dataset.act]) return; /* its code hasn't loaded yet; liveSync retries */
         var timers = []; running.set(lv, timers);
         lv.classList.remove('play'); void lv.offsetWidth; lv.classList.add('play');
         var fn = acts[lv.dataset.act];
@@ -105,6 +106,7 @@
   }
 
   function all() { fitLive(); placePops(); sync(); }
+  window.liveSync = sync;
   new MutationObserver(sync).observe(document.getElementById('stage'), { subtree: true, attributes: true, attributeFilter: ['class'] });
   addEventListener('resize', all);
   addEventListener('load', all);

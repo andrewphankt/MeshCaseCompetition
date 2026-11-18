@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="deck.css">
 <link rel="stylesheet" href="live.css">
 <link rel="stylesheet" href="room.css">
+<link rel="stylesheet" href="more.css">
 </head>
 <body>
 <!--
@@ -82,23 +83,18 @@
   <!-- 4 Who it's for -->
   <section class="slide" data-title="Who it's for" data-section="The problem">
     <p class="kicker rise">Who it's for</p>
-    <h2 class="h2 rise" style="max-width:1450px">A student on a team project, building with Claude Code, who has never used version control.</h2>
-    <div class="persona rise">
-      <span data-step="1"><b>Builds alone today.</b>Prompts an agent in plain English.</span>
-      <span data-step="2"><b>Now on a team.</b>Three people, three agents, one repo.</span>
-      <span data-step="3"><b>Never learned git.</b>Branch, merge and pull request mean nothing.</span>
-    </div>
-    <p class="sub" data-step="4" style="margin-top:44px">Mesh skips the engineering workflow. It fits how vibecoders already work solo.</p>
-    <div class="script">Here's exactly who we're building for: a student on a team project, building with Claude Code, who has never used version control. [click] Today they build alone, prompting an agent in plain English, and it works. [click] Then they join a team: three people, three agents, one repo. [click] And they've never learned git. Branch, merge, pull request: those words mean nothing to them, and they shouldn't have to. [click] So Mesh doesn't teach them the engineering workflow. It skips it, and fits the way vibecoders already work on their own.</div>
+    <h2 class="h1 rise" style="max-width:1500px">Students building a team project with Claude Code.</h2>
+    <p class="sub rise">Who've never used Git, and shouldn't have to.</p>
+    <div class="script">Here's exactly who we're building for: students building a team project with Claude Code, who've never used Git. They already know how to build alone: they ask an agent in plain English and it works. The moment they join a team, they'd normally have to learn branches, merges and pull requests. We don't think they should have to.</div>
   </section>
 
   <!-- 5 The proof -->
   <section class="slide" data-title="The proof" data-section="The problem">
     <p class="kicker rise">We tested it on ourselves</p>
     <p class="num rise">33<small> min</small></p>
-    <p class="sub rise">for a first-timer's first save, with engineers on the call.</p>
+    <p class="sub rise">to set up from zero, with engineers on the call.</p>
     <p class="sub grey" data-step="1" style="margin-top:12px">And 20 messages.</p>
-    <div class="script">We tried it on ourselves first. A first-timer's first save took 33 minutes, with engineers on the call. [click] And 20 messages. That first-timer was me, Evelyn. If it took that long with help one call away, imagine doing it alone.</div>
+    <div class="script">We tried it on ourselves first. Setting up from zero took 33 minutes, with engineers on the call. [click] And 20 messages. That was Evelyn's setup. If it took that long with help one call away, imagine doing it alone.</div>
   </section>
 
   <!-- 6 Meet Mesh -->
@@ -136,15 +132,15 @@
             <span class="x">&#215;</span>
             <div class="center"><h3>Which agent do you use?</h3>
               <div class="agents">
-                <div class="agent"><svg viewBox="0 0 48 48" aria-hidden="true"><g stroke="#D97757" stroke-width="4.2" stroke-linecap="round"><line x1="24" y1="24" x2="38.7" y2="27.0"/><line x1="24" y1="24" x2="38.2" y2="36.6"/><line x1="24" y1="24" x2="28.8" y2="38.2"/><line x1="24" y1="24" x2="20.2" y2="42.6"/><line x1="24" y1="24" x2="14.1" y2="35.2"/><line x1="24" y1="24" x2="6.0" y2="30.0"/><line x1="24" y1="24" x2="9.3" y2="21.0"/><line x1="24" y1="24" x2="9.8" y2="11.4"/><line x1="24" y1="24" x2="19.2" y2="9.8"/><line x1="24" y1="24" x2="27.8" y2="5.4"/><line x1="24" y1="24" x2="33.9" y2="12.8"/><line x1="24" y1="24" x2="42.0" y2="18.0"/></g></svg>Claude</div>
-                <div class="agent choose"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="translate(24 24)"><path transform="rotate(0)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(60)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(120)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(180)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(240)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(300)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/></g></svg>Codex</div>
-                <div class="agent"><svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="gem" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f8df5"/><stop offset=".55" stop-color="#9b72e8"/><stop offset="1" stop-color="#d96fa8"/></linearGradient></defs><path fill="url(#gem)" d="M24 3c1.6 11.2 8.8 18.4 21 21-12.2 2.6-19.4 9.8-21 21-1.6-11.2-8.8-18.4-21-21C15.2 21.4 22.4 14.2 24 3z"/></svg>Gemini CLI</div>
+                <div class="agent"><span class="aico" data-icon="claude"></span>Claude</div>
+                <div class="agent choose"><span class="aico" data-icon="codex"></span>Codex</div>
+                <div class="agent"><span class="aico" data-icon="gemini"></span>Gemini CLI</div>
               </div>
             </div>
           </div>
           <div class="lv" data-step="3" data-orbits="ic-codex" data-act="paste">
             <span class="x">&#215;</span>
-            <div class="center"><span class="logo" style="color:#18181b"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="translate(24 24)"><path transform="rotate(0)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(60)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(120)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(180)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(240)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(300)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/></g></svg></span>
+            <div class="center"><span class="logo" style="color:#18181b"><span class="aico" data-icon="codex"></span></span>
               <h3 style="margin-top:18px">Paste this into Codex</h3>
               <span class="btn copy"><span class="c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>Copy</span><span class="c2">&#10003; Copied</span></span>
               <div class="show">&#9656; Show the text</div>
@@ -244,7 +240,7 @@
 
   <!-- 13 Push -->
   <section class="slide" data-title="Push" data-section="Mesh">
-    <h2 class="h2 rise">Nothing goes public until a person says go.</h2>
+    <h2 class="h2 rise">Nothing goes live until you say so.</h2>
     <div class="pushdemo mr rise" data-act="push">
       <div class="dh"><b class="count">3 new</b><span>Looks good?</span><span class="btn-o">Not Yet</span><span class="btn-k">Push</span></div>
       <div class="rows"></div>
@@ -255,14 +251,119 @@
     <div class="script">Agents can save all day, but nothing goes public on its own. Every change waits here. When the team is happy, a person presses Push, and the draft becomes the public project. One button. No merge, no pull request.</div>
   </section>
 
+  <!-- 14 Bring your own agent -->
+  <section class="slide" data-title="Bring your own agent" data-section="Mesh">
+    <h2 class="h2 rise">Bring your own agent.</h2>
+    <div class="byo rise">
+      <div class="tiles">
+        <div class="tile"><span class="aico" data-icon="claude"></span><b>Claude Code</b><span>Sarah's terminal</span></div>
+        <div class="tile"><span class="aico" data-icon="codex"></span><b>Codex</b><span>Iris's laptop</span></div>
+        <div class="tile"><span class="aico" data-icon="gemini"></span><b>Gemini CLI</b><span>Tony's terminal</span></div>
+      </div>
+      <svg class="wires" viewBox="0 0 1240 250" aria-hidden="true"><path d="M220 0 C220 150 620 90 620 240"/><path class="flow" d="M220 0 C220 150 620 90 620 240"/><path d="M620 0 L620 240"/><path class="flow" d="M620 0 L620 240"/><path d="M1020 0 C1020 150 620 90 620 240"/><path class="flow" d="M1020 0 C1020 150 620 90 620 240"/></svg>
+      <div class="hub"><svg class="fav" aria-hidden="true"></svg>One Mesh room</div>
+    </div>
+    <p class="sub" data-step="1" style="margin-top:10px">You don't prompt inside Mesh. Mesh is the room between your agents.</p>
+    <div class="script">This is the big difference. Everyone keeps the agent they already use, on their own laptop, on the plan they already pay for: Claude Code, Codex, Gemini. Mesh never runs anyone's agent. [click] You don't prompt inside Mesh. Mesh is the room between your agents. Other tools bring your team into their workspace. We bring the room to where your agents already work.</div>
+  </section>
+
+  <!-- 15 The stop -->
+  <section class="slide" data-title="The stop" data-section="Mesh">
+    <h2 class="h2 rise">Two agents never touch the same file.</h2>
+    <div class="terms rise" style="margin-top:56px">
+      <div class="term wide"><div class="tb"><i></i><i></i><i></i><em>Codex · Iris</em></div><div class="tx">
+        <p class="you" data-at="500">change the hero title to "Study together"</p>
+        <p class="ok" data-at="1400">Checking with the room</p>
+        <p data-at="2300"><span class="warn">Sarah's Claude is in index.html right now.</span></p>
+        <p class="opt" data-at="3100"><b>1</b>Wait for Sarah  <b>2</b>Take the footer instead</p>
+        <p class="you" data-at="4400">take the footer</p>
+        <p class="ok" data-at="5200">Editing footer.html</p>
+        <p class="live" data-at="6100">Saved. Nothing was overwritten.</p></div></div>
+    </div>
+    <div class="script">Here's the fix for the overwrite. Before an agent changes a file, it checks with the room. Iris asks Codex to change the title, but Sarah's Claude is already in that file. So Codex stops, says who has it, and asks: wait, or take the footer? Iris picks the footer. Nothing gets overwritten.</div>
+  </section>
+
+  <!-- 16 Requests -->
+  <section class="slide" data-title="Requests" data-section="Mesh">
+    <h2 class="h2 rise">Agents ask. People decide.</h2>
+    <div class="req rise">
+      <div class="term"><div class="tb"><i></i><i></i><i></i><em>Claude Code · Sarah</em></div><div class="tx">
+        <p class="you" data-at="400">the sign-up page needs a Join link</p>
+        <p class="ok" data-at="1300">That page is Iris's part.</p>
+        <p class="ok" data-at="2100">Sent Iris a request.</p>
+        <p class="live" data-at="5600">Iris approved. Join link added.</p></div></div>
+      <div class="reqcard at" data-at="2400" data-cls="-approved:0,approved:4300">
+        <div class="k">REQUEST FOR IRIS</div>
+        <div class="from"><span class="av" style="background:#e8613f">S</span>From Sarah's Claude</div>
+        <p>Add a Join link to the sign-up page.</p>
+        <div class="acts"><span class="dec">Decline</span><span class="apr" data-cls="-down:0,down:3900,-down:4150">Approve</span></div>
+        <div class="done">&#10003; Approved · Iris's Codex is on it</div>
+      </div>
+    </div>
+    <div class="script">When Sarah's agent needs something from Iris's part, it doesn't just change it. It sends Iris a request. Iris reads one sentence and presses Approve, and her own agent does the work. A teammate's agent can ask, but it can never act on its own. Agents coordinate. People decide.</div>
+  </section>
+
+  <!-- 17 North star -->
+  <section class="slide dark" data-title="North star" data-section="Success">
+    <p class="kicker rise">How we'll know it's working</p>
+    <h2 class="h1 north rise">Teams where two or more people's agents save to one draft, every week.</h2>
+    <p class="sub rise">That's the only moment Mesh is worth more than working alone.</p>
+    <div class="script">How will we know it's working? One number: teams where two or more people's agents save to the same draft, every week. That's the moment Mesh is worth more than working alone. If a team only ever has one person saving, we haven't solved anything.</div>
+  </section>
+
+  <!-- 18 What we track -->
+  <section class="slide" data-title="What we track" data-section="Success">
+    <h2 class="h2 rise">What we track, and what good looks like.</h2>
+    <div class="kpis">
+      <div class="kpi" data-step="1"><span class="stage">Activation</span><b>Sign-in to first agent connected</b><span class="tgt">&lt; 5 min<small>Our target. It took us 33.</small></span></div>
+      <div class="kpi" data-step="2"><span class="stage">Team</span><b>Invited teammates who connect an agent</b><span class="tgt">2 of 3<small>Our target. A room of one is not a team.</small></span></div>
+      <div class="kpi" data-step="3"><span class="stage">Collaboration</span><b>Requests answered within a day</b><span class="tgt">80%<small>Our target. Proves agents coordinate through people.</small></span></div>
+      <div class="kpi" data-step="4"><span class="stage">Retention</span><b>Teams still saving in week 4</b><span class="tgt">40%<small>Our target. Do they come back after day one?</small></span></div>
+    </div>
+    <p class="guard" data-step="5"><b>Guardrail:</b> zero lost saves. Every same-file stop is an overwrite that didn't happen.</p>
+    <div class="script">Here's what we track, stage by stage. We don't have users yet, so these are targets, not results. We'll recalibrate after our first ten teams. [click] Activation: sign-in to first agent connected, under five minutes. It took us 33. [click] Team: two out of three invited teammates connect an agent, because a room of one isn't a team. [click] Collaboration: 80% of requests answered within a day. That's proof agents coordinate through people. [click] Retention: 40% of teams still saving in week four. [click] And one guardrail: zero lost saves, ever. The room already records every one of these events, so we can measure them from day one.</div>
+  </section>
+
+  <!-- 19 What we'd build next -->
+  <section class="slide" data-title="What we'd build next" data-section="Next">
+    <h2 class="h2 rise">Three bets. Each one moves a number.</h2>
+    <div class="bets">
+      <div class="bet" data-step="1"><span class="n">01</span><b>Practice room</b><p>A safe first project with practice teammates.</p><div class="moves"><span>MOVES</span>Time to first agent connected</div></div>
+      <div class="bet" data-step="2"><span class="n">02</span><b>@mention any agent</b><p>Ask a teammate's agent right from the chat.</p><div class="moves"><span>MOVES</span>Requests answered within a day</div></div>
+      <div class="bet" data-step="3"><span class="n">03</span><b>Campus hub</b><p>Find a team, or the one skill your team is missing.</p><div class="moves"><span>MOVES</span>Invited teammates who connect</div></div>
+    </div>
+    <div class="script">What we'd build next: three bets, in order, each tied to one of those numbers. [click] First, a practice room: a safe first project with practice teammates, to get setup under five minutes. [click] Second, mention any teammate's agent right from the chat, so requests get answered faster. [click] Third, a campus hub to find a team or the one skill your team is missing. All three are planned, not built.</div>
+  </section>
+
+  <!-- 20 Biggest risk -->
+  <section class="slide" data-title="Biggest risk" data-section="Next">
+    <p class="kicker rise">Biggest risk</p>
+    <h2 class="h1 rise" style="max-width:1450px">Will every agent obey the stop, every time?</h2>
+    <p class="sub" data-step="1" style="max-width:1200px">Next test: two agents, one file, again and again, on Claude, Codex and Gemini. Count anything lost.</p>
+    <div class="script">Our biggest risk: the whole promise rests on the stop. Will every agent obey it, every time? Claude Code and Codex run Mesh's check by themselves. Gemini follows a rules file, which is weaker. [click] So the first thing we'd test: two agents, one file, again and again, on all three. Count anything lost. That's what we'd de-risk before building anything new.</div>
+  </section>
+
+  <!-- 21 Close -->
+  <section class="slide" data-title="Close" data-section="Next" data-noprogress>
+    <svg class="mark rise" data-spin aria-hidden="true"></svg>
+    <div class="closelines">
+      <div>Your own agent.</div>
+      <div>One shared draft.</div>
+      <div class="grey">The whole team.</div>
+    </div>
+    <svg class="closeplane" viewBox="0 0 24 24" fill="#fff" stroke="#18181b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 15 22l-4-9-9-4 20-7z"/><path d="M22 2 11 13" fill="none"/></svg>
+    <div class="script">Your own agent. One shared draft. The whole team. That's Mesh. We built this deck in it. Thank you, we'd love your questions.</div>
+  </section>
+
   <div id="progress" aria-hidden="true"></div>
 </main>
 
-<div id="ic-codex" hidden><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="translate(24 24)"><path transform="rotate(0)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(60)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(120)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(180)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(240)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/><path transform="rotate(300)" d="M -3.6 -17 A 8.5 8.5 0 0 1 11.2 -9.8 L 11.2 1.8 L 3.6 6.2"/></g></svg></div>
+<div id="ic-codex" hidden data-icon="codex"></div>
 <div id="notes" hidden></div>
 <div id="scriptview" hidden></div>
 <div id="hint">N script · S full script · F full screen</div>
 <script src="deck.js"></script>
+<script src="agent-icons.js"></script>
 <script src="live.js"></script>
 <script src="room.js"></script>
 </body>

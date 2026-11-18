@@ -12,8 +12,8 @@
     var r = el('div', 'r row-in');
     r.innerHTML = '<span class="chk">&#10003;</span>';
     r.appendChild(av(k));
-    r.insertAdjacentHTML('beforeend', '<b></b><span></span><em></em>');
-    r.querySelector('b').textContent = text; r.querySelector('span').textContent = PEOPLE[k].name; r.querySelector('em').textContent = when;
+    r.insertAdjacentHTML('beforeend', '<b></b><span class="who"></span><em></em>');
+    r.querySelector('b').textContent = text; r.querySelector('.who').textContent = PEOPLE[k].name; r.querySelector('em').textContent = when;
     return r;
   }
   function clearRows(box, later, then) {
@@ -128,4 +128,5 @@
       later(function () { clearRows(rows, later, function () { count.textContent = 'Up to date'; up.classList.add('show'); done.classList.add('show'); }); }, 450);
     }, 2000);
   }, 8500);
+  if (window.liveSync) window.liveSync();
 })();
