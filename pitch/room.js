@@ -16,7 +16,7 @@
     var r = el('div', 'r row-in');
     r.innerHTML = '<span class="chk">&#10003;</span>';
     r.appendChild(av(k));
-    r.insertAdjacentHTML('beforeend', '<b></b><span class="who"></span><em></em>');
+    r.insertAdjacentHTML('beforeend', '<b></b><span class="who"></span><em></em><span class="undo">Undo</span>');
     r.querySelector('b').textContent = text; r.querySelector('.who').textContent = PEOPLE[k].name; r.querySelector('em').textContent = when;
     return r;
   }
@@ -139,12 +139,14 @@
   /* 5. Push: a person presses Push, the plane leaves, the list clears */
   var PUSHROWS = [['S', 'Hero title is bigger', '2m'], ['I', 'Sign-up button added', '9m'], ['T', 'Footer links updated', '1h']];
   acts.push = loop(function (root, later) {
-    var rows = root.querySelector('.rows'), count = root.querySelector('.count'), done = root.querySelector('.pushed'), up = root.querySelector('.uptodate');
+    var rows = root.querySelector('.rows'), count = root.querySelector('.count'), up = root.querySelector('.uptodate');
+    var btn = root.querySelector('.dh .btn-k');
     rows.innerHTML = ''; PUSHROWS.forEach(function (r) { rows.appendChild(row(r[0], r[1], r[2])); });
-    count.textContent = '3 new'; done.classList.remove('show'); up.classList.remove('show');
+    count.textContent = '3 new'; btn.classList.remove('done'); up.classList.remove('show');
     later(function () {
       fly(root.querySelector('.plane'), root.querySelector('.dh .btn-k'), root, later);
-      later(function () { clearRows(rows, later, function () { count.textContent = 'Up to date'; up.classList.add('show'); done.classList.add('show'); }); }, 450);
+      later(function () { btn.classList.add('done'); }, 250);
+      later(function () { clearRows(rows, later, function () { count.textContent = 'Up to date'; up.classList.add('show'); }); }, 450);
     }, 2000);
   }, 8500);
   if (window.liveSync) window.liveSync();

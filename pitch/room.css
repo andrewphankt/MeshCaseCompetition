@@ -280,3 +280,16 @@
 .room .r.pending .chk::after { content: ""; position: absolute; inset: 1px; border-radius: 50%; border: 1.5px solid #d4d4d8; border-top-color: #18181b; animation: spin .8s linear infinite; }
 .room .r.pending b { font-weight: 500; color: #71717a; }
 .room .r { transition: opacity .4s var(--ease); }
+
+/* Push, the way Mesh's dock really is: "N new" and one Push button, Undo on each change.
+   The button itself turns into "Pushed" for a moment (nothing floats over the card). */
+.pushdemo .dh .btn-k { margin-left: auto; min-width: 150px; }
+.pushdemo .dh .btn-k .pd { display: none; }
+.pushdemo .dh .btn-k.done { background: #16a34a; }
+.pushdemo .dh .btn-k.done .pl { display: none; }
+.pushdemo .dh .btn-k.done .pd { display: inline; }
+.room .dock .dh .btn-k { margin-left: auto; }
+.mr .r .undo { color: var(--muted); font-weight: 500; margin-left: 6px; }
+.pushdemo .r .undo { font: 500 20px/1 var(--font); width: 64px; text-align: right; }
+.room .r .undo { font-size: 12.5px; width: 36px; text-align: right; }
+.pushdemo .pushed { display: none; }
