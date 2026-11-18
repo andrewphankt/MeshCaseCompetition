@@ -919,7 +919,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 
 /* Working: the character holds still; only the tool's effect moves (hammer sparks, water, paint, dust). Saved still hops. */
 .room.mesh-ui .wn-row.busy .wn-pic img { animation: none; }
-.felix[data-state="work"] .felix-scene img { animation: none !important; }
+.felix[data-state="work"] #felix-img { animation: none !important; }
 .room.mesh-ui .wn-fx { position: absolute; pointer-events: none; opacity: 0; }
 .room.mesh-ui .wn-row:not(.busy) .wn-fx { display: none; }
 .room.mesh-ui .wn-pic[data-c="fox"] .wn-fx { left: 60px; top: 44px; width: 2px; height: 7px; margin: -7px 0 0 -1px; background: #f2b632; border-radius: 2px; transform-origin: 50% 100%; animation: wntink .75s ease-out infinite; }
@@ -935,6 +935,34 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .room.mesh-ui .wn-pic[data-c="bear"] .wn-fx:nth-of-type(2) { animation-delay: .33s; left: 30px; } .room.mesh-ui .wn-pic[data-c="bear"] .wn-fx:nth-of-type(3) { animation-delay: .66s; left: 38px; }
 @keyframes wndust { 0% { opacity: 0; transform: translate(0, 0) scale(.4); } 20% { opacity: .9; } 100% { opacity: 0; transform: translate(-7px, -3px) scale(1.5); } }
 @media (prefers-reduced-motion: reduce) { .room.mesh-ui .wn-fx { animation: none !important; } }
+
+/* Frame-by-frame working motion: the character's arm (or feet) moves between 3 drawn frames; the body stays put. */
+.room.mesh-ui .wn-fx { display: none !important; }
+.room.mesh-ui .fr { position: absolute; bottom: 2px; height: 56px; margin: 0 !important; opacity: 0; pointer-events: none; }
+.room.mesh-ui .wn-pic .fr { left: 0; width: 100%; transform: none !important; object-fit: contain; object-position: 50% 100%; transition: none; }
+.room.mesh-ui .fr.f1 { opacity: 1; }
+.room.mesh-ui .wn-row:not(.busy) .fr { display: none; }
+.room.mesh-ui .wn-row.busy .wn-pic > img:not(.fr) { visibility: hidden; }
+.room.mesh-ui .felix:not([data-state="work"]) .fr { display: none; }
+.felix[data-state="work"] #felix-img, .felix[data-state="work"] .fx-rock, .felix[data-state="work"] .fx-chip { visibility: hidden; }
+.room.mesh-ui .felix[data-state="work"] .felix-scene img.fr { left: 4px !important; transform: none; }
+/* strike: wind up, swing, hit and hold (hammer, pickaxe) */
+.room.mesh-ui .wn-row.busy [data-c="fox"] .f1, .room.mesh-ui .felix[data-state="work"] .felix-scene img.fr.f1 { animation: frS1 var(--fr, .9s) step-end infinite; }
+.room.mesh-ui .wn-row.busy [data-c="fox"] .f2, .room.mesh-ui .felix[data-state="work"] .felix-scene img.fr.f2 { animation: frS2 var(--fr, .9s) step-end infinite; }
+.room.mesh-ui .wn-row.busy [data-c="fox"] .f3, .room.mesh-ui .felix[data-state="work"] .felix-scene img.fr.f3 { animation: frS3 var(--fr, .9s) step-end infinite; }
+.felix[data-state="work"] { --fr: 1.1s; }
+@keyframes frS1 { 0% { opacity: 1; } 45% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes frS2 { 0% { opacity: 0; } 45% { opacity: 1; } 58% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes frS3 { 0% { opacity: 0; } 58% { opacity: 1; } 100% { opacity: 1; } }
+/* back and forth: watering, painting, walking */
+.room.mesh-ui .wn-row.busy [data-c="cat"] { --fr: 1.6s; } .room.mesh-ui .wn-row.busy [data-c="bunny"] { --fr: 1.4s; } .room.mesh-ui .wn-row.busy [data-c="bear"] { --fr: 1s; }
+.room.mesh-ui .wn-row.busy :is([data-c="cat"],[data-c="bunny"],[data-c="bear"]) .f1 { animation: frP1 var(--fr) step-end infinite; }
+.room.mesh-ui .wn-row.busy :is([data-c="cat"],[data-c="bunny"],[data-c="bear"]) .f2 { animation: frP2 var(--fr) step-end infinite; }
+.room.mesh-ui .wn-row.busy :is([data-c="cat"],[data-c="bunny"],[data-c="bear"]) .f3 { animation: frP3 var(--fr) step-end infinite; }
+@keyframes frP1 { 0% { opacity: 1; } 25% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes frP2 { 0% { opacity: 0; } 25% { opacity: 1; } 50% { opacity: 0; } 75% { opacity: 1; } 100% { opacity: 1; } }
+@keyframes frP3 { 0% { opacity: 0; } 50% { opacity: 1; } 75% { opacity: 0; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .room.mesh-ui .fr { animation: none !important; } .room.mesh-ui .fr:not(.f1) { opacity: 0 !important; } }
 </style>
 </head>
 <body>
@@ -1183,7 +1211,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       <div class="wn-head">Working now</div>
       <div class="wn-list" id="wn-list"><div class="wn-empty">No one is working yet.</div></div>
       <div class="felix" id="felix" data-state="idle">
-        <div class="felix-scene" aria-hidden="true"><span class="fx-sun"></span><span class="fx-ground"></span><span class="fx-rock"><i></i><i></i></span><span class="fx-chip"></span><span class="fx-chip c2"></span><span class="fx-note">&#9834;</span><span class="fx-note n2">&#9835;</span><span class="fx-spark">&#10022;</span><img id="felix-img" src="sprites/idle.png" alt=""></div>
+        <div class="felix-scene" aria-hidden="true"><span class="fx-sun"></span><span class="fx-ground"></span><span class="fx-rock"><i></i><i></i></span><span class="fx-chip"></span><span class="fx-chip c2"></span><span class="fx-note">&#9834;</span><span class="fx-note n2">&#9835;</span><span class="fx-spark">&#10022;</span><img id="felix-img" src="sprites/idle.png" alt=""><img class="fr f1" src="sprites/felix_f1.png" alt=""><img class="fr f2" src="sprites/felix_f2.png" alt=""><img class="fr f3" src="sprites/felix_f3.png" alt=""></div>
         <div class="wn-row me"><span class="wn-av felix-av"></span><div><b id="felix-file">Idle</b><small id="felix-sub">Felix · Evelyn · listening to music</small></div><span class="wn-dot" id="felix-dot"></span></div>
       </div>
       <div class="file-foot" id="file-foot">No one is editing yet.</div>
@@ -1744,7 +1772,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     var r = $('wn-' + id);
     if (!r) {
       r = el('div', 'wn-row'); r.id = 'wn-' + id;
-      r.innerHTML = (SPR[id] ? '<span class="wn-pic" data-c="' + SPR[id] + '"><img alt=""><i class="wn-fx"></i><i class="wn-fx"></i><i class="wn-fx"></i></span>' : '<span class="wn-av" style="background:' + color + '">' + init + '</span>') + '<div><b></b><small></small></div><span class="wn-dot"></span>';
+      r.innerHTML = (SPR[id] ? '<span class="wn-pic" data-c="' + SPR[id] + '"><img alt="">' + [1, 2, 3].map(function (n) { return '<img class="fr f' + n + '" alt="" src="sprites/' + SPR[id] + '_f' + n + '.png">'; }).join('') + '</span>' : '<span class="wn-av" style="background:' + color + '">' + init + '</span>') + '<div><b></b><small></small></div><span class="wn-dot"></span>';
       var e = wnList.querySelector('.wn-empty'); if (e) e.remove();
       wnList.appendChild(r);
     }
