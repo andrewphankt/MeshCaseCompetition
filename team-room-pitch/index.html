@@ -592,7 +592,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <button type="button" class="cursor c-tony drift-a" style="left:1080px; top:390px" data-peek="4"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Codex · writing tests</b></button>
   <div class="title-top">
     <div class="eyebrow"><i></i>Agent workspace · Club showcase</div>
-    <h1 class="h-xl"><span class="pname" data-name>[Name]</span></h1>
+    <h1 class="h-xl"><span class="pname" data-name>Mesh</span></h1>
     <p class="lede">A team room for coding agents, built for student teams!</p>
     <div class="title-meta">
       <span class="tag" id="team-names">Andrew · Iris · Sarah · Evelyn · Tony</span>
@@ -703,7 +703,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 <!-- 6 Reveal -->
 <section class="slide center reveal" data-title="Introducing">
   <div class="intro">Introducing</div>
-  <h1 class="h-xl"><span class="pname" data-name>[Name]</span></h1>
+  <h1 class="h-xl"><span class="pname" data-name>Mesh</span></h1>
   <p class="lede" style="margin-top:22px">One room for your team and every AI on it.</p>
   <aside class="notes">Say the name, then give the four-step picture on the next slide.</aside>
 </section>
@@ -837,7 +837,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <h2 class="h-s">Others built the room for companies. We built it for students.</h2>
   <div data-interactive>
     <table class="gridt hide-us" id="gridt">
-      <thead><tr><th>What matters</th><th>Replit</th><th>Agentmash</th><th>Buzz</th><th>GitHub Agent HQ</th><th>GitHub Ace</th><th class="us"><span class="pname" data-name>[Name]</span></th></tr></thead>
+      <thead><tr><th>What matters</th><th>Replit</th><th>Agentmash</th><th>Buzz</th><th>GitHub Agent HQ</th><th>GitHub Ace</th><th class="us"><span class="pname" data-name>Mesh</span></th></tr></thead>
       <tbody>
         <tr><td>Warns before two AIs collide</td><td><span class="mk p">Partly</span></td><td><span class="mk y">Yes</span></td><td><span class="mk q">?</span></td><td><span class="mk p">Partly</span></td><td><span class="mk q">?</span></td><td class="us"><span class="mk s">Planned</span></td></tr>
         <tr><td>Works with different AI tools</td><td><span class="mk n">No</span></td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk q">?</span></td><td class="us"><span class="mk s">Planned</span></td></tr>
@@ -881,7 +881,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <div>The guide makes beginners <span>stay</span>.</div>
     <div>The hub makes it <span>grow</span>.</div>
   </div>
-  <p class="lede" style="margin-top:40px"><span class="pname" data-name>[Name]</span>, the team room for student builders. Questions?</p>
+  <p class="lede" style="margin-top:40px"><span class="pname" data-name>Mesh</span>, the team room for student builders. Questions?</p>
   <aside class="notes">Our five cursors gather in the room as the slide opens. End on the three lines, then the name. The Q&amp;A cards come next.</aside>
 </section>
 
@@ -959,7 +959,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <h4>Speaker notes</h4>
   <p id="notes-text"></p>
   <label for="name-input">Product name (updates every slide)</label>
-  <input id="name-input" type="text" placeholder="[Name]" autocomplete="off">
+  <input id="name-input" type="text" placeholder="Mesh" autocomplete="off">
   <label for="follow-input">Link for the QR code on slide 1</label>
   <input id="follow-input" type="url" placeholder="https://…" autocomplete="off">
   <label for="look-select">Look</label>
@@ -1167,7 +1167,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   /* ---------- Product name ---------- */
   var nameInput = $('name-input');
   function setName(v) {
-    var label = v && v.trim() ? v.trim() : '[Name]';
+    var label = v && v.trim() ? v.trim() : 'Mesh';
     each(document.querySelectorAll('[data-name]'), function (n) { n.textContent = label; });
   }
   try { var saved = localStorage.getItem('teamroom-deck-name'); if (saved) { nameInput.value = saved; setName(saved); } } catch (err) {}
