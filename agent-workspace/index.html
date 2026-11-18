@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent workspace: prototype</title>
+<style>
+  :root { --ink: #16171b; --muted: #70737d; --line: #e6e6e9; --side: #fafafa; --green: #1a9e5c; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: var(--ink); font-family: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  header { display: flex; align-items: center; gap: 12px; padding: 18px 28px; border-bottom: 1px solid var(--line); }
+  header h1 { font-size: 18px; margin: 0; font-weight: 700; }
+  header .tag { font-size: 12px; color: var(--muted); border: 1px dashed #c9c9cf; border-radius: 6px; padding: 3px 8px; }
+  main { display: grid; grid-template-columns: minmax(0, 1fr) 300px; min-height: calc(100vh - 61px); }
+  .stagewrap { padding: 24px 28px; }
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 6px; }
+  .controls button { font-size: 14px; font-weight: 600; font-family: inherit; padding: 9px 14px; border-radius: 9px; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; }
+  .controls button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .hint { font-size: 14px; color: var(--muted); margin: 8px 0 0; max-width: 760px; line-height: 1.5; }
+
+  /* ---------- The scene ---------- */
+  .scene { position: relative; width: 100%; aspect-ratio: 16 / 7.2; overflow: hidden; border-radius: 16px; background: #dcf0f6; border: 1px solid var(--line); }
+  .hill1 { position: absolute; left: -10%; right: 40%; bottom: 14%; height: 46%; background: #c9e6ad; border-radius: 50% 50% 0 0; }
+  .hill2 { position: absolute; left: 35%; right: -15%; bottom: 14%; height: 38%; background: #b8dc95; border-radius: 50% 50% 0 0; }
+  .sun { position: absolute; right: 7%; top: 9%; width: 9%; aspect-ratio: 1; border-radius: 50%; background: #ffe08a; }
+  .cloud { position: absolute; height: 7%; background: #fff; border-radius: 999px; opacity: .9; animation: drift 40s linear infinite; }
+  .cloud.c1 { width: 14%; top: 12%; left: 12%; } .cloud.c2 { width: 10%; top: 22%; left: 52%; animation-duration: 55s; }
+  @keyframes drift { from { transform: translateX(0); } to { transform: translateX(60%); } }
+  .ground { position: absolute; left: 0; right: 0; bottom: 0; height: 16%; background: #9fcd7a; border-top: 3px solid #8bbd65; }
+  .rock { position: absolute; left: 68%; bottom: 13%; width: 15%; }
+  .rock svg { width: 100%; display: block; overflow: visible; }
+  .rock .half { transition: transform .5s cubic-bezier(.2,1.4,.4,1), opacity .5s; transform-box: fill-box; }
+  .saved .rock .l { transform: translate(-14%, 4%) rotate(-12deg); }
+  .saved .rock .r { transform: translate(14%, 4%) rotate(12deg); }
+  .rock .crack { opacity: 0; transition: opacity .2s; } .saved .rock .crack { opacity: 1; }
+
+  /* The character */
+  .who { position: absolute; bottom: 12%; left: var(--x, 10%); height: 62%; transform-origin: 50% 100%; transition: left 2.4s linear; }
+  .who img { height: 100%; display: block; filter: drop-shadow(0 6px 4px rgba(40, 60, 20, .18)); transform-origin: 50% 100%; }
+  .shadow { position: absolute; left: 50%; bottom: -3%; width: 60%; height: 7%; transform: translateX(-50%); background: rgba(40, 60, 20, .18); border-radius: 50%; }
+
+  .walk .who img { animation: walk .5s ease-in-out infinite; }
+  @keyframes walk { 0%, 100% { transform: translateY(0) rotate(-3deg); } 25% { transform: translateY(-5%) rotate(0deg); } 50% { transform: translateY(0) rotate(3deg); } 75% { transform: translateY(-5%) rotate(0deg); } }
+  .mine .who img { animation: swing .9s cubic-bezier(.55,0,.45,1) infinite; transform-origin: 38% 100%; }
+  @keyframes swing { 0%, 100% { transform: rotate(-7deg) translateY(0); } 52% { transform: rotate(5deg) translateY(1%); } 60% { transform: rotate(4deg) translateY(0); } }
+  .mine .rock svg { animation: shake .9s infinite; }
+  @keyframes shake { 0%, 50%, 70%, 100% { transform: translateX(0); } 56% { transform: translateX(2%); } 62% { transform: translateX(-1.5%); } }
+  .idle .who img { animation: sway 2.6s ease-in-out infinite; }
+  @keyframes sway { 0%, 100% { transform: rotate(-1.6deg) scaleY(1); } 50% { transform: rotate(1.6deg) scaleY(1.012); } }
+  .saved .who img { animation: hop .8s ease-in-out infinite; }
+  @keyframes hop { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-7%); } }
+
+  /* Particles */
+  .fx { position: absolute; pointer-events: none; opacity: 0; }
+  .chip { width: 1.2%; aspect-ratio: 1; background: #6f6e69; border-radius: 2px; left: 68.5%; bottom: 26%; }
+  .mine .chip { animation: chip .9s infinite; }
+  .chip.b { --dx: -260%; --dy: -380%; } .chip.c { --dx: -520%; --dy: -220%; background: #8c8b84; } .chip.d { --dx: -140%; --dy: -520%; }
+  @keyframes chip { 0%, 52% { opacity: 0; transform: translate(0, 0) rotate(0); } 56% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx, -380%), var(--dy, -300%)) rotate(200deg); } }
+  .tink { left: 66.5%; bottom: 33%; font: 700 1.8vw/1 sans-serif; color: #f2b632; }
+  .mine .tink { animation: tink .9s infinite; }
+  @keyframes tink { 0%, 50% { opacity: 0; transform: scale(.6); } 56% { opacity: 1; transform: scale(1.1); } 80%, 100% { opacity: 0; transform: scale(1.3); } }
+  .note { left: 22%; bottom: 66%; font: 2.2vw/1 serif; color: #8e7bd6; }
+  .idle .note { animation: note 3s linear infinite; }
+  .note.n2 { left: 25%; animation-delay: 1s !important; color: #d4537e; } .note.n3 { left: 19%; animation-delay: 2s !important; }
+  @keyframes note { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(60%, -260%); } }
+  .spark { left: 62%; bottom: 72%; font: 2vw/1 sans-serif; color: #f2b632; }
+  .saved .spark { animation: twinkle 1.2s infinite; }
+  .spark.s2 { left: 74%; bottom: 60%; animation-delay: .4s !important; } .spark.s3 { left: 57%; bottom: 52%; animation-delay: .8s !important; }
+  @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.5); } 50% { opacity: 1; transform: scale(1.1); } }
+
+  /* ---------- Mesh-style "Working now" panel ---------- */
+  aside { border-left: 1px solid var(--line); background: #fff; padding: 22px 20px; }
+  aside h2 { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .row { display: flex; align-items: center; gap: 12px; padding: 10px 4px; }
+  .av { width: 46px; height: 46px; border-radius: 50%; background: #f1ecf3 url(sprites/stand.png) no-repeat; background-size: 270%; background-position: 48% 6%; flex: none; border: 2px solid #f4c0d1; }
+  .row b { display: block; font-size: 16px; }
+  .row small { display: block; font-size: 14px; color: var(--muted); margin-top: 2px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); margin-left: auto; flex: none; transition: background .3s; }
+  .row.dim .av { filter: grayscale(.2) opacity(.85); }
+  .others .row { opacity: .55; }
+  .others .av2 { width: 46px; height: 46px; border-radius: 50%; background: #eef0f3; display: grid; place-items: center; font-weight: 700; color: var(--muted); flex: none; }
+  @media (max-width: 860px) { main { grid-template-columns: 1fr; } aside { border-left: 0; border-top: 1px solid var(--line); } .stagewrap { padding: 16px; } }
+  @media (prefers-reduced-motion: reduce) { .who, .who img, .rock svg, .fx, .cloud { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<header><h1>Agent workspace</h1><span class="tag">Prototype · not in Mesh yet</span></header>
+<main>
+  <div class="stagewrap">
+    <div class="scene idle" id="scene" aria-label="Felix, Evelyn's agent, shown as a tanuki girl">
+      <div class="sun"></div><div class="cloud c1"></div><div class="cloud c2"></div>
+      <div class="hill1"></div><div class="hill2"></div><div class="ground"></div>
+      <div class="rock" aria-hidden="true"><svg viewBox="0 0 160 110">
+        <g class="half l"><path d="M14 108 Q2 74 26 50 Q46 30 80 30 L74 56 L84 76 L76 108 Z" fill="#8f8e88"/><path d="M30 60 Q44 44 62 42" fill="none" stroke="#b9b8b1" stroke-width="6" stroke-linecap="round"/></g>
+        <g class="half r"><path d="M80 30 Q116 30 136 52 Q158 78 146 108 L76 108 L84 76 L74 56 Z" fill="#7d7c76"/></g>
+        <path class="crack" d="M80 30 L74 56 L84 76 L76 108" fill="none" stroke="#3f3e3a" stroke-width="4" stroke-linejoin="round"/>
+      </svg></div>
+      <div class="who" id="who"><div class="shadow"></div><img id="sp" src="sprites/idle.png" alt=""></div>
+      <span class="fx chip"></span><span class="fx chip b"></span><span class="fx chip c"></span><span class="fx chip d"></span>
+      <span class="fx tink">✦</span>
+      <span class="fx note">♪</span><span class="fx note n2">♫</span><span class="fx note n3">♪</span>
+      <span class="fx spark">✦</span><span class="fx spark s2">✧</span><span class="fx spark s3">✦</span>
+    </div>
+    <div class="controls" role="group" aria-label="What the agent is doing">
+      <button type="button" data-mode="auto">Play a day</button>
+      <button type="button" data-mode="work">Working</button>
+      <button type="button" data-mode="idle">Idle</button>
+      <button type="button" data-mode="saved">Saved</button>
+    </div>
+    <p class="hint">Each person's agent is a character doing small jobs. Working: she walks to the rock and mines it. Saved: the rock cracks open and she holds up a gem. Idle: she sits on a stump with headphones. In Mesh, these states would come from the room itself (editing a file, saved to the draft, idle).</p>
+  </div>
+  <aside>
+    <h2>Working now</h2>
+    <div class="row" id="me"><div class="av" role="img" aria-label="Felix's avatar"></div><div><b id="t1">index.html</b><small id="t2">Felix · Evelyn</small></div><span class="dot" id="dot"></span></div>
+    <div class="others">
+      <div class="row"><div class="av2">A</div><div><b>Idle</b><small>Andrew's agent</small></div></div>
+      <div class="row"><div class="av2">I</div><div><b>Idle</b><small>Iris's agent</small></div></div>
+    </div>
+  </aside>
+</main>
+<script>
+(function () {
+  var scene = document.getElementById('scene'), who = document.getElementById('who'), sp = document.getElementById('sp');
+  var t1 = document.getElementById('t1'), t2 = document.getElementById('t2'), dot = document.getElementById('dot');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var timers = [], autoOn = false;
+  // Preload every pose so switching never flashes.
+  ['stand', 'mine', 'idle', 'gem'].forEach(function (n) { var i = new Image(); i.src = 'sprites/' + n + '.png'; });
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function clear() { timers.forEach(clearTimeout); timers = []; }
+  function pose(name, x, h, cls) {
+    sp.src = 'sprites/' + name + '.png';
+    who.style.height = h; who.style.setProperty('--x', x);
+    scene.className = 'scene ' + cls;
+  }
+  function status(file, sub, on) { t1.textContent = file; t2.textContent = sub; dot.style.background = on ? '#1a9e5c' : '#c4c4cb'; }
+  function press(m) { document.querySelectorAll('[data-mode]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.mode === m)); }); }
+
+  function idle() { status('Idle', 'Felix · Evelyn · listening to music', false); who.style.transition = 'none'; pose('idle', '9%', '64%', 'idle'); }
+  function work(done) {
+    status('index.html', 'Felix · Evelyn · editing', true);
+    who.style.transition = 'none'; pose('stand', '8%', '60%', 'walk'); void who.offsetWidth;
+    if (reduce) { pose('mine', '47%', '60%', 'mine'); if (done) later(done, 1200); return; }
+    who.style.transition = 'left 2.4s linear'; who.style.setProperty('--x', '44%');
+    later(function () { who.style.transition = 'none'; pose('mine', '47%', '60%', 'mine'); if (done) later(done, 5400); }, 2450);
+  }
+  function saved(done) {
+    status('Saved to the team draft', 'Felix · Evelyn · just now', true);
+    who.style.transition = 'none'; pose('gem', '49%', '65%', 'saved');
+    if (done) later(done, 3200);
+  }
+  function auto() { clear(); press('auto'); autoOn = true; work(function () { saved(function () { idle(); later(auto, 5200); }); }); }
+
+  document.querySelectorAll('[data-mode]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      clear(); autoOn = false; press(b.dataset.mode);
+      if (b.dataset.mode === 'auto') auto();
+      if (b.dataset.mode === 'work') work();
+      if (b.dataset.mode === 'idle') idle();
+      if (b.dataset.mode === 'saved') saved();
+    });
+  });
+  auto();
+})();
+</script>
+</body>
+</html>
