@@ -814,6 +814,49 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .cx-room small { font: 500 19px var(--body); color: #70737d; }
 .cx-cap { margin: 14px 0 0; font: 600 30px/1.3 var(--body); }
 .cx-steps { display: none; }
+
+/* ---------- Demo right panel: Mesh's real "Working now", with Felix ---------- */
+:root[data-look] .room.mesh-ui .file.wn { display: flex; flex-direction: column; padding: 0; }
+.room.mesh-ui .wn-head { font: 600 14px var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--m-mute); padding: 18px 20px 12px; border-bottom: 1px solid var(--m-line); }
+.room.mesh-ui .wn-list { flex: 1; padding: 6px 12px; min-height: 0; overflow: hidden; }
+.room.mesh-ui .wn-empty { color: var(--m-mute); font: 500 16px var(--body); padding: 14px 8px; }
+.room.mesh-ui .wn-row { display: flex; align-items: center; gap: 12px; padding: 10px 8px; animation: enter .3s ease both; }
+.room.mesh-ui .wn-row b { display: block; font: 700 18px var(--body); color: var(--m-ink); }
+.room.mesh-ui .wn-row small { display: block; font: 500 14px var(--body); color: var(--m-mute); margin-top: 2px; }
+.room.mesh-ui .wn-av { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font: 700 15px var(--body); color: #fff; flex: none; }
+.room.mesh-ui .wn-dot { width: 10px; height: 10px; border-radius: 50%; background: #c4c4cb; margin-left: auto; flex: none; }
+.room.mesh-ui .wn-row.busy .wn-dot { background: #1a9e5c; } .room.mesh-ui .wn-row.wait .wn-dot { background: #e0a400; } .room.mesh-ui .wn-row.done .wn-dot { background: #8b8b93; }
+.room.mesh-ui .felix { border-top: 1px solid var(--m-line); padding: 10px 12px 4px; }
+.room.mesh-ui .felix-scene { position: relative; height: 190px; border-radius: 12px; overflow: hidden; background: #dcf0f6; }
+.room.mesh-ui .fx-sun { position: absolute; right: 18px; top: 14px; width: 34px; height: 34px; border-radius: 50%; background: #ffe08a; }
+.room.mesh-ui .fx-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 34px; background: #9fcd7a; border-top: 2px solid #8bbd65; }
+.room.mesh-ui .fx-rock { position: absolute; right: 52px; bottom: 26px; width: 74px; height: 50px; }
+.room.mesh-ui .fx-rock i { position: absolute; bottom: 0; width: 50%; height: 100%; background: #8f8e88; transition: transform .4s cubic-bezier(.2,1.4,.4,1); }
+.room.mesh-ui .fx-rock i:first-child { left: 0; border-radius: 60% 0 0 30%; } .room.mesh-ui .fx-rock i:last-child { right: 0; background: #7d7c76; border-radius: 0 60% 30% 0; }
+.felix[data-state="saved"] .fx-rock i:first-child { transform: translateX(-10px) rotate(-12deg); } .felix[data-state="saved"] .fx-rock i:last-child { transform: translateX(10px) rotate(12deg); }
+.room.mesh-ui .felix-scene img { position: absolute; bottom: 22px; height: 150px; left: 28px; transform-origin: 50% 100%; transition: left .5s ease; filter: drop-shadow(0 4px 3px rgba(40,60,20,.2)); }
+.felix[data-state="idle"] .felix-scene img { height: 158px; left: 14px; animation: fsway 2.6s ease-in-out infinite; }
+.felix[data-state="work"] .felix-scene img { left: 132px; animation: fswing .9s cubic-bezier(.55,0,.45,1) infinite; transform-origin: 38% 100%; }
+.felix[data-state="saved"] .felix-scene img { left: 140px; height: 136px; animation: fhop .8s ease-in-out infinite; }
+@keyframes fsway { 0%, 100% { transform: rotate(-1.6deg); } 50% { transform: rotate(1.6deg); } }
+@keyframes fswing { 0%, 100% { transform: rotate(-7deg); } 52% { transform: rotate(5deg); } }
+@keyframes fhop { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-12px); } }
+.room.mesh-ui .fx-chip, .room.mesh-ui .fx-note, .room.mesh-ui .fx-spark { position: absolute; opacity: 0; pointer-events: none; }
+.room.mesh-ui .fx-chip { width: 8px; height: 8px; background: #6f6e69; border-radius: 2px; right: 112px; bottom: 60px; }
+.felix[data-state="work"] .fx-chip { animation: fchip .9s infinite; } .room.mesh-ui .fx-chip.c2 { --dx: -26px; --dy: -34px; }
+@keyframes fchip { 0%, 52% { opacity: 0; transform: translate(0,0); } 56% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx,-38px), var(--dy,-24px)) rotate(180deg); } }
+.room.mesh-ui .fx-note { left: 120px; top: 30px; font: 22px/1 serif; color: #8e7bd6; } .room.mesh-ui .fx-note.n2 { left: 140px; color: #d4537e; }
+.felix[data-state="idle"] .fx-note { animation: fnote 3s linear infinite; } .felix[data-state="idle"] .fx-note.n2 { animation-delay: 1.5s; }
+@keyframes fnote { 0% { opacity: 0; transform: translate(0,0); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(14px,-30px); } }
+.room.mesh-ui .fx-spark { right: 90px; top: 26px; font: 24px/1 sans-serif; color: #f2b632; } .felix[data-state="saved"] .fx-spark { animation: fspark 1.1s infinite; }
+@keyframes fspark { 0%, 100% { opacity: 0; transform: scale(.5); } 50% { opacity: 1; transform: scale(1.1); } }
+.room.mesh-ui .wn-row.me { padding: 8px 4px; }
+.room.mesh-ui .felix-av, .room.mesh-ui .m-felix { background: #f1ecf3 url(sprites/stand.png) no-repeat 48% 6% / 270%; border: 2px solid #f4c0d1; }
+.room.mesh-ui .m-felix { width: 26px; height: 26px; border-radius: 50%; display: inline-block; flex: none; }
+#felix-dot { background: #c4c4cb; } .felix:not([data-state="idle"]) #felix-dot { background: #1a9e5c; }
+.room.mesh-ui .m-agent { padding: 3px 10px; } .room.mesh-ui .m-h { padding-top: 10px; }
+.room.mesh-ui .file .stamp { right: 30px; bottom: 270px; }
+@media (prefers-reduced-motion: reduce) { .felix-scene img, .fx-chip, .fx-note, .fx-spark { animation: none !important; } }
 </style>
 </head>
 <body>
@@ -878,7 +921,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <div class="tx-hand">&mdash; part one</div>
     <h2 class="tx-title">The <span class="tx-mark">problem</span></h2>
     <p class="tx-sub">Why building with AI breaks down for teams.</p>
-    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Everyone has an agent</li><li>They can&rsquo;t see each other</li><li>The go-between</li><li>The proof</li></ul></div>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Everyone has an agent</li><li>They can&rsquo;t see each other</li><li>The go-between</li><li>The proof</li><li>Why it breaks</li></ul></div>
   </div>
   <aside class="notes">Section 1 of 4: the problem. One breath, then click on. The two cursors are the problem in miniature: two AIs editing the same title.</aside>
 </section>
@@ -929,6 +972,52 @@ Saved 2 files.</pre></div></div>
   <h2 class="h-l typed" style="max-width:1300px; margin-top:20px" data-step="1" id="reframe-2">With engineers on the call, a first-timer's first save took <span class="hl">33 minutes and 20 messages</span>.</h2>
   <p class="lede proof-small" data-step="2">Two GitHub tokens were pasted by accident.</p>
   <aside class="notes">Evelyn: "That first-timer was me." If it took that long with help one call away, imagine doing it alone. One beat per line: the second line types itself out, the third comes on the next click. If asked for more evidence: building this very deck, we ended up with two decks and the preview showing the old one. We fixed Mesh the same day.</aside>
+</section>
+<!-- 5 Three reasons -->
+<section class="slide" data-title="Why it breaks">
+  <div class="eyebrow"><i></i>Why it breaks</div>
+  <h2 class="h-m">Why building together breaks</h2>
+  <p class="lede why-sub">Three things go wrong when a mixed team builds with AI.</p>
+  <div class="reasons" data-interactive>
+    <button type="button" class="flip reason-flip reason" data-step="1" aria-pressed="false" aria-label="Reason 1: tap to see the fix">
+      <span class="inner">
+        <span class="face front">
+      <div class="scene s1" aria-hidden="true">
+        <div class="codeline l1"></div><div class="codeline l2"></div><div class="codeline l3"></div>
+        <svg class="mini a" viewBox="0 0 24 24"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg>
+        <svg class="mini b" viewBox="0 0 24 24" style="transform:scaleX(-1)"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg>
+        <div class="boom">OVERWRITTEN</div>
+      </div>
+      <div class="n">1</div><h3>AIs can't see each other</h3><p>Two teammates' AIs edit the same file and overwrite each other's work.</p><span class="tapme">Tap to see the fix</span></span>
+        <span class="face back"><span class="bk">How the room fixes it</span><h3>A stop before collisions</h3><p>If a teammate's AI is already in a file, yours stops and tells you who and why.</p></span>
+      </span>
+    </button>
+    <button type="button" class="flip reason-flip reason" data-step="2" aria-pressed="false" aria-label="Reason 2: tap to see the fix">
+      <span class="inner">
+        <span class="face front">
+      <div class="scene s2" aria-hidden="true">
+        <div class="win w1">Claude<i></i><i style="width:70%"></i></div>
+        <div class="win w2">Codex<i></i><i style="width:60%"></i></div>
+        <div class="clip">copy · paste</div>
+      </div>
+      <div class="n">2</div><h3>People become the go-between</h3><p>Teammates copy and paste updates from one AI to another to keep them in sync.</p><span class="tapme">Tap to see the fix</span></span>
+        <span class="face back"><span class="bk">How the room fixes it</span><h3>One shared feed</h3><p>The room is the go-between. Each turn, every AI hears what teammates changed, so nobody copies and pastes.</p></span>
+      </span>
+    </button>
+    <button type="button" class="flip reason-flip reason" data-step="3" aria-pressed="false" aria-label="Reason 3: tap to see the fix">
+      <span class="inner">
+        <span class="face front">
+      <div class="scene s3" aria-hidden="true">
+        <div class="feedlines"><div>refactor useAuth hook · 3 files<br>migrate schema v2 → v3<br>fix race in sync worker<br>bump deps, rerun lint<br>refactor useAuth hook · 3 files<br>migrate schema v2 → v3<br>fix race in sync worker<br>bump deps, rerun lint</div></div>
+        <div class="q">?</div>
+        <div class="out"><div class="av">?</div><small>Teammate</small></div>
+      </div>
+      <div class="n">3</div><h3>Non-coders get locked out</h3><p>The teammate who doesn't code can't follow the work, so they can't help shape it.</p><span class="tapme">Tap to see the fix</span></span>
+        <span class="face back"><span class="bk">How the room fixes it</span><h3>Everyone can follow</h3><p>Every AI writes one plain sentence about what it changed, and only a person can publish.</p></span>
+      </span>
+    </button>
+  </div>
+  <aside class="notes">Click the background once per reason; each plays a tiny scene. Then tap a card to flip it and show how the room fixes it. Reason 3, "Non-coders get locked out," is the heart of the pitch now. Slow down there.</aside>
 </section>
 
 <!-- Section 2: Meet Mesh -->
@@ -1036,6 +1125,7 @@ Saved 2 files.</pre></div></div>
       <div class="m-agent"><i style="background:var(--sam)">I</i><div>Iris's AI<small id="st-i">Idle</small></div></div>
       <div class="m-agent"><i style="background:var(--maya)">S</i><div>Sarah's AI<small>Idle</small></div></div>
       <div class="m-agent"><i style="background:var(--priya)">T</i><div>Tony's AI<small>Idle</small></div></div>
+      <div class="m-agent"><i class="m-felix" aria-hidden="true"></i><div>Felix · Evelyn's AI<small id="st-e">Idle</small></div></div>
     </aside>
     <div class="feed-wrap">
       <div class="feed-bar">
@@ -1051,14 +1141,18 @@ Saved 2 files.</pre></div></div>
         <div class="empty-hint" id="demo-hint">Andrew and Iris ask their AIs to change the same title at the same time. Press <b>Play the scene</b> and watch the file on the right.</div>
       </div>
     </div>
-    <div class="file">
-      <div class="file-bar"><b>index.html</b><span>shared file</span></div>
-      <div class="code" id="code"></div>
+    <div class="file wn">
+      <div class="wn-head">Working now</div>
+      <div class="wn-list" id="wn-list"><div class="wn-empty">No one is working yet.</div></div>
+      <div class="felix" id="felix" data-state="idle">
+        <div class="felix-scene" aria-hidden="true"><span class="fx-sun"></span><span class="fx-ground"></span><span class="fx-rock"><i></i><i></i></span><span class="fx-chip"></span><span class="fx-chip c2"></span><span class="fx-note">&#9834;</span><span class="fx-note n2">&#9835;</span><span class="fx-spark">&#10022;</span><img id="felix-img" src="sprites/idle.png" alt=""></div>
+        <div class="wn-row me"><span class="wn-av felix-av"></span><div><b id="felix-file">Idle</b><small id="felix-sub">Felix · Evelyn · listening to music</small></div><span class="wn-dot" id="felix-dot"></span></div>
+      </div>
       <div class="file-foot" id="file-foot">No one is editing yet.</div>
       <div class="stamp" id="stamp-approved">Approved<strong>Live</strong>by Evelyn</div>
     </div>
   </div>
-  <aside class="notes">Press Play and point at the file on the right: Andrew's AI claims the title, and Iris's AI heads for the same line. When the warning appears, ask the audience: "Wait, or take the footer?" and click their pick. Flip to Technical to show it's the same update, just translated. End by approving the preview as Evelyn, the teammate who doesn't write the code. This really happened on Nov 17: Evelyn's agent spotted a problem only Andrew could fix and sent his agent a request. She never opened Mesh. Andrew approved it in the room, and his agent picked it up.</aside>
+  <aside class="notes">Press Play and point at Working now on the right, which is what Mesh really shows: Andrew's AI is in index.html, and Iris's AI heads for the same file. Felix, Evelyn's agent, is idle at the bottom with headphones on. When the warning appears, ask the audience: "Wait, or take the footer?" and click their pick. Flip to Technical to show it's the same update, just translated. End by approving the preview as Evelyn, the teammate who doesn't write the code: Felix gets to work, mining, then holds up the gem when the update is saved, then goes back to idle. This really happened on Nov 17: Evelyn's agent spotted a problem only Andrew could fix and sent his agent a request. She never opened Mesh. Andrew approved it in the room, and his agent picked it up.</aside>
 </section>
 
 <!-- 9 Training mode -->
@@ -1075,7 +1169,7 @@ Saved 2 files.</pre></div></div>
         <li>A one-minute “Start here” tour.</li>
         <li>Pasted passwords get blocked.</li>
       </ul>
-      <a class="btn primary train-open" id="train-open" href="training/index.html?from=deck&amp;slide=14" target="_blank" rel="noopener">Open it full screen ↗</a>
+      <a class="btn primary train-open" id="train-open" href="training/index.html?from=deck&amp;slide=15" target="_blank" rel="noopener">Open it full screen ↗</a>
     </div>
     <div class="tframe">
       <div class="tbar"><i></i><i></i><i></i><span class="u">mesh · practice room · training mode on</span><span class="try">Hover anything, or press Start here</span></div>
@@ -1595,47 +1689,56 @@ Saved 2 files.</pre></div></div>
 
   /* ---------- Demo: the team room and the shared file ---------- */
   var feed = $('feed');
-  var code = $('code');
   var foot = $('file-foot');
   var mode = 'plain';
   var timers = [];
-  var LINE_H = 34, PAD = 14;
-  var fileLines = [
-    ['<header>', 'tg'], ['  <nav>Team 4</nav>', ''], ['  <h1>Welcome to our app</h1>', 'title'], ['  <p>Find study groups fast.</p>', ''],
-    ['</header>', 'tg'], ['<main>', 'tg'], ['  <button>Sign up</button>', ''], ['  <section>Features…</section>', ''],
-    ['</main>', 'tg'], ['<footer>', 'tg'], ['  <p>© 2026 Team 4</p>', 'footer'], ['</footer>', 'tg']
-  ];
-  var lineEls = [], curM, curJ;
+  var wnList = $('wn-list');
+  function st(id, txt, cls) { var n = $(id); if (n) { n.textContent = txt; n.className = cls || ''; } }
+  function wnClear() { wnList.innerHTML = '<div class="wn-empty">No one is working yet.</div>'; }
+  function wnRow(id, file, sub, state, color, init) {
+    var r = $('wn-' + id);
+    if (!r) {
+      r = el('div', 'wn-row'); r.id = 'wn-' + id;
+      r.innerHTML = '<span class="wn-av" style="background:' + color + '">' + init + '</span><div><b></b><small></small></div><span class="wn-dot"></span>';
+      var e = wnList.querySelector('.wn-empty'); if (e) e.remove();
+      wnList.appendChild(r);
+    }
+    r.querySelector('b').textContent = file; r.querySelector('small').textContent = sub;
+    r.className = 'wn-row ' + (state || '');
+  }
+  var FELIX = {
+    idle:  { img: 'idle',  file: 'Idle', sub: 'Felix · Evelyn · listening to music', side: 'Idle', cls: '' },
+    work:  { img: 'mine',  file: 'Changes', sub: 'Felix · Evelyn · writing the update', side: 'Working', cls: 'busy' },
+    saved: { img: 'gem',   file: 'Saved to the team draft', sub: 'Felix · Evelyn · just now', side: 'Saved to draft', cls: 'busy' }
+  };
+  ['idle', 'mine', 'gem'].forEach(function (n) { var i = new Image(); i.src = 'sprites/' + n + '.png'; });
+  function felix(state) {
+    var f = FELIX[state], box = $('felix'); if (!box) return;
+    box.setAttribute('data-state', state);
+    $('felix-img').src = 'sprites/' + f.img + '.png';
+    $('felix-file').textContent = f.file; $('felix-sub').textContent = f.sub;
+    st('st-e', f.side, f.cls);
+  }
   function buildFile() {
-    code.innerHTML = ''; lineEls = [];
-    fileLines.forEach(function (l, k) {
-      var row = el('div', 'ln'); row.appendChild(el('em', null, String(k + 1)));
-      var t = el('span', l[1] === 'tg' ? 'tg' : '', l[0]); row.appendChild(t);
-      code.appendChild(row); lineEls.push(row);
-    });
-    curM = el('div', 'fcur m off', "Andrew's AI"); curJ = el('div', 'fcur j off', "Iris's AI");
-    curM.style.top = (PAD + 2 * LINE_H + 4) + 'px'; curJ.style.top = (PAD + 7 * LINE_H + 4) + 'px';
-    code.appendChild(curM); code.appendChild(curJ);
+    wnClear(); felix('idle');
     foot.className = 'file-foot'; foot.textContent = 'No one is editing yet.';
     var sa = $('stamp-approved'); if (sa) sa.classList.remove('show');
     st('st-a', 'Idle'); st('st-i', 'Idle');
   }
-  function st(id, txt, cls) { var n = $(id); if (n) { n.textContent = txt; n.className = cls || ''; } }
-  function moveCur(c, line) { c.classList.remove('off'); c.style.top = (PAD + line * LINE_H + 4) + 'px'; }
-  function setText(line, txt) { var s = lineEls[line].querySelector('span'); s.textContent = txt; lineEls[line].classList.remove('flash'); void lineEls[line].offsetWidth; lineEls[line].classList.add('flash'); }
   var fx = {
-    mayaClaim: function () { moveCur(curM, 2); lineEls[2].classList.add('claim-m'); foot.className = 'file-foot'; foot.textContent = "Line 3 is claimed by Andrew's AI."; st('st-a', 'Editing the title', 'busy'); },
-    jordanApproach: function () { moveCur(curJ, 6); setTimeout(function () { moveCur(curJ, 3); }, 500); foot.className = 'file-foot warn'; foot.textContent = "Iris's AI is heading for the same line."; st('st-i', 'Heading for the title', 'wait'); },
-    jordanFooter: function () { moveCur(curJ, 10); lineEls[10].classList.add('claim-j'); foot.className = 'file-foot ok'; foot.textContent = 'No collision. Two AIs, two different lines.'; st('st-i', 'Editing the footer', 'busy'); },
-    jordanWait: function () { moveCur(curJ, 5); curJ.textContent = "Iris's AI · waiting"; foot.className = 'file-foot ok'; foot.textContent = "Iris's AI is waiting its turn."; st('st-i', 'Waiting its turn', 'wait'); },
-    mayaDone: function () { setText(2, '  <h1>Build it together</h1>'); st('st-a', 'Saved to draft'); },
-    footerDone: function () { setText(10, '  <p>Made at USC</p>'); st('st-i', 'Saved to draft'); },
+    mayaClaim: function () { wnRow('a', 'index.html', "Andrew's AI · Andrew · editing the title", 'busy', 'var(--jordan)', 'A'); foot.className = 'file-foot'; foot.textContent = "Andrew's AI is working in index.html."; st('st-a', 'Editing the title', 'busy'); },
+    jordanApproach: function () { wnRow('i', 'index.html', "Iris's AI · Iris · heading for the same file", 'wait', 'var(--sam)', 'I'); foot.className = 'file-foot warn'; foot.textContent = "Iris's AI is heading for the same file."; st('st-i', 'Heading for the title', 'wait'); },
+    jordanFooter: function () { wnRow('i', 'index.html · footer', "Iris's AI · Iris · editing the footer", 'busy', 'var(--sam)', 'I'); foot.className = 'file-foot ok'; foot.textContent = 'No collision. Two AIs, two different parts.'; st('st-i', 'Editing the footer', 'busy'); },
+    jordanWait: function () { wnRow('i', 'Waiting for index.html', "Iris's AI · Iris · waiting its turn", 'wait', 'var(--sam)', 'I'); foot.className = 'file-foot ok'; foot.textContent = "Iris's AI is waiting its turn."; st('st-i', 'Waiting its turn', 'wait'); },
+    mayaDone: function () { wnRow('a', 'Saved: new title', "Andrew's AI · Andrew · just now", 'done', 'var(--jordan)', 'A'); st('st-a', 'Saved to draft'); },
+    footerDone: function () { wnRow('i', 'Saved: new footer', "Iris's AI · Iris · just now", 'done', 'var(--sam)', 'I'); st('st-i', 'Saved to draft'); },
     approved: function () {
-      each(lineEls, function (r) { r.classList.remove('claim-m', 'claim-j'); });
-      lineEls[2].classList.add('live'); if (lineEls[10].textContent.indexOf('Made at USC') > -1) lineEls[10].classList.add('live');
-      curM.classList.add('off'); curJ.classList.add('off');
+      wnClear();
       foot.className = 'file-foot ok'; foot.textContent = 'Approved by Evelyn. Live for the team.'; st('st-a', 'Idle'); st('st-i', 'Idle');
       $('stamp-approved').classList.add('show');
+      felix('work');
+      timers.push(setTimeout(function () { felix('saved'); }, 2800));
+      timers.push(setTimeout(function () { felix('idle'); $('stamp-approved').classList.remove('show'); }, 5600));
     }
   };
   var people = {
