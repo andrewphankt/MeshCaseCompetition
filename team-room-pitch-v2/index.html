@@ -1918,6 +1918,7 @@ Saved 2 files.</pre></div></div>
   function selectFloor(k) {
     each(document.querySelectorAll('.floor'), function (f) { f.setAttribute('aria-pressed', String(+f.dataset.floor === k)); });
     var d = $('floor-detail'), f = floors[k];
+    if (!d) return;
     d.innerHTML = '';
     d.appendChild(el('span', 'status', f.status));
     d.appendChild(el('h3', null, f.t));
