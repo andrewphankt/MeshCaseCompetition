@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="deck.css">
+<link rel="stylesheet" href="live.css">
 </head>
 <body>
 <!--
@@ -84,20 +85,49 @@
     <div class="script">So we built Mesh: one room for your team and everyone's agents.</div>
   </section>
 
-  <!-- 6b Setup: the real onboarding, one screen per click -->
+  <!-- 6b Setup: Mesh's onboarding, drawn live in HTML, one screen per click -->
   <section class="slide" data-title="Setup" data-section="Mesh">
     <h2 class="h2 rise">Three steps. One paste.</h2>
     <div class="desk sm rise">
       <div class="browser">
         <div class="chrome"><span class="dots"><i></i><i></i><i></i></span><span class="tab"><svg class="fav" aria-hidden="true"></svg>Mesh</span></div>
         <div class="bar"><span class="nav">&#8592; &#8594;</span><span class="url">agentslack-production.up.railway.app</span></div>
-        <div class="screen wide">
-          <img src="screens/setup-1-signin.jpg" alt="Mesh sign-in: Different Agents, Same Project, Continue with GitHub">
-          <img class="shot" data-step="1" src="screens/setup-2-project.jpg" alt="Step 2: Pick your project, a GitHub repo">
-          <img class="shot" data-step="2" src="screens/setup-3-agent.jpg" alt="Step 3: Which agent do you use? Claude, Codex, Gemini CLI or Antigravity">
-          <img class="shot" data-step="3" src="screens/setup-4-paste.jpg" alt="Paste this into Codex, with one Copy button">
-          <div class="slot"><b>Mesh · Setup</b><span>screens/setup-*.jpg</span></div>
-        </div>
+        <div class="screen wide has-img"><div class="live">
+          <div class="lv" data-orbits="bot">
+            <div class="stepper"><span class="now"><b>1</b>Sign in</span><hr class=""><span class=""><b>2</b>Project</span><hr class=""><span class=""><b>3</b>Agent</span></div>
+            <div class="center"><svg class="logo fav" aria-hidden="true"></svg><div class="word">MESH</div><h3>Different Agents, Same Project</h3><span class="btn press"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="9" r="2.5"/><path d="M6 8.5v7M18 11.5c0 3-4 3.5-9.5 5"/></svg>Continue with GitHub</span></div>
+            <div class="foot">What Is Mesh<br>&#8964;</div>
+          </div>
+          <div class="lv" data-step="1" data-act="project">
+            <div class="stepper"><span class="done"><b>&#10003;</b>Sign in</span><hr class="done"><span class="now"><b>2</b>Project</span><hr class=""><span class=""><b>3</b>Agent</span></div>
+            <div class="center"><div class="pick">
+              <h3>Pick your project</h3>
+              <div class="search" data-type="MeshCase" data-placeholder="Search"><span class="t">Search</span><span class="tcaret"></span></div>
+              <div class="repos"><div class="repo" data-name="MeshCaseCompetition"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="9" r="2.5"/><path d="M6 8.5v7M18 11.5c0 3-4 3.5-9.5 5"/></svg><span>andrewphankt / <b>MeshCaseCompetition</b></span><em>Public</em></div><div class="repo" data-name="study-sprint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="9" r="2.5"/><path d="M6 8.5v7M18 11.5c0 3-4 3.5-9.5 5"/></svg><span>team4 / <b>study-sprint</b></span><em>Private</em></div><div class="repo" data-name="club-finder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="9" r="2.5"/><path d="M6 8.5v7M18 11.5c0 3-4 3.5-9.5 5"/></svg><span>team4 / <b>club-finder</b></span><em>Private</em></div><div class="repo" data-name="landing-page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="9" r="2.5"/><path d="M6 8.5v7M18 11.5c0 3-4 3.5-9.5 5"/></svg><span>andrewphankt / <b>landing-page</b></span><em>Public</em></div></div>
+              <div class="row2"><div class="search"><span class="t">Or paste a GitHub link</span></div><span class="ghost">Open Project</span></div>
+              <div class="link">I Have an Invite Link</div>
+            </div></div>
+          </div>
+          <div class="lv" data-step="2" data-orbits="bot">
+            <span class="x">&#215;</span>
+            <div class="center"><h3>Which agent do you use?</h3>
+              <div class="agents">
+                <div class="agent"><svg viewBox="0 0 48 48" aria-hidden="true"><g stroke="#D97757" stroke-width="4.2" stroke-linecap="round"><line x1="24" y1="24" x2="38.7" y2="27.0"/><line x1="24" y1="24" x2="38.2" y2="36.6"/><line x1="24" y1="24" x2="28.8" y2="38.2"/><line x1="24" y1="24" x2="20.2" y2="42.6"/><line x1="24" y1="24" x2="14.1" y2="35.2"/><line x1="24" y1="24" x2="6.0" y2="30.0"/><line x1="24" y1="24" x2="9.3" y2="21.0"/><line x1="24" y1="24" x2="9.8" y2="11.4"/><line x1="24" y1="24" x2="19.2" y2="9.8"/><line x1="24" y1="24" x2="27.8" y2="5.4"/><line x1="24" y1="24" x2="33.9" y2="12.8"/><line x1="24" y1="24" x2="42.0" y2="18.0"/></g></svg>Claude</div>
+                <div class="agent choose"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><g transform="translate(24 24)"><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(0)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(60)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(120)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(180)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(240)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(300)"/></g></svg>Codex</div>
+                <div class="agent"><svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="gem" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f8df5"/><stop offset=".55" stop-color="#9b72e8"/><stop offset="1" stop-color="#d96fa8"/></linearGradient></defs><path fill="url(#gem)" d="M24 3c1.6 11.2 8.8 18.4 21 21-12.2 2.6-19.4 9.8-21 21-1.6-11.2-8.8-18.4-21-21C15.2 21.4 22.4 14.2 24 3z"/></svg>Gemini CLI</div>
+              </div>
+            </div>
+          </div>
+          <div class="lv" data-step="3" data-orbits="ic-codex" data-act="paste">
+            <span class="x">&#215;</span>
+            <div class="center"><span class="logo" style="color:#18181b"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><g transform="translate(24 24)"><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(0)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(60)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(120)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(180)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(240)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(300)"/></g></svg></span>
+              <h3 style="margin-top:18px">Paste this into Codex</h3>
+              <span class="btn copy"><span class="c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>Copy</span><span class="c2">&#10003; Copied</span></span>
+              <div class="show">&#9656; Show the text</div>
+              <div class="links"><span>Back</span><span>Use Terminal Instead</span></div>
+            </div>
+          </div>
+        </div></div>
       </div>
     </div>
     <div class="steps-cap rise">
@@ -106,23 +136,27 @@
       <span data-cap="2"><i>3</i>Pick your agent</span>
       <span data-cap="3"><i>&#10003;</i>Paste one message</span>
     </div>
-    <div class="script">Here's the whole setup. These are our real screens. One: sign in with GitHub. [click] Two: pick your project, which is just your GitHub repo. [click] Three: pick the agent you already use: Claude, Codex, Gemini or Antigravity. [click] Then Mesh gives you one message. Copy it, paste it into your agent, and your agent sets itself up. No git commands, no config files. Remember the 33 minutes? This is the fix.</div>
+    <div class="script">Here's the whole setup, the way Mesh really works. One: sign in with GitHub. [click] Two: pick your project, which is just your GitHub repo. [click] Three: pick the agent you already use: Claude, Codex or Gemini. [click] Then Mesh gives you one message. Copy it, paste it into your agent, and your agent sets itself up. Nobody types a git command. Remember the 33 minutes? This is the fix.</div>
   </section>
 
-  <!-- 7 The room -->
+  <!-- 7 The room, with two features lifted out -->
   <section class="slide" data-title="The room" data-section="Mesh">
     <h2 class="h2 rise">Everyone's work. One shared draft.</h2>
-    <div class="desk rise">
+    <div class="desk tallshot rise">
       <div class="browser">
         <div class="chrome"><span class="dots"><i></i><i></i><i></i></span><span class="tab"><svg class="fav" aria-hidden="true"></svg>Mesh</span></div>
         <div class="bar"><span class="nav">&#8592; &#8594;</span><span class="url">agentslack-production.up.railway.app</span></div>
-        <div class="screen">
-          <img src="screens/preview.jpg" alt="Mesh's Preview tab: the team's draft as a live page, with the list of saved changes under it">
+        <div class="screen tall">
+          <img src="screens/preview.jpg" alt="Mesh's Preview tab: the team's draft as a live page, with tabs for each preview and the saved changes under it">
           <div class="slot"><b>Mesh · Preview</b><span>screens/preview.jpg</span></div>
         </div>
       </div>
+      <div class="pop" data-step="1" data-nw="1189" data-region="356,70,130,34" data-zoom="2.6" data-dx="-300" data-dy="-20"></div>
+      <div class="callout" data-step="1" data-side="below"><span class="tag">New</span><b>A tab for every preview.</b><span>The deck, the app, a prototype. The whole team flips between them.</span></div>
+      <div class="pop" data-step="2" data-nw="1189" data-region="240,556,949,150" data-zoom="1.08" data-dx="-150" data-dy="110"></div>
+      <div class="callout" data-step="2" data-side="right"><b>Push sends it public.</b><span>Every saved change waits here until a person says go.</span></div>
     </div>
-    <div class="script">This is the room, our real one. Every agent's work saves into one shared draft, and the Preview shows that draft as a live page anyone on the team can open, coder or not. Yes, that's this deck inside it: we built this pitch in Mesh. Under it is every saved change, waiting for a person to send it out.</div>
+    <div class="script">This is the room, our real one. Every agent's work saves into one shared draft, and the Preview shows that draft as a live page anyone can open, coder or not. Yes, that's this deck inside it: we built this pitch in Mesh. [click] Up top, a tab for every preview: the deck, the app, a prototype. We added that this week. [click] And under it, every saved change waits. Nothing goes public until a person presses Push.</div>
   </section>
 
   <!-- 8 Changes -->
@@ -137,16 +171,20 @@
           <div class="slot"><b>Mesh · Changes</b><span>screens/changes.jpg</span></div>
         </div>
       </div>
+      <div class="pop" data-step="1" data-nw="1189" data-region="872,64,317,124" data-zoom="1.75" data-dx="190" data-dy="-30"></div>
+      <div class="callout" data-step="1" data-side="below"><b>See who's working, live.</b><span>Every agent's task, right now, so two people never start the same thing.</span></div>
     </div>
-    <div class="script">This is Changes. Each time an agent finishes, it writes one plain sentence about what's different, the kind anyone on the team can read. On the right: who's working right now and on what. Nobody pastes updates into the group chat anymore.</div>
+    <div class="script">This is Changes. Each time an agent finishes, it writes one plain sentence about what's different, the kind anyone on the team can read. [click] On the right: who's working right now, and on what. Nobody pastes updates into the group chat anymore.</div>
   </section>
 
   <div id="progress" aria-hidden="true"></div>
 </main>
 
+<div id="ic-codex" hidden><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><g transform="translate(24 24)"><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(0)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(60)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(120)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(180)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(240)"/><rect x="-6" y="-18" width="12" height="21" rx="6" transform="rotate(300)"/></g></svg></div>
 <div id="notes" hidden></div>
 <div id="scriptview" hidden></div>
 <div id="hint">N script · S full script · F full screen</div>
 <script src="deck.js"></script>
+<script src="live.js"></script>
 </body>
 </html>

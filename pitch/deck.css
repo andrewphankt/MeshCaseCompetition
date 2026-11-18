@@ -164,3 +164,8 @@ body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: anti
   .rise, [data-step].hide { opacity: 1 !important; transform: none !important; filter: none !important; }
   #progress, #notes, #hint { display: none !important; }
 }
+
+/* Taller screenshot (the Preview with its tabs row) */
+.browser .screen.tall { aspect-ratio: 1189 / 799; }
+.desk.tallshot .browser { width: 820px; }
+.screen.has-img .slot { display: none; }
