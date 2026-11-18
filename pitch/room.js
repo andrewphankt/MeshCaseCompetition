@@ -41,23 +41,32 @@
   /* 1. The whole room: a change comes in, then another, then a person pushes */
   acts.room = loop(function (root, later) {
     var q = function (s) { return root.querySelector(s); };
-    var rows = q('.rows'), count = q('.count'), hero = q('.hero'), cta = q('.cta'), chip = q('.chip'), site = q('.site');
-    var agS = q('[data-ag="S"]'), agI = q('[data-ag="I"]');
+    var rows = q('.rows'), count = q('.count'), hero = q('.hero'), cta = q('.cta'), chip = q('.chip'), site = q('.site'), rl = q('.site .rl');
+    var agS = q('[data-ag="S"]'), agI = q('[data-ag="I"]'), n = 2;
     function status(a, on, txt) { a.classList.toggle('work', on); a.querySelector('small').textContent = txt; }
-    function build(t) { chip.innerHTML = '<span class="spin"></span>Building new save'; chip.classList.add('show'); site.classList.add('reload');
-      later(function () { site.classList.remove('reload'); chip.innerHTML = '&#10003; Updated'; }, t); later(function () { chip.classList.remove('show'); }, t + 1400); }
+    /* While an agent works, its change waits greyed out in the dock. When the save lands, the row turns solid
+       and the Preview (always the newest draft) simply refreshes: Building new save, then Updated. */
+    function working(k, text) { var r = row(k, text, 'saving'); r.classList.add('pending'); rows.insertBefore(r, rows.firstChild); return r; }
+    function saved(r, apply) {
+      r.classList.remove('pending'); r.querySelector('em').textContent = 'now'; n++; count.textContent = n + ' new';
+      chip.innerHTML = '<span class="spin"></span>Building new save'; chip.classList.add('show'); rl.classList.add('spin-once');
+      later(function () { site.classList.add('refresh'); apply(); chip.innerHTML = '&#10003; Updated'; }, 1200);
+      later(function () { site.classList.remove('refresh'); rl.classList.remove('spin-once'); }, 1500);
+      later(function () { chip.classList.remove('show'); }, 2600);
+    }
     rows.innerHTML = ''; rows.appendChild(row('T', 'Footer links updated', '1h')); rows.appendChild(row('I', 'Pricing section added', '3h'));
     count.textContent = '2 new'; hero.classList.remove('big'); cta.classList.remove('on'); q('.uptodate').classList.remove('show');
-    status(agS, true, 'In index.html'); status(agI, false, 'Idle');
-    later(function () { build(1300); }, 1600);
-    later(function () { hero.classList.add('big'); rows.insertBefore(row('S', 'Hero title is bigger', 'now'), rows.firstChild); count.textContent = '3 new'; status(agS, false, 'Idle'); status(agI, true, 'In signup.html'); }, 2900);
-    later(function () { build(1300); }, 5600);
-    later(function () { cta.classList.add('on'); rows.insertBefore(row('I', 'Sign-up button added', 'now'), rows.firstChild); count.textContent = '4 new'; status(agI, false, 'Idle'); }, 6900);
+    status(agS, false, 'Idle'); status(agI, false, 'Idle');
+    var r1, r2;
+    later(function () { status(agS, true, 'In index.html'); r1 = working('S', 'Hero title is bigger'); }, 700);
+    later(function () { status(agS, false, 'Idle'); saved(r1, function () { hero.classList.add('big'); }); }, 2600);
+    later(function () { status(agI, true, 'In signup.html'); r2 = working('I', 'Sign-up button added'); }, 5000);
+    later(function () { status(agI, false, 'Idle'); saved(r2, function () { cta.classList.add('on'); }); }, 6900);
     later(function () {
       fly(q('.plane'), q('.dock .btn-k'), root, later);
       later(function () { clearRows(rows, later, function () { count.textContent = 'Up to date'; q('.uptodate').classList.add('show'); }); }, 500);
-    }, 9200);
-  }, 13500);
+    }, 10200);
+  }, 14500);
 
   /* 2. Changes: plain-English notes arrive, newest on top */
   var NOTES = [

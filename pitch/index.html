@@ -189,7 +189,7 @@
             <div class="top"><b>Preview</b><span class="seg"><span>Desktop</span><span>Phone</span></span><span class="btn-k">Invite</span></div>
             <div class="canvas">
               <div class="chip"></div>
-              <div class="site"><div class="sb"><i></i><i></i><i></i>&nbsp;study-sprint-git-draft.vercel.app</div>
+              <div class="site"><div class="sb"><i></i><i></i><i></i><span class="rl">&#8635;</span>study-sprint-git-draft.vercel.app</div>
                 <div class="ss">
                   <div class="ss-bg" aria-hidden="true"><i></i><i></i><i></i></div>
                   <div class="ss-nav"><span class="ss-logo"><i></i>Study Sprint</span><span class="ss-links"><span>Product</span><span>For clubs</span><span>Pricing</span></span><span class="ss-in">Log in</span><span class="ss-go">Get started</span></div>
@@ -424,6 +424,20 @@
     <div class="script">Our biggest risk: the whole promise rests on the stop. Will every agent obey it, every time? Claude Code and Codex run Mesh's check by themselves. Gemini follows a rules file, which is weaker. [click] So the first thing we'd test: two agents, one file, again and again, on all three. Count anything lost. That's what we'd de-risk before building anything new.</div>
   </section>
 
+  <!-- One more thing: this deck was built in Mesh -->
+  <section class="slide" data-title="Built in Mesh" data-section="Next">
+    <p class="kicker rise">One more thing</p>
+    <h2 class="h1 rise">We built this deck in <span class="grad">Mesh</span>.</h2>
+    <div class="stats built rise">
+      <div class="stat"><span class="v">4</span><span class="l">teammates</span></div>
+      <div class="stat"><span class="v">3</span><span class="l">different agents</span></div>
+      <div class="stat"><span class="v">5</span><span class="l">requests between agents</span></div>
+      <div class="stat"><span class="v">1</span><span class="l">shared draft</span></div>
+    </div>
+    <p class="sub" data-step="1" style="margin-top:56px">Every slide you just saw went through the room.</p>
+    <div class="script">One more thing. This deck wasn't made in Google Slides. We built it in Mesh. Four teammates, three different agents (Claude, Codex and Gemini), five requests between agents this week, and one shared draft. [click] Every slide you just saw went through the room. These numbers come from our own room, not from users.</div>
+  </section>
+
   <!-- 21 Close -->
   <section class="slide wash" data-title="Close" data-section="Next" data-noprogress>
     <svg class="mark rise" data-spin aria-hidden="true"></svg>
@@ -443,21 +457,7 @@
         <path d="M34 0 L-12 0 L-5 9 Z" fill="#a1a1aa" stroke="#18181b" stroke-width="2" stroke-linejoin="round"/>
       </svg>
     </div>
-    <div class="script">Your own agent. One shared draft. The whole team. That's Mesh. We built this deck in it. Thank you, we'd love your questions.</div>
-  </section>
-
-  <!-- Q&A, with Evelyn's strategies for where Mesh grows -->
-  <section class="slide" data-title="Q&amp;A" data-section="Q&amp;A">
-    <div class="bgfx bg-bubbles" aria-hidden="true"><svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice"><g><rect x="140" y="0" width="220" height="92" rx="46" stroke="#fdba74"/></g><g><rect x="420" y="0" width="160" height="67" rx="33" stroke="#93c5fd"/></g><g><rect x="1500" y="0" width="240" height="100" rx="50" stroke="#c4b5fd"/></g><g><rect x="1760" y="0" width="140" height="58" rx="29" stroke="#f9a8d4"/></g><g><rect x="260" y="0" width="180" height="75" rx="37" stroke="#86efac"/></g></svg></div>
-    <h2 class="display rise">Questions?</h2>
-    <p class="kicker rise" style="margin:56px 0 0">Evelyn's strategies for where Mesh grows</p>
-    <div class="bets four">
-      <div class="bet rise"><span class="n">01</span><b>Practice room</b><p>A safe first project with practice teammates and tooltips.</p></div>
-      <div class="bet rise"><span class="n">02</span><b>@mention any agent</b><p>Ask a teammate's agent right from the chat.</p></div>
-      <div class="bet rise"><span class="n">03</span><b>Campus hub</b><p>Find a team, or the one skill your team is missing.</p></div>
-      <div class="bet rise"><span class="n">04</span><b>Open source</b><p>Students who use Mesh help build it, and schools can see what runs.</p></div>
-    </div>
-    <div class="script">Thank you. We'd love your questions. If you're wondering where Mesh grows after those three bets, Evelyn has mapped out four strategies: a practice room for a safe first project, mentioning any teammate's agent from the chat, a campus hub to find a team or the skill you're missing, and open source, so the students who use Mesh help build it. Evelyn, do you want to take that?</div>
+    <div class="script">Your own agent. One shared draft. The whole team. That's Mesh. Thank you. ... Actually, wait: we forgot our Q&amp;A slide. Let's fix that live. [Switch to the Mesh room. Show Iris's change waiting in the draft, press Push, refresh, and open the Q&amp;A slide.]</div>
   </section>
 
   <div id="progress" aria-hidden="true"></div>
@@ -468,6 +468,16 @@
 <div id="scriptview" hidden></div>
 <div id="hint">N script · S full script · F full screen</div>
 <script src="deck.js"></script>
+<script>
+  /* Live demo: the Q&A slide lives in its own file. When a teammate's agent saves pitch/qa.html and it is pushed,
+     the deck adds it as the last slide. Until then the deck simply ends at the close. */
+  (function () {
+    try {
+      var x = new XMLHttpRequest(); x.open('GET', 'qa.html?' + Date.now(), false); x.send();
+      if (x.status === 200 && /<section/.test(x.responseText)) document.getElementById('progress').insertAdjacentHTML('beforebegin', x.responseText);
+    } catch (e) {}
+  })();
+</script>
 <script src="agent-icons.js"></script>
 <script src="avatars.js"></script>
 <script src="live.js"></script>
