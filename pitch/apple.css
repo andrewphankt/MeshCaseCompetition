@@ -70,3 +70,19 @@
 .room.big .page.real iframe { height: 1080px; transform: scale(.6177); }
 .stats.built { grid-template-columns: repeat(4, 330px); gap: 30px; margin-top: 70px; }
 .stats.built .stat .v { font-size: 150px; height: 140px; }
+
+/* Slide 13 fix: the tab strip sits on top and the page fills the rest of the screen */
+.room.big .canvas { flex-direction: column !important; align-items: stretch !important; }
+.room.big .strip { width: 100%; flex: none; }
+.room.big .frame { flex: none !important; width: 100%; height: calc(100% - 56px) !important; }
+/* Show more of the room: the laptop bleeds less, so the sidebar peeks in */
+.bleed-dev { left: -230px !important; width: 1440px; }
+.room.big .page.real iframe { width: 1920px; height: 1080px; transform: scale(.555); }
+
+/* Slide 14 fix: the Push button's label stays white, also when it turns green */
+.pushdemo .dh .btn-k, .pushdemo .dh .btn-k span { color: #fff; font: 600 21px/1 var(--font); }
+/* Slide 13: laptop pulled in so the room's sidebar shows; only its bezel runs off the left edge */
+.bleed-dev { left: -60px !important; width: 1300px !important; }
+.bleed-copy { width: 470px; margin-right: -20px; }
+.room.big .page.real iframe { transform: scale(.482) !important; }
+.bleed-copy .h2 { font-size: 62px; } .bleed-copy .sub { font-size: 27px; }
