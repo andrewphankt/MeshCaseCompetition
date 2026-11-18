@@ -778,6 +778,42 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .tx-slide.active .tx-next { animation: txup .7s cubic-bezier(.2,.8,.2,1) .28s both; }
 .tx-slide.active .tx-ghost { animation: txghost 1.2s cubic-bezier(.2,.8,.2,1) both; }
 @keyframes txghost { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: none; } }
+
+/* ---------- v2: problem told with terminals (Andrew's opening) ---------- */
+.pr-h { font-size: 74px; max-width: 1300px; }
+.terms3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+.terms2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; margin-top: 36px; }
+.term { background: #15161c; border-radius: 14px; overflow: hidden; box-shadow: 0 18px 40px rgba(20,16,10,.22); border: 1px solid #2a2c36; }
+.term-bar { display: flex; align-items: center; gap: 7px; padding: 12px 16px; background: #1d1f27; }
+.term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #3a3d4a; }
+.term-who { margin-left: 10px; font: 600 16px var(--body); color: #12131a; background: var(--c); border-radius: 6px; padding: 4px 9px; }
+.term-body { padding: 18px 20px 22px; font: 19px/1.7 var(--mono); color: #d7dbe6; min-height: 150px; }
+.tl-p { color: #9fe1cb; } .tl-o b { color: #ED93B1; font-weight: 600; } .tl-o.ok { color: #c0dd97; }
+.gone { display: flex; align-items: center; gap: 18px; margin-top: 26px; background: #fff3f1; border: 2px solid #e24b4a; border-radius: 14px; padding: 16px 22px; max-width: 900px; }
+.gone-x { width: 44px; height: 44px; border-radius: 50%; background: #e24b4a; color: #fff; display: grid; place-items: center; font: 700 36px/1 Arial, sans-serif; flex: none; }
+.gone b { display: block; font: 700 28px var(--display); color: #a32d2d; } .gone span { font-size: 20px; color: #5f5e5a; }
+.chatcard { margin-top: 30px; background: #fff; color: #16171b; border-radius: 16px; border: 1px solid #e6e6e9; box-shadow: 0 18px 40px rgba(20,16,10,.16); padding: 6px 26px 18px; max-width: 980px; }
+.chat-head { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0 10px; border-bottom: 1px solid #ececef; margin-bottom: 8px; }
+.chat-head b { font: 700 21px var(--body); } .chat-head span { font: 500 16px var(--body); color: #70737d; }
+.cm { display: flex; gap: 14px; padding: 8px 0; } .cm-av { width: 36px; height: 36px; border-radius: 50%; color: #12131a; display: grid; place-items: center; font: 700 16px var(--body); flex: none; }
+.cm b { font: 700 18px var(--body); } .cm p { margin: 2px 0 0; font-size: 21px; line-height: 1.35; }
+.cm-code { margin: 6px 0 0; background: #f4f4f6; border-radius: 8px; padding: 10px 14px; font: 16px/1.5 var(--mono); color: #2a2c33; }
+/* ---------- v2: agents link up into one room ---------- */
+.cx { position: relative; height: 520px; margin-top: 26px; }
+.cx-svg { position: absolute; inset: 0; width: 1380px; height: 520px; overflow: visible; }
+.cx-line { fill: none; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.1s cubic-bezier(.45,0,.2,1); }
+.cx-slide[data-at="1"] .cx-line, .cx-slide[data-at="2"] .cx-line { stroke-dashoffset: 0; }
+.cx-agent { position: absolute; left: 0; width: 400px; height: 120px; display: flex; align-items: center; gap: 16px; padding: 0 24px; background: #15161c; border-radius: 16px; border: 2px solid var(--c); color: #f4f4f5; box-shadow: 0 14px 30px rgba(20,16,10,.2); }
+.cx-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 6px color-mix(in srgb, var(--c) 30%, transparent); flex: none; }
+.cx-agent b { display: block; font: 700 28px var(--body); } .cx-agent small { font: 500 18px var(--mono); color: #a1a1aa; }
+.cx-room { position: absolute; left: 900px; top: 130px; width: 480px; height: 260px; background: #fff; color: #16171b; border-radius: 18px; border: 2px solid #e6e6e9; padding: 26px 30px; display: flex; flex-direction: column; gap: 10px; transition: border-color .5s, box-shadow .5s, transform .5s; }
+.cx-slide[data-at="1"] .cx-room, .cx-slide[data-at="2"] .cx-room { border-color: #ED93B1; box-shadow: 0 0 0 10px rgba(237,147,177,.22), 0 20px 44px rgba(20,16,10,.2); transform: scale(1.02); }
+.cx-k { font: 700 30px/1 var(--hand); color: var(--pen, #c8432b); }
+.cx-room b { font: 800 38px/1.05 var(--display); }
+.cx-faces { display: flex; gap: 6px; } .cx-faces i { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: 700 15px var(--body); font-style: normal; color: #12131a; }
+.cx-room small { font: 500 19px var(--body); color: #70737d; }
+.cx-cap { margin: 14px 0 0; font: 600 30px/1.3 var(--body); }
+.cx-steps { display: none; }
 </style>
 </head>
 <body>
@@ -842,94 +878,57 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <div class="tx-hand">&mdash; part one</div>
     <h2 class="tx-title">The <span class="tx-mark">problem</span></h2>
     <p class="tx-sub">Why building with AI breaks down for teams.</p>
-    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>The problem</li><li>Where people get stuck</li><li>The proof</li><li>Why it breaks</li></ul></div>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Everyone has an agent</li><li>They can&rsquo;t see each other</li><li>The go-between</li><li>The proof</li></ul></div>
   </div>
   <aside class="notes">Section 1 of 4: the problem. One breath, then click on. The two cursors are the problem in miniature: two AIs editing the same title.</aside>
 </section>
-<!-- 3 The problem -->
-<section class="slide" data-title="The problem" data-hook="stat">
+<!-- Problem 1: everyone has an agent -->
+<section class="slide" data-title="Everyone has an agent">
   <div class="eyebrow"><i></i>The problem</div>
-  <h2 class="h-l" style="max-width:1300px">AI made it possible to build alone. Not <span class="hl">together</span>.</h2>
-  <div class="prob-stat">
-  <div class="stat2">
-    <div>
-      <div class="numrow"><span class="big dim" data-count="84">84%</span><p>of developers use or plan to use AI tools.</p></div>
-      <div class="numrow" data-step="1"><span class="big hl" data-count="17">17%</span><p>say AI agents improved how their team works together.</p></div>
-    </div>
-    <div>
-      <div class="dots" id="dots" aria-hidden="true"></div>
-      <div class="dots-cap">Each dot is 1 in 100 developers</div>
-    </div>
+  <h2 class="h-l pr-h">Everyone on your team has an agent now.</h2>
+  <div class="terms3">
+    <div class="term "><div class="term-bar"><i></i><i></i><i></i><span class="term-who" style="--c:var(--maya)">Claude Code · Sarah</span></div><div class="term-body"><div class="tl tl-p">&gt; make the hero title bigger</div><div class="tl tl-o ">Editing <b>index.html</b></div></div></div>
+    <div class="term "><div class="term-bar"><i></i><i></i><i></i><span class="term-who" style="--c:var(--sam)">Codex · Iris</span></div><div class="term-body"><div class="tl tl-p">&gt; add a sign-up button</div><div class="tl tl-o ">Editing <b>index.html</b></div></div></div>
+    <div class="term "><div class="term-bar"><i></i><i></i><i></i><span class="term-who" style="--c:var(--priya)">Gemini · Tony</span></div><div class="term-body"><div class="tl tl-p">&gt; fix the footer links</div><div class="tl tl-o ">Editing <b>index.html</b></div></div></div>
   </div>
+  <div class="src">84% of developers use or plan to use AI tools · Stack Overflow Developer Survey 2025</div>
+  <aside class="notes">This year, coding agents stopped being a solo tool. On a student team, everyone has one: Sarah uses Claude Code, Iris uses Codex, Tony uses Gemini. Each works in their own window, on their own laptop. Look at the last line in every window: they're all in the same file.</aside>
+</section>
+<!-- Problem 2: they can't see each other -->
+<section class="slide" data-title="They can't see each other">
+  <div class="eyebrow"><i></i>The problem</div>
+  <h2 class="h-l pr-h">But they can't see each other.</h2>
+  <div class="terms2">
+    <div class="term "><div class="term-bar"><i></i><i></i><i></i><span class="term-who" style="--c:var(--maya)">Claude Code · Sarah</span></div><div class="term-body"><div class="tl tl-p">&gt; make the hero title bigger</div><div class="tl tl-o ">Editing <b>index.html</b>, line 3</div><div class="tl tl-o ok">&check; Saved. Title is bigger.</div></div></div>
+    <div class="term "><div class="term-bar"><i></i><i></i><i></i><span class="term-who" style="--c:var(--sam)">Codex · Iris</span></div><div class="term-body"><div class="tl tl-p" data-step=1>&gt; change the hero title to &ldquo;Study together&rdquo;</div><div class="tl tl-o " data-step=1>Editing <b>index.html</b>, line 3</div><div class="tl tl-o ok" data-step=1>&check; Saved.</div></div></div>
   </div>
-  <div class="src">Stack Overflow Developer Survey 2025, via SD Times and The New Stack</div>
-  <aside class="notes">This is the problem the whole pitch answers. Read the headline, let the 84 dots fill: almost every developer uses AI. Then click: only 17 in 100 say AI agents made their team work better together. AI made building alone easy; building together is still broken. Why now: this year, AI coding tools went from one person to whole teams.</aside>
+  <div class="gone" data-step="2"><span class="gone-x">&times;</span><div><b>Sarah&rsquo;s change is gone.</b><span>Two agents, one file, one line. Nobody notices until something breaks.</span></div></div>
+  <div class="src">Only 17% say AI agents improved how their team works together · Stack Overflow Developer Survey 2025</div>
+  <aside class="notes">Two agents, one file, one line. Click: Iris's agent saves on top of Sarah's. Click: Sarah's change is just gone, and nobody notices until something breaks. That's why only 17 in 100 developers say agents made their teamwork better.</aside>
 </section>
-<!-- 3b Where people get stuck -->
-<section class="slide" data-title="Where people get stuck">
-  <div class="eyebrow"><i></i>Where people get stuck</div>
-  <h2 class="h-l" style="max-width:1300px">People with ideas can get an AI to write code. Then they get stuck.</h2>
-  <ol class="prob-lines">
-    <li data-step="1"><b>1</b>You don't know the words.</li>
-    <li data-step="2"><b>2</b>You can't follow what your AI, or your team's, just did.</li>
-    <li data-step="3"><b>3</b>You don't know who could help.</li>
-  </ol>
-  <aside class="notes">This is who Mesh is for: people with ideas, not engineers. Pause after each line.</aside>
+<!-- Problem 3: people become the go-between -->
+<section class="slide" data-title="People become the go-between">
+  <div class="eyebrow"><i></i>The problem</div>
+  <h2 class="h-l pr-h">So people become the go-between.</h2>
+  <div class="chatcard">
+    <div class="chat-head"><b># team-project</b><span>5 members</span></div>
+    <div class="cm" data-step="1"><span class="cm-av" style="background:var(--maya)">S</span><div><b>Sarah</b><p>hey I just changed the big title, pls nobody touch index.html</p></div></div>
+    <div class="cm" data-step="1"><span class="cm-av" style="background:var(--sam)">I</span><div><b>Iris</b><p>oh no. my Codex just rewrote that same line</p></div></div>
+    <div class="cm" data-step="2"><span class="cm-av" style="background:var(--maya)">S</span><div><b>Sarah</b><p>can you paste what your agent changed so I can tell Claude?</p></div></div>
+    <div class="cm" data-step="2"><span class="cm-av" style="background:var(--sam)">I</span><div><b>Iris</b><pre class="cm-code">Updated index.html
+- hero title: "Study together"
++ sign-up button under the title
+Saved 2 files.</pre></div></div>
+    <div class="cm" data-step="3"><span class="cm-av" style="background:var(--priya)">T</span><div><b>Tony</b><p>wait, which version is the real one?</p></div></div>
+  </div>
+  <aside class="notes">Sound familiar? "Hey, I just changed the big title, nobody touch index.html." Click: then someone pastes what their agent did into the group chat, so the next agent knows. Click: then someone asks which version is the real one. The team spends its time being the messenger between agents. And if you've never coded, you can't follow any of this.</aside>
 </section>
-
 <!-- 4 Reframe -->
 <section class="slide center" data-title="The proof" data-hook="reframe">
   <h2 class="h-l" style="max-width:1300px">We tested it on ourselves.</h2>
   <h2 class="h-l typed" style="max-width:1300px; margin-top:20px" data-step="1" id="reframe-2">With engineers on the call, a first-timer's first save took <span class="hl">33 minutes and 20 messages</span>.</h2>
   <p class="lede proof-small" data-step="2">Two GitHub tokens were pasted by accident.</p>
   <aside class="notes">Evelyn: "That first-timer was me." If it took that long with help one call away, imagine doing it alone. One beat per line: the second line types itself out, the third comes on the next click. If asked for more evidence: building this very deck, we ended up with two decks and the preview showing the old one. We fixed Mesh the same day.</aside>
-</section>
-
-<!-- 5 Three reasons -->
-<section class="slide" data-title="Why it breaks">
-  <div class="eyebrow"><i></i>Why it breaks</div>
-  <h2 class="h-m">Why building together breaks</h2>
-  <p class="lede why-sub">Three things go wrong when a mixed team builds with AI.</p>
-  <div class="reasons" data-interactive>
-    <button type="button" class="flip reason-flip reason" data-step="1" aria-pressed="false" aria-label="Reason 1: tap to see the fix">
-      <span class="inner">
-        <span class="face front">
-      <div class="scene s1" aria-hidden="true">
-        <div class="codeline l1"></div><div class="codeline l2"></div><div class="codeline l3"></div>
-        <svg class="mini a" viewBox="0 0 24 24"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg>
-        <svg class="mini b" viewBox="0 0 24 24" style="transform:scaleX(-1)"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg>
-        <div class="boom">OVERWRITTEN</div>
-      </div>
-      <div class="n">1</div><h3>AIs can't see each other</h3><p>Two teammates' AIs edit the same file and overwrite each other's work.</p><span class="tapme">Tap to see the fix</span></span>
-        <span class="face back"><span class="bk">How the room fixes it</span><h3>A stop before collisions</h3><p>If a teammate's AI is already in a file, yours stops and tells you who and why.</p></span>
-      </span>
-    </button>
-    <button type="button" class="flip reason-flip reason" data-step="2" aria-pressed="false" aria-label="Reason 2: tap to see the fix">
-      <span class="inner">
-        <span class="face front">
-      <div class="scene s2" aria-hidden="true">
-        <div class="win w1">Claude<i></i><i style="width:70%"></i></div>
-        <div class="win w2">Codex<i></i><i style="width:60%"></i></div>
-        <div class="clip">copy · paste</div>
-      </div>
-      <div class="n">2</div><h3>People become the go-between</h3><p>Teammates copy and paste updates from one AI to another to keep them in sync.</p><span class="tapme">Tap to see the fix</span></span>
-        <span class="face back"><span class="bk">How the room fixes it</span><h3>One shared feed</h3><p>The room is the go-between. Each turn, every AI hears what teammates changed, so nobody copies and pastes.</p></span>
-      </span>
-    </button>
-    <button type="button" class="flip reason-flip reason" data-step="3" aria-pressed="false" aria-label="Reason 3: tap to see the fix">
-      <span class="inner">
-        <span class="face front">
-      <div class="scene s3" aria-hidden="true">
-        <div class="feedlines"><div>refactor useAuth hook · 3 files<br>migrate schema v2 → v3<br>fix race in sync worker<br>bump deps, rerun lint<br>refactor useAuth hook · 3 files<br>migrate schema v2 → v3<br>fix race in sync worker<br>bump deps, rerun lint</div></div>
-        <div class="q">?</div>
-        <div class="out"><div class="av">?</div><small>Teammate</small></div>
-      </div>
-      <div class="n">3</div><h3>Non-coders get locked out</h3><p>The teammate who doesn't code can't follow the work, so they can't help shape it.</p><span class="tapme">Tap to see the fix</span></span>
-        <span class="face back"><span class="bk">How the room fixes it</span><h3>Everyone can follow</h3><p>Every AI writes one plain sentence about what it changed, and only a person can publish.</p></span>
-      </span>
-    </button>
-  </div>
-  <aside class="notes">Click the background once per reason; each plays a tiny scene. Then tap a card to flip it and show how the room fixes it. Reason 3, "Non-coders get locked out," is the heart of the pitch now. Slow down there.</aside>
 </section>
 
 <!-- Section 2: Meet Mesh -->
@@ -943,9 +942,28 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <div class="tx-hand">&mdash; part two</div>
     <h2 class="tx-title">Meet <span class="tx-mark"><span data-name>Mesh</span></span></h2>
     <p class="tx-sub">One room where your whole team builds with AI, whether or not you code.</p>
-    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>How it works</li><li>Three layers</li></ul></div>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Bring your own agent</li><li>How it works</li><li>Three layers</li></ul></div>
   </div>
-  <aside class="notes">Section 2 of 4, and the name reveal. Say it: Mesh. One room where your whole team builds with AI, whether or not you code. Then the four-step picture on the next slide.</aside>
+  <aside class="notes">Section 2 of 4, and the name reveal. Say it: Mesh. One room where your whole team builds with AI, whether or not you code. Then show how everyone's agents connect on the next slide.</aside>
+</section>
+<!-- Bring your own agent: agents link up into one room -->
+<section class="slide cx-slide" data-title="Bring your own agent">
+  <div class="eyebrow"><i></i>How Mesh connects</div>
+  <h2 class="h-l pr-h">Bring your own agent.</h2>
+  <div class="cx">
+    <svg class="cx-svg" viewBox="0 0 1380 520" aria-hidden="true">
+      <path class="cx-line" pathLength="1" d="M400 70 C 650 70, 700 260, 900 260" style="stroke:var(--maya)"/>
+      <path class="cx-line" pathLength="1" d="M400 260 C 650 260, 700 260, 900 260" style="stroke:var(--sam)"/>
+      <path class="cx-line" pathLength="1" d="M400 450 C 650 450, 700 260, 900 260" style="stroke:var(--priya)"/>
+    </svg>
+    <div class="cx-agent" style="top:10px; --c:var(--maya)"><span class="cx-dot"></span><div><b>Claude Code</b><small>Sarah&rsquo;s laptop</small></div></div>
+    <div class="cx-agent" style="top:200px; --c:var(--sam)"><span class="cx-dot"></span><div><b>Codex</b><small>Iris&rsquo;s laptop</small></div></div>
+    <div class="cx-agent" style="top:390px; --c:var(--priya)"><span class="cx-dot"></span><div><b>Gemini</b><small>Tony&rsquo;s laptop</small></div></div>
+    <div class="cx-room"><span class="cx-k">One Mesh room</span><b>One shared draft</b><div class="cx-faces"><i style="background:var(--maya)">S</i><i style="background:var(--sam)">I</i><i style="background:var(--priya)">T</i></div><small>Everyone sees what every agent is doing.</small></div>
+  </div>
+  <p class="cx-cap" data-step="2">You don&rsquo;t prompt inside Mesh. Mesh is the room between your agents.</p>
+  <aside class="notes">Everyone keeps the agent they already use, on their own laptop, on the plan they already pay for. Click: they all connect to one Mesh room, with one shared draft. Click: you don't prompt inside Mesh. Mesh is the room between your agents. Other tools bring your team into their workspace; we bring the room to where your agents already work.</aside>
+  <span class="cx-steps" aria-hidden="true"><i data-step="1"></i></span>
 </section>
 <!-- 6b How it works -->
 <section class="slide" data-title="How it works">
@@ -1057,7 +1075,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
         <li>A one-minute “Start here” tour.</li>
         <li>Pasted passwords get blocked.</li>
       </ul>
-      <a class="btn primary train-open" id="train-open" href="training/index.html?from=deck&amp;slide=13" target="_blank" rel="noopener">Open it full screen ↗</a>
+      <a class="btn primary train-open" id="train-open" href="training/index.html?from=deck&amp;slide=14" target="_blank" rel="noopener">Open it full screen ↗</a>
     </div>
     <div class="tframe">
       <div class="tbar"><i></i><i></i><i></i><span class="u">mesh · practice room · training mode on</span><span class="try">Hover anything, or press Start here</span></div>
@@ -1279,8 +1297,9 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     })(start);
   }
   var dots = $('dots');
-  for (var d = 0; d < 100; d++) { var sp = el('span'); sp.style.setProperty('--d', (d * 9) + 'ms'); dots.appendChild(sp); }
+  if (dots) for (var d = 0; d < 100; d++) { var sp = el('span'); sp.style.setProperty('--d', (d * 9) + 'ms'); dots.appendChild(sp); }
   function paintDots(on, hot) {
+    if (!dots) return;
     each(dots.children, function (s, k) { s.classList.toggle('on', k < on); s.classList.toggle('hot', k < hot); });
   }
   var reframe2 = $('reframe-2');
