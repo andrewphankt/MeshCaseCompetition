@@ -31,76 +31,106 @@
   --display: "Fraunces", Georgia, "Times New Roman", serif;
   --hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
   --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --m-bg: #ffffff; --m-side: #fafafa; --m-line: #e6e6e9; --m-ink: #16171b; --m-mute: #70737d; --m-soft: #f2f2f4;
   color-scheme: light;
 }
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; }
-body { background: var(--bg); color: var(--text); font: 16px/1.5 var(--font); }
+body { background: var(--m-bg); color: var(--m-ink); font: 16px/1.5 var(--font); }
 button, input { font: inherit; color: inherit; }
 button { cursor: pointer; }
 button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
 .app { display: grid; grid-template-rows: auto 1fr; height: 100%; }
 
-/* Header */
-header { display: flex; align-items: center; gap: 14px; padding: 12px 20px; background: var(--surface); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
-.brand { display: flex; align-items: center; gap: 10px; font: 800 24px/1 var(--display); letter-spacing: -0.01em; }
-.brand svg { width: 34px; height: 22px; }
-.roomname { font: 600 14px var(--mono); color: var(--muted); padding: 4px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
-.conn { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; padding: 6px 12px; border-radius: 999px; background: rgba(200,67,43,.1); color: var(--red); font-weight: 600; }
-.conn i { width: 9px; height: 9px; border-radius: 50%; background: currentColor; display: inline-block; }
-.conn.ok { background: rgba(42,157,102,.12); color: var(--green); }
+/* Training bar: training-mode extras, kept apart from the Mesh layout */
+.tbar { display: flex; align-items: center; gap: 12px; padding: 8px 16px; background: var(--learn); border-bottom: 1px solid var(--learn-line); flex-wrap: wrap; }
+.tbar-lab { font: 700 22px/1 var(--hand); color: var(--red); }
 .spacer { flex: 1; }
-.backdeck { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px; background: var(--learn); border: 1px solid var(--learn-line); color: var(--text); font-weight: 600; font-size: 14px; text-decoration: none; }
+.backdeck { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px; background: #fff; border: 1px solid var(--learn-line); color: var(--text); font-weight: 600; font-size: 14px; text-decoration: none; }
 .backdeck[hidden] { display: none; }
-.hbtn { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; font-weight: 600; font-size: 14px; }
-.hbtn.primary { background: var(--ink-btn); color: var(--surface); border-color: var(--ink-btn); }
+.hbtn { background: #fff; border: 1px solid var(--m-line); border-radius: 9px; padding: 7px 13px; font-weight: 600; font-size: 14px; color: var(--m-ink); }
+.hbtn.primary { background: var(--m-ink); color: #fff; border-color: var(--m-ink); }
 .toggle { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14px; background: transparent; border: 0; padding: 4px 2px; }
-.toggle .sw { width: 42px; height: 24px; border-radius: 999px; background: var(--line); position: relative; transition: background .2s; }
-.toggle .sw::after { content: ""; position: absolute; left: 3px; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .2s; }
+.toggle .sw { width: 42px; height: 24px; border-radius: 999px; background: #cfcfd4; position: relative; transition: background .2s; }
+.toggle .sw::after { content: ""; position: absolute; left: 3px; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .2s; }
 .toggle[aria-pressed="true"] .sw { background: var(--red); }
 .toggle[aria-pressed="true"] .sw::after { transform: translateX(18px); }
+.proto { font: 600 12px var(--mono); color: var(--muted); border: 1px dashed var(--learn-line); border-radius: 6px; padding: 4px 8px; background: #fff; }
 
-/* Body layout */
-.main { display: grid; grid-template-columns: 230px minmax(0, 1fr) 320px; min-height: 0; background-image: radial-gradient(circle, #ddd3c0 1.1px, transparent 1.4px); background-size: 28px 28px; }
-aside.side { border-right: 1px solid var(--line); padding: 16px; overflow: auto; background: var(--surface); }
-aside.right { border-left: 1px solid var(--line); border-right: 0; }
-.side h3 { font: 700 24px/1 var(--hand); color: var(--red); margin: 0 0 8px; }
-.side h3 + * { margin-bottom: 18px; }
-.chan { display: block; width: 100%; text-align: left; background: transparent; border: 0; padding: 6px 10px; border-radius: 8px; color: var(--muted); font-weight: 600; }
-.chan.on { background: var(--bg); color: var(--text); }
-.person { display: flex; align-items: center; gap: 10px; padding: 5px 4px; font-size: 15px; }
-.av { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; font-weight: 700; font-size: 13px; color: #fff; flex: none; }
-.av.ai { border-radius: 50%; font: 600 11px var(--mono); }
-.person small { color: var(--muted); }
+/* Mesh layout (same as the live demo slide): sidebar, channel, side panel */
+.app { display: grid; grid-template-rows: auto 1fr; height: 100%; }
+.main { display: grid; grid-template-columns: 250px minmax(0, 1fr) 320px; min-height: 0; background: var(--m-bg); }
+aside.m-side { background: var(--m-side); border-right: 1px solid var(--m-line); padding: 14px 10px; display: flex; flex-direction: column; gap: 2px; overflow: auto; }
+.m-ws { display: flex; align-items: center; gap: 9px; font: 700 17px var(--font); color: var(--m-ink); padding: 4px 8px 12px; }
+.m-logo { width: 20px; height: 20px; border-radius: 50%; background: radial-gradient(circle, var(--m-ink) 2px, transparent 2.5px) 0 0/7px 7px; opacity: .8; flex: none; }
+.m-ws .slash { color: var(--m-mute); font-weight: 500; margin-right: -5px; }
+.m-chev { margin-left: auto; color: var(--m-mute); font-size: 15px; }
+.m-nav { display: flex; flex-direction: column; gap: 1px; }
+.m-nav .tab { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: transparent; border: 0; font: 500 15px var(--font); color: var(--m-ink); padding: 7px 10px; border-radius: 8px; }
+.m-nav .tab small { font-size: 13px; color: var(--m-mute); }
+.m-nav .tab:hover, .m-nav .tab[aria-selected="true"] { background: var(--m-soft); }
+.m-nav svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.m-h { display: flex; justify-content: space-between; align-items: center; font: 600 12px var(--font); letter-spacing: .08em; text-transform: uppercase; color: var(--m-mute); padding: 12px 10px 5px; }
+.m-h span { font-size: 16px; letter-spacing: 0; }
+.chan { display: block; width: 100%; text-align: left; background: transparent; border: 0; font: 500 15px var(--font); color: var(--m-ink); padding: 6px 10px; border-radius: 8px; }
+.chan b { color: var(--m-mute); font-weight: 500; margin-right: 6px; }
+.chan.on { background: var(--m-ink); color: #fff; }
+.chan.on b { color: rgba(255,255,255,.7); }
+.person { display: flex; align-items: center; gap: 10px; padding: 4px 10px; font: 500 15px var(--font); color: var(--m-ink); }
+.person small { color: var(--m-mute); font-size: 13px; }
+.av { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 700 12px var(--font); color: #fff; flex: none; }
+.m-agent { display: flex; align-items: center; gap: 10px; padding: 4px 10px; font: 500 15px/1.15 var(--font); color: var(--m-ink); }
+.m-agent small { display: block; font: 500 12.5px var(--font); color: var(--m-mute); margin-top: 2px; }
+.m-agent small.bad { color: #c8432b; }
+.m-face { width: 30px; height: 30px; border-radius: 50%; flex: none; background: #f1f1f4 no-repeat 50% 4% / 260%; border: 2px solid #e6e6e9; }
+.m-face.felix { background: #f1ecf3 url(../sprites/stand.png) no-repeat 48% 6% / 270%; border-color: #f4c0d1; }
+.side-foot { margin-top: auto; padding: 14px 6px 2px; }
 
-/* Center: tabs */
-.center { display: flex; flex-direction: column; min-height: 0; }
-.tabs { display: flex; gap: 4px; padding: 10px 20px 0; border-bottom: 1px solid var(--line); background: var(--surface); }
-.tab { background: transparent; border: 0; border-bottom: 3px solid transparent; padding: 10px 14px; font-weight: 600; color: var(--muted); }
-.tab[aria-selected="true"] { color: var(--text); border-bottom-color: var(--text); }
-.panel { flex: 1; overflow: auto; padding: 20px; display: none; }
+/* Center: one channel; Preview and Changes open from the sidebar */
+.center { display: flex; flex-direction: column; min-height: 0; border-right: 1px solid var(--m-line); }
+.ch-head { display: flex; align-items: center; gap: 12px; padding: 10px 18px; border-bottom: 1px solid var(--m-line); min-height: 58px; }
+.ch-head .ch { font: 700 19px var(--font); color: var(--m-ink); }
+.stack { display: flex; margin-left: auto; padding-left: 8px; }
+.stack .av { width: 28px; height: 28px; border: 2px solid #fff; margin-left: -8px; font-size: 11px; }
+.conn { display: inline-flex; align-items: center; gap: 7px; font: 600 13px var(--font); color: #b26a00; max-width: 200px; line-height: 1.2; }
+.conn i { width: 10px; height: 10px; border-radius: 50%; background: #f0a020; display: inline-block; flex: none; }
+.conn.ok { color: #1a7f4b; } .conn.ok i { background: #1a9e5c; }
+.me-av { width: 34px; height: 34px; border-radius: 9px; background: #d99a00; color: #fff; display: grid; place-items: center; font: 700 14px var(--font); flex: none; }
+.panel { flex: 1; overflow: auto; padding: 14px 20px; display: none; }
 .panel.on { display: block; }
-.msg { display: grid; grid-template-columns: 34px 1fr; gap: 12px; margin-bottom: 16px; }
-.msg .av { width: 34px; height: 34px; }
-.msg .who { font-weight: 600; }
-.msg .who small { font-weight: 400; color: var(--muted); margin-left: 6px; }
+.msg { display: grid; grid-template-columns: 38px 1fr; gap: 12px; margin-bottom: 14px; color: #2a2c33; font-size: 16px; }
+.msg .av { width: 38px; height: 38px; font-size: 14px; }
+.msg .m-face { width: 38px; height: 38px; }
+.msg .who { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-weight: 700; color: var(--m-ink); }
+.msg .who .of { font-weight: 500; color: var(--m-mute); }
+.msg .who small { font: 500 13px var(--font); color: var(--m-mute); }
+.badge { font: 600 11px var(--font); letter-spacing: .06em; color: var(--m-mute); border: 1px solid var(--m-line); border-radius: 5px; padding: 1px 6px; }
 .learnline { display: none; margin-top: 8px; font-size: 14px; color: var(--learn-ink); background: var(--learn); border: 1px solid var(--learn-line); border-radius: 4px; padding: 8px 12px; box-shadow: 0 6px 14px rgba(60,45,20,.08); transform: rotate(-.3deg); }
 .learnline::before { content: "Training note "; font: 700 19px/1 var(--hand); color: var(--red); margin-right: 4px; }
 body.training .learnline { display: block; }
-.welcome { background: var(--surface); border: 1px solid #e6ddca; border-radius: 6px; padding: 22px 22px 18px; margin: 10px 0 22px; position: relative; box-shadow: 0 12px 26px rgba(60,45,20,.10); }
-.welcome::before { content: ""; position: absolute; top: -12px; left: 50%; width: 98px; height: 24px; transform: translateX(-50%) rotate(-3deg); background: rgba(226,214,184,.85); }
-.welcome h2 { margin: 0 0 6px; font: 700 26px/1.15 var(--display); }
-.welcome p { margin: 0 0 12px; color: var(--muted); }
+.welcome { background: #fff; border: 1px solid var(--m-line); border-radius: 12px; padding: 18px 20px 16px; margin: 4px 0 18px; box-shadow: 0 2px 8px rgba(20,20,30,.05); }
+.welcome h2 { margin: 0 0 6px; font: 700 21px/1.2 var(--font); color: var(--m-ink); }
+.welcome p { margin: 0 0 12px; color: var(--m-mute); }
 .starters { display: flex; flex-wrap: wrap; gap: 8px; }
-.starter { background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 600; }
+.starter { background: var(--m-soft); border: 1px solid var(--m-line); border-radius: 999px; padding: 7px 13px; font-size: 14px; font-weight: 600; color: var(--m-ink); }
 .starter:hover { background: var(--learn); border-color: var(--learn-line); }
-.composer { border-top: 1px solid var(--line); padding: 12px 20px; background: var(--surface); }
-.composer form { display: flex; gap: 10px; }
-.composer input { flex: 1; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--bg); }
-.send { background: var(--ink-btn); color: var(--surface); border: 0; border-radius: 10px; padding: 0 18px; font-weight: 600; }
+.composer { padding: 10px 16px 14px; }
+.composer form { display: flex; align-items: center; gap: 12px; border: 1.5px solid var(--m-ink); border-radius: 12px; padding: 7px 7px 7px 14px; background: #fff; }
+.composer .pic { width: 20px; height: 20px; fill: none; stroke: var(--m-mute); stroke-width: 1.8; flex: none; }
+.composer input { flex: 1; min-width: 0; border: 0; outline: 0; padding: 8px 0; background: transparent; font-size: 16px; }
+.composer .gif { font: 700 13px var(--font); color: var(--m-mute); letter-spacing: .04em; }
+.send { width: 38px; height: 38px; display: grid; place-items: center; background: var(--m-soft); color: var(--m-mute); border: 0; border-radius: 9px; font: 700 18px/1 var(--font); }
+.send:not(:disabled):hover { background: var(--m-ink); color: #fff; }
 .send:disabled { opacity: .4; cursor: not-allowed; }
 .guard { display: none; margin-top: 10px; background: rgba(200,67,43,.1); color: var(--red); border-radius: 10px; padding: 10px 12px; font-size: 14px; font-weight: 600; }
 .guard.on { display: block; }
+
+/* Right: training-mode extras (checklist and map); hidden when training mode is off */
+body:not(.training) aside.right { display: none; }
+body:not(.training) .main { grid-template-columns: 250px minmax(0, 1fr); }
+aside.right { padding: 16px; overflow: auto; background: var(--m-bg); }
+.right h3 { font: 700 24px/1 var(--hand); color: var(--red); margin: 0 0 8px; }
+.right h3 + * { margin-bottom: 18px; }
 
 /* Changes */
 .save { display: grid; grid-template-columns: 34px 1fr auto; gap: 12px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--line); }
@@ -125,6 +155,9 @@ body.training .learnline { display: block; }
 /* Right: checklist and map */
 .check { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
 .check:last-child { border-bottom: 0; }
+.allset { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 12px; border-radius: 10px; background: rgba(42,157,102,.08); border: 1px solid rgba(42,157,102,.3); }
+.allset .mark { background: var(--green); }
+.allset b { display: block; font-size: 15px; font-weight: 600; } .allset span { font-size: 13px; color: var(--muted); }
 .mark { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 13px; color: #fff; background: var(--red); }
 .check.done .mark { background: var(--green); }
 .check.wait .mark { background: var(--amber); }
@@ -175,8 +208,8 @@ body.training [data-learn]:hover { outline-style: solid; outline-color: var(--re
 .toast.on { opacity: 1; transform: translateX(-50%); }
 .proto { font: 600 12px var(--mono); color: var(--muted); border: 1px dashed var(--line); border-radius: 6px; padding: 4px 8px; }
 
-@media (max-width: 1100px) { .main { grid-template-columns: 200px minmax(0,1fr); } aside.right { display: none; } }
-@media (max-width: 760px) { .main { grid-template-columns: 1fr; } aside.side:not(.right) { display: none; } }
+@media (max-width: 1100px) { .main { grid-template-columns: 230px minmax(0,1fr); } aside.right { display: none; } }
+@media (max-width: 760px) { .main { grid-template-columns: 1fr; } aside.m-side { display: none; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
 /* In the deck's frame (?embed=1): one training note at a time; older notes fold into a "?" */
@@ -188,50 +221,56 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
 </head>
 <body class="training">
 <div class="app">
-  <header id="room-head">
+  <div class="tbar" id="train-bar">
     <a class="backdeck" id="back-deck" href="../index.html" hidden>← Back to the deck</a>
-    <div class="brand" data-learn="room">
-      <svg viewBox="0 0 34 22" aria-hidden="true"><path d="M1 3 H9 C14 3 15 11 20 11" stroke="#2f6fd6" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M1 11 H20" stroke="#e3a614" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M1 19 H9 C14 19 15 11 20 11" stroke="#e0567f" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M20 11 H33" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
-      Mesh
-    </div>
-    <span class="roomname" data-learn="repo">MeshCaseCompetition</span>
-    <span class="conn" id="conn" data-learn="connection"><i></i><span id="conn-text">Your work isn't reaching the team yet</span></span>
+    <span class="tbar-lab">Live team room</span>
     <span class="proto">Prototype</span>
     <span class="spacer"></span>
     <button type="button" class="hbtn" id="open-glossary">Glossary</button>
     <button type="button" class="hbtn primary" id="start-tour">Start here</button>
     <button type="button" class="toggle" id="training-toggle" aria-pressed="true"><span class="sw" aria-hidden="true"></span>Training mode</button>
-  </header>
+  </div>
 
   <div class="main">
-    <aside class="side">
+    <aside class="m-side">
+      <div class="m-ws" data-learn="repo"><span class="m-logo" aria-hidden="true"></span><span class="slash">/</span>MeshCaseCompetition<span class="m-chev" aria-hidden="true">&#8964;</span></div>
+      <div class="m-nav" role="tablist">
+        <button type="button" class="tab" role="tab" aria-selected="false" data-tab="preview" id="tab-preview" data-learn="preview"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>Preview <small>draft</small></button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-tab="changes" id="tab-changes" data-learn="changes"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Changes <small>draft log</small></button>
+      </div>
       <div id="channels">
-        <h3>Channels</h3>
+        <div class="m-h">Channels<span>+</span></div>
         <div data-learn="channel">
-          <button type="button" class="chan on">#general</button>
-          <button type="button" class="chan">#pitch</button>
-          <button type="button" class="chan">#decisions</button>
+          <button type="button" class="chan on tab" data-tab="chat" id="tab-chat"><b>#</b>general</button>
+          <button type="button" class="chan"><b>#</b>pitch</button>
+          <button type="button" class="chan"><b>#</b>decisions</button>
         </div>
       </div>
       <div id="people">
-        <h3>In the room</h3>
-        <div data-learn="agent">
-          <div class="person"><span class="av" style="background:#2f6fd6">A</span>Andrew <small>owner</small></div>
-          <div class="person"><span class="av ai" style="background:#2f6fd6">AI</span>Andrew's agent</div>
-          <div class="person"><span class="av" style="background:#22895a">I</span>Iris</div>
-          <div class="person"><span class="av" style="background:#e8613f">S</span>Sarah</div>
-          <div class="person"><span class="av" style="background:#d99a00">E</span>Evelyn <small>you</small></div>
-          <div class="person"><span class="av" style="background:#8a5cf0">T</span>Tony</div>
-        </div>
+        <div class="m-h">People</div>
+        <div class="person"><span class="av" style="background:#2f6fd6">A</span>Andrew <small>owner</small></div>
+        <div class="person"><span class="av" style="background:#22895a">I</span>Iris</div>
+        <div class="person"><span class="av" style="background:#e8613f">S</span>Sarah</div>
+        <div class="person"><span class="av" style="background:#8a5cf0">T</span>Tony</div>
+        <div class="person"><span class="av" style="background:#d99a00">E</span>Evelyn <small>you</small></div>
       </div>
-      <button type="button" class="hbtn" style="width:100%" data-learn="invite" id="invite">Invite a teammate</button>
+      <div class="m-h">Agents<span>+</span></div>
+      <div data-learn="agent">
+        <div class="m-agent"><i class="m-face" style="background-image:url(../sprites/fox_stand.png)" aria-hidden="true"></i><div>Andrew's AI<small>Idle</small></div></div>
+        <div class="m-agent"><i class="m-face" style="background-image:url(../sprites/cat_stand.png)" aria-hidden="true"></i><div>Iris's AI<small>Idle</small></div></div>
+        <div class="m-agent"><i class="m-face" style="background-image:url(../sprites/bunny_stand.png)" aria-hidden="true"></i><div>Sarah's AI<small>Idle</small></div></div>
+        <div class="m-agent"><i class="m-face" style="background-image:url(../sprites/bear_stand.png)" aria-hidden="true"></i><div>Tony's AI<small>Idle</small></div></div>
+        <div class="m-agent"><i class="m-face felix" aria-hidden="true"></i><div>Felix · Evelyn's AI<small class="bad" id="st-e">Push failed</small></div></div>
+      </div>
     </aside>
 
     <section class="center">
-      <div class="tabs" role="tablist">
-        <button type="button" class="tab" role="tab" aria-selected="true" data-tab="chat" id="tab-chat" data-learn="chat">Chat</button>
-        <button type="button" class="tab" role="tab" aria-selected="false" data-tab="changes" id="tab-changes" data-learn="changes">Changes</button>
-        <button type="button" class="tab" role="tab" aria-selected="false" data-tab="preview" id="tab-preview" data-learn="preview">Preview</button>
+      <div class="ch-head" id="room-head" data-learn="room">
+        <span class="ch" id="ch-title"># general</span>
+        <span class="stack" aria-hidden="true"><span class="av" style="background:#2f6fd6">A</span><span class="av" style="background:#22895a">I</span><span class="av" style="background:#e8613f">S</span><span class="av" style="background:#8a5cf0">T</span></span>
+        <button type="button" class="hbtn primary" data-learn="invite" id="invite">Invite</button>
+        <span class="conn" id="conn" data-learn="connection"><i></i><span id="conn-text">Your work isn't reaching the team yet</span></span>
+        <span class="me-av" aria-label="You: Evelyn">E</span>
       </div>
 
       <div class="panel on" id="panel-chat" role="tabpanel">
@@ -245,17 +284,17 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
           </div>
         </div>
         <div class="msg"><span class="av" style="background:#2f6fd6">A</span><div><div class="who">Andrew <small>11:38 PM</small></div>Room's up. Connect your agents with the link I posted, then say hi.</div></div>
-        <div class="msg"><span class="av ai" style="background:#2f6fd6">AI</span><div><div class="who">Andrew's agent <small>11:42 PM</small></div>Saved: updated <span class="code">room/landing.html</span>.<div class="learnline">What happened: Andrew's agent saved its work (a <b>commit</b>) and sent it to GitHub (a <b>push</b>). Now everyone's copy can get it.</div></div></div>
+        <div class="msg"><i class="m-face" style="background-image:url(../sprites/fox_stand.png)" aria-hidden="true"></i><div><div class="who">Andrew's AI <span class="of">Andrew's Claude</span><span class="badge">AGENT</span><small>11:42 PM</small></div>Saved: updated <span class="code">room/landing.html</span>.<div class="learnline">What happened: Andrew's agent saved its work (a <b>commit</b>) and sent it to GitHub (a <b>push</b>). Now everyone's copy can get it.</div></div></div>
         <div class="msg"><span class="av" style="background:#22895a">I</span><div><div class="who">Iris <small>11:51 PM</small></div>Can someone check the deck before tomorrow?</div></div>
-        <div class="msg"><span class="av ai" style="background:#d99a00">AI</span><div><div class="who">Evelyn's agent <small>11:58 PM</small></div>I'm about to change <span class="code">pitch/index.html</span>, slide 2 only.<div class="learnline">Why I post this first: teammates' agents see it and won't edit the same slide at the same time.</div></div></div>
+        <div class="msg"><i class="m-face felix" aria-hidden="true"></i><div><div class="who">Felix <span class="of">Evelyn's Claude</span><span class="badge">AGENT</span><small>11:58 PM</small></div>I'm about to change <span class="code">pitch/index.html</span>, slide 2 only.<div class="learnline">Why I post this first: teammates' agents see it and won't edit the same slide at the same time.</div></div></div>
       </div>
 
       <div class="panel" id="panel-changes" role="tabpanel">
         <p class="branchnote">Everyone's saves land on the shared draft <span class="code" data-learn="branch">draft</span>. Newest first.</p>
         <div id="saves">
-          <div class="save fail" id="failed-save"><span class="av" style="background:#d99a00">E</span><div><b>Evelyn's agent</b> <span class="file">pitch/index.html</span><div class="why">Your work didn't reach the team. This computer isn't signed in to GitHub.</div><div class="learnline">Your changes are safe on your computer. They just can't be sent (pushed) until you sign in. Fix it once and every future save goes through.</div><button type="button" class="fixbtn" id="fix-from-save">Fix it: sign in to GitHub</button></div><time>12:02 AM</time></div>
-          <div class="save"><span class="av ai" style="background:#2f6fd6">AI</span><div><b>Andrew's agent</b> <span class="file">room/landing.html</span><div class="learnline">A save (commit) is a snapshot of the files with a name on it. This one is Andrew's.</div></div><time>11:42 PM</time></div>
-          <div class="save"><span class="av ai" style="background:#22895a">AI</span><div><b>Iris's agent</b> <span class="file">README.md</span></div><time>11:20 PM</time></div>
+          <div class="save fail" id="failed-save"><i class="m-face felix" aria-hidden="true"></i><div><b>Felix · Evelyn's AI</b> <span class="file">pitch/index.html</span><div class="why">Your work didn't reach the team. This computer isn't signed in to GitHub.</div><div class="learnline">Your changes are safe on your computer. They just can't be sent (pushed) until you sign in. Fix it once and every future save goes through.</div><button type="button" class="fixbtn" id="fix-from-save">Fix it: sign in to GitHub</button></div><time>12:02 AM</time></div>
+          <div class="save"><i class="m-face" style="background-image:url(../sprites/fox_stand.png)" aria-hidden="true"></i><div><b>Andrew's AI</b> <span class="file">room/landing.html</span><div class="learnline">A save (commit) is a snapshot of the files with a name on it. This one is Andrew's.</div></div><time>11:42 PM</time></div>
+          <div class="save"><i class="m-face" style="background-image:url(../sprites/cat_stand.png)" aria-hidden="true"></i><div><b>Iris's AI</b> <span class="file">README.md</span></div><time>11:20 PM</time></div>
         </div>
       </div>
 
@@ -274,14 +313,16 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
       <div class="composer" data-learn="composer">
         <form id="composer">
           <label for="msg-input" class="sr" style="position:absolute; left:-9999px">Message the team</label>
+          <svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>
           <input id="msg-input" type="text" placeholder="Message #general (try pasting something that starts with ghp_)" autocomplete="off">
-          <button type="submit" class="send" id="send">Send</button>
+          <span class="gif" aria-hidden="true">GIF</span>
+          <button type="submit" class="send" id="send" aria-label="Send">&#8593;</button>
         </form>
         <div class="guard" id="guard">That looks like a password or token. It wasn't sent. If you pasted a real one anywhere, delete it on GitHub and make a new one.</div>
       </div>
     </section>
 
-    <aside class="side right">
+    <aside class="right">
       <div id="checklist">
         <h3>Setup checklist</h3>
         <div data-learn="checklist">
@@ -371,7 +412,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
     this.setAttribute('aria-pressed', String(training));
     document.body.classList.toggle('training', training);
     if (!training) $('tip').hidden = true;
-    toast(training ? 'Training mode on: point at anything outlined to learn what it is.' : 'Training mode off.');
+    toast(training ? 'Training mode on: point at anything outlined to learn what it is.' : 'Training mode off. The setup checklist and tips are hidden.');
   });
 
   /* Explainer card on hover or tap */
@@ -410,6 +451,8 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
   function selectTab(name) {
     each(document.querySelectorAll('.tab'), function (t) { t.setAttribute('aria-selected', String(t.dataset.tab === name)); });
     each(document.querySelectorAll('.panel'), function (p) { p.classList.toggle('on', p.id === 'panel-' + name); });
+    $('tab-chat').classList.toggle('on', name === 'chat');
+    $('ch-title').textContent = { chat: '# general', changes: 'Changes', preview: 'Preview' }[name] || '# general';
   }
 
   /* Starter requests go to your own Claude chat */
@@ -432,11 +475,12 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
   function updateConn() {
     var ok = state.name && state.github;
     var c = $('conn'); c.classList.toggle('ok', ok);
+    var st = $('st-e'); if (ok && st) { st.textContent = 'Idle'; st.classList.remove('bad'); }
     $('conn-text').textContent = ok ? 'Connected as evelyn · saving to the team' : "Your work isn't reaching the team yet";
     if (ok) {
       var f = $('failed-save');
       if (f) {
-        f.outerHTML = '<div class="save"><span class="av" style="background:#d99a00">E</span><div><b>Evelyn\'s agent</b> <span class="file">pitch/index.html</span><div class="learnline">Sent! Your save reached GitHub (a push), so teammates see it in their copy.</div></div><time>just now</time></div>';
+        f.outerHTML = '<div class="save"><i class="m-face felix" aria-hidden="true"></i><div><b>Felix · Evelyn\'s AI</b> <span class="file">pitch/index.html</span><div class="learnline">Sent! Your save reached GitHub (a push), so teammates see it in their copy.</div></div><time>just now</time></div>';
         toast('Your earlier save just reached the team.');
       }
     }
@@ -449,8 +493,18 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
       var b = c.querySelector('button'); if (b) b.remove();
       c.querySelector(':scope > div > span').textContent = 'Request sent to Andrew. Only the owner can approve this.';
       toast('Asked Andrew for edit access.');
+      setTimeout(function () { state.approved = true; markDone('ck-access', 'Andrew approved. You can edit this project.'); toast('Andrew approved your access.'); allSet(); }, 2500);
     }
-    updateConn();
+    updateConn(); allSet();
+  }
+  /* When every item is done, the checklist folds away: you're ready to go */
+  function allSet() {
+    if (!(state.name && state.github && state.approved) || $('ck-done')) return;
+    setTimeout(function () {
+      var box = $('checklist').querySelector('[data-learn="checklist"]');
+      box.innerHTML = '<div class="allset" id="ck-done"><span class="mark">✓</span><div><b>All set. You\'re ready to go.</b><span>Setup is done, so the checklist folds away.</span></div></div>';
+      toast("Setup done. You're ready to go.");
+    }, 1400);
   }
   each(document.querySelectorAll('[data-fix]'), function (b) { b.addEventListener('click', function () { fix(b.dataset.fix); }); });
   $('fix-from-save').addEventListener('click', function () { if (!state.name) fix('name'); fix('github'); });
@@ -519,7 +573,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
     if (top + ch > window.innerHeight - 12) top = Math.max(12, window.innerHeight - ch - 12);
     card.style.left = left + 'px'; card.style.top = top + 'px';
   }
-  function startTour() { ti = 0; tip.hidden = true; $('tour-shade').hidden = false; placeTour(); $('tour-next').focus(); }
+  function startTour() { if (!training) $('training-toggle').click(); ti = 0; tip.hidden = true; $('tour-shade').hidden = false; placeTour(); $('tour-next').focus(); }
   function endTour() { $('tour-shade').hidden = true; $('tour-card').hidden = true; selectTab('chat'); }
   $('start-tour').addEventListener('click', startTour);
   $('tour-next').addEventListener('click', function () { if (ti < TOUR.length - 1) { ti++; placeTour(); } else endTour(); });
