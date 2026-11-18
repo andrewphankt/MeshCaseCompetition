@@ -706,6 +706,31 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .rm-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 18px; }
 .rm-tier { display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--line); border-top: 5px solid var(--accent); border-radius: 12px; padding: 16px 18px 18px; }
 :root[data-look="paper"] .rm-tier { border-top-color: var(--pen); background: rgba(255,255,255,.55); }
+
+.rm-h4 { font: 600 15px var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 18px 0 10px; }
+.rm-cant2 { columns: 2; column-gap: 48px; }
+.rm-foot { margin-top: 16px; font-size: 18px; }
+.kpi-basics { font-size: 24px; margin-top: 18px; }
+
+/* ---------- Metrics: the one dark slide (Wajo-style impact cards) ---------- */
+:root[data-look] .slide.mx-slide { background: #0b0b0c; color: #f4f4f5; padding: 70px 96px 56px; }
+.mx-slide { font-family: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; }
+.mx-head { display: flex; justify-content: space-between; align-items: baseline; }
+.mx-k { font: 600 22px var(--body); color: #e4e4e7; }
+.mx-upd { font: 500 18px var(--body); color: #8b8b93; }
+.mx-h { font: 700 54px/1.08 "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; letter-spacing: -0.03em; color: #fafafa; margin: 18px 0 30px; max-width: 1250px; }
+.mx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.mx-card { position: relative; background: #1c1c1f; border-radius: 22px; padding: 22px 26px 24px; display: flex; flex-direction: column; gap: 8px; min-height: 186px; }
+.mx-l { display: flex; align-items: center; gap: 10px; font: 500 19px var(--body); color: #a1a1aa; }
+.mx-l svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.mx-num { font: 700 76px/1 "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; letter-spacing: -0.035em; color: #fafafa; font-variant-numeric: tabular-nums; display: inline-flex; height: 76px; overflow: hidden; margin-top: 6px; }
+.mx-num.mx-pending { color: #52525b; }
+.mx-d { display: inline-block; height: 76px; overflow: hidden; }
+.mx-d i { display: block; font-style: normal; transition: transform 1.6s cubic-bezier(.16,1,.3,1); }
+.mx-d i b { display: block; height: 76px; font-weight: inherit; }
+.mx-cap { font: 500 17px var(--body); color: #8b8b93; }
+.mx-tag { position: absolute; right: 18px; top: 20px; font: 600 12px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: #8b8b93; border: 1px dashed #52525b; border-radius: 6px; padding: 4px 8px; }
+.mx-next { margin: 26px 0 0; font: 500 22px var(--body); color: #a1a1aa; }
 </style>
 </head>
 <body>
@@ -959,37 +984,11 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 </section>
 
 
-<!-- 11 Grid -->
-<section class="slide" data-title="How we compare" style="padding-top:70px">
-  <div class="stamp" id="stamp-students" style="right:44px; top:14px">Built for<strong>Students</strong>only us</div>
-  <div class="eyebrow"><i></i>How we compare</div>
-  <h2 class="h-s">Others built the room for companies. We built it for students.</h2>
-  <div data-interactive>
-    <table class="gridt hide-us" id="gridt">
-      <thead><tr><th>What matters</th><th>Replit</th><th>Agentmash</th><th>Buzz</th><th>GitHub Agent HQ</th><th>GitHub Ace</th><th class="us"><span class="pname" data-name>Mesh</span></th></tr></thead>
-      <tbody>
-        <tr><td>Stops two AIs editing the same file</td><td><span class="mk p">Partly</span></td><td><span class="mk y">Yes</span></td><td><span class="mk q">?</span></td><td><span class="mk p">Partly</span></td><td><span class="mk q">?</span></td><td class="us"><span class="mk y">Yes</span></td></tr>
-        <tr><td>Works with different AI tools</td><td><span class="mk n">No</span></td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk q">?</span></td><td class="us"><span class="mk y">Yes</span></td></tr>
-        <tr><td>Plain-English feed for non-coders</td><td><span class="mk p">Partly</span></td><td><span class="mk q">?</span></td><td><span class="mk p">Partly</span></td><td><span class="mk q">?</span></td><td><span class="mk p">Partly</span></td><td class="us"><span class="mk y">Yes</span></td></tr>
-        <tr class="key"><td>Teaches first-time builders in the tool</td><td><span class="mk p">Partly</span></td><td><span class="mk q">?</span></td><td><span class="mk q">?</span></td><td><span class="mk q">?</span></td><td><span class="mk q">?</span></td><td class="us"><span class="mk s">Planned</span></td></tr>
-        <tr class="key"><td>Connects teams across a campus</td><td><span class="mk p">Partly</span></td><td><span class="mk n">No</span></td><td><span class="mk p">Partly</span></td><td><span class="mk n">No</span></td><td><span class="mk n">No</span></td><td class="us"><span class="mk s">Planned</span></td></tr>
-        <tr class="key"><td>Built for student teams</td><td><span class="mk p">Partly</span></td><td><span class="mk n">No</span></td><td><span class="mk n">No</span></td><td><span class="mk n">No</span></td><td><span class="mk n">No</span></td><td class="us"><span class="mk y">Yes</span></td></tr>
-        <tr><td>Ready to use today</td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk y">Yes</span></td><td><span class="mk n">No</span></td><td class="us"><span class="mk y">Yes</span></td></tr>
-      </tbody>
-    </table>
-    <div class="grid-foot">
-      <button type="button" class="btn primary" id="reveal-us">Show our column</button>
-      <p>Our reading of public information as of Nov 16. "?" means not found. "Planned" means designed, not built yet.</p>
-    </div>
-  </div>
-  <aside class="notes">Show the competitors first, then click "Show our column." The three gold rows are where we stand alone. The top three rows are built and working today: we built this deck in Mesh. The practice room and campus hub are still planned; say so plainly, it makes the rest believable. If asked "why not just Slack plus GitHub, or one shared AI?": Slack and GitHub can't stop two AIs editing the same file, and with one shared AI only one person can drive at a time. Verify every mark before Thursday. On the "Teaches first-time builders" row, say: "Every tool we looked at assumes you already know how to work with AI agents. Mesh is the only one with a practice room, where a first-timer learns the whole team flow with practice teammates before they touch a real project." (Thursday is the club showcase, the approval round to pitch to Replit. If the practice room isn't ready to show by then, say "Mesh is the only one building a practice room" at the showcase. Once it's built for the Replit pitch, switch our mark on that row from Planned to Yes.) (As of Nov 17: Replit, Agentmash, Buzz and GitHub showed no built-in beginner practice mode. Recheck Agentmash Wednesday night; it launched this month.)</aside>
-</section>
-
 <!-- Road map -->
 <section class="slide" data-title="The road map" data-hook="roadmap">
   <div class="eyebrow"><i></i>The road map</div>
   <h2 class="h-m">Where Mesh goes from here.</h2>
-  <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i><i data-step="5"></i><i data-step="6"></i><i data-step="7"></i><i data-step="8"></i><i data-step="9"></i><i data-step="10"></i></span>
+  <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i><i data-step="5"></i><i data-step="6"></i></span>
   <div class="rm" id="rm" data-interactive>
     <svg class="rm-svg" viewBox="0 0 1600 640" width="1600" height="640" aria-hidden="true">
       <circle class="rm-sun" cx="1450" cy="120" r="46"/>
@@ -1006,8 +1005,6 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <div class="rm-carlabel" id="rm-carlabel"><b>Now: the team room</b>We're building Mesh with Mesh.</div>
     <div class="rm-hint">Click a sign</div>
     <button type="button" class="rm-sign" id="rm-sign-b" data-stop="b" aria-expanded="false" aria-controls="rm-card-b"><small>Next</small>Community hub</button>
-    <button type="button" class="rm-sign" id="rm-sign-p" data-stop="p" aria-expanded="false" aria-controls="rm-card-p"><small>Then</small>Pricing</button>
-    <button type="button" class="rm-sign" id="rm-sign-s" data-stop="s" aria-expanded="false" aria-controls="rm-card-s"><small>Then</small>Partners</button>
     <button type="button" class="rm-sign" id="rm-sign-o" data-stop="o" aria-expanded="false" aria-controls="rm-card-o"><small>Then</small>Open source</button>
     <button type="button" class="rm-sign" id="rm-sign-c" data-stop="c" aria-expanded="false" aria-controls="rm-card-c"><small>Future</small>Where we're headed</button>
     <div class="rm-dim" id="rm-dim" hidden></div>
@@ -1015,7 +1012,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       <button type="button" class="rm-x" aria-label="Close">&times;</button>
       <span class="rm-corner">Planned · Example projects</span>
       <h3 id="rm-b-h">The community hub</h3>
-      <p class="rm-lead">People with ideas post what they're building. People with skills hop on and help. We start with one club or hackathon, then the whole campus.</p>
+      <p class="rm-lead">People with ideas post what they're building. People with skills hop on and help. Teams can also share the skills they've taught their AIs (Skillshare). We start with one club or hackathon, then the whole campus.</p>
       <div class="rm-hub">
     <div class="hub-top">
       <button type="button" class="chip" aria-pressed="true" data-filter="all">All teams</button>
@@ -1031,28 +1028,6 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     </div>
       </div>
     </div>
-    <div class="rm-card" id="rm-card-p" role="dialog" aria-modal="false" aria-labelledby="rm-p-h" hidden>
-      <button type="button" class="rm-x" aria-label="Close">&times;</button>
-      <span class="rm-corner">Planned</span>
-      <h3 id="rm-p-h">Pricing: campuses pay, students don't</h3>
-      <p class="rm-lead">A campus licenses Mesh and offers it to its students as a free resource, for students who want to make things but need introductory help with coding.</p>
-      <div class="rm-tiers">
-        <div class="rm-tier"><span class="rm-k-l">Students</span><span class="rm-k-goal">Free</span><span class="rm-k-sub">Through their campus, on the AI plan they already have. Mesh never charges for AI.</span></div>
-        <div class="rm-tier"><span class="rm-k-l">Campuses</span><span class="rm-k-goal"><span class="rm-tbd">$X</span> / year</span><span class="rm-k-sub">A campus-wide license. We get to see how creative students on every campus can get.</span></div>
-        <div class="rm-tier"><span class="rm-k-l">First stop</span><span class="rm-k-goal">USC</span><span class="rm-k-sub">Start with one club or hackathon, then license the whole campus.</span></div>
-      </div>
-    </div>
-    <div class="rm-card" id="rm-card-s" role="dialog" aria-modal="false" aria-labelledby="rm-s-h" hidden>
-      <button type="button" class="rm-x" aria-label="Close">&times;</button>
-      <span class="rm-corner">Planned · not confirmed</span>
-      <h3 id="rm-s-h">Partners and sponsors</h3>
-      <p class="rm-lead">AI companies want student builders. We bring them a room full of them.</p>
-      <ul class="rm-cant">
-        <li>Sponsorship and marketing support for the campus launch</li>
-        <li>More AI tools in the room, starting with ones our team already uses, like Wajo</li>
-        <li>Prizes and credits for club and hackathon teams</li>
-      </ul>
-    </div>
     <div class="rm-card" id="rm-card-o" role="dialog" aria-modal="false" aria-labelledby="rm-o-h" hidden>
       <button type="button" class="rm-x" aria-label="Close">&times;</button>
       <span class="rm-corner">Planned</span>
@@ -1066,49 +1041,37 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     </div>
     <div class="rm-card" id="rm-card-c" role="dialog" aria-modal="false" aria-labelledby="rm-c-h" hidden>
       <button type="button" class="rm-x" aria-label="Close">&times;</button>
-      <span class="rm-corner">Goals, not results</span>
+      <span class="rm-corner">Planned</span>
       <h3 id="rm-c-h">Where we're headed</h3>
-      <div class="rm-cols">
-        <div>
-          <h4>What we can't do yet</h4>
-          <ul class="rm-cant">
-            <li>A practice room you can try without logging in</li>
-            <li>Tooltips inside the real room</li>
-            <li>@mention any teammate's agent in the chat</li>
-            <li>Plug in more AIs, like Wajo</li>
-                        <li>Rooms on more campuses</li>
-          </ul>
-        </div>
-        <div>
-          <h4>How we'll know it's working</h4>
-          <div class="rm-kpis">
-            <div class="rm-kpi"><span class="rm-k-l">A first-timer's first save</span><span class="rm-k-now">Today: 33 min, 20 messages</span><span class="rm-k-arrow" aria-hidden="true">&darr;</span><span class="rm-k-goal">Under <span class="rm-tbd">5</span> min</span></div>
-            <div class="rm-kpi"><span class="rm-k-l">Teams building in Mesh</span><span class="rm-k-now">Today: 1 (us)</span><span class="rm-k-arrow" aria-hidden="true">&darr;</span><span class="rm-k-goal"><span class="rm-tbd">10</span> teams</span><span class="rm-k-sub">in one club or hackathon</span></div>
-            <div class="rm-kpi"><span class="rm-k-l">Campuses</span><span class="rm-k-now">Today: 0</span><span class="rm-k-arrow" aria-hidden="true">&darr;</span><span class="rm-k-goal">USC</span><span class="rm-k-sub">then <span class="rm-tbd">3</span> more</span></div>
-          </div>
-        </div>
-      </div>
+      <h4 class="rm-h4">What Mesh can't do yet</h4>
+      <ul class="rm-cant rm-cant2">
+        <li>A practice room you can try without logging in</li>
+        <li>Tooltips inside the real room</li>
+        <li>@mention any teammate's agent in the chat</li>
+        <li>Plug in more AIs, like Wajo</li>
+        <li>See which tools each AI is using right now</li>
+        <li>Ask a teammate's AI for help when you run out of tokens</li>
+      </ul>
+      <p class="rm-lead rm-foot">How we'll measure progress is on the next slide.</p>
     </div>
   </div>
-  <aside class="notes">Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built. Then Pricing: campuses pay, students use it free. Partners: AI companies want student builders (not confirmed yet). Open source: the students who use it help build it. Click "Where we're headed": things we can't do yet, and three goals that will tell us it's working. Clicker: each press opens the next stop, the next press closes it. Numbers with a dashed outline are placeholder targets for Evelyn to confirm.</aside>
+  <aside class="notes">Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then Open source: the students who use it help build it. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press opens the next stop, the next press closes it.</aside>
 </section>
 
-<!-- Metrics: what we measure and why -->
-<section class="slide" data-title="What we measure">
-  <div class="eyebrow"><i></i>Success metrics</div>
-  <h2 class="h-m">What we measure, and why.</h2>
-  <table class="apx" style="font-size:24px; margin-top:30px">
-    <thead><tr><th>What we count</th><th>Why it matters</th></tr></thead>
-    <tbody>
-      <tr><td style="width:46%">North star: projects each week where two or more people's AIs saved to one draft</td><td>It's the only moment Mesh is worth more than working alone</td></tr>
-      <tr data-step="1"><td style="width:46%">Time from sign-in to first AI connected (goal: under 5 minutes)</td><td>Setup is where a non-coder gives up</td></tr>
-      <tr data-step="1"><td style="width:46%">Share of invited teammates who connect an AI</td><td>A room of one is not a team</td></tr>
-      <tr data-step="2"><td style="width:46%">Same-file stops per project each week</td><td>Each one is an overwrite that didn't happen</td></tr>
-      <tr data-step="2"><td style="width:46%">Projects still active in week 2 and week 4</td><td>Does a team come back after the first session?</td></tr>
-    </tbody>
-  </table>
-  <p class="lede" data-step="3" style="margin-top:34px; font-size:26px">Next test: do real AIs obey the stop every time?</p>
-  <aside class="notes">No usage numbers yet, and we won't invent any. But the room already records every one of these events, so we can measure them from day one, no new tracking needed. Lead with the north star: a project where two or more people's AIs saved to the same draft is the only moment Mesh beats working alone. Click: activation. Setup is where non-coders quit, so under 5 minutes from sign-in to a connected AI, and invited teammates actually joining. Click: collaboration and retention. Every same-file stop is an overwrite that didn't happen, and week-2 and week-4 activity tells us teams come back. Last click, the biggest risk and our next test: do real AIs obey the stop every time? About 40 seconds.</aside>
+<!-- Metrics: dark, Wajo-style impact cards; every number rolls up at once -->
+<section class="slide mx-slide" data-title="What we measure" data-hook="metrics">
+  <div class="mx-head"><span class="mx-k">Mesh impact</span><span class="mx-upd">Our own room · Nov 16&ndash;18, 2026</span></div>
+  <h2 class="mx-h">We built this pitch in Mesh. Here's what it measured.</h2>
+  <div class="mx-grid">
+      <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="7.5" r="3.5"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4M15.5 4.2a3.5 3.5 0 0 1 0 6.6"/></svg>Students signed up</div><span class="mx-num" data-value="5">5</span><div class="mx-cap">People in our team room</div></div>
+      <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Projects connected</div><span class="mx-num" data-value="1">1</span><div class="mx-cap">This pitch deck, built in Mesh</div></div>
+      <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg>Active agents</div><span class="mx-num mx-pending">&mdash;</span><div class="mx-cap">AIs working in the room</div><span class="mx-tag">Pending from Andrew</span></div>
+      <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/></svg>Messages sent</div><span class="mx-num mx-pending">&mdash;</span><div class="mx-cap">Talking here, not in Slack or Discord</div><span class="mx-tag">Pending from Andrew</span></div>
+      <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Saves to one draft</div><span class="mx-num" data-value="32">32</span><div class="mx-cap">From 3 teammates' AIs, one shared draft</div></div>
+      <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>Tokens used</div><span class="mx-num mx-pending">&mdash;</span><div class="mx-cap">How much building is happening</div><span class="mx-tag">Pending from Andrew</span></div>
+  </div>
+  <p class="mx-next">Next test: do real AIs obey the same-file stop every time?</p>
+  <aside class="notes">This is the one dark slide, on purpose: let the numbers roll. "We didn't make these up. We built this pitch inside Mesh, and the room measured it." Students signed up, projects connected, active agents, messages sent, saves and tokens are the measures we agreed on, and the room records every one of them from day one. Saves is the real count of saves to our shared draft. Active agents, messages and tokens come from Andrew, who owns the room; fill them in before Thursday. Close on the next test: do real AIs obey the same-file stop every time?</aside>
 </section>
 
 <!-- 13 Close -->
@@ -1222,7 +1185,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   /* Our real team. Fill in majors, one line about each person, and photo paths (photos go in a "team" folder next to this file). */
   var TEAM = [
     { name: 'Andrew', role: 'Builds the team room app', major: '[Major]', about: '[One line about you]', photo: 'team/andrew.jpg', color: '#2f86d6' },
-    { name: 'Iris Liu', role: 'Built AgentMesh, shared code knowledge', major: '[Major]', about: '[One line about you]', photo: 'team/iris.jpg', color: '#2a9d66' },
+    { name: 'Iris', role: 'Built AgentMesh, shared code knowledge', major: '[Major]', about: '[One line about you]', photo: 'team/iris.jpg', color: '#2a9d66' },
     { name: 'Sarah', role: '[Role on this project]', major: '[Major]', about: '[One line about you]', photo: 'team/sarah.jpg', color: '#e8613f' },
     { name: 'Evelyn', role: 'Leads the pitch and research', major: '[Major]', about: '[One line about you]', photo: 'team/evelyn.jpg', color: '#d99a00' },
     { name: 'Tony', role: 'Treasurer', major: '[Major]', about: '[One line about you]', photo: 'team/tony.jpg', color: '#8a5cf0' }
@@ -1324,7 +1287,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     var rm = $('rm'); if (!rm) return;
     var road = $('rm-road'), car = $('rm-car'), dim = $('rm-dim');
     var total = road.getTotalLength();
-    var STOP = { start: 0.08, b: 0.30, p: 0.45, s: 0.60, o: 0.74, c: 0.90 }, ORDER = ['b', 'p', 's', 'o', 'c'];
+    var STOP = { start: 0.08, b: 0.34, o: 0.62, c: 0.90 }, ORDER = ['b', 'o', 'c'];
     var at = STOP.start, anim = null, openId = null;
     function place(f) {
       var L = total * f, p = road.getPointAtLength(L), q = road.getPointAtLength(Math.min(total, L + 2));
@@ -1384,6 +1347,34 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       step: function (s) { render(s, s % 2 === 1); }
     };
     place(at); car.classList.add('idle');
+  })();
+
+  /* ---------- Metrics slide: every number rolls to its value at once, like a reel ---------- */
+  (function () {
+    var nums = document.querySelectorAll('.mx-num[data-value]');
+    if (!nums.length) return;
+    each(nums, function (n) {
+      var v = n.getAttribute('data-value'); n.textContent = ''; n.setAttribute('aria-label', v);
+      v.split('').forEach(function (ch, k) {
+        if (!/[0-9]/.test(ch)) { n.appendChild(el('span', null, ch)); return; }
+        var d = el('span', 'mx-d'), strip = el('i');
+        for (var r = 0; r < 3; r++) for (var x = 0; x < 10; x++) strip.appendChild(el('b', null, String(x)));
+        d.dataset.target = String(20 + (+ch)); d.style.setProperty('--k', k);
+        strip.style.transitionDelay = (k * 120) + 'ms';
+        d.appendChild(strip); n.appendChild(d);
+      });
+    });
+    function roll(on) {
+      each(document.querySelectorAll('.mx-d'), function (d) {
+        var strip = d.firstChild, h = d.offsetHeight || 76;
+        if (!on || reduce) { strip.style.transition = on ? 'none' : 'none'; strip.style.transform = 'translateY(' + (on ? -(+d.dataset.target) * h : 0) + 'px)'; return; }
+        strip.style.transition = 'none'; strip.style.transform = 'translateY(0)'; void strip.offsetWidth;
+        strip.style.transition = ''; strip.style.transform = 'translateY(' + (-(+d.dataset.target) * h) + 'px)';
+      });
+    }
+    roll(false);
+    hooks.metrics = { enter: function () { roll(false); setTimeout(function () { roll(true); }, 250); } };
+    if (reduce) roll(true);
   })();
   function hook(i, kind, arg) {
     var h = hooks[slides[i].dataset.hook];
@@ -1728,6 +1719,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 
   /* ---------- Grid ---------- */
   var gt = $('gridt');
+  if (gt) {
   each(gt.querySelectorAll('td.us'), function (td, k) { td.style.setProperty('--d', (k * 110) + 'ms'); });
   $('reveal-us').addEventListener('click', function () {
     var hidden = gt.classList.toggle('hide-us');
@@ -1737,6 +1729,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     if (!hidden) setTimeout(function () { st.classList.add('show'); }, 900);
   });
   each(gt.querySelectorAll('tbody tr'), function (tr) { tr.addEventListener('click', function () { tr.classList.toggle('sel'); }); });
+  }
 
   /* ---------- Meet our team ---------- */
   var polColors = ['#c8432b', '#2f86d6', '#2a9d66', '#8a5cf0', '#d08a1e'];
