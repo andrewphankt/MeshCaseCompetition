@@ -711,6 +711,26 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .rm-cant2 { columns: 2; column-gap: 48px; }
 .rm-foot { margin-top: 16px; font-size: 18px; }
 .kpi-basics { font-size: 24px; margin-top: 18px; }
+
+/* ---------- Metrics: the one dark slide (Wajo-style impact cards) ---------- */
+:root[data-look] .slide.mx-slide { background: #0b0b0c; color: #f4f4f5; padding: 70px 96px 56px; }
+.mx-slide { font-family: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; }
+.mx-head { display: flex; justify-content: space-between; align-items: baseline; }
+.mx-k { font: 600 22px var(--body); color: #e4e4e7; }
+.mx-upd { font: 500 18px var(--body); color: #8b8b93; }
+.mx-h { font: 700 54px/1.08 "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; letter-spacing: -0.03em; color: #fafafa; margin: 18px 0 30px; max-width: 1250px; }
+.mx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.mx-card { position: relative; background: #1c1c1f; border-radius: 22px; padding: 22px 26px 24px; display: flex; flex-direction: column; gap: 8px; min-height: 186px; }
+.mx-l { display: flex; align-items: center; gap: 10px; font: 500 19px var(--body); color: #a1a1aa; }
+.mx-l svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.mx-num { font: 700 76px/1 "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; letter-spacing: -0.035em; color: #fafafa; font-variant-numeric: tabular-nums; display: inline-flex; height: 76px; overflow: hidden; margin-top: 6px; }
+.mx-num.mx-pending { color: #52525b; }
+.mx-d { display: inline-block; height: 76px; overflow: hidden; }
+.mx-d i { display: block; font-style: normal; transition: transform 1.6s cubic-bezier(.16,1,.3,1); }
+.mx-d i b { display: block; height: 76px; font-weight: inherit; }
+.mx-cap { font: 500 17px var(--body); color: #8b8b93; }
+.mx-tag { position: absolute; right: 18px; top: 20px; font: 600 12px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: #8b8b93; border: 1px dashed #52525b; border-radius: 6px; padding: 4px 8px; }
+.mx-next { margin: 26px 0 0; font: 500 22px var(--body); color: #a1a1aa; }
 </style>
 </head>
 <body>
@@ -1038,23 +1058,20 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <aside class="notes">Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then Open source: the students who use it help build it. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press opens the next stop, the next press closes it.</aside>
 </section>
 
-<!-- Metrics: what we measure and why -->
-<section class="slide" data-title="What we measure">
-  <div class="eyebrow"><i></i>Success metrics</div>
-  <h2 class="h-m">What we measure, and why.</h2>
-  <table class="apx" style="font-size:24px; margin-top:30px">
-    <thead><tr><th>What we count</th><th>Why it matters</th></tr></thead>
-    <tbody>
-      <tr><td style="width:46%">North star: projects each week where two or more people's AIs saved to one draft</td><td>It's the only moment Mesh is worth more than working alone</td></tr>
-      <tr data-step="1"><td style="width:46%">Time from sign-in to first AI connected (goal: under 5 minutes)</td><td>Setup is where a non-coder gives up</td></tr>
-      <tr data-step="1"><td style="width:46%">Share of invited teammates who connect an AI</td><td>A room of one is not a team</td></tr>
-      <tr data-step="2"><td style="width:46%">Same-file stops per project each week</td><td>Each one is an overwrite that didn't happen</td></tr>
-      <tr data-step="2"><td style="width:46%">Projects still active in week 2 and week 4</td><td>Does a team come back after the first session?</td></tr>
-    </tbody>
-  </table>
-  <p class="lede kpi-basics" data-step="3">We also track the basics: students signed up, projects connected, messages sent, active agents and tokens used.</p>
-  <p class="lede" data-step="3" style="margin-top:34px; font-size:26px">Next test: do real AIs obey the stop every time?</p>
-  <aside class="notes">No usage numbers yet, and we won't invent any. But the room already records every one of these events, so we can measure them from day one, no new tracking needed. Lead with the north star: a project where two or more people's AIs saved to the same draft is the only moment Mesh beats working alone. Click: activation. Setup is where non-coders quit, so under 5 minutes from sign-in to a connected AI, and invited teammates actually joining. Click: collaboration and retention. Every same-file stop is an overwrite that didn't happen, and week-2 and week-4 activity tells us teams come back. Last click, the biggest risk and our next test: do real AIs obey the stop every time? About 40 seconds.</aside>
+<!-- Metrics: dark, Wajo-style impact cards; every number rolls up at once -->
+<section class="slide mx-slide" data-title="What we measure" data-hook="metrics">
+  <div class="mx-head"><span class="mx-k">Mesh impact</span><span class="mx-upd">Our own room · Nov 16&ndash;18, 2026</span></div>
+  <h2 class="mx-h">We built this pitch in Mesh. Here's what it measured.</h2>
+  <div class="mx-grid">
+      <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="7.5" r="3.5"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4M15.5 4.2a3.5 3.5 0 0 1 0 6.6"/></svg>Students signed up</div><span class="mx-num" data-value="5">5</span><div class="mx-cap">People in our team room</div></div>
+      <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Projects connected</div><span class="mx-num" data-value="1">1</span><div class="mx-cap">This pitch deck, built in Mesh</div></div>
+      <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg>Active agents</div><span class="mx-num mx-pending">&mdash;</span><div class="mx-cap">AIs working in the room</div><span class="mx-tag">Pending from Andrew</span></div>
+      <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/></svg>Messages sent</div><span class="mx-num mx-pending">&mdash;</span><div class="mx-cap">Talking here, not in Slack or Discord</div><span class="mx-tag">Pending from Andrew</span></div>
+      <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Saves to one draft</div><span class="mx-num" data-value="32">32</span><div class="mx-cap">From 3 teammates' AIs, one shared draft</div></div>
+      <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>Tokens used</div><span class="mx-num mx-pending">&mdash;</span><div class="mx-cap">How much building is happening</div><span class="mx-tag">Pending from Andrew</span></div>
+  </div>
+  <p class="mx-next">Next test: do real AIs obey the same-file stop every time?</p>
+  <aside class="notes">This is the one dark slide, on purpose: let the numbers roll. "We didn't make these up. We built this pitch inside Mesh, and the room measured it." Students signed up, projects connected, active agents, messages sent, saves and tokens are the measures we agreed on, and the room records every one of them from day one. Saves is the real count of saves to our shared draft. Active agents, messages and tokens come from Andrew, who owns the room; fill them in before Thursday. Close on the next test: do real AIs obey the same-file stop every time?</aside>
 </section>
 
 <!-- 13 Close -->
@@ -1330,6 +1347,34 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       step: function (s) { render(s, s % 2 === 1); }
     };
     place(at); car.classList.add('idle');
+  })();
+
+  /* ---------- Metrics slide: every number rolls to its value at once, like a reel ---------- */
+  (function () {
+    var nums = document.querySelectorAll('.mx-num[data-value]');
+    if (!nums.length) return;
+    each(nums, function (n) {
+      var v = n.getAttribute('data-value'); n.textContent = ''; n.setAttribute('aria-label', v);
+      v.split('').forEach(function (ch, k) {
+        if (!/[0-9]/.test(ch)) { n.appendChild(el('span', null, ch)); return; }
+        var d = el('span', 'mx-d'), strip = el('i');
+        for (var r = 0; r < 3; r++) for (var x = 0; x < 10; x++) strip.appendChild(el('b', null, String(x)));
+        d.dataset.target = String(20 + (+ch)); d.style.setProperty('--k', k);
+        strip.style.transitionDelay = (k * 120) + 'ms';
+        d.appendChild(strip); n.appendChild(d);
+      });
+    });
+    function roll(on) {
+      each(document.querySelectorAll('.mx-d'), function (d) {
+        var strip = d.firstChild, h = d.offsetHeight || 76;
+        if (!on || reduce) { strip.style.transition = on ? 'none' : 'none'; strip.style.transform = 'translateY(' + (on ? -(+d.dataset.target) * h : 0) + 'px)'; return; }
+        strip.style.transition = 'none'; strip.style.transform = 'translateY(0)'; void strip.offsetWidth;
+        strip.style.transition = ''; strip.style.transform = 'translateY(' + (-(+d.dataset.target) * h) + 'px)';
+      });
+    }
+    roll(false);
+    hooks.metrics = { enter: function () { roll(false); setTimeout(function () { roll(true); }, 250); } };
+    if (reduce) roll(true);
   })();
   function hook(i, kind, arg) {
     var h = hooks[slides[i].dataset.hook];
