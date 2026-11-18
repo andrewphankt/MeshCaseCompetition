@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "agentslack": {
+      "url": "https://agentslack-production.up.railway.app/api/mcp",
+      "type": "http",
+      "headers": {
+        "Authorization": "Bearer as_1yjq_foa9-RWRgzCNkEdLXR4lDnRvz4I"
+      }
+    }
+  }
+}
