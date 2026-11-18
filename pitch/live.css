@@ -3,7 +3,7 @@
 
 /* A live screen is drawn at the app's real size (1278 x 743) and scaled to fit the browser */
 .live { position: absolute; left: 0; top: 0; width: 1278px; height: 743px; transform-origin: 0 0; font-family: var(--font); color: var(--ink); background: #fff; overflow: hidden; }
-.lv { position: absolute; inset: 0; background: #fff; transition: opacity .7s var(--ease), transform .9s var(--ease), filter .7s var(--ease); }
+.lv { position: absolute; inset: 0; background: #fff; isolation: isolate; z-index: 0; transition: opacity .7s var(--ease), transform .9s var(--ease), filter .7s var(--ease); }
 .lv.hide { opacity: 0 !important; transform: scale(1.015) !important; filter: blur(6px); }
 
 /* Orbits and floating agents behind the onboarding */
@@ -103,3 +103,27 @@
 @media (prefers-reduced-motion: reduce) {
   .lv *, .lv { animation-duration: .01s !important; animation-iteration-count: 1 !important; }
 }
+
+/* Group chat window (a generic team chat, not any real app) with bubbles that pop in */
+.desk.chatdesk { height: 640px; }
+.chatwin { width: 860px; height: 560px; border-radius: 14px; overflow: hidden; background: #fff; text-align: left; display: flex; flex-direction: column;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 30px 70px -20px rgba(15,15,40,.45); }
+.cw-bar { display: flex; align-items: center; gap: 16px; height: 52px; padding: 0 18px; border-bottom: 1px solid var(--line); background: #fafafa; }
+.cw-bar .dots { display: flex; gap: 8px; } .cw-bar .dots i { width: 12px; height: 12px; border-radius: 50%; }
+.cw-bar .dots i:nth-child(1) { background: #ff5f57; } .cw-bar .dots i:nth-child(2) { background: #febc2e; } .cw-bar .dots i:nth-child(3) { background: #28c840; }
+.cw-bar b { font: 700 19px/1 var(--font); } .cw-n { margin-left: auto; font: 500 15px/1 var(--font); color: var(--muted); }
+.cw-feed { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 16px; padding: 22px 26px; overflow: hidden; }
+.msg { display: flex; gap: 14px; align-items: flex-start; transform-origin: 0 100%; transition: opacity .45s var(--ease), transform .6s cubic-bezier(.34,1.56,.64,1), max-height .5s var(--ease); max-height: 200px; }
+.msg.wait { opacity: 0; transform: translateY(14px) scale(.92); max-height: 0; }
+.msg .av { width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 700 17px/1 var(--font); }
+.msg b { font: 700 16px/1 var(--font); }
+.msg p { margin: 6px 0 0; display: inline-block; padding: 11px 15px; border-radius: 4px 14px 14px 14px; background: var(--soft); font: 500 19px/1.4 var(--font); color: var(--ink); }
+.msg p.paste { font: 400 16px/1.55 var(--mono); background: #f4f4f5; border-left: 3px solid #d4d4d8; color: var(--ink-2); }
+.msg.typing p { display: inline-flex; gap: 5px; padding: 14px 16px; margin-top: 0; }
+.msg.typing i { width: 8px; height: 8px; border-radius: 50%; background: #a1a1aa; animation: dot 1.2s ease-in-out infinite; }
+.msg.typing i:nth-child(2) { animation-delay: .15s; } .msg.typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes dot { 0%, 60%, 100% { transform: none; opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+
+/* Slide number */
+#num { position: absolute; right: 70px; bottom: 46px; z-index: 6; font: 600 17px/1 var(--font); color: #a1a1aa; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+#stage.is-dark #num { color: #52525b; }

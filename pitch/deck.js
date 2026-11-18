@@ -48,6 +48,10 @@
       p.style.visibility = 'hidden';
       later(function () { p.style.visibility = ''; }, +p.dataset.at);
     });
+    slide.querySelectorAll('.msg[data-at]').forEach(function (m) {
+      m.classList.add('wait');
+      later(function () { m.classList.remove('wait'); }, +m.dataset.at);
+    });
     slide.querySelectorAll('.term[data-clash]').forEach(function (t) {
       t.classList.remove('clash');
       later(function () { t.classList.add('clash'); }, +t.dataset.clash);
@@ -67,6 +71,7 @@
 
   /* Sections along the bottom */
   var progress = document.getElementById('progress'), secNames = [], secOf = [];
+  var num = document.createElement('div'); num.id = 'num'; stage.appendChild(num);
   slides.forEach(function (s, i) {
     var name = s.dataset.section || (secNames.length ? secNames[secNames.length - 1] : '');
     if (s.dataset.section && secNames[secNames.length - 1] !== name) secNames.push(name);
@@ -88,12 +93,15 @@
     });
     stage.classList.toggle('is-dark', slides[cur].classList.contains('dark'));
     stage.classList.toggle('no-progress', slides[cur].hasAttribute('data-noprogress'));
+    num.textContent = cur === 0 ? '' : (cur + 1) + ' / ' + slides.length;
   }
 
   /* Screen slots: show the screenshot if the file is there, else the labelled placeholder */
   document.querySelectorAll('.screen img').forEach(function (img) {
-    img.addEventListener('load', function () { img.parentNode.classList.add('has-img'); });
-    img.addEventListener('error', function () { img.remove(); });
+    function ok() { img.parentNode.classList.add('has-img'); }
+    if (img.complete && img.naturalWidth) ok();
+    img.addEventListener('load', ok);
+    img.addEventListener('error', function () { if (!img.naturalWidth) img.remove(); });
   });
 
   function go(i, s) {
