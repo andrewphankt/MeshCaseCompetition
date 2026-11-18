@@ -22,10 +22,12 @@
     svg.setAttribute('viewBox', '-12 -12 24 24');
     svg.innerHTML = out;
   }
-  document.querySelectorAll('svg.mark').forEach(buildMark);
+  document.querySelectorAll('svg.mark, svg.fav').forEach(buildMark);
 
   function gather(svg) {
+    svg.classList.remove('spinning');
     if (reduce) return;
+    if (svg.hasAttribute('data-spin')) later(function () { svg.classList.add('spinning'); }, 2400);
     var dots = svg.querySelectorAll('circle');
     svg.classList.add('scatter');
     dots.forEach(function (c) {
@@ -57,7 +59,11 @@
   /* Steps */
   function steps(i) { return slides[i].querySelectorAll('[data-step]'); }
   function maxStep(i) { var m = 0; steps(i).forEach(function (e) { m = Math.max(m, +e.dataset.step); }); return m; }
-  function paintSteps() { steps(cur).forEach(function (e) { e.classList.toggle('hide', +e.dataset.step > step); }); }
+  function paintSteps() {
+    steps(cur).forEach(function (e) { e.classList.toggle('hide', +e.dataset.step > step); });
+    /* step captions: only the current one is marked */
+    slides[cur].querySelectorAll('[data-cap]').forEach(function (e) { e.classList.toggle('now', +e.dataset.cap === step); });
+  }
 
   /* Sections along the bottom */
   var progress = document.getElementById('progress'), secNames = [], secOf = [];

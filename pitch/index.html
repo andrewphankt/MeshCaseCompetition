@@ -20,7 +20,7 @@
 
   <!-- 1 Title -->
   <section class="slide" data-title="Title" data-noprogress>
-    <svg class="mark rise" aria-hidden="true"></svg>
+    <svg class="mark rise" data-spin aria-hidden="true"></svg>
     <h1 class="display rise">Mesh</h1>
     <p class="sub rise">Build together, with the agents you already use.</p>
     <div class="script">Hi, we're Andrew, Iris, Sarah, Evelyn and Tony. This is Mesh.</div>
@@ -84,15 +84,43 @@
     <div class="script">So we built Mesh: one room for your team and everyone's agents.</div>
   </section>
 
+  <!-- 6b Setup: the real onboarding, one screen per click -->
+  <section class="slide" data-title="Setup" data-section="Mesh">
+    <h2 class="h2 rise">Three steps. One paste.</h2>
+    <div class="desk sm rise">
+      <div class="browser">
+        <div class="chrome"><span class="dots"><i></i><i></i><i></i></span><span class="tab"><svg class="fav" aria-hidden="true"></svg>Mesh</span></div>
+        <div class="bar"><span class="nav">&#8592; &#8594;</span><span class="url">agentslack-production.up.railway.app</span></div>
+        <div class="screen wide">
+          <img src="screens/setup-1-signin.jpg" alt="Mesh sign-in: Different Agents, Same Project, Continue with GitHub">
+          <img class="shot" data-step="1" src="screens/setup-2-project.jpg" alt="Step 2: Pick your project, a GitHub repo">
+          <img class="shot" data-step="2" src="screens/setup-3-agent.jpg" alt="Step 3: Which agent do you use? Claude, Codex, Gemini CLI or Antigravity">
+          <img class="shot" data-step="3" src="screens/setup-4-paste.jpg" alt="Paste this into Codex, with one Copy button">
+          <div class="slot"><b>Mesh · Setup</b><span>screens/setup-*.jpg</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="steps-cap rise">
+      <span data-cap="0"><i>1</i>Sign in with GitHub</span>
+      <span data-cap="1"><i>2</i>Pick your project</span>
+      <span data-cap="2"><i>3</i>Pick your agent</span>
+      <span data-cap="3"><i>&#10003;</i>Paste one message</span>
+    </div>
+    <div class="script">Here's the whole setup. These are our real screens. One: sign in with GitHub. [click] Two: pick your project, which is just your GitHub repo. [click] Three: pick the agent you already use: Claude, Codex, Gemini or Antigravity. [click] Then Mesh gives you one message. Copy it, paste it into your agent, and your agent sets itself up. No git commands, no config files. Remember the 33 minutes? This is the fix.</div>
+  </section>
+
   <!-- 7 The room -->
   <section class="slide" data-title="The room" data-section="Mesh">
     <h2 class="h2 rise">Everyone's work. One shared draft.</h2>
-    <div class="laptop rise">
-      <div class="lid"><div class="screen">
-        <img src="screens/preview.jpg" alt="Mesh's Preview tab: the team's draft as a live page, with the list of saved changes under it">
-        <div class="slot"><b>Mesh · Preview</b><span>screens/preview.jpg</span></div>
-      </div></div>
-      <div class="base"></div>
+    <div class="desk rise">
+      <div class="browser">
+        <div class="chrome"><span class="dots"><i></i><i></i><i></i></span><span class="tab"><svg class="fav" aria-hidden="true"></svg>Mesh</span></div>
+        <div class="bar"><span class="nav">&#8592; &#8594;</span><span class="url">agentslack-production.up.railway.app</span></div>
+        <div class="screen">
+          <img src="screens/preview.jpg" alt="Mesh's Preview tab: the team's draft as a live page, with the list of saved changes under it">
+          <div class="slot"><b>Mesh · Preview</b><span>screens/preview.jpg</span></div>
+        </div>
+      </div>
     </div>
     <div class="script">This is the room, our real one. Every agent's work saves into one shared draft, and the Preview shows that draft as a live page anyone on the team can open, coder or not. Yes, that's this deck inside it: we built this pitch in Mesh. Under it is every saved change, waiting for a person to send it out.</div>
   </section>
@@ -100,12 +128,15 @@
   <!-- 8 Changes -->
   <section class="slide" data-title="Changes" data-section="Mesh">
     <h2 class="h2 rise">Every agent says what it changed. In plain English.</h2>
-    <div class="laptop rise">
-      <div class="lid"><div class="screen">
-        <img src="screens/changes.jpg" alt="Mesh's Changes tab: one plain-English note from each agent about what it changed, and who is working right now">
-        <div class="slot"><b>Mesh · Changes</b><span>screens/changes.jpg</span></div>
-      </div></div>
-      <div class="base"></div>
+    <div class="desk rise">
+      <div class="browser">
+        <div class="chrome"><span class="dots"><i></i><i></i><i></i></span><span class="tab"><svg class="fav" aria-hidden="true"></svg>Mesh</span></div>
+        <div class="bar"><span class="nav">&#8592; &#8594;</span><span class="url">agentslack-production.up.railway.app</span></div>
+        <div class="screen">
+          <img src="screens/changes.jpg" alt="Mesh's Changes tab: one plain-English note from each agent about what it changed, and who is working right now">
+          <div class="slot"><b>Mesh · Changes</b><span>screens/changes.jpg</span></div>
+        </div>
+      </div>
     </div>
     <div class="script">This is Changes. Each time an agent finishes, it writes one plain sentence about what's different, the kind anyone on the team can read. On the right: who's working right now and on what. Nobody pastes updates into the group chat anymore.</div>
   </section>

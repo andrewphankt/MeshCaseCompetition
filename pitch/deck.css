@@ -21,7 +21,7 @@ body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: anti
 #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: center; background: var(--paper); overflow: hidden; }
 
 /* Slides */
-.slide { position: absolute; inset: 0; padding: 120px 160px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+.slide { position: absolute; inset: 0; padding: 100px 160px 150px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
   visibility: hidden; opacity: 0; transition: opacity .7s var(--ease), transform .9s var(--ease), filter .7s var(--ease), visibility 0s linear .9s; }
 .slide.on { visibility: visible; opacity: 1; transform: none; filter: none; transition-delay: .12s, .12s, .12s, 0s; }
 .slide.before { transform: translateY(-28px) scale(.985); filter: blur(8px); }
@@ -56,6 +56,8 @@ body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: anti
 .mark { width: 220px; height: 220px; margin-bottom: 56px; overflow: visible; }
 .mark circle { fill: currentColor; transition: transform 1.4s var(--ease), opacity 1s var(--ease); }
 .mark.scatter circle { transition: none; }
+.mark.spinning { animation: markspin 48s linear infinite; }
+@keyframes markspin { to { transform: rotate(360deg); } }
 
 /* Section progress along the bottom */
 #progress { position: absolute; left: 160px; right: 160px; bottom: 54px; display: flex; gap: 14px; z-index: 5; pointer-events: none; }
@@ -69,14 +71,39 @@ body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: anti
 #stage.no-progress #progress { opacity: 0; }
 #progress { transition: opacity .6s var(--ease); }
 
-/* Laptop mock (screen is a slot: a screenshot goes in screens/, else a labelled placeholder) */
-.laptop { position: relative; width: 1180px; margin-top: 64px; }
-.laptop .lid { position: relative; background: #0b0b0c; border-radius: 26px 26px 8px 8px; padding: 22px 22px 30px; box-shadow: 0 0 0 2px #2a2a2e inset, 0 50px 120px -40px rgba(0,0,0,.45); }
-.laptop .lid::before { content: ""; position: absolute; left: 50%; top: 0; width: 150px; height: 18px; transform: translateX(-50%); background: #0b0b0c; border-radius: 0 0 10px 10px; z-index: 2; }
-.laptop .screen { position: relative; aspect-ratio: 16 / 10; border-radius: 6px; overflow: hidden; background: var(--soft); }
-.laptop .screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
-.laptop .base { position: relative; height: 26px; margin: 0 -70px; background: linear-gradient(#d4d4d8, #a1a1aa); border-radius: 0 0 28px 28px; }
-.laptop .base::before { content: ""; position: absolute; left: 50%; top: 0; width: 200px; height: 9px; transform: translateX(-50%); background: #b4b4bb; border-radius: 0 0 10px 10px; }
+/* Desktop mock: a browser window on a soft wallpaper. The page is a slot: a screenshot from screens/, else a labelled placeholder. */
+.desk { position: relative; width: 1200px; height: 670px; margin-top: 48px; border-radius: 22px; overflow: hidden; display: grid; place-items: center;
+  background:
+    radial-gradient(60% 80% at 12% 10%, #f9d9c4 0%, transparent 60%),
+    radial-gradient(70% 90% at 95% 15%, #c7d7fb 0%, transparent 62%),
+    radial-gradient(80% 90% at 70% 105%, #7d93e8 0%, transparent 60%),
+    radial-gradient(70% 80% at 0% 100%, #e7a6c4 0%, transparent 60%),
+    #dfe3f5;
+  box-shadow: 0 40px 100px -50px rgba(24,24,27,.45); }
+.desk.sm { height: 600px; margin-top: 40px; }
+.desk.sm .browser { width: 800px; }
+.browser { width: 880px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.12), 0 30px 70px -20px rgba(15,15,40,.45); text-align: left; }
+.browser .chrome { display: flex; align-items: flex-end; gap: 10px; height: 40px; padding: 0 14px; background: #e8e9ee; }
+.browser .dots { display: flex; gap: 8px; align-self: center; margin-right: 8px; }
+.browser .dots i { width: 12px; height: 12px; border-radius: 50%; }
+.browser .dots i:nth-child(1) { background: #ff5f57; } .browser .dots i:nth-child(2) { background: #febc2e; } .browser .dots i:nth-child(3) { background: #28c840; }
+.browser .tab { display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 16px; width: 220px; background: #fff; border-radius: 9px 9px 0 0; font: 500 14px/1 var(--font); color: var(--ink); }
+.browser .tab svg { width: 14px; height: 14px; color: var(--ink); }
+.browser .bar { display: flex; align-items: center; gap: 12px; height: 38px; padding: 0 14px; border-bottom: 1px solid var(--line); }
+.browser .bar .nav { display: flex; gap: 10px; color: #a1a1aa; font: 500 16px/1 var(--font); }
+.browser .bar .url { flex: 1; height: 26px; border-radius: 13px; background: #f1f2f5; display: flex; align-items: center; padding: 0 14px; font: 400 14px/1 var(--font); color: var(--ink-2); }
+.browser .screen { position: relative; aspect-ratio: 1189 / 743; overflow: hidden; background: var(--soft); }
+.browser .screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.browser .screen.wide { aspect-ratio: 1278 / 743; }
+.browser .screen.wide img { object-position: top center; }
+/* A browser that steps through several screens: each later one fades in over the last */
+.browser .screen img.shot { transition: opacity .7s var(--ease), transform .9s var(--ease), filter .7s var(--ease); }
+.browser .screen img.shot.hide { opacity: 0 !important; transform: scale(1.015) !important; filter: blur(6px); }
+.steps-cap { display: flex; gap: 44px; margin-top: 30px; font: 600 24px/1 var(--font); color: #a1a1aa; }
+.steps-cap span { display: flex; align-items: center; gap: 12px; transition: color .5s var(--ease); }
+.steps-cap span i { font-style: normal; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 2px solid currentColor; font-size: 17px; }
+.steps-cap span.now { color: var(--ink); }
+.steps-cap span.now i { background: var(--ink); border-color: var(--ink); color: #fff; }
 .slot { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 14px; background-color: var(--soft);
   background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 28px 28px; color: var(--muted); }
 .slot b { font: 700 30px/1 var(--font); color: var(--ink); letter-spacing: -0.02em; }
