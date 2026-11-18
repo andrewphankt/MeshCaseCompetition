@@ -42,7 +42,7 @@ button { cursor: pointer; }
 button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
 .app { display: grid; grid-template-rows: auto 1fr; height: 100%; }
 
-/* Training bar: the practice extras, kept apart from the Mesh layout */
+/* Training bar: training-mode extras, kept apart from the Mesh layout */
 .tbar { display: flex; align-items: center; gap: 12px; padding: 8px 16px; background: var(--learn); border-bottom: 1px solid var(--learn-line); flex-wrap: wrap; }
 .tbar-lab { font: 700 22px/1 var(--hand); color: var(--red); }
 .spacer { flex: 1; }
@@ -125,7 +125,9 @@ body.training .learnline { display: block; }
 .guard { display: none; margin-top: 10px; background: rgba(200,67,43,.1); color: var(--red); border-radius: 10px; padding: 10px 12px; font-size: 14px; font-weight: 600; }
 .guard.on { display: block; }
 
-/* Right: the practice extras (checklist and map), same as before */
+/* Right: training-mode extras (checklist and map); hidden when training mode is off */
+body:not(.training) aside.right { display: none; }
+body:not(.training) .main { grid-template-columns: 250px minmax(0, 1fr); }
 aside.right { padding: 16px; overflow: auto; background: var(--m-bg); }
 .right h3 { font: 700 24px/1 var(--hand); color: var(--red); margin: 0 0 8px; }
 .right h3 + * { margin-bottom: 18px; }
@@ -153,6 +155,9 @@ aside.right { padding: 16px; overflow: auto; background: var(--m-bg); }
 /* Right: checklist and map */
 .check { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
 .check:last-child { border-bottom: 0; }
+.allset { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 12px; border-radius: 10px; background: rgba(42,157,102,.08); border: 1px solid rgba(42,157,102,.3); }
+.allset .mark { background: var(--green); }
+.allset b { display: block; font-size: 15px; font-weight: 600; } .allset span { font-size: 13px; color: var(--muted); }
 .mark { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 13px; color: #fff; background: var(--red); }
 .check.done .mark { background: var(--green); }
 .check.wait .mark { background: var(--amber); }
@@ -218,7 +223,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
 <div class="app">
   <div class="tbar" id="train-bar">
     <a class="backdeck" id="back-deck" href="../index.html" hidden>← Back to the deck</a>
-    <span class="tbar-lab">Practice room</span>
+    <span class="tbar-lab">Live team room</span>
     <span class="proto">Prototype</span>
     <span class="spacer"></span>
     <button type="button" class="hbtn" id="open-glossary">Glossary</button>
@@ -407,7 +412,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
     this.setAttribute('aria-pressed', String(training));
     document.body.classList.toggle('training', training);
     if (!training) $('tip').hidden = true;
-    toast(training ? 'Training mode on: point at anything outlined to learn what it is.' : 'Training mode off.');
+    toast(training ? 'Training mode on: point at anything outlined to learn what it is.' : 'Training mode off. The setup checklist and tips are hidden.');
   });
 
   /* Explainer card on hover or tap */
@@ -488,8 +493,18 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
       var b = c.querySelector('button'); if (b) b.remove();
       c.querySelector(':scope > div > span').textContent = 'Request sent to Andrew. Only the owner can approve this.';
       toast('Asked Andrew for edit access.');
+      setTimeout(function () { state.approved = true; markDone('ck-access', 'Andrew approved. You can edit this project.'); toast('Andrew approved your access.'); allSet(); }, 2500);
     }
-    updateConn();
+    updateConn(); allSet();
+  }
+  /* When every item is done, the checklist folds away: you're ready to go */
+  function allSet() {
+    if (!(state.name && state.github && state.approved) || $('ck-done')) return;
+    setTimeout(function () {
+      var box = $('checklist').querySelector('[data-learn="checklist"]');
+      box.innerHTML = '<div class="allset" id="ck-done"><span class="mark">✓</span><div><b>All set. You\'re ready to go.</b><span>Setup is done, so the checklist folds away.</span></div></div>';
+      toast("Setup done. You're ready to go.");
+    }, 1400);
   }
   each(document.querySelectorAll('[data-fix]'), function (b) { b.addEventListener('click', function () { fix(b.dataset.fix); }); });
   $('fix-from-save').addEventListener('click', function () { if (!state.name) fix('name'); fix('github'); });
@@ -558,7 +573,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
     if (top + ch > window.innerHeight - 12) top = Math.max(12, window.innerHeight - ch - 12);
     card.style.left = left + 'px'; card.style.top = top + 'px';
   }
-  function startTour() { ti = 0; tip.hidden = true; $('tour-shade').hidden = false; placeTour(); $('tour-next').focus(); }
+  function startTour() { if (!training) $('training-toggle').click(); ti = 0; tip.hidden = true; $('tour-shade').hidden = false; placeTour(); $('tour-next').focus(); }
   function endTour() { $('tour-shade').hidden = true; $('tour-card').hidden = true; selectTab('chat'); }
   $('start-tour').addEventListener('click', startTour);
   $('tour-next').addEventListener('click', function () { if (ti < TOUR.length - 1) { ti++; placeTour(); } else endTour(); });
