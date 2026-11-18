@@ -6,7 +6,7 @@
 <title>Team Room Pitch Deck</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Caveat:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Caveat:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Inter:wght@800&display=swap" rel="stylesheet">
 <script>
   (function () { var l = null; try { l = localStorage.getItem('teamroom-deck-look'); } catch (e) {} document.documentElement.setAttribute('data-look', l === 'room' ? 'room' : 'paper'); })();
 </script>
@@ -458,8 +458,11 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 :root[data-look="paper"] .hl, :root[data-look="paper"] .pname, :root[data-look="paper"] .story span, :root[data-look="paper"] .close-lines span {
   color: inherit; background: linear-gradient(transparent 56%, rgba(255,216,77,.92) 56%, rgba(255,216,77,.92) 90%, transparent 90%);
   -webkit-box-decoration-break: clone; box-decoration-break: clone; padding: 0 .08em; }
-/* Opening slide title: red and bold in every look. */
-.title-top .h-xl, .title-top .h-xl .pname, :root[data-look] .title-top .h-xl .pname { color: #E5322D; font-weight: 900; }
+/* Opening slide title: black in a clean sans (light text in the dark look so it stays visible), no highlighter. */
+.title-top .h-xl, .title-top .h-xl .pname, :root[data-look] .title-top .h-xl .pname {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif; font-weight: 800; letter-spacing: -0.045em;
+  color: #0a0a0a; background: none; padding: 0; }
+:root[data-look="room"] .title-top .h-xl, :root[data-look="room"] .title-top .h-xl .pname { color: var(--text); }
 :root[data-look="paper"] .big.dim { color: #b9ae98; }
 :root[data-look="paper"] .found .lab { font: 700 28px/1 var(--hand); }
 :root[data-look="paper"] .tbar .try { font: 700 24px/1 var(--hand); color: var(--pen); }
