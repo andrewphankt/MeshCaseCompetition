@@ -83,6 +83,12 @@ h1 {
   letter-spacing: -0.045em;
 }
 
+/* The name on the title slide: red and bold. */
+.slide--title h1 {
+  color: #E5322D;
+  font-weight: 900;
+}
+
 h2 {
   font-family: var(--display);
   font-weight: 700;
