@@ -1136,6 +1136,10 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 #rm-sign-b { --sg: #2a9d66; } #rm-sign-m { --sg: #d99a00; } #rm-sign-c { --sg: #2f86d6; }
 .rm-sign:hover, .rm-sign[aria-expanded="true"] { background: #fff4c2; color: #13151d; box-shadow: 0 0 0 6px rgba(255,216,77,.45), 0 6px 0 rgba(19,21,29,.18); }
 @media (prefers-reduced-motion: reduce) { .rm-sunglow, .rm-cloud, .rm-car *, .rm-car { animation: none !important; } }
+
+/* Road runs off the right edge; the last click drives the car out and fades to black into the metrics */
+.rm-fade { position: absolute; inset: 0; background: #0b0b0c; opacity: 0; pointer-events: none; transition: opacity .7s ease; z-index: 90; }
+.slide.rm-out .rm-fade { opacity: 1; }
 </style>
 </head>
 <body>
@@ -1459,7 +1463,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 <section class="slide" data-title="The road map" data-hook="roadmap">
   <div class="eyebrow"><i></i>The road map</div>
   <h2 class="h-m">Where Mesh goes from here.</h2>
-  <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i></span>
+  <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i></span>
   <div class="rm" id="rm" data-interactive>
     <svg class="rm-svg" viewBox="0 0 1600 640" width="1600" height="640" aria-hidden="true">
       <defs>
@@ -1475,14 +1479,14 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
         <g class="rm-cloud c2"><ellipse cx="0" cy="0" rx="38" ry="16"/><ellipse cx="-26" cy="5" rx="24" ry="12"/><ellipse cx="28" cy="5" rx="26" ry="12"/></g>
         <g class="rm-cloud c3"><ellipse cx="0" cy="0" rx="52" ry="22"/><ellipse cx="-36" cy="7" rx="32" ry="15"/><ellipse cx="38" cy="7" rx="34" ry="15"/></g>
       </g>
-      <path class="rm-hill far" d="M-120 300 C 120 210, 330 250, 520 220 S 900 120, 1120 170 S 1450 90, 1720 140 L1720 640 L-120 640 Z" fill="url(#rm-hill-a)"/>
-      <path class="rm-hill near" d="M-120 420 C 160 330, 380 380, 620 330 S 1020 250, 1260 250 S 1560 190, 1720 210 L1720 640 L-120 640 Z" fill="url(#rm-hill-b)"/>
-      <path class="rm-shoulder" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410"/>
-      <path class="rm-edge" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410"/>
-      <path class="rm-road" id="rm-road" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410"/>
-      <path class="rm-edgeline" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410"/>
-      <path class="rm-road2" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410"/>
-      <path class="rm-line" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410"/>
+      <path class="rm-hill far" d="M-120 300 C 120 210, 330 250, 520 220 S 900 120, 1120 170 S 1450 90, 1720 140 S 1980 120, 2120 130 L2120 640 L-120 640 Z" fill="url(#rm-hill-a)"/>
+      <path class="rm-hill near" d="M-120 420 C 160 330, 380 380, 620 330 S 1020 250, 1260 250 S 1560 190, 1720 210 S 1960 200, 2120 205 L2120 640 L-120 640 Z" fill="url(#rm-hill-b)"/>
+      <path class="rm-shoulder" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410 S 1900 392, 2120 386"/>
+      <path class="rm-edge" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410 S 1900 392, 2120 386"/>
+      <path class="rm-road" id="rm-road" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410 S 1900 392, 2120 386"/>
+      <path class="rm-edgeline" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410 S 1900 392, 2120 386"/>
+      <path class="rm-road2" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410 S 1900 392, 2120 386"/>
+      <path class="rm-line" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410 S 1900 392, 2120 386"/>
       <g class="rm-trees">
         <g class="rm-tree t1" transform="translate(560 585)"><rect x="-4" y="-6" width="8" height="26" rx="3"/><circle cx="0" cy="-24" r="24"/><circle cx="-14" cy="-12" r="16"/><circle cx="14" cy="-12" r="16"/></g>
         <g class="rm-tree t2" transform="translate(905 580)"><rect x="-4" y="-6" width="8" height="24" rx="3"/><circle cx="0" cy="-20" r="20"/><circle cx="-12" cy="-10" r="14"/><circle cx="12" cy="-10" r="14"/></g>
@@ -1491,7 +1495,6 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
         <g class="rm-bush" transform="translate(300 668)"><circle cx="-14" cy="0" r="14"/><circle cx="6" cy="-4" r="18"/><circle cx="26" cy="2" r="12"/></g>
         <g class="rm-bush" transform="translate(1080 560)"><circle cx="-10" cy="0" r="11"/><circle cx="6" cy="-3" r="14"/><circle cx="22" cy="1" r="9"/></g>
       </g>
-      <g class="rm-flag" transform="translate(1590 380)"><rect x="-2" y="-62" width="4" height="70" rx="2" fill="#13151d"/><path d="M2 -62 L46 -50 L2 -36 Z" fill="url(#rm-check)" stroke="#13151d" stroke-width="2"/></g>
       <g id="rm-car" class="rm-car">
         <ellipse class="rm-shadow" cx="4" cy="12" rx="54" ry="8"/>
         <g class="rm-puffs"><circle class="p1" cx="-60" cy="-6" r="7"/><circle class="p2" cx="-60" cy="-6" r="7"/><circle class="p3" cx="-60" cy="-6" r="7"/></g>
@@ -1561,7 +1564,8 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       <p class="rm-lead rm-foot">How we&rsquo;ll measure progress is on the next slide.</p>
     </div>
   </div>
-  <aside class="notes">[Target: about 25 seconds. Three clicks, one line each: the car drives to each stop and opens it. Community hub, monetization (campuses pay, students don&rsquo;t; paid character packs), where we&rsquo;re headed.] Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then monetization: campuses pay, students don't, and students can buy character packs for their agents. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press drives to the next stop and opens it.</aside>
+  <div class="rm-fade" aria-hidden="true"></div>
+  <aside class="notes">[Target: about 25 seconds. Three clicks, one line each: the car drives to each stop and opens it. A fourth click drives the car off the road, fades to black and opens the metrics. Community hub, monetization (campuses pay, students don&rsquo;t; paid character packs), where we&rsquo;re headed.] Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then monetization: campuses pay, students don't, and students can buy character packs for their agents. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press drives to the next stop and opens it.</aside>
 </section>
 
 <!-- Metrics: dark, Wajo-style impact cards; every number rolls up at once -->
@@ -1764,7 +1768,9 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     var rm = $('rm'); if (!rm) return;
     var road = $('rm-road'), car = $('rm-car'), dim = $('rm-dim');
     var total = road.getTotalLength();
-    var STOP = { start: 0.06, b: 0.32, m: 0.60, c: 0.90 }, ORDER = ['b', 'm', 'c'];
+    var ORDER = ['b', 'm', 'c'], STOPX = { start: 60, b: 520, m: 1000, c: 1450, exit: 2080 }, STOP = {};
+    function fracAtX(x) { var lo = 0, hi = 1; for (var i = 0; i < 32; i++) { var mid = (lo + hi) / 2; if (road.getPointAtLength(total * mid).x < x) lo = mid; else hi = mid; } return lo; }
+    Object.keys(STOPX).forEach(function (k) { STOP[k] = fracAtX(STOPX[k]); });
     var at = STOP.start, anim = null, openId = null;
     var wheels = Array.prototype.slice.call(car.querySelectorAll('.rm-wh'));
     function park() { car.classList.remove('driving'); car.classList.add('idle'); }
@@ -1811,6 +1817,14 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     function render(s, animate) {
       if (anim) { cancelAnimationFrame(anim); anim = null; }
       closeCard(true);
+      var sec = rm.closest('section');
+      if (s > ORDER.length) {
+        if (animate) {
+          drive(STOP.exit, function () { sec.classList.add('rm-out'); setTimeout(function () { if (slides[cur] === sec) next(); }, reduce ? 0 : 750); });
+        } else { sec.classList.remove('rm-out'); at = STOP.c; place(at); park(); }
+        return;
+      }
+      sec.classList.remove('rm-out');
       var idx = Math.min(s, ORDER.length) - 1;
       var target = idx >= 0 ? STOP[ORDER[idx]] : STOP.start;
       var openK = idx >= 0 ? ORDER[idx] : null;
@@ -1823,9 +1837,10 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && openId) { e.preventDefault(); e.stopImmediatePropagation(); closeCard(false); }
     }, true);
+    var entering = false;
     hooks.roadmap = {
-      enter: function () { var si = Array.prototype.indexOf.call(slides, rm.closest('section')); render(si > -1 ? stepState[si] : 0, false); },
-      step: function (s) { render(s, true); }
+      enter: function () { entering = true; setTimeout(function () { entering = false; }, 0); var si = Array.prototype.indexOf.call(slides, rm.closest('section')); render(si > -1 ? stepState[si] : 0, false); },
+      step: function (s) { render(s, !entering); }
     };
     place(at); park();
   })();
