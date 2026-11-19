@@ -38,3 +38,24 @@
 
 /* Built in Mesh */
 .stats.built .stat .v { font-size: 140px; }
+
+/* Short-term and long-term KPIs, side by side */
+.kpi2 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; width: 1480px; margin-top: 64px; text-align: left; }
+.kcol { background: #fff; border-radius: 24px; padding: 34px 38px 30px; display: flex; flex-direction: column; gap: 6px; }
+.kcol.star { background: #000; color: #f5f5f7; }
+.ktag { font: 600 15px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.kcol.star .ktag { color: #a1a1aa; }
+.krow { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding: 16px 0; border-top: 1px solid #ececf0; }
+.kcol.star .krow { border-top-color: #27272a; margin-top: auto; }
+.krow b { font: 600 25px/1.25 var(--font); letter-spacing: -0.01em; }
+.krow em { font: 700 44px/1 var(--font); font-style: normal; letter-spacing: -0.03em; }
+.kbig { margin: 6px 0 22px; font: 700 40px/1.15 var(--font); letter-spacing: -0.03em; }
+.kcol.star .grad { background: linear-gradient(90deg, #7c7cff 0%, #c084fc 45%, #ff6fae 75%, #ffa45c 100%); -webkit-background-clip: text; background-clip: text; }
+.kfoot { margin-top: 30px; font: 500 20px/1.4 var(--font); color: var(--muted); }
+
+/* How it makes money, one line under the bets */
+.money { margin-top: 40px; max-width: 1300px; font: 500 26px/1.4 var(--font); color: var(--ink-2); }
+.money b { color: var(--ink); }
+.bets.tight.four { grid-template-columns: repeat(4, 1fr); width: 1560px; gap: 20px; }
+.bets.tight.four .bet b { font-size: 27px; }
+.bets.tight.four .bet p { font-size: 18.5px; }
