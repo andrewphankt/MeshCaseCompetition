@@ -1080,6 +1080,62 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .rm-future .rm-k-l { min-height: 0; }
 .rm-future .rm-k-goal { font-size: 28px; }
 .rm-card .rm-foot { margin-top: 14px; font-size: 17px; }
+
+/* ---------- Road map overhaul: hills, clouds, trees, a real little car ---------- */
+.rm-sun { fill: #ffd84d; opacity: 1; }
+.rm-sunglow { transform-origin: 1400px 96px; animation: rmGlow 4s ease-in-out infinite; }
+@keyframes rmGlow { 50% { transform: scale(1.12); opacity: .7; } }
+.rm-cloud ellipse { fill: #fff; stroke: #e7dfcd; stroke-width: 2; }
+.rm-cloud.c1 { transform: translate(260px, 70px); animation: rmDrift1 38s linear infinite; }
+.rm-cloud.c2 { transform: translate(720px, 40px); animation: rmDrift2 46s linear infinite; }
+.rm-cloud.c3 { transform: translate(1080px, 150px); animation: rmDrift3 54s linear infinite; }
+@keyframes rmDrift1 { from { transform: translate(260px, 70px); } 50% { transform: translate(340px, 66px); } to { transform: translate(260px, 70px); } }
+@keyframes rmDrift2 { from { transform: translate(720px, 40px); } 50% { transform: translate(640px, 44px); } to { transform: translate(720px, 40px); } }
+@keyframes rmDrift3 { from { transform: translate(1080px, 150px); } 50% { transform: translate(1160px, 146px); } to { transform: translate(1080px, 150px); } }
+.rm-hill { stroke: none; }
+.rm-shoulder { fill: none; stroke: #ece4d2; stroke-width: 132; stroke-linecap: round; }
+.rm-edge { stroke: #2a2620; stroke-width: 104; opacity: 1; }
+.rm-road { stroke: #3d3933; stroke-width: 96; }
+.rm-edgeline { fill: none; stroke: rgba(255,255,255,.75); stroke-width: 84; stroke-linecap: round; }
+.rm-road2 { fill: none; stroke: #3d3933; stroke-width: 76; stroke-linecap: round; }
+.rm-line { stroke: #ffd84d; stroke-width: 5; stroke-dasharray: 24 22; }
+.rm-tree rect { fill: #8a6a4a; }
+.rm-tree circle { fill: #8fc27a; stroke: #6fa75c; stroke-width: 2; }
+.rm-tree.t2 circle, .rm-tree.t4 circle { fill: #a6cf8a; }
+.rm-tree { transform-box: fill-box; }
+.rm-bush circle { fill: #b5d79a; stroke: #8fbf78; stroke-width: 2; }
+/* the car */
+.rm-car .rm-shadow { fill: rgba(20,16,10,.22); }
+.rm-car .rm-shell { fill: #e8613f; stroke: #13151d; stroke-width: 3; stroke-linejoin: round; }
+.rm-car .rm-stripe { stroke: #ffd84d; stroke-width: 4; stroke-linecap: round; }
+.rm-car .rm-win { fill: #dff1ff; stroke: #13151d; stroke-width: 2.5; stroke-linejoin: round; }
+.rm-car .rm-light { fill: #ffe9a3; stroke: #13151d; stroke-width: 2; }
+.rm-car .rm-tail { fill: #ff8a8a; stroke: #13151d; stroke-width: 2; }
+.rm-car .rm-antenna { stroke: #13151d; stroke-width: 2.5; stroke-linecap: round; }
+.rm-car .rm-pennant { fill: #ED93B1; stroke: #13151d; stroke-width: 2; stroke-linejoin: round; }
+.rm-car .rm-tire { fill: #13151d; }
+.rm-car .rm-hub { fill: #d9d4c8; }
+.rm-car .rm-spoke { stroke: #13151d; stroke-width: 2.5; stroke-linecap: round; }
+.rm-car .rm-puffs circle { fill: #e9e3d6; stroke: #cfc6b4; stroke-width: 1.5; opacity: 0; }
+.rm-car.driving .rm-puffs .p1 { animation: rmPuff .9s linear infinite; }
+.rm-car.driving .rm-puffs .p2 { animation: rmPuff .9s linear .3s infinite; }
+.rm-car.driving .rm-puffs .p3 { animation: rmPuff .9s linear .6s infinite; }
+@keyframes rmPuff { 0% { opacity: .9; transform: translate(0, 0) scale(.6); } 100% { opacity: 0; transform: translate(-36px, -14px) scale(1.8); } }
+.rm-car .rm-body { transform-box: fill-box; transform-origin: 50% 100%; }
+.rm-car.driving .rm-body { animation: rmJiggle .28s ease-in-out infinite; }
+@keyframes rmJiggle { 50% { transform: translateY(-2px) rotate(-.8deg); } }
+.rm-car.idle { animation: none; }
+.rm-car.idle .rm-pennant { transform-box: fill-box; transform-origin: 0% 50%; animation: rmFlap 1.4s ease-in-out infinite; }
+@keyframes rmFlap { 50% { transform: skewY(8deg) scaleX(.9); } }
+.rm-car.idle .rm-body { animation: rmIdle 2.4s ease-in-out infinite; }
+@keyframes rmIdle { 50% { transform: translateY(-1.5px); } }
+/* signs: colored road signs on wooden posts */
+.rm-sign { background: #fffdf6; border: 3px solid #13151d; border-radius: 12px; box-shadow: 0 6px 0 rgba(19,21,29,.18); }
+.rm-sign::after { width: 6px; background: #8a6a4a; border-radius: 3px; }
+.rm-sign small { color: #fff !important; display: table; margin: 0 auto 6px; padding: 2px 10px; border-radius: 999px; background: var(--sg, #2a9d66); }
+#rm-sign-b { --sg: #2a9d66; } #rm-sign-m { --sg: #d99a00; } #rm-sign-c { --sg: #2f86d6; }
+.rm-sign:hover, .rm-sign[aria-expanded="true"] { background: #fff4c2; color: #13151d; box-shadow: 0 0 0 6px rgba(255,216,77,.45), 0 6px 0 rgba(19,21,29,.18); }
+@media (prefers-reduced-motion: reduce) { .rm-sunglow, .rm-cloud, .rm-car *, .rm-car { animation: none !important; } }
 </style>
 </head>
 <body>
@@ -1406,15 +1462,50 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i></span>
   <div class="rm" id="rm" data-interactive>
     <svg class="rm-svg" viewBox="0 0 1600 640" width="1600" height="640" aria-hidden="true">
-      <circle class="rm-sun" cx="1450" cy="120" r="46"/>
-      <path class="rm-horizon" d="M0 210 L1600 170"/>
-      <path class="rm-edge" d="M-40 600 C 300 600, 470 470, 760 430 S 1240 360, 1520 120"/>
-      <path class="rm-road" id="rm-road" d="M-40 600 C 300 600, 470 470, 760 430 S 1240 360, 1520 120"/>
-      <path class="rm-line" d="M-40 600 C 300 600, 470 470, 760 430 S 1240 360, 1520 120"/>
+      <defs>
+        <radialGradient id="rm-glow"><stop offset="0" stop-color="#ffd84d" stop-opacity=".55"/><stop offset="1" stop-color="#ffd84d" stop-opacity="0"/></radialGradient>
+        <linearGradient id="rm-hill-a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6ecd2"/><stop offset="1" stop-color="#e6ecd2" stop-opacity="0"/></linearGradient>
+        <linearGradient id="rm-hill-b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe0b0"/><stop offset="1" stop-color="#cfe0b0" stop-opacity="0"/></linearGradient>
+        <pattern id="rm-check" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#fff"/><rect width="5" height="5" fill="#13151d"/><rect x="5" y="5" width="5" height="5" fill="#13151d"/></pattern>
+      </defs>
+      <circle class="rm-sunglow" cx="1400" cy="96" r="120" fill="url(#rm-glow)"/>
+      <circle class="rm-sun" cx="1400" cy="96" r="44"/>
+      <g class="rm-clouds">
+        <g class="rm-cloud c1"><ellipse cx="0" cy="0" rx="46" ry="20"/><ellipse cx="-30" cy="6" rx="30" ry="15"/><ellipse cx="34" cy="6" rx="32" ry="14"/></g>
+        <g class="rm-cloud c2"><ellipse cx="0" cy="0" rx="38" ry="16"/><ellipse cx="-26" cy="5" rx="24" ry="12"/><ellipse cx="28" cy="5" rx="26" ry="12"/></g>
+        <g class="rm-cloud c3"><ellipse cx="0" cy="0" rx="52" ry="22"/><ellipse cx="-36" cy="7" rx="32" ry="15"/><ellipse cx="38" cy="7" rx="34" ry="15"/></g>
+      </g>
+      <path class="rm-hill far" d="M-120 300 C 120 210, 330 250, 520 220 S 900 120, 1120 170 S 1450 90, 1720 140 L1720 640 L-120 640 Z" fill="url(#rm-hill-a)"/>
+      <path class="rm-hill near" d="M-120 420 C 160 330, 380 380, 620 330 S 1020 250, 1260 250 S 1560 190, 1720 210 L1720 640 L-120 640 Z" fill="url(#rm-hill-b)"/>
+      <path class="rm-shoulder" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410"/>
+      <path class="rm-edge" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410"/>
+      <path class="rm-road" id="rm-road" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410"/>
+      <path class="rm-edgeline" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410"/>
+      <path class="rm-road2" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410"/>
+      <path class="rm-line" d="M-40 600 C 300 600, 470 500, 760 480 S 1240 440, 1560 410"/>
+      <g class="rm-trees">
+        <g class="rm-tree t1" transform="translate(560 585)"><rect x="-4" y="-6" width="8" height="26" rx="3"/><circle cx="0" cy="-24" r="24"/><circle cx="-14" cy="-12" r="16"/><circle cx="14" cy="-12" r="16"/></g>
+        <g class="rm-tree t2" transform="translate(905 580)"><rect x="-4" y="-6" width="8" height="24" rx="3"/><circle cx="0" cy="-20" r="20"/><circle cx="-12" cy="-10" r="14"/><circle cx="12" cy="-10" r="14"/></g>
+        <g class="rm-tree t3" transform="translate(1235 545)"><rect x="-4" y="-6" width="8" height="24" rx="3"/><circle cx="0" cy="-22" r="22"/><circle cx="-13" cy="-11" r="15"/><circle cx="13" cy="-11" r="15"/></g>
+        <g class="rm-tree t4" transform="translate(1440 520)"><rect x="-3" y="-5" width="6" height="20" rx="3"/><circle cx="0" cy="-16" r="16"/><circle cx="-10" cy="-8" r="11"/><circle cx="10" cy="-8" r="11"/></g>
+        <g class="rm-bush" transform="translate(300 668)"><circle cx="-14" cy="0" r="14"/><circle cx="6" cy="-4" r="18"/><circle cx="26" cy="2" r="12"/></g>
+        <g class="rm-bush" transform="translate(1080 560)"><circle cx="-10" cy="0" r="11"/><circle cx="6" cy="-3" r="14"/><circle cx="22" cy="1" r="9"/></g>
+      </g>
+      <g class="rm-flag" transform="translate(1590 380)"><rect x="-2" y="-62" width="4" height="70" rx="2" fill="#13151d"/><path d="M2 -62 L46 -50 L2 -36 Z" fill="url(#rm-check)" stroke="#13151d" stroke-width="2"/></g>
       <g id="rm-car" class="rm-car">
-        <rect x="-46" y="-30" width="92" height="30" rx="9"/>
-        <path class="rm-cab" d="M-26 -30 L-14 -50 L18 -50 L30 -30 Z"/>
-        <circle class="rm-wheel" cx="-26" cy="2" r="11"/><circle class="rm-wheel" cx="26" cy="2" r="11"/>
+        <ellipse class="rm-shadow" cx="4" cy="12" rx="54" ry="8"/>
+        <g class="rm-puffs"><circle class="p1" cx="-60" cy="-6" r="7"/><circle class="p2" cx="-60" cy="-6" r="7"/><circle class="p3" cx="-60" cy="-6" r="7"/></g>
+        <g class="rm-body">
+          <path class="rm-antenna" d="M-30 -30 L-38 -66"/><path class="rm-pennant" d="M-38 -66 L-14 -60 L-36 -52 Z"/>
+          <path class="rm-shell" d="M-52 -6 Q-54 -26 -34 -30 L-22 -31 Q-10 -54 12 -54 L22 -54 Q40 -54 46 -34 L52 -31 Q60 -29 60 -14 L60 -6 Q60 2 52 2 L-46 2 Q-52 2 -52 -6 Z"/>
+          <path class="rm-stripe" d="M-50 -14 L58 -14"/>
+          <path class="rm-win" d="M-16 -33 Q-6 -48 10 -48 L14 -48 L14 -33 Z"/>
+          <path class="rm-win" d="M20 -48 Q34 -48 39 -33 L20 -33 Z"/>
+          <circle class="rm-light" cx="56" cy="-22" r="5"/>
+          <rect class="rm-tail" x="-54" y="-24" width="6" height="8" rx="2"/>
+        </g>
+        <g class="rm-wh" data-x="-28"><circle class="rm-tire" r="14"/><circle class="rm-hub" r="6"/><path class="rm-spoke" d="M-9 0 H9 M0 -9 V9"/></g>
+        <g class="rm-wh" data-x="34"><circle class="rm-tire" r="14"/><circle class="rm-hub" r="6"/><path class="rm-spoke" d="M-9 0 H9 M0 -9 V9"/></g>
       </g>
     </svg>
     <div class="rm-carlabel" id="rm-carlabel"><b>Now: the team room</b>We're building Mesh with Mesh.</div>
@@ -1675,23 +1766,28 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     var total = road.getTotalLength();
     var STOP = { start: 0.06, b: 0.32, m: 0.60, c: 0.90 }, ORDER = ['b', 'm', 'c'];
     var at = STOP.start, anim = null, openId = null;
+    var wheels = Array.prototype.slice.call(car.querySelectorAll('.rm-wh'));
+    function park() { car.classList.remove('driving'); car.classList.add('idle'); }
     function place(f) {
       var L = total * f, p = road.getPointAtLength(L), q = road.getPointAtLength(Math.min(total, L + 2));
       var a = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
-      car.setAttribute('transform', 'translate(' + p.x + ' ' + (p.y - 14) + ') rotate(' + a + ')');
+      car.setAttribute('transform', 'translate(' + p.x + ' ' + (p.y - 16) + ') rotate(' + a + ')');
+      var spin = (L / 14) * 180 / Math.PI;
+      wheels.forEach(function (w) { w.setAttribute('transform', 'translate(' + w.dataset.x + ' 0) rotate(' + spin.toFixed(1) + ')'); });
     }
     function signAt(id, f, lift) { var p = road.getPointAtLength(total * f); var b = $(id); b.style.left = p.x + 'px'; b.style.top = (p.y - lift) + 'px'; b.style.setProperty('--post', (lift - b.offsetHeight - 30) + 'px'); }
     ORDER.forEach(function (k, i) { signAt('rm-sign-' + k, STOP[k], i % 2 ? 230 : 140); });
     function drive(to, done) {
       if (anim) cancelAnimationFrame(anim);
       car.classList.remove('idle');
-      if (reduce || Math.abs(to - at) < 0.001) { at = to; place(at); car.classList.add('idle'); if (done) done(); return; }
-      var from = at, t0 = null, dur = 1200;
+      if (!(reduce || Math.abs(to - at) < 0.001)) car.classList.add('driving');
+      if (reduce || Math.abs(to - at) < 0.001) { at = to; place(at); park(); if (done) done(); return; }
+      var from = at, t0 = null, dur = 1600;
       function tick(now) {
         if (t0 === null) t0 = now;
         var t = Math.min(1, (now - t0) / dur), e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
         at = from + (to - from) * e; place(at);
-        if (t < 1) anim = requestAnimationFrame(tick); else { anim = null; car.classList.add('idle'); if (done) done(); }
+        if (t < 1) anim = requestAnimationFrame(tick); else { anim = null; park(); if (done) done(); }
       }
       anim = requestAnimationFrame(tick);
     }
@@ -1719,7 +1815,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       var target = idx >= 0 ? STOP[ORDER[idx]] : STOP.start;
       var openK = idx >= 0 ? ORDER[idx] : null;
       if (animate) drive(target, function () { if (openK) openCard(openK); });
-      else { at = target; place(at); car.classList.add('idle'); if (openK) openCard(openK); }
+      else { at = target; place(at); park(); if (openK) openCard(openK); }
     }
     ORDER.forEach(function (k, i) { $('rm-sign-' + k).addEventListener('click', function () { goStop(k, i + 1); }); });
     each(rm.querySelectorAll('.rm-x'), function (x) { x.addEventListener('click', function () { closeCard(false); }); });
@@ -1731,7 +1827,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       enter: function () { var si = Array.prototype.indexOf.call(slides, rm.closest('section')); render(si > -1 ? stepState[si] : 0, false); },
       step: function (s) { render(s, true); }
     };
-    place(at); car.classList.add('idle');
+    place(at); park();
   })();
 
   /* ---------- Metrics slide: every number rolls to its value at once, like a reel ---------- */
