@@ -1417,12 +1417,12 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .room.mesh-ui .lg-row.lg-door { position: relative; height: 56px; width: 61px; margin: -4px 0 2px 40px; }
 .room.mesh-ui .lg-door img { position: absolute; left: 0; bottom: 0; height: 100%; animation: none !important; opacity: 0; }
 .room.mesh-ui .lg-door .d3 { opacity: 1; }
-.slide.active .room.mesh-ui .lg-door .d1 { animation: dr1 7s step-end .8s infinite !important; }
-.slide.active .room.mesh-ui .lg-door .d2 { animation: dr2 7s step-end .8s infinite !important; }
-.slide.active .room.mesh-ui .lg-door .d3 { animation: dr3 7s step-end .8s infinite !important; }
-@keyframes dr1 { 0% { opacity: 1; } 11% { opacity: 0; } 100% { opacity: 0; } }
-@keyframes dr2 { 0% { opacity: 0; } 11% { opacity: 1; } 22% { opacity: 0; } 100% { opacity: 0; } }
-@keyframes dr3 { 0% { opacity: 0; } 22% { opacity: 1; } 100% { opacity: 1; } }
+.slide.active .room.mesh-ui .lg-door .d1 { animation: dr1 3s step-end .3s infinite !important; }
+.slide.active .room.mesh-ui .lg-door .d2 { animation: dr2 3s step-end .3s infinite !important; }
+.slide.active .room.mesh-ui .lg-door .d3 { animation: dr3 3s step-end .3s infinite !important; }
+@keyframes dr1 { 0% { opacity: 1; } 33% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes dr2 { 0% { opacity: 0; } 33% { opacity: 1; } 60% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes dr3 { 0% { opacity: 0; } 60% { opacity: 1; } 100% { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .room.mesh-ui .lg-door img { animation: none !important; } }
 
 /* Slide 12: Mesh column starts hidden; one click pops it in, then the checks drop in top to bottom */
