@@ -1115,6 +1115,16 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .spk-iris { --spk: #7fdcae; } .spk-iris i { background-image: url(sprites/cat_stand.png); }
 .mx-slide .spk, .wj-slide .spk { background: rgba(31,31,34,.92); border-color: #2c2c31; color: #f4f4f5; box-shadow: none; }
 .demo-full .spk { top: auto; bottom: 16px; right: 18px; }
+
+/* Road map, cleaner: one click per stop, the car drives and its card slides up; the road stays visible */
+.rm-dim { background: rgba(10,10,14,.18) !important; }
+.rm-card { top: 0; transform: translate(-50%, 0); width: 1180px; max-height: 610px; padding: 30px 38px 30px; box-shadow: 0 24px 60px rgba(20,16,10,.22); animation: rmIn .45s cubic-bezier(.2,.9,.3,1) both; }
+@keyframes rmIn { from { opacity: 0; transform: translate(-50%, 18px); } to { opacity: 1; transform: translate(-50%, 0); } }
+.rm-card h3 { font-size: 36px; }
+.rm-tier .mo-crew { height: 70px; margin-top: 6px; }
+.rm-sign { transition: background .2s, transform .2s; }
+.rm-sign[aria-expanded="true"] { transform: translate(-50%, -100%) scale(1.06); }
+@media (prefers-reduced-motion: reduce) { .rm-card { animation: none; } }
 </style>
 </head>
 <body>
@@ -1444,7 +1454,7 @@ Saved 2 files.</pre></div></div>
   <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
   <div class="eyebrow"><i></i>The road map</div>
   <h2 class="h-m">Where Mesh goes from here.</h2>
-  <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i><i data-step="5"></i><i data-step="6"></i></span>
+  <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i></span>
   <div class="rm" id="rm" data-interactive>
     <svg class="rm-svg" viewBox="0 0 1600 640" width="1600" height="640" aria-hidden="true">
       <circle class="rm-sun" cx="1450" cy="120" r="46"/>
@@ -1461,7 +1471,8 @@ Saved 2 files.</pre></div></div>
     <div class="rm-carlabel" id="rm-carlabel"><b>Now: the team room</b>We're building Mesh with Mesh.</div>
     <div class="rm-hint">Click a sign</div>
     <button type="button" class="rm-sign" id="rm-sign-b" data-stop="b" aria-expanded="false" aria-controls="rm-card-b"><small>Next</small>Community hub</button>
-    <button type="button" class="rm-sign" id="rm-sign-o" data-stop="o" aria-expanded="false" aria-controls="rm-card-o"><small>Then</small>Open source</button>
+    <button type="button" class="rm-sign" id="rm-sign-m" data-stop="m" aria-expanded="false" aria-controls="rm-card-m"><small>Then</small>How we make money</button>
+    <button type="button" class="rm-sign" id="rm-sign-o" data-stop="o" aria-expanded="false" aria-controls="rm-card-o"><small>After</small>Open source</button>
     <button type="button" class="rm-sign" id="rm-sign-c" data-stop="c" aria-expanded="false" aria-controls="rm-card-c"><small>Future</small>Where we're headed</button>
     <div class="rm-dim" id="rm-dim" hidden></div>
     <div class="rm-card" id="rm-card-b" role="dialog" aria-modal="false" aria-labelledby="rm-b-h" hidden>
@@ -1482,6 +1493,17 @@ Saved 2 files.</pre></div></div>
       <div class="proj" data-kind="help"><h3>Club Finder</h3><span class="kind help">Help wanted</span><p>Find campus clubs that match your interests.</p><div class="row"><span class="faces"><i style="background:var(--jordan)"></i><i style="background:var(--priya)"></i></span><span>Needs a database helper</span><button type="button" class="btn join" data-team="Club Finder">Ask to join</button></div></div>
       <div class="proj" data-kind="show"><h3>Pitch Coach</h3><span class="kind show">Showcase</span><p>Practice case pitches with an AI judge.</p><div class="row"><span class="faces"><i style="background:var(--sam)"></i><i style="background:var(--maya)"></i><i style="background:var(--priya)"></i></span><span>Demo ready</span><button type="button" class="btn join" data-team="Pitch Coach">See the build</button></div></div>
     </div>
+      </div>
+    </div>
+    <div class="rm-card" id="rm-card-m" role="dialog" aria-modal="false" aria-labelledby="rm-m-h" hidden>
+      <button type="button" class="rm-x" aria-label="Close">&times;</button>
+      <span class="rm-corner">Planned</span>
+      <h3 id="rm-m-h">Campuses pay. Students don&rsquo;t.</h3>
+      <p class="rm-lead">A campus licenses Mesh and offers it to its students as a free resource, for students who want to make things but need introductory help with coding.</p>
+      <div class="rm-tiers">
+        <div class="rm-tier"><span class="rm-k-l">Campuses</span><span class="rm-k-goal"><span class="rm-tbd">$X</span> / year</span><span class="rm-k-sub">A campus-wide license. First stop: USC. Start with one club or hackathon, then license the whole campus.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Students</span><span class="rm-k-goal">Free</span><span class="rm-k-sub">Through their campus, on the AI plan they already have. Mesh never charges for AI.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Agent characters</span><span class="rm-k-goal">Paid packs</span><span class="rm-k-sub">Every agent gets a free character. Students can buy character packs and custom looks to personify their agents.</span><span class="mo-crew" aria-hidden="true"><img src="sprites/fox_idle.png" alt=""><img src="sprites/cat_idle.png" alt=""><img src="sprites/bunny_idle.png" alt=""><img src="sprites/bear_idle.png" alt=""><img src="sprites/idle.png" alt=""></span></div>
       </div>
     </div>
     <div class="rm-card" id="rm-card-o" role="dialog" aria-modal="false" aria-labelledby="rm-o-h" hidden>
@@ -1511,36 +1533,10 @@ Saved 2 files.</pre></div></div>
       <p class="rm-lead rm-foot">How we'll measure progress is on the next slide.</p>
     </div>
   </div>
-  <aside class="notes">[Target: about 25 seconds. Open ONE stop (Community hub). Leave the others for Q&amp;A.] Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then Open source: the students who use it help build it. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press opens the next stop, the next press closes it.</aside>
+  <aside class="notes">[Target: about 30 seconds. Four clicks, one line each: the car drives to each stop and opens it. Community hub, how we make money (campuses pay, students don&rsquo;t; paid character packs), open source, where we&rsquo;re headed.] Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then Open source: the students who use it help build it. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press opens the next stop, the next press closes it.</aside>
 </section>
 
 <!-- Metrics: dark, Wajo-style impact cards; every number rolls up at once -->
-<section class="slide" data-title="How Mesh makes money">
-  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
-  <div class="eyebrow"><i></i>How Mesh makes money</div>
-  <h2 class="h-m">Campuses pay. Students don&rsquo;t.</h2>
-  <div class="mo-grid">
-    <div class="mo-card">
-      <span class="mo-k">Campuses</span>
-      <span class="mo-big"><span class="mo-tbd">$X</span> / year</span>
-      <p>A campus licenses Mesh and offers it to its students as a free resource, for students who want to make things but need introductory help with coding.</p>
-      <small>First stop: USC. Start with one club or hackathon, then license the whole campus.</small>
-    </div>
-    <div class="mo-card">
-      <span class="mo-k">Students</span>
-      <span class="mo-big">Free</span>
-      <p>Through their campus, on the AI plan they already have. Mesh never charges for AI.</p>
-    </div>
-    <div class="mo-card mo-chars">
-      <span class="mo-k">Agent characters</span>
-      <span class="mo-big">Paid packs</span>
-      <p>Every agent gets a free character. Students can buy character packs and custom looks to personify their agents.</p>
-      <div class="mo-crew" aria-hidden="true"><img src="sprites/fox_idle.png" alt=""><img src="sprites/cat_idle.png" alt=""><img src="sprites/bunny_idle.png" alt=""><img src="sprites/bear_idle.png" alt=""><img src="sprites/idle.png" alt=""></div>
-    </div>
-  </div>
-  <aside class="notes">[Target: about 15 seconds.] Campuses pay, students don't. A campus licenses Mesh and offers it free to its students, and students use the AI plan they already have. On top of that, every agent gets a free character, and students can buy character packs to personify their agents. The campus price is still a placeholder.</aside>
-</section>
-
 <section class="slide mx-slide" data-title="What we measure" data-hook="metrics">
   <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
   <div class="mx-head"><span class="mx-k">Mesh impact</span><span class="mx-upd">Our own room · Nov 16&ndash;18, 2026</span></div>
@@ -1744,7 +1740,7 @@ Saved 2 files.</pre></div></div>
     var rm = $('rm'); if (!rm) return;
     var road = $('rm-road'), car = $('rm-car'), dim = $('rm-dim');
     var total = road.getTotalLength();
-    var STOP = { start: 0.08, b: 0.34, o: 0.62, c: 0.90 }, ORDER = ['b', 'o', 'c'];
+    var STOP = { start: 0.06, b: 0.29, m: 0.50, o: 0.70, c: 0.90 }, ORDER = ['b', 'm', 'o', 'c'];
     var at = STOP.start, anim = null, openId = null;
     function place(f) {
       var L = total * f, p = road.getPointAtLength(L), q = road.getPointAtLength(Math.min(total, L + 2));
@@ -1776,7 +1772,6 @@ Saved 2 files.</pre></div></div>
       each(rm.querySelectorAll('.rm-card'), function (c) { c.hidden = true; });
       each(rm.querySelectorAll('.rm-sign'), function (b) { b.setAttribute('aria-expanded', 'false'); });
       dim.hidden = true; var was = openId; openId = null;
-      if (!silent && was) { var k = Array.prototype.indexOf.call(slides, rm.closest('section')); if (k > -1 && stepState[k] % 2 === 1) { stepState[k]++; applySteps(k); } }
     }
     function goStop(k, step) {
       var si = Array.prototype.indexOf.call(slides, rm.closest('section'));
@@ -1787,13 +1782,13 @@ Saved 2 files.</pre></div></div>
     function render(s, animate) {
       if (anim) { cancelAnimationFrame(anim); anim = null; }
       closeCard(true);
-      var idx = s > 0 ? Math.ceil(s / 2) - 1 : -1;
+      var idx = Math.min(s, ORDER.length) - 1;
       var target = idx >= 0 ? STOP[ORDER[idx]] : STOP.start;
-      var openK = s % 2 === 1 ? ORDER[idx] : null;
+      var openK = idx >= 0 ? ORDER[idx] : null;
       if (animate) drive(target, function () { if (openK) openCard(openK); });
       else { at = target; place(at); car.classList.add('idle'); if (openK) openCard(openK); }
     }
-    ORDER.forEach(function (k, i) { $('rm-sign-' + k).addEventListener('click', function () { goStop(k, i * 2 + 1); }); });
+    ORDER.forEach(function (k, i) { $('rm-sign-' + k).addEventListener('click', function () { goStop(k, i + 1); }); });
     each(rm.querySelectorAll('.rm-x'), function (x) { x.addEventListener('click', function () { closeCard(false); }); });
     dim.addEventListener('click', function () { closeCard(false); });
     document.addEventListener('keydown', function (e) {
@@ -1801,7 +1796,7 @@ Saved 2 files.</pre></div></div>
     }, true);
     hooks.roadmap = {
       enter: function () { var si = Array.prototype.indexOf.call(slides, rm.closest('section')); render(si > -1 ? stepState[si] : 0, false); },
-      step: function (s) { render(s, s % 2 === 1); }
+      step: function (s) { render(s, true); }
     };
     place(at); car.classList.add('idle');
   })();
