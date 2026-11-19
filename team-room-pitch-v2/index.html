@@ -1202,6 +1202,68 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .slide.rm-out .rm-fade { opacity: 1; }
 .ba-link { color: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; font-weight: 700; }
 .src-link { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Demo ending: Preview, then Push (matches Mesh's real push animation) ---------- */
+.room.mesh-ui .m-pv { position: absolute; top: 0; right: 0; bottom: 0; left: 270px; z-index: 6; background: #f7f7f8; display: flex; flex-direction: column; animation: enter .35s ease both; }
+.room.mesh-ui .m-pv[hidden] { display: none; }
+.room.mesh-ui[data-view="preview"] .m-nav div:first-child { background: var(--m-soft); font-weight: 700; }
+.room.mesh-ui[data-view="preview"] .chan.on { background: transparent; color: var(--m-ink); }
+.room.mesh-ui[data-view="preview"] .chan.on b { color: var(--m-mute); }
+.pv-head { display: flex; align-items: center; gap: 14px; padding: 14px 22px; background: #fff; border-bottom: 1px solid var(--m-line); }
+.pv-head > b { font: 700 22px var(--body); color: var(--m-ink); }
+.pv-seg { display: inline-flex; border: 1px solid var(--m-line); border-radius: 9px; overflow: hidden; }
+.pv-seg i { font: 600 14px var(--body); font-style: normal; padding: 6px 12px; color: var(--m-mute); }
+.pv-seg i.on { background: var(--m-ink); color: #fff; }
+.pv-status { font: 600 14px var(--body); color: var(--m-mute); background: var(--m-soft); border-radius: 999px; padding: 4px 12px; }
+.m-pv.done .pv-status { color: #1a7f4b; background: rgba(26,127,75,.1); }
+.pv-back { margin-left: auto; }
+.pv-stage { flex: 1; min-height: 0; padding: 22px 40px 14px; background-image: linear-gradient(#e9e9ec 1px, transparent 1px), linear-gradient(90deg, #e9e9ec 1px, transparent 1px); background-size: 28px 28px; display: flex; justify-content: center; }
+.pv-browser { width: 100%; max-width: 1060px; background: #fff; border: 1px solid var(--m-line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 14px 34px rgba(20,20,30,.08); }
+.pv-bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; border-bottom: 1px solid var(--m-line); }
+.pv-bar > i { width: 10px; height: 10px; border-radius: 50%; background: #d9d9de; }
+.pv-url { margin-left: 8px; font: 500 14px var(--mono); color: var(--m-mute); }
+.pv-live { margin-left: auto; font: 700 13px var(--body); letter-spacing: .06em; text-transform: uppercase; color: #fff; background: #1a9e5c; border-radius: 999px; padding: 3px 10px; opacity: 0; transform: scale(.6); transition: opacity .3s, transform .4s cubic-bezier(.2,1.6,.4,1); }
+.m-pv.done .pv-live { opacity: 1; transform: none; }
+.pv-page { flex: 1; display: flex; flex-direction: column; background: #fbf8f2; transition: opacity .25s; }
+.m-pv.reload .pv-page { opacity: .15; }
+.pv-nav { display: flex; gap: 22px; align-items: center; padding: 14px 26px; font: 500 15px var(--body); color: var(--m-mute); }
+.pv-nav b { font: 800 19px var(--body); color: var(--m-ink); margin-right: auto; }
+.pv-hero { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0 60px; gap: 12px; }
+.pv-hero h4 { margin: 0; font: 800 64px/1.02 var(--display); color: var(--m-ink); display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.pv-hero p { margin: 0; font: 500 22px var(--body); color: var(--m-mute); }
+.pv-cta { align-self: flex-start; font: 700 17px var(--body); color: #fff; background: var(--m-ink); border-radius: 10px; padding: 11px 20px; }
+.pv-foot { display: flex; align-items: center; gap: 12px; padding: 12px 26px; border-top: 1px solid #ece6d8; font: 600 15px var(--body); color: var(--m-mute); }
+.pv-tag { font: 700 12px var(--body); font-style: normal; letter-spacing: .04em; color: #8a5a00; background: #ffe9a8; border: 1px solid #f0d27a; border-radius: 999px; padding: 3px 9px; white-space: nowrap; }
+.m-pv.done .pv-tag { display: none; }
+.pv-list { background: #fff; border-top: 1px solid var(--m-line); padding: 12px 22px 14px; }
+.pv-lhead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.pv-lhead b { font: 700 20px var(--body); color: var(--m-ink); }
+.pv-pushwrap { position: relative; display: inline-block; }
+.pv-push { min-width: 112px; font-size: 18px !important; padding: 11px 22px !important; display: inline-flex; align-items: center; gap: 8px; justify-content: center; }
+.pv-push .spin { width: 14px; height: 14px; border-radius: 50%; border: 2.5px solid rgba(255,255,255,.35); border-top-color: #fff; animation: pvspin .7s linear infinite; }
+.pv-push:disabled { opacity: .55; }
+@keyframes pvspin { to { transform: rotate(360deg); } }
+.pv-row { display: flex; align-items: center; gap: 12px; padding: 7px 4px; border-top: 1px solid #f0f0f2; font: 500 16px var(--body); color: var(--m-ink); max-height: 50px; overflow: hidden; transition: max-height .35s ease, opacity .3s ease, transform .35s ease, padding .35s ease; }
+.pv-row .pv-check { width: 18px; height: 18px; border-radius: 4px; background: var(--m-ink); color: #fff; display: grid; place-items: center; font: 700 12px var(--body); flex: none; }
+.pv-row .m-face { width: 26px; height: 26px; }
+.pv-row span.t { flex: 1; }
+.pv-row small { font: 500 14px var(--body); color: var(--m-mute); min-width: 92px; }
+.pv-row.gone { max-height: 0; opacity: 0; transform: translateX(40px); padding-top: 0; padding-bottom: 0; }
+.pv-burst { position: absolute; left: 50%; top: 50%; width: 0; height: 0; pointer-events: none; }
+.pv-burst i { position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; background: #16171b; border-radius: 1px; opacity: 0; }
+.pv-burst i:nth-child(3n) { width: 10px; height: 4px; } .pv-burst i:nth-child(4n) { background: #8b8b93; }
+.m-pv.pushing .pv-burst i { animation: pvburst .9s cubic-bezier(.15,.7,.3,1) forwards; }
+@keyframes pvburst { 0% { opacity: 1; transform: translate(0,0) rotate(0) scale(.6); } 70% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--bx), var(--by)) rotate(var(--br)) scale(1); } }
+.pv-plane { position: absolute; left: 50%; top: 50%; width: 34px; height: 34px; margin: -17px 0 0 -17px; fill: #fff; stroke: #16171b; stroke-width: 1.6; stroke-linejoin: round; opacity: 0; pointer-events: none; }
+.m-pv.pushing .pv-plane { animation: pvplane 1.3s cubic-bezier(.45,0,.55,1) .1s forwards; }
+@keyframes pvplane { 0% { opacity: 0; transform: translate(0,0) rotate(0) scale(.6); } 12% { opacity: 1; transform: translate(-20px,-30px) rotate(-8deg) scale(1); } 55% { opacity: 1; transform: translate(-140px,-160px) rotate(-18deg) scale(1.05); } 100% { opacity: 0; transform: translate(-420px,-520px) rotate(-26deg) scale(.7); } }
+@media (prefers-reduced-motion: reduce) { .m-pv.pushing .pv-burst i, .m-pv.pushing .pv-plane { animation: none; } }
+
+/* Bring your own agent: the reveal line */
+.by-small { margin-top: 26px; font: 600 26px/1.3 var(--body); color: #70737d; }
+.by-tag { margin: 10px 0 0; font: 800 54px/1.12 var(--display); color: #16171b; max-width: 1500px; }
+.by-tag[data-step]:not(.hidden) { animation: bytag .6s cubic-bezier(.2,1.3,.4,1) both; }
+@keyframes bytag { from { opacity: 0; transform: translateY(16px) scale(.97); } to { opacity: 1; transform: none; } }
 </style>
 </head>
 <body>
@@ -1426,8 +1488,9 @@ Saved 2 files.</pre></div></div>
     <div class="by-room"><svg class="mesh-mark small" aria-hidden="true"></svg>One Mesh room</div>
   </div>
   <span class="cx-steps" aria-hidden="true"><i data-step="1"></i></span>
-  <p class="by-cap" data-step="2">You don&rsquo;t prompt inside Mesh. Mesh is the room between your agents.</p>
-  <aside class="notes">[Target: about 20 seconds. Two clicks: the lines link up, then the caption.] This is the big difference. Everyone keeps the agent they already use (Claude Code, OpenAI's Codex, Google's Gemini CLI and Antigravity, which Mesh supports now), on their own laptop, on the plan they already pay for: Claude Code, Codex, Gemini. Mesh never runs anyone's agent. Click: they all link into one Mesh room. Click: you don't prompt inside Mesh. Mesh is the room between your agents. Other tools bring your team into their workspace; we bring the room to where your agents already work.</aside>
+  <p class="by-cap by-small" data-step="2">You don&rsquo;t prompt inside Mesh.</p>
+  <p class="by-tag" data-step="3">Your AIs finally talk to each other, so <span class="by-mark">you don&rsquo;t have to.</span></p>
+  <aside class="notes">[Target: about 20 seconds. Three clicks: the lines link up, 'You don't prompt inside Mesh.', then the line: 'Your AIs finally talk to each other, so you don't have to.'] This is the big difference. Everyone keeps the agent they already use (Claude Code, OpenAI's Codex, Google's Gemini CLI and Antigravity, which Mesh supports now), on their own laptop, on the plan they already pay for: Claude Code, Codex, Gemini. Mesh never runs anyone's agent. Click: they all link into one Mesh room. Click: you don't prompt inside Mesh. Mesh is the room between your agents. Other tools bring your team into their workspace; we bring the room to where your agents already work.</aside>
 </section>
 <!-- Section 3: See it in action -->
 <section class="slide mx-slide tx-slide" data-title="Section: See it in action">
@@ -1500,8 +1563,34 @@ Saved 2 files.</pre></div></div>
       <div class="file-foot" id="file-foot">No one is editing yet.</div>
       <div class="stamp" id="stamp-approved">Approved<strong>Live</strong>by Evelyn</div>
     </div>
+    <div class="m-pv" id="m-pv" hidden>
+      <div class="pv-head">
+        <b>Preview</b>
+        <span class="pv-seg"><i class="on">Desktop</i><i>Phone</i></span>
+        <span class="pv-status" id="pv-status">draft</span>
+        <button type="button" class="btn pv-back" id="pv-back">Back to chat</button>
+      </div>
+      <div class="pv-stage">
+        <div class="pv-browser">
+          <div class="pv-bar"><i></i><i></i><i></i><span class="pv-url">team4-git-draft.vercel.app</span><span class="pv-live" id="pv-live">Live</span></div>
+          <div class="pv-page" id="pv-page">
+            <div class="pv-nav"><b>Study Sprint</b><span>Features</span><span>Clubs</span><span>Sign in</span></div>
+            <div class="pv-hero">
+              <h4 id="pv-title">Build it together.<em class="pv-tag">new &middot; Andrew&rsquo;s AI</em></h4>
+              <p>A group study timer that keeps everyone on task.</p>
+              <span class="pv-cta">Get started</span>
+            </div>
+            <div class="pv-foot" id="pv-foot"><span id="pv-foot-text">Made at USC</span><em class="pv-tag">new &middot; Iris&rsquo;s AI</em></div>
+          </div>
+        </div>
+      </div>
+      <div class="pv-list">
+        <div class="pv-lhead"><b id="pv-count">2 new</b><span class="pv-pushwrap"><button type="button" class="btn primary pv-push" id="pv-push">Push</button><span class="pv-burst" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><svg class="pv-plane" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 21 3l-6.5 18-3-7.5z"/><path d="M11.5 13.5 21 3"/></svg></span></div>
+        <div class="pv-rows" id="pv-rows"></div>
+      </div>
+    </div>
   </div>
-  <aside class="notes">[Target: about 60 seconds. One line per beat: 'Two AIs head for the same file... Mesh warns them... I approve, and it's live.' Pick 'Take the footer' to keep it short.] Press Play and point at Working now on the right, which is what Mesh really shows: Andrew's AI is in index.html, and Iris's AI heads for the same file. Felix, Evelyn's agent, is idle in the sidebar on the left, sitting with headphones on. When the warning appears, ask the audience: "Wait, or take the footer?" and click their pick. Flip to Technical to show it's the same update, just translated. End by approving the preview as Evelyn, the teammate who doesn't write the code: Felix appears in Working now and gets to work, mining, then holds up the gem when the update is saved, then goes back to idle in the sidebar. This really happened on Nov 17: Evelyn's agent spotted a problem only Andrew could fix and sent his agent a request. She never opened Mesh. Andrew approved it in the room, and his agent picked it up.</aside>
+  <aside class="notes">[Target: about 60 seconds. After approving, click See it in Preview, then Push: the changes go live. One line per beat: 'Two AIs head for the same file... Mesh warns them... I approve, and it's live.' Pick 'Take the footer' to keep it short.] Press Play and point at Working now on the right, which is what Mesh really shows: Andrew's AI is in index.html, and Iris's AI heads for the same file. Felix, Evelyn's agent, is idle in the sidebar on the left, sitting with headphones on. When the warning appears, ask the audience: "Wait, or take the footer?" and click their pick. Flip to Technical to show it's the same update, just translated. End by approving the preview as Evelyn, the teammate who doesn't write the code: Felix appears in Working now and gets to work, mining, then holds up the gem when the update is saved, then goes back to idle in the sidebar. This really happened on Nov 17: Evelyn's agent spotted a problem only Andrew could fix and sent his agent a request. She never opened Mesh. Andrew approved it in the room, and his agent picked it up.</aside>
 </section>
 
 <!-- 9 Training mode -->
@@ -2199,14 +2288,13 @@ Saved 2 files.</pre></div></div>
     jordanFooter: function () { wnRow('i', 'index.html · footer', "Iris's AI · Iris · editing the footer", 'busy', 'var(--sam)', 'I'); foot.className = 'file-foot ok'; foot.textContent = 'No collision. Two AIs, two different parts.'; st('st-i', 'Editing the footer', 'busy'); },
     jordanWait: function () { wnRow('i', 'Waiting for index.html', "Iris's AI · Iris · waiting its turn", 'wait', 'var(--sam)', 'I'); foot.className = 'file-foot ok'; foot.textContent = "Iris's AI is waiting its turn."; st('st-i', 'Waiting its turn', 'wait'); },
     mayaDone: function () { wnRow('a', 'Saved: new title', "Andrew's AI · Andrew · just now", 'done', 'var(--jordan)', 'A'); st('st-a', 'Saved to draft'); },
-    footerDone: function () { wnRow('i', 'Saved: new footer', "Iris's AI · Iris · just now", 'done', 'var(--sam)', 'I'); st('st-i', 'Saved to draft'); },
+    footerDone: function () { footerChanged = true; wnRow('i', 'Saved: new footer', "Iris's AI · Iris · just now", 'done', 'var(--sam)', 'I'); st('st-i', 'Saved to draft'); },
     approved: function () {
       wnClear();
-      foot.className = 'file-foot ok'; foot.textContent = 'Approved by Evelyn. Live for the team.'; st('st-a', 'Idle'); st('st-i', 'Idle');
-      $('stamp-approved').classList.add('show');
+      foot.className = 'file-foot ok'; foot.textContent = 'Approved by Evelyn. Ready to push.'; st('st-a', 'Idle'); st('st-i', 'Idle');
       felix('work');
       timers.push(setTimeout(function () { felix('saved'); }, 2800));
-      timers.push(setTimeout(function () { felix('idle'); $('stamp-approved').classList.remove('show'); }, 5600));
+      timers.push(setTimeout(function () { felix('idle'); }, 5600));
     }
   };
   var people = {
@@ -2252,9 +2340,15 @@ Saved 2 files.</pre></div></div>
       var ab = el('button', 'btn primary', 'Approve (as Evelyn)'); ab.type = 'button';
       ab.addEventListener('click', function () {
         ab.disabled = true; ab.textContent = 'Approved by Evelyn';
-        run([{ who: 'room', plain: 'Approved. The changes are live for the team.', tech: 'merge draft → main · approved_by=evelyn · deploy ok', fx: 'approved', wait: 700 }]);
+        run([{ who: 'room', plain: 'Approved. Check it in Preview, then push it live.', tech: 'approved_by=evelyn · preview ready · awaiting push', fx: 'approved', preview: true, wait: 700 }]);
       });
       a.appendChild(ab); holder.appendChild(a);
+    }
+    if (m.preview) {
+      var pc = el('div', 'choices');
+      var pb = el('button', 'btn primary', 'See it in Preview'); pb.type = 'button';
+      pb.addEventListener('click', function () { openPreview(); });
+      pc.appendChild(pb); holder.appendChild(pc);
     }
     row.appendChild(av); row.appendChild(right);
     feed.appendChild(row);
@@ -2311,9 +2405,51 @@ Saved 2 files.</pre></div></div>
     feed.appendChild(h);
     $('demo-play').disabled = false;
     buildFile();
+    footerChanged = false; if (pv) closePreview();
   }
   $('demo-play').addEventListener('click', function () { reset(); this.disabled = true; run(opening); });
   $('demo-reset').addEventListener('click', reset);
+
+  /* ---------- Demo ending: Preview, then Push ---------- */
+  var pv = $('m-pv'), pvRows = $('pv-rows'), roomEl = document.querySelector('.room.mesh-ui'), footerChanged = false;
+  var BURST = [[-70,-60,140],[-40,-90,-80],[0,-100,200],[40,-88,60],[72,-58,-140],[90,-14,90],[78,30,-60],[46,58,160],[0,70,-200],[-46,56,110],[-80,26,-90],[-94,-16,40]];
+  each(pv.querySelectorAll('.pv-burst i'), function (b, k) { var d = BURST[k]; b.style.setProperty('--bx', d[0] + 'px'); b.style.setProperty('--by', d[1] + 'px'); b.style.setProperty('--br', d[2] + 'deg'); });
+  function pvRow(face, text, who) {
+    var r = el('div', 'pv-row');
+    r.innerHTML = '<span class="pv-check">&#10003;</span><i class="m-face"></i><span class="t"></span><small></small><small>now</small>';
+    var f = r.querySelector('.m-face');
+    if (face === 'felix') f.style.background = '#f1ecf3 url(sprites/stand.png) no-repeat 48% 6% / 270%'; else f.style.backgroundImage = 'url(sprites/' + face + '_stand.png)';
+    r.querySelector('.t').textContent = text; r.querySelectorAll('small')[0].textContent = who;
+    pvRows.appendChild(r);
+  }
+  function openPreview() {
+    pv.classList.remove('pushing', 'done', 'reload'); pvRows.innerHTML = '';
+    pvRow('fox', 'New title: \u201cBuild it together.\u201d', "Andrew's AI");
+    if (footerChanged) pvRow('cat', 'New footer: \u201cMade at USC\u201d', "Iris's AI");
+    pvRow('felix', 'Wrote the update for the team', "Felix \u00b7 Evelyn's AI");
+    $('pv-count').textContent = pvRows.children.length + ' new';
+    $('pv-foot').querySelector('.pv-tag').style.display = footerChanged ? '' : 'none';
+    $('pv-foot-text').textContent = footerChanged ? 'Made at USC' : 'Made by Team 4';
+    var b = $('pv-push'); b.disabled = false; b.textContent = 'Push';
+    $('pv-status').textContent = 'draft';
+    pv.hidden = false; roomEl.setAttribute('data-view', 'preview');
+  }
+  function closePreview() { pv.hidden = true; roomEl.removeAttribute('data-view'); }
+  $('pv-back').addEventListener('click', closePreview);
+  $('pv-push').addEventListener('click', function () {
+    var b = this; b.disabled = true; b.innerHTML = '<span class="spin"></span>Pushing';
+    pv.classList.add('pushing');
+    var rows = [].slice.call(pvRows.children);
+    rows.forEach(function (r, k) { timers.push(setTimeout(function () { r.classList.add('gone'); }, 900 + k * 220)); });
+    var t = 900 + rows.length * 220 + 350;
+    timers.push(setTimeout(function () { pv.classList.add('reload'); $('pv-count').textContent = 'Up to date'; }, t));
+    timers.push(setTimeout(function () {
+      pv.classList.remove('reload', 'pushing'); pv.classList.add('done');
+      b.textContent = 'Pushed'; $('pv-status').textContent = 'up to date';
+      foot.className = 'file-foot ok'; foot.textContent = 'Pushed by Evelyn. Live for the team.';
+    }, t + 450));
+  });
+
   function setMode(m) {
     mode = m;
     $('mode-plain').setAttribute('aria-pressed', String(m === 'plain'));
