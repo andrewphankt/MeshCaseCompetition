@@ -1073,6 +1073,13 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .rm-sign { transition: background .2s, transform .2s; }
 .rm-sign[aria-expanded="true"] { transform: translate(-50%, -100%) scale(1.06); }
 @media (prefers-reduced-motion: reduce) { .rm-card { animation: none; } }
+
+/* Where we're headed: same tile look as the Monetization card */
+.rm-future { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.rm-future .rm-tier { gap: 6px; padding: 14px 18px 16px; }
+.rm-future .rm-k-l { min-height: 0; }
+.rm-future .rm-k-goal { font-size: 28px; }
+.rm-card .rm-foot { margin-top: 14px; font-size: 17px; }
 </style>
 </head>
 <body>
@@ -1450,17 +1457,17 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <div class="rm-card" id="rm-card-c" role="dialog" aria-modal="false" aria-labelledby="rm-c-h" hidden>
       <button type="button" class="rm-x" aria-label="Close">&times;</button>
       <span class="rm-corner">Planned</span>
-      <h3 id="rm-c-h">Where we're headed</h3>
-      <h4 class="rm-h4">What Mesh can't do yet</h4>
-      <ul class="rm-cant rm-cant2">
-        <li>A practice room you can try without logging in</li>
-        <li>Tooltips inside the real room</li>
-        <li>@mention any teammate's agent in the chat</li>
-        <li>Plug in more AIs, like Wajo</li>
-        <li>See which tools each AI is using right now</li>
-        <li>Ask a teammate's AI for help when you run out of tokens</li>
-      </ul>
-      <p class="rm-lead rm-foot">How we'll measure progress is on the next slide.</p>
+      <h3 id="rm-c-h">Where we&rsquo;re headed</h3>
+      <p class="rm-lead">What Mesh can&rsquo;t do yet, and what we&rsquo;re building next.</p>
+      <div class="rm-tiers rm-future">
+        <div class="rm-tier"><span class="rm-k-l">Try it</span><span class="rm-k-goal">Practice room</span><span class="rm-k-sub">Try a team room without logging in.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Learn</span><span class="rm-k-goal">Tooltips</span><span class="rm-k-sub">Training notes inside the real room.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Talk</span><span class="rm-k-goal">@mention agents</span><span class="rm-k-sub">Ping any teammate&rsquo;s agent in the chat.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Connect</span><span class="rm-k-goal">More AIs</span><span class="rm-k-sub">Plug in more AIs, like Wajo.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">See</span><span class="rm-k-goal">Live tools</span><span class="rm-k-sub">Which tools each AI is using right now.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Share</span><span class="rm-k-goal">Token help</span><span class="rm-k-sub">Ask a teammate&rsquo;s AI for help when you run out of tokens.</span></div>
+      </div>
+      <p class="rm-lead rm-foot">How we&rsquo;ll measure progress is on the next slide.</p>
     </div>
   </div>
   <aside class="notes">[Target: about 25 seconds. Three clicks, one line each: the car drives to each stop and opens it. Community hub, monetization (campuses pay, students don&rsquo;t; paid character packs), where we&rsquo;re headed.] Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then monetization: campuses pay, students don't, and students can buy character packs for their agents. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press drives to the next stop and opens it.</aside>
