@@ -1454,7 +1454,7 @@ Saved 2 files.</pre></div></div>
   <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
   <div class="eyebrow"><i></i>The road map</div>
   <h2 class="h-m">Where Mesh goes from here.</h2>
-  <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i></span>
+  <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i></span>
   <div class="rm" id="rm" data-interactive>
     <svg class="rm-svg" viewBox="0 0 1600 640" width="1600" height="640" aria-hidden="true">
       <circle class="rm-sun" cx="1450" cy="120" r="46"/>
@@ -1472,7 +1472,6 @@ Saved 2 files.</pre></div></div>
     <div class="rm-hint">Click a sign</div>
     <button type="button" class="rm-sign" id="rm-sign-b" data-stop="b" aria-expanded="false" aria-controls="rm-card-b"><small>Next</small>Community hub</button>
     <button type="button" class="rm-sign" id="rm-sign-m" data-stop="m" aria-expanded="false" aria-controls="rm-card-m"><small>Then</small>How we make money</button>
-    <button type="button" class="rm-sign" id="rm-sign-o" data-stop="o" aria-expanded="false" aria-controls="rm-card-o"><small>After</small>Open source</button>
     <button type="button" class="rm-sign" id="rm-sign-c" data-stop="c" aria-expanded="false" aria-controls="rm-card-c"><small>Future</small>Where we're headed</button>
     <div class="rm-dim" id="rm-dim" hidden></div>
     <div class="rm-card" id="rm-card-b" role="dialog" aria-modal="false" aria-labelledby="rm-b-h" hidden>
@@ -1506,17 +1505,6 @@ Saved 2 files.</pre></div></div>
         <div class="rm-tier"><span class="rm-k-l">Agent characters</span><span class="rm-k-goal">Paid packs</span><span class="rm-k-sub">Every agent gets a free character. Students can buy character packs and custom looks to personify their agents.</span><span class="mo-crew" aria-hidden="true"><img src="sprites/fox_idle.png" alt=""><img src="sprites/cat_idle.png" alt=""><img src="sprites/bunny_idle.png" alt=""><img src="sprites/bear_idle.png" alt=""><img src="sprites/idle.png" alt=""></span></div>
       </div>
     </div>
-    <div class="rm-card" id="rm-card-o" role="dialog" aria-modal="false" aria-labelledby="rm-o-h" hidden>
-      <button type="button" class="rm-x" aria-label="Close">&times;</button>
-      <span class="rm-corner">Planned</span>
-      <h3 id="rm-o-h">Open source</h3>
-      <p class="rm-lead">Make Mesh's code public, so the students who use it can help build it.</p>
-      <ul class="rm-cant">
-        <li>Students and clubs contribute features they need</li>
-        <li>Schools can check exactly what runs on their students' computers</li>
-        <li>The community keeps Mesh working with new AI tools as they come out</li>
-      </ul>
-    </div>
     <div class="rm-card" id="rm-card-c" role="dialog" aria-modal="false" aria-labelledby="rm-c-h" hidden>
       <button type="button" class="rm-x" aria-label="Close">&times;</button>
       <span class="rm-corner">Planned</span>
@@ -1533,7 +1521,7 @@ Saved 2 files.</pre></div></div>
       <p class="rm-lead rm-foot">How we'll measure progress is on the next slide.</p>
     </div>
   </div>
-  <aside class="notes">[Target: about 30 seconds. Four clicks, one line each: the car drives to each stop and opens it. Community hub, how we make money (campuses pay, students don&rsquo;t; paid character packs), open source, where we&rsquo;re headed.] Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then Open source: the students who use it help build it. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press opens the next stop, the next press closes it.</aside>
+  <aside class="notes">[Target: about 25 seconds. Three clicks, one line each: the car drives to each stop and opens it. Community hub, how we make money (campuses pay, students don&rsquo;t; paid character packs), where we&rsquo;re headed.] Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then how we make money: campuses pay, students don't, and students can buy character packs for their agents. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press drives to the next stop and opens it.</aside>
 </section>
 
 <!-- Metrics: dark, Wajo-style impact cards; every number rolls up at once -->
@@ -1740,7 +1728,7 @@ Saved 2 files.</pre></div></div>
     var rm = $('rm'); if (!rm) return;
     var road = $('rm-road'), car = $('rm-car'), dim = $('rm-dim');
     var total = road.getTotalLength();
-    var STOP = { start: 0.06, b: 0.29, m: 0.50, o: 0.70, c: 0.90 }, ORDER = ['b', 'm', 'o', 'c'];
+    var STOP = { start: 0.06, b: 0.32, m: 0.60, c: 0.90 }, ORDER = ['b', 'm', 'c'];
     var at = STOP.start, anim = null, openId = null;
     function place(f) {
       var L = total * f, p = road.getPointAtLength(L), q = road.getPointAtLength(Math.min(total, L + 2));
