@@ -1,7 +1,7 @@
 # Mesh pitch: what we say (5-minute version)
 
-One block per slide, in order. Main pitch: slides 1–13, about 4 minutes 25 seconds. Slides 14 onward are backups for questions only.
-Put your name next to **Speaker** for the slides you want, then rewrite your lines in your own voice. `[0:20]` is the target time; `[click]` means advance one step.
+Main pitch: slides 1–19, about 4 minutes 52 seconds. The last slide is a backup for questions only.
+Put your name next to **Speaker** for the slides you want, then rewrite your lines in your own voice. `[0:20]` is the target time; `[click]` means advance one step. The feature slides move on their own, so keep those lines short.
 
 When the script is final, ask Andrew's agent to copy it back into the deck, so pressing N or S in the deck shows the new words.
 
@@ -9,149 +9,142 @@ Deck: https://mesh-case-competition-git-draft-andrewphankts-projects.vercel.app/
 
 | # | Slide | Time | Speaker |
 | --- | --- | --- | --- |
-| 1 | Title | 0:10 |  |
-| 2 | Meet the team | 0:15 |  |
-| 3 | The problem | 0:30 |  |
-| 4 | Who it's for | 0:25 |  |
-| 5 | Meet Mesh | 0:05 |  |
-| 6 | Bring your own agent | 0:20 |  |
-| 7 | The room | 0:45 |  |
-| 8 | The stop | 0:20 |  |
-| 9 | Success | 0:30 |  |
-| 10 | Business and next | 0:30 |  |
-| 11 | Built in Mesh | 0:15 |  |
-| 12 | Close | 0:15 |  |
-| 13 | Q&A |  |  |
-| 14 | Setup | backup |  |
-| 15 | Changes | backup |  |
-| 16 | Working now | backup |  |
-| 17 | Team chat | backup |  |
-| 18 | Preview tabs | backup |  |
-| 19 | Push | backup |  |
-| 20 | Requests | backup |  |
-| 21 | Biggest risk | backup |  |
+| 1 | Title | 0:08 |  |
+| 2 | Meet the team | 0:12 |  |
+| 3 | The problem | 0:22 |  |
+| 4 | Who it's for | 0:20 |  |
+| 5 | Meet Mesh | 0:04 |  |
+| 6 | Bring your own agent | 0:15 |  |
+| 7 | Setup | 0:20 |  |
+| 8 | The room | 0:25 |  |
+| 9 | Changes | 0:12 |  |
+| 10 | Working now | 0:10 |  |
+| 11 | The stop | 0:15 |  |
+| 12 | Requests | 0:15 |  |
+| 13 | Team chat | 0:12 |  |
+| 14 | Preview tabs | 0:15 |  |
+| 15 | Push | 0:10 |  |
+| 16 | Success | 0:30 |  |
+| 17 | What's next | 0:25 |  |
+| 18 | Built in Mesh | 0:12 |  |
+| 19 | Close | 0:10 |  |
+| 20 | Biggest risk | backup |  |
 
 ## 1. Title
 
 **Speaker:** 
 
-[0:10] Hi, we're Andrew, Iris, Sarah, Evelyn and Tony. This is Mesh: build together, with the agents you already use.
+[0:08] Hi, we're Andrew, Iris, Sarah, Evelyn and Tony. This is Mesh.
 
 ## 2. Meet the team
 
 **Speaker:** 
 
-[0:15] We're five students. Andrew builds the team room, Iris built shared code knowledge, Evelyn leads the pitch and research, Tony keeps our money straight, and Sarah [her role]. We built Mesh because we needed it.
+[0:12] Five students. Andrew builds the room, Iris built shared code knowledge, Evelyn leads research, Tony runs our budget, and Sarah [her role]. We built Mesh because we needed it.
 
 ## 3. The problem
 
 **Speaker:** 
 
-[0:30] This year, everyone on a student team got a coding agent. Sarah uses Claude Code, Iris uses Codex. But their agents can't see each other. Both edit the same line, Iris's agent saves on top, and Sarah's change is just gone. [click] So people become the go-between: "I just changed the title, nobody touch index.html." The team spends its time being the messenger between agents.
+[0:22] Everyone on a student team has a coding agent now. But the agents can't see each other: both edit the same line, and Sarah's change is just gone. [click] So people become the go-between, pasting updates into the group chat.
 
 ## 4. Who it's for
 
 **Speaker:** 
 
-[0:25] Here's exactly who we're building for: students building a team project with Claude Code who've never used Git, and shouldn't have to. [click] We know because we were them. Setting up our own team from zero took 33 minutes for one teammate, twenty messages, and two GitHub keys pasted into chat by accident. With engineers on the call.
+[0:20] Our user: students building a team project with Claude Code who've never used Git. [click] We were them: setting up our own team from zero took 33 minutes, 20 messages and two leaked keys, with engineers on the call.
 
 ## 5. Meet Mesh
 
 **Speaker:** 
 
-[0:05] So we built Mesh: one room for your team and everyone's agents.
+[0:04] So we built Mesh.
 
 ## 6. Bring your own agent
 
 **Speaker:** 
 
-[0:20] Everyone keeps the agent they already use, on their own laptop and the plan they already pay for: Claude Code, Codex, Gemini, and Antigravity too. [click] You don't prompt inside Mesh. Mesh is the room between your agents.
+[0:15] Everyone keeps the agent they already use, on their own laptop and plan. [click] You don't prompt inside Mesh. Mesh is the room between your agents.
 
-## 7. The room
-
-**Speaker:** 
-
-[0:45] This is the room. Every agent's work lands in one shared draft, and the Preview shows it as a live page anyone can open. Watch: Sarah's agent is working, so its change waits, greyed out. It saves, the row turns solid, and the preview refreshes with the bigger title. Then Iris's agent adds a sign-up button. Every agent also writes one plain sentence about what it changed. Nothing is public until a person presses Push. There it goes.
-
-## 8. The stop
+## 7. Setup
 
 **Speaker:** 
 
-[0:20] And the overwrite from before can't happen. Before an agent changes a file, it checks with the room. Sarah's Claude is already in that file, so Iris's Codex stops and asks: wait, or take the footer? Nothing gets overwritten.
+[0:20] Setup is three steps and one paste. [click] Sign in with GitHub, pick your repo, [click] pick your agent, [click] and paste one message. Your agent sets itself up. That's the fix for our 33 minutes.
 
-## 9. Success
-
-**Speaker:** 
-
-[0:30] One number tells us Mesh is working: teams where two or more people's agents save to one draft, every week. Here's what we track to get there. These are targets, not results. [click] Setup under five minutes; it took us 33. [click] Two of three invited teammates connect an agent. [click] 80% of requests answered within a day. [click] And 40% of teams still saving in week four.
-
-## 10. Business and next
+## 8. The room
 
 **Speaker:** 
 
-[0:30] How it makes money: students use Mesh free. A campus licenses it for its students, starting with one club or hackathon, then the whole campus; our first stop is USC. Mesh never charges for AI: students use the plan they already have. What we'd build next, each aimed at a number: [click] get the second teammate in, with no terminal and Windows support. [click] Explain collisions in plain English. [click] And make the stop strict on every agent. All planned, not built.
+[0:25] This is the room. Every agent's work lands in one shared draft, shown live in the Preview. A change waits greyed out while the agent works, then the preview refreshes. Nothing goes public until a person presses Push.
 
-## 11. Built in Mesh
-
-**Speaker:** 
-
-[0:15] One more thing: we built this deck in Mesh. Five students, five agents, 32 saves to one shared draft, and over half a million tokens, measured by our own room. We're about to leave this slide and you're already in it.
-
-## 12. Close
+## 9. Changes
 
 **Speaker:** 
 
-[0:15] Your own agent. One shared draft. The whole team. That's Mesh. Thank you. We'd love your questions.
+[0:12] Every agent writes one plain sentence about what it changed. Anyone on the team can follow.
 
-## 13. Q&A
-
-**Speaker:** 
-
-Thank you. We'd love your questions. If you're wondering where Mesh grows after those three bets, Evelyn has mapped out four strategies: a practice room for a safe first project, mentioning any teammate's agent from the chat, a campus hub to find a team or the skill you're missing, and open source, so the students who use Mesh help build it. Evelyn, do you want to take that?
-
-## 14. Setup
+## 10. Working now
 
 **Speaker:** 
 
-[Backup, for questions] Here's the whole setup, the way Mesh really works. One: sign in with GitHub. [click] Two: pick your project, which is just your GitHub repo. [click] Three: pick the agent you already use: Claude, Codex or Gemini. [click] Then Mesh gives you one message. Copy it, paste it into your agent, and your agent sets itself up. Nobody types a git command. Remember the 33 minutes? This is the fix.
+[0:10] And you can always see whose agent is working, and on what.
 
-## 15. Changes
-
-**Speaker:** 
-
-[Backup, for questions] Every time an agent finishes, it writes one plain sentence about what's different. Not a diff, not a commit message: a sentence anyone on the team can read. "There is now a sign-up button right under the title." Nobody pastes updates into the group chat anymore.
-
-## 16. Working now
+## 11. The stop
 
 **Speaker:** 
 
-[Backup, for questions] The room always shows who's working, and on what. Tony's agent picks up the footer. Sarah's finishes, goes idle, then starts on pricing. Before you ask your agent for something, you can see whether a teammate's agent is already on it.
+[0:15] The overwrite from before can't happen: Sarah's agent has the file, so Iris's agent stops and asks, wait or take the footer?
 
-## 17. Team chat
-
-**Speaker:** 
-
-[Backup, for questions] And the team talks right next to the work. It's a real chat: mentions, replies, screenshots, reaction GIFs. Agents are in the conversation too. Here Iris asks who made the title neon green, and Sarah's agent answers for itself: "That was me. Want me to tone it down?" No switching to Slack or a group chat to find out what happened.
-
-## 18. Preview tabs
+## 12. Requests
 
 **Speaker:** 
 
-[Backup, for questions] New this week, and it's live in Mesh right now: a tab for every preview. These are the real pages in our project: this deck, Evelyn's deck, her practice room. Press plus, pick another page, here the agent workspace Felix is prototyping, and it opens in its own tab. The whole team flips between them, all from the same shared draft.
+[0:15] When an agent needs something from a teammate's part, it sends a request. The teammate presses Approve, and their own agent does it. Agents ask; people decide.
 
-## 19. Push
-
-**Speaker:** 
-
-[Backup, for questions] Agents can save all day, but nothing goes public on its own. Every change waits here. When the team is happy, a person presses Push, and the draft becomes the public project. One button. No merge, no pull request.
-
-## 20. Requests
+## 13. Team chat
 
 **Speaker:** 
 
-[Backup, for questions] When Sarah's agent needs something from Iris's part, it doesn't just change it. It sends Iris a request. Iris reads one sentence and presses Approve, and her own agent does the work. A teammate's agent can ask, but it can never act on its own. Agents coordinate. People decide.
+[0:12] The team talks right next to the work, and agents answer in the chat for themselves.
 
-## 21. Biggest risk
+## 14. Preview tabs
+
+**Speaker:** 
+
+[0:15] New this week: a tab for every preview. These are the real pages in our project, side by side, from one shared draft.
+
+## 15. Push
+
+**Speaker:** 
+
+[0:10] And when the team is ready, one person presses Push. No merge, no pull request.
+
+## 16. Success
+
+**Speaker:** 
+
+[0:30] How we'll know it's working. Short term, this first semester, it's about getting teams in: students signed up, repos connected, and the one that matters most, rooms with at least two agents connected, because a room of one isn't a team. Those are targets, not results. [click] Long term, our north star: rooms where two or more people's agents save to the same draft every week, and teams still saving in week four.
+
+## 17. What's next
+
+**Speaker:** 
+
+[0:25] What we'd build next, each aimed at a number. [click] Get the second teammate in, with no terminal and on Windows. [click] Explain collisions in plain English. [click] And make the stop strict on every agent. [click] And how it makes money: the room is free; teams pay for hosted previews and a shared database, like Supabase, built right into Mesh, that every agent can use. All of this is planned, not built.
+
+## 18. Built in Mesh
+
+**Speaker:** 
+
+[0:12] One more thing: we built this deck in Mesh. Five students, five agents, 32 saves to one draft, over half a million tokens.
+
+## 19. Close
+
+**Speaker:** 
+
+[0:10] Your own agent. One shared draft. The whole team. That's Mesh. Thank you.
+
+## 20. Biggest risk
 
 **Speaker:** 
 
