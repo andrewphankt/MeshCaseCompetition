@@ -1,6 +1,6 @@
 # Mesh pitch: what we say (5-minute version)
 
-Main pitch: slides 1–19, about 4 minutes 52 seconds. The last slide is a backup for questions only.
+Main pitch: slides 1–19, about 4 minutes 57 seconds. The last slide is a backup for questions only.
 Put your name next to **Speaker** for the slides you want, then rewrite your lines in your own voice. `[0:20]` is the target time; `[click]` means advance one step. The feature slides move on their own, so keep those lines short.
 
 When the script is final, ask Andrew's agent to copy it back into the deck, so pressing N or S in the deck shows the new words.
@@ -25,7 +25,7 @@ Deck: https://mesh-case-competition-git-draft-andrewphankts-projects.vercel.app/
 | 14 | Preview tabs | 0:15 |  |
 | 15 | Push | 0:10 |  |
 | 16 | Success | 0:30 |  |
-| 17 | What's next | 0:25 |  |
+| 17 | What's next | 0:30 |  |
 | 18 | Built in Mesh | 0:12 |  |
 | 19 | Close | 0:10 |  |
 | 20 | Biggest risk | backup |  |
@@ -130,7 +130,7 @@ Deck: https://mesh-case-competition-git-draft-andrewphankts-projects.vercel.app/
 
 **Speaker:** 
 
-[0:25] What we'd build next, each aimed at a number. [click] Get the second teammate in, with no terminal and on Windows. [click] Explain collisions in plain English. [click] And make the stop strict on every agent. [click] And how it makes money: the room is free; teams pay for hosted previews and a shared database, like Supabase, built right into Mesh, that every agent can use. All of this is planned, not built.
+[0:30] What we'd build next, each aimed at a number. [click] Get the second teammate in, with no terminal and on Windows. [click] Explain collisions in plain English. [click] Make the stop strict on every agent. [click] And later, Mesh Canvas: one board inside Mesh where designers mock up screens and engineers reuse the exact same components, and agents can add to it too. [click] How it makes money: the room is free; teams pay for hosted previews and a shared database, like Supabase, built into Mesh, that every agent can use. All of this is planned, not built.
 
 ## 18. Built in Mesh
 

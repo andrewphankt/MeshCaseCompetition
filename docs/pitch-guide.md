@@ -16,7 +16,7 @@ We present straight from the Mesh room, so when the pitch ends we are already in
 
 1. Before the pitch, press Push so the public site has the final deck (optional; the Preview shows the draft either way).
 2. Open the Mesh room, Preview tab, on the pitch tab, and make the Preview full screen.
-3. Click once on the left edge of the deck (that goes back a step, which does nothing on slide 1) so the arrow keys go to it, then present slides 1–19 (about 4 minutes 52 seconds).
+3. Click once on the left edge of the deck (that goes back a step, which does nothing on slide 1) so the arrow keys go to it, then present slides 1–19 (about 4 minutes 57 seconds).
 4. After the close, leave full screen: the judges are looking at the real room. Take questions there. The one backup slide (biggest risk) is after the close if someone asks.
 
 ## Accuracy check
@@ -39,7 +39,7 @@ Still to decide or confirm:
 | The proof | 33 min, 20 messages, 2 keys come from Evelyn's deck | Evelyn to confirm |
 | What we'd build next | The desktop plugin, Windows, plain-English collisions and the strict stop are not built | Say "planned, not built" out loud |
 | How we'll know it's working | 500 students, 150 repos, 50 rooms with 2+ agents, 40% in week 4 are targets we picked, not data | Team to sanity-check |
-| What's next | Hosted previews and a shared database (like Supabase) as the business model: planned, not built | Say "planned" out loud |
+| What's next | Hosted previews and a shared database (like Supabase) as the business model, and Mesh Canvas: planned, not built (Canvas isn't even mocked yet) | Say "planned" out loud |
 | The room | Study Sprint and its "12,000 sprints this week" are a made-up demo site | Never present it as a real customer |
 
 ## Words to use

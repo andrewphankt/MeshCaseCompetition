@@ -56,3 +56,6 @@
 /* How it makes money, one line under the bets */
 .money { margin-top: 40px; max-width: 1300px; font: 500 26px/1.4 var(--font); color: var(--ink-2); }
 .money b { color: var(--ink); }
+.bets.tight.four { grid-template-columns: repeat(4, 1fr); width: 1560px; gap: 20px; }
+.bets.tight.four .bet b { font-size: 27px; }
+.bets.tight.four .bet p { font-size: 18.5px; }
