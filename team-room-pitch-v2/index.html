@@ -1417,13 +1417,35 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .room.mesh-ui .lg-row.lg-door { position: relative; height: 56px; width: 61px; margin: -4px 0 2px 40px; }
 .room.mesh-ui .lg-door img { position: absolute; left: 0; bottom: 0; height: 100%; animation: none !important; opacity: 0; }
 .room.mesh-ui .lg-door .d3 { opacity: 1; }
-.slide.active .room.mesh-ui .lg-door .d1 { animation: dr1 7s step-end .8s infinite !important; }
-.slide.active .room.mesh-ui .lg-door .d2 { animation: dr2 7s step-end .8s infinite !important; }
-.slide.active .room.mesh-ui .lg-door .d3 { animation: dr3 7s step-end .8s infinite !important; }
-@keyframes dr1 { 0% { opacity: 1; } 11% { opacity: 0; } 100% { opacity: 0; } }
-@keyframes dr2 { 0% { opacity: 0; } 11% { opacity: 1; } 22% { opacity: 0; } 100% { opacity: 0; } }
-@keyframes dr3 { 0% { opacity: 0; } 22% { opacity: 1; } 100% { opacity: 1; } }
+.slide.active .room.mesh-ui .lg-door .d1 { animation: dr1 3s step-end .3s infinite !important; }
+.slide.active .room.mesh-ui .lg-door .d2 { animation: dr2 3s step-end .3s infinite !important; }
+.slide.active .room.mesh-ui .lg-door .d3 { animation: dr3 3s step-end .3s infinite !important; }
+@keyframes dr1 { 0% { opacity: 1; } 33% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes dr2 { 0% { opacity: 0; } 33% { opacity: 1; } 60% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes dr3 { 0% { opacity: 0; } 60% { opacity: 1; } 100% { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .room.mesh-ui .lg-door img { animation: none !important; } }
+
+/* Slide 12: Mesh column starts hidden; one click pops it in, then the checks drop in top to bottom */
+.comp-steps { display: none !important; }
+.comp-slide .comp-table tr > *:last-child > * { display: inline-grid; }
+.comp-slide:not([data-at="1"]) .comp-table col.comp-mesh { background: transparent; }
+.comp-slide:not([data-at="1"]) .comp-table tr > *:last-child { opacity: 0; }
+.comp-slide:not([data-at="1"]) .comp-table tbody tr > td:last-child > *, .comp-slide:not([data-at="1"]) .comp-takeaway { opacity: 0; }
+.comp-slide[data-at="1"] .comp-table thead tr > th:last-child { animation: compPop .5s cubic-bezier(.2,1.5,.4,1) both; }
+.comp-slide[data-at="1"] .comp-table tbody tr > td:last-child { animation: compFade .35s ease both; }
+.comp-slide[data-at="1"] .comp-table tbody tr > td:last-child > * { animation: compDrop .45s cubic-bezier(.2,1.6,.4,1) both; }
+.comp-slide[data-at="1"] .comp-table tbody tr:nth-child(1) > td:last-child > * { animation-delay: .55s; }
+.comp-slide[data-at="1"] .comp-table tbody tr:nth-child(2) > td:last-child > * { animation-delay: .8s; }
+.comp-slide[data-at="1"] .comp-table tbody tr:nth-child(3) > td:last-child > * { animation-delay: 1.05s; }
+.comp-slide[data-at="1"] .comp-table tbody tr:nth-child(4) > td:last-child > * { animation-delay: 1.3s; }
+.comp-slide[data-at="1"] .comp-table tbody tr:nth-child(5) > td:last-child > * { animation-delay: 1.55s; }
+.comp-slide[data-at="1"] .comp-table tbody tr:nth-child(6) > td:last-child > * { animation-delay: 1.8s; }
+.comp-slide[data-at="1"] .comp-table tbody tr:nth-child(7) > td:last-child > * { animation-delay: 2.05s; }
+.comp-slide[data-at="1"] .comp-takeaway { animation: compFade .6s ease 2.5s both; }
+@keyframes compPop { 0% { opacity: 0; transform: translateY(14px) scale(.85); } 100% { opacity: 1; transform: none; } }
+@keyframes compFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes compDrop { 0% { opacity: 0; transform: translateY(-16px) scale(.6); } 100% { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .comp-slide[data-at="1"] .comp-table *, .comp-slide[data-at="1"] .comp-takeaway { animation-duration: .01s !important; animation-delay: 0s !important; } }
 </style>
 </head>
 <body>
@@ -1682,7 +1704,8 @@ Saved 2 files.</pre></div></div>
   </div>
   <div class="comp-legend"><span><b class="comp-key-yes">✓</b> Documented</span><span><b class="comp-key-part">◐</b> Manual / extra setup</span><span><b class="comp-key-na">—</b> Not documented for this workflow</span></div>
   <p class="comp-takeaway">Your agents. Your plans. <span class="by-mark">One team room.</span></p>
-  <aside class="notes">[Speaker: Iris. Target: about 25 seconds. The last two rows bring back slide 9&rsquo;s gaps: updates living in people, and tools that assume you already code.] AQ and Nimbalyst are our closest competitors: both work with existing coding agents and subscriptions. Buzz, from Block, puts people and agents like Claude Code and Codex in shared channels, but it is still in developer preview and we did not find a live app preview or a same-file stop; meanwhile Lovable brings the team into its app builder. Slack plus GitHub can connect the workflow, but a team using separate local agents still manages the handoffs. Mesh combines our own agents and plans with one shared draft, a team preview, and a check before a teammate's agent edits the same file. A dash means we did not find this specific feature in the reviewed documentation; it does not mean the competitor cannot offer it. The stop row compares a pre-edit same-file check, not every form of conflict prevention: other tools may use isolated tasks, drafts, or collaborative editing. Slack + GitHub here means the separate-agent workflow, not a claim about every Copilot or Slack integration. Existing plans means connecting external Claude Code and Codex subscriptions, not merely using a product's own paid plan. Sources, reviewed Nov 19, 2026: Buzz https://block.xyz/inside/introducing-buzz-where-humans-and-agents-work-together and https://engineering.block.xyz/blog/buzz ; AQ https://www.agentqueue.dev/ ; Nimbalyst https://nimbalyst.com/teams/ and https://nimbalyst.com/  ; Lovable https://docs.lovable.dev/features/collaboration ; Slack + GitHub https://docs.github.com/en/integrations/how-tos/slack/integrate-github-with-slack . Mesh capabilities follow the team room guide and this deck.</aside>
+  <span class="comp-steps" data-step="1" aria-hidden="true"></span>
+  <aside class="notes">[Click once: the Mesh column pops in and its checks fill top to bottom.] [Speaker: Iris. Target: about 25 seconds. The last two rows bring back slide 9&rsquo;s gaps: updates living in people, and tools that assume you already code.] AQ and Nimbalyst are our closest competitors: both work with existing coding agents and subscriptions. Buzz, from Block, puts people and agents like Claude Code and Codex in shared channels, but it is still in developer preview and we did not find a live app preview or a same-file stop; meanwhile Lovable brings the team into its app builder. Slack plus GitHub can connect the workflow, but a team using separate local agents still manages the handoffs. Mesh combines our own agents and plans with one shared draft, a team preview, and a check before a teammate's agent edits the same file. A dash means we did not find this specific feature in the reviewed documentation; it does not mean the competitor cannot offer it. The stop row compares a pre-edit same-file check, not every form of conflict prevention: other tools may use isolated tasks, drafts, or collaborative editing. Slack + GitHub here means the separate-agent workflow, not a claim about every Copilot or Slack integration. Existing plans means connecting external Claude Code and Codex subscriptions, not merely using a product's own paid plan. Sources, reviewed Nov 19, 2026: Buzz https://block.xyz/inside/introducing-buzz-where-humans-and-agents-work-together and https://engineering.block.xyz/blog/buzz ; AQ https://www.agentqueue.dev/ ; Nimbalyst https://nimbalyst.com/teams/ and https://nimbalyst.com/  ; Lovable https://docs.lovable.dev/features/collaboration ; Slack + GitHub https://docs.github.com/en/integrations/how-tos/slack/integrate-github-with-slack . Mesh capabilities follow the team room guide and this deck.</aside>
 </section>
 <!-- Section 3: See it in action -->
 <section class="slide mx-slide tx-slide" data-title="Section: See it in action">
