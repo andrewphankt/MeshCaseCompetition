@@ -1455,7 +1455,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 /* Training slide: the room grows to fill the slide (clicker step 1) and shrinks back (step 4) */
 .slide.train-big .tframe { position: absolute; left: 16px; top: 16px; width: 1568px; z-index: 40; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
 .slide.train-big .tview { width: 1568px; height: 830px; }
-.slide.train-big .tview iframe { width: 1366px; height: 723px; transform: scale(1.1479); }
+.slide.train-big .tview iframe { width: 1700px; height: 900px; transform: scale(.9224); }
 .slide.train-big .spk { z-index: 41; opacity: 0; }
 </style>
 </head>
@@ -2217,6 +2217,7 @@ Saved 2 files.</pre></div></div>
     if (!fr || sl.classList.contains('train-big') === big) return;
     var a = fr.getBoundingClientRect();
     sl.classList.toggle('train-big', big);
+    var dd = TR.doc(); if (dd && dd.body) dd.body.classList.toggle('embed', !big);
     if (instant || reduce) return;
     var b = fr.getBoundingClientRect(), k = a.width / b.width;
     fr.style.transition = 'none'; fr.style.transformOrigin = '0 0';
@@ -2239,16 +2240,19 @@ Saved 2 files.</pre></div></div>
     var d = TR.doc(); if (!d) return;
     var card = d.getElementById('tour-card'); if (card && !card.hidden) TR.click('tour-skip');
     var q = function (sel) { return d.querySelector(sel); };
+    var tip = function (sel) { var el = sel && q(sel); if (el) el.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })); else d.body.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })); };
     TR.queue = [
-      [0, function () { TR.click('tab-chat'); TR.hl(q('#checklist [data-learn="checklist"]') || q('#checklist') || q('aside.right')); }],
-      [10000, function () { TR.click('tab-skills'); TR.hl(q('#tab-skills')); }],
-      [1600, function () { TR.hl(q('#sk-all')); }],
-      [1400, function () { TR.click('sk-all'); }],
-      [2000, function () { TR.click('tab-changes'); TR.hl(q('#tab-changes')); }],
+      [0, function () { TR.click('tab-chat'); var c = q('#checklist [data-learn="checklist"]'); TR.hl(c); tip('#checklist [data-learn="checklist"]'); }],
+      [5000, function () { tip(null); TR.hl(q('#tab-skills')); tip('#tab-skills'); }],
+      [4500, function () { tip(null); TR.click('tab-skills'); }],
+      [1500, function () { TR.hl(q('#sk-all')); }],
+      [1500, function () { TR.click('sk-all'); }],
+      [5500, function () { TR.hl(q('#tab-changes')); tip('#tab-changes'); }],
+      [4500, function () { tip(null); TR.click('tab-changes'); }],
       [1500, function () { TR.hl(q('#fix-from-save')); }],
-      [1300, function () { TR.click('fix-from-save'); }],
-      [2200, function () { TR.click('tab-chat'); TR.hl(q('#tab-chat')); }],
-      [1600, function () { TR.hl(null); }]
+      [1500, function () { TR.click('fix-from-save'); }],
+      [3000, function () { TR.click('tab-chat'); TR.hl(q('#tab-chat')); }],
+      [2000, function () { TR.hl(null); tip(null); }]
     ];
     (function run() {
       if (!TR.queue.length) { TR.timer = null; return; }
@@ -2256,7 +2260,7 @@ Saved 2 files.</pre></div></div>
     })();
   };
   TR.stop = function () { clearTimeout(TR.timer); TR.timer = null; TR.queue = []; };
-  TR.finish = function () { clearTimeout(TR.timer); TR.timer = null; while (TR.queue.length) TR.queue.shift()[1](); TR.hl(null); };
+  TR.finish = function () { clearTimeout(TR.timer); TR.timer = null; while (TR.queue.length) TR.queue.shift()[1](); TR.hl(null); var dd = TR.doc(); if (dd) { var t = dd.getElementById('tip'); if (t) t.hidden = true; } };
   /* Arrow keys pressed inside the training frame still move the deck */
   window.addEventListener('message', function (e) {
     var f = $('train-iframe');
