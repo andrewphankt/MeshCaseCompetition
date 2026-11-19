@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Team Room Pitch Deck</title>
+<link rel="stylesheet" href="competitors.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Caveat:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Inter:wght@800&display=swap" rel="stylesheet">
@@ -1629,6 +1630,37 @@ Saved 2 files.</pre></div></div>
   <p class="by-cap by-small" data-step="2">You don&rsquo;t prompt inside Mesh.</p>
   <p class="by-tag" data-step="3">Your AIs finally talk to each other, so <span class="by-mark">you don&rsquo;t have to.</span></p>
   <aside class="notes">[Target: about 20 seconds. Three clicks: the lines link up, 'You don't prompt inside Mesh.', then the line: 'Your AIs finally talk to each other, so you don't have to.'] This is the big difference. Everyone keeps the agent they already use (Claude Code, OpenAI's Codex, Google's Gemini CLI and Antigravity, which Mesh supports now), on their own laptop, on the plan they already pay for: Claude Code, Codex, Gemini. Mesh never runs anyone's agent. Click: they all link into one Mesh room. Click: you don't prompt inside Mesh. Mesh is the room between your agents. Other tools bring your team into their workspace; we bring the room to where your agents already work.</aside>
+</section>
+<!-- Competitor comparison: follows Bring your own agent. -->
+<section class="slide by-slide comp-slide" data-title="How Mesh compares">
+  <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
+  <div class="by-hand">&mdash; the competitive landscape</div>
+  <h2 class="h-l by-h">How <span class="by-mark">Mesh</span> compares.</h2>
+  <div class="comp-sheet">
+    <table class="comp-table" aria-label="Mesh and five competing collaboration workflows">
+      <colgroup><col class="comp-feature"><col><col><col><col><col><col class="comp-mesh"></colgroup>
+      <thead><tr>
+        <th scope="col">What your team needs</th>
+        <th scope="col" style="--comp-color:#D97757"><a href="https://www.agentqueue.dev/" target="_blank" rel="noopener">AQ<small>AgentQueue</small></a></th>
+        <th scope="col" style="--comp-color:#2a9d66"><a href="https://nimbalyst.com/teams/" target="_blank" rel="noopener">Nimbalyst<small>Visual workspace</small></a></th>
+        <th scope="col" style="--comp-color:#8a5cf0"><a href="https://cursor.com/blog/projects" target="_blank" rel="noopener">Cursor<small>Projects</small></a></th>
+        <th scope="col" style="--comp-color:#2f86d6"><a href="https://docs.lovable.dev/features/collaboration" target="_blank" rel="noopener">Lovable<small>App builder</small></a></th>
+        <th scope="col" style="--comp-color:#a58c65"><a href="https://docs.github.com/en/integrations/how-tos/slack/integrate-github-with-slack" target="_blank" rel="noopener">Slack +<br>GitHub<small>Separate agents</small></a></th>
+        <th scope="col" class="comp-us">Mesh<small>Your team room</small></th>
+      </tr></thead>
+      <tbody>
+        <tr><th scope="row">Connect Claude Code + Codex</th><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-part" aria-label="Manual or extra setup">◐</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td></tr>
+        <tr><th scope="row">Keep existing agent plans</th><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-part" aria-label="Manual or extra setup">◐</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td></tr>
+        <tr><th scope="row">Share a live app preview</th><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-part" aria-label="Manual or extra setup">◐</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td></tr>
+        <tr><th scope="row">Stop before same-file edits</th><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-part" aria-label="Manual or extra setup">◐</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td></tr>
+        <tr class="comp-approach"><th scope="row">How work is coordinated</th><td>Task crews</td><td>Shared files</td><td>Coordinator<br>agent</td><td>Separate<br>drafts</td><td>Team-managed<br>handoffs</td><td>One shared<br>draft</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="comp-legend"><span><b class="comp-key-yes">✓</b> Documented</span><span><b class="comp-key-part">◐</b> Manual / extra setup</span><span><b class="comp-key-na">—</b> Not documented for this workflow</span></div>
+  <p class="comp-takeaway">Your agents. Your plans. <span class="by-mark">One team room.</span></p>
+  <p class="comp-source">Official product documentation · reviewed Nov 19, 2026 · click a column heading for its source</p>
+  <aside class="notes">[Speaker: Tony. Target: about 25 seconds. No extra clicks.] AQ and Nimbalyst are our closest competitors: both work with existing coding agents and subscriptions. Cursor coordinates its own agents, while Lovable brings the team into its app builder. Slack plus GitHub can connect the workflow, but a team using separate local agents still manages the handoffs. Mesh combines our own agents and plans with one shared draft, a team preview, and a check before a teammate's agent edits the same file. A dash means we did not find this specific feature in the reviewed documentation; it does not mean the competitor cannot offer it. The stop row compares a pre-edit same-file check, not every form of conflict prevention: other tools may use isolated tasks, drafts, or collaborative editing. Slack + GitHub here means the separate-agent workflow, not a claim about every Copilot or Slack integration. Existing plans means connecting external Claude Code and Codex subscriptions, not merely using a product's own paid plan. Sources, reviewed Nov 19, 2026: AQ https://www.agentqueue.dev/ ; Nimbalyst https://nimbalyst.com/teams/ and https://nimbalyst.com/ ; Cursor https://cursor.com/blog/projects ; Lovable https://docs.lovable.dev/features/collaboration ; Slack + GitHub https://docs.github.com/en/integrations/how-tos/slack/integrate-github-with-slack . Mesh capabilities follow the team room guide and this deck.</aside>
 </section>
 <!-- Section 3: See it in action -->
 <section class="slide mx-slide tx-slide" data-title="Section: See it in action">
