@@ -1403,6 +1403,15 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 /* slide 17 teaser tab: market research integration */
 .mz-tabs .mz-mr { display: inline-flex; align-items: center; gap: 8px; color: #16171b; font-weight: 600; background: #fff4c2; border: 1px solid #f0d27a; border-radius: 999px; padding: 2px 12px; margin-top: -4px; }
 .mz-tabs .mz-mr i { width: 9px; height: 9px; border-radius: 50%; background: #e8613f; box-shadow: 0 0 0 4px rgba(232,97,63,.18); }
+
+/* comparison: fit 6 rows plus the tagline */
+.comp-slide .comp-sheet { margin-top: 12px; }
+.comp-slide .comp-table { font-size: 19px; }
+.comp-slide .comp-table th, .comp-slide .comp-table td { padding: 6px 10px; }
+.comp-slide .comp-table thead th { height: 80px; }
+.comp-slide .comp-table .comp-yes, .comp-slide .comp-table .comp-part, .comp-slide .comp-table .comp-na { width: 30px; height: 30px; font-size: 22px; }
+.comp-slide .comp-legend { margin-top: 12px; }
+.comp-slide .comp-takeaway { margin-top: 10px; font-size: 38px; }
 </style>
 </head>
 <body>
@@ -1548,7 +1557,7 @@ Saved 2 files.</pre></div></div>
 </section>
 <!-- 5 Three reasons -->
 <section class="slide" data-title="Why it breaks" data-hook="why">
-  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
+  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
   <div class="eyebrow"><i></i>Why it breaks</div>
   <h2 class="h-m">It&rsquo;s not the people. It&rsquo;s the setup.</h2>
   <p class="lede why-sub">Three gaps no single AI tool fixes.</p>
@@ -1591,12 +1600,12 @@ Saved 2 files.</pre></div></div>
       </span>
     </button>
   </div>
-  <aside class="notes">[Target: about 15 seconds. Say the three gaps in one breath, then flip the cards with the clicker.] It&rsquo;s not that we&rsquo;re bad at teamwork. It&rsquo;s the setup. Every agent works blind, updates live in people instead of tools, and the tools assume you already code. Flip: &ldquo;What would fix it? A stop before collisions, one shared feed, something built for beginners.&rdquo; Then: &ldquo;What if one place did all three?&rdquo; Tony: &ldquo;It does. Meet Mesh.&rdquo;</aside>
+  <aside class="notes">[Target: about 15 seconds. Say the three gaps in one breath, then flip the cards with the clicker.] It&rsquo;s not that we&rsquo;re bad at teamwork. It&rsquo;s the setup. Every agent works blind, updates live in people instead of tools, and the tools assume you already code. Flip: &ldquo;What would fix it? A stop before collisions, one shared feed, something built for beginners.&rdquo; Then: &ldquo;What if one place did all three?&rdquo; Then: &ldquo;It does. Meet Mesh.&rdquo; (Iris continues through slide 12.)</aside>
 </section>
 
 <!-- Section 2: Meet Mesh -->
 <section class="slide mx-slide tx-slide tx-meet" data-title="Section: Meet Mesh" data-hook="meshmark">
-  <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
+  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
   <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="past"></i><i class="on"></i><i class=""></i><i class=""></i></span></div>
   <svg class="mesh-mark" id="mesh-mark" aria-hidden="true"></svg>
   <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
@@ -1610,7 +1619,7 @@ Saved 2 files.</pre></div></div>
 </section>
 <!-- Bring your own agent: everyone's agent links into one Mesh room (layout after Andrew's slide 15) -->
 <section class="slide by-slide" data-title="Bring your own agent">
-  <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
+  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
   <div class="by-hand">&mdash; how Mesh connects</div>
   <h2 class="h-l by-h">Bring <span class="by-mark">your own</span> agent.</h2>
   <div class="by-wrap">
@@ -1633,7 +1642,7 @@ Saved 2 files.</pre></div></div>
 </section>
 <!-- Competitor comparison: follows Bring your own agent. -->
 <section class="slide by-slide comp-slide" data-title="How Mesh compares">
-  <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
+  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
   <div class="by-hand">&mdash; the competitive landscape</div>
   <h2 class="h-l by-h">How <span class="by-mark">Mesh</span> compares.</h2>
   <div class="comp-sheet">
@@ -1643,23 +1652,25 @@ Saved 2 files.</pre></div></div>
         <th scope="col">What your team needs</th>
         <th scope="col" style="--comp-color:#D97757"><a href="https://www.agentqueue.dev/" target="_blank" rel="noopener">AQ<small>AgentQueue</small></a></th>
         <th scope="col" style="--comp-color:#2a9d66"><a href="https://nimbalyst.com/teams/" target="_blank" rel="noopener">Nimbalyst<small>Visual workspace</small></a></th>
-        <th scope="col" style="--comp-color:#8a5cf0"><a href="https://cursor.com/blog/projects" target="_blank" rel="noopener">Cursor<small>Projects</small></a></th>
+        <th scope="col" style="--comp-color:#8a5cf0"><a href="https://block.xyz/inside/introducing-buzz-where-humans-and-agents-work-together" target="_blank" rel="noopener">Buzz<small>by Block &middot; preview</small></a></th>
         <th scope="col" style="--comp-color:#2f86d6"><a href="https://docs.lovable.dev/features/collaboration" target="_blank" rel="noopener">Lovable<small>App builder</small></a></th>
         <th scope="col" style="--comp-color:#a58c65"><a href="https://docs.github.com/en/integrations/how-tos/slack/integrate-github-with-slack" target="_blank" rel="noopener">Slack +<br>GitHub<small>Separate agents</small></a></th>
         <th scope="col" class="comp-us">Mesh<small>Your team room</small></th>
       </tr></thead>
       <tbody>
-        <tr><th scope="row">Connect Claude Code + Codex</th><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-part" aria-label="Manual or extra setup">◐</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td></tr>
-        <tr><th scope="row">Keep existing agent plans</th><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-part" aria-label="Manual or extra setup">◐</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td></tr>
+        <tr><th scope="row">Connect Claude Code + Codex</th><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-part" aria-label="Manual or extra setup">◐</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td></tr>
+        <tr><th scope="row">Keep existing agent plans</th><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-part" aria-label="Manual or extra setup">◐</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td></tr>
         <tr><th scope="row">Share a live app preview</th><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-part" aria-label="Manual or extra setup">◐</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td></tr>
         <tr><th scope="row">Stop before same-file edits</th><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-part" aria-label="Manual or extra setup">◐</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td></tr>
-        <tr class="comp-approach"><th scope="row">How work is coordinated</th><td>Task crews</td><td>Shared files</td><td>Coordinator<br>agent</td><td>Separate<br>drafts</td><td>Team-managed<br>handoffs</td><td>One shared<br>draft</td></tr>
+        <tr><th scope="row">Agents hear what teammates changed</th><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-part" aria-label="Manual or extra setup">◐</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td></tr>
+        <tr><th scope="row">Built for beginners (plain English, training mode)</th><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td><td><span class="comp-na" aria-label="Not documented">—</span></td><td><span class="comp-yes" aria-label="Documented">✓</span></td></tr>
+        <tr class="comp-approach"><th scope="row">How work is coordinated</th><td>Task crews</td><td>Shared files</td><td>Shared<br>channels</td><td>Separate<br>drafts</td><td>Team-managed<br>handoffs</td><td>One shared<br>draft</td></tr>
       </tbody>
     </table>
   </div>
   <div class="comp-legend"><span><b class="comp-key-yes">✓</b> Documented</span><span><b class="comp-key-part">◐</b> Manual / extra setup</span><span><b class="comp-key-na">—</b> Not documented for this workflow</span></div>
   <p class="comp-takeaway">Your agents. Your plans. <span class="by-mark">One team room.</span></p>
-  <aside class="notes">[Speaker: Tony. Target: about 25 seconds. No extra clicks.] AQ and Nimbalyst are our closest competitors: both work with existing coding agents and subscriptions. Cursor coordinates its own agents, while Lovable brings the team into its app builder. Slack plus GitHub can connect the workflow, but a team using separate local agents still manages the handoffs. Mesh combines our own agents and plans with one shared draft, a team preview, and a check before a teammate's agent edits the same file. A dash means we did not find this specific feature in the reviewed documentation; it does not mean the competitor cannot offer it. The stop row compares a pre-edit same-file check, not every form of conflict prevention: other tools may use isolated tasks, drafts, or collaborative editing. Slack + GitHub here means the separate-agent workflow, not a claim about every Copilot or Slack integration. Existing plans means connecting external Claude Code and Codex subscriptions, not merely using a product's own paid plan. Sources, reviewed Nov 19, 2026: AQ https://www.agentqueue.dev/ ; Nimbalyst https://nimbalyst.com/teams/ and https://nimbalyst.com/ ; Cursor https://cursor.com/blog/projects ; Lovable https://docs.lovable.dev/features/collaboration ; Slack + GitHub https://docs.github.com/en/integrations/how-tos/slack/integrate-github-with-slack . Mesh capabilities follow the team room guide and this deck.</aside>
+  <aside class="notes">[Speaker: Iris. Target: about 25 seconds. The last two rows bring back slide 9&rsquo;s gaps: updates living in people, and tools that assume you already code.] AQ and Nimbalyst are our closest competitors: both work with existing coding agents and subscriptions. Buzz, from Block, puts people and agents like Claude Code and Codex in shared channels, but it is still in developer preview and we did not find a live app preview or a same-file stop; meanwhile Lovable brings the team into its app builder. Slack plus GitHub can connect the workflow, but a team using separate local agents still manages the handoffs. Mesh combines our own agents and plans with one shared draft, a team preview, and a check before a teammate's agent edits the same file. A dash means we did not find this specific feature in the reviewed documentation; it does not mean the competitor cannot offer it. The stop row compares a pre-edit same-file check, not every form of conflict prevention: other tools may use isolated tasks, drafts, or collaborative editing. Slack + GitHub here means the separate-agent workflow, not a claim about every Copilot or Slack integration. Existing plans means connecting external Claude Code and Codex subscriptions, not merely using a product's own paid plan. Sources, reviewed Nov 19, 2026: Buzz https://block.xyz/inside/introducing-buzz-where-humans-and-agents-work-together and https://engineering.block.xyz/blog/buzz ; AQ https://www.agentqueue.dev/ ; Nimbalyst https://nimbalyst.com/teams/ and https://nimbalyst.com/  ; Lovable https://docs.lovable.dev/features/collaboration ; Slack + GitHub https://docs.github.com/en/integrations/how-tos/slack/integrate-github-with-slack . Mesh capabilities follow the team room guide and this deck.</aside>
 </section>
 <!-- Section 3: See it in action -->
 <section class="slide mx-slide tx-slide" data-title="Section: See it in action">
@@ -1791,7 +1802,7 @@ Saved 2 files.</pre></div></div>
 
 <!-- Section 4: What's next -->
 <section class="slide mx-slide tx-slide" data-title="Section: What&#39;s next">
-  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
+  <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
   <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="past"></i><i class="past"></i><i class="past"></i><i class="on"></i></span></div>
   <div class="tx-ghost" aria-hidden="true">04</div>
   <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
@@ -1807,7 +1818,7 @@ Saved 2 files.</pre></div></div>
 </section>
 <!-- Road map -->
 <section class="slide" data-title="The road map" data-hook="roadmap">
-  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
+  <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
   <div class="eyebrow"><i></i>The road map</div>
   <h2 class="h-m">Where Mesh goes from here.</h2>
   <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i><i data-step="5"></i><i data-step="6"></i><i data-step="7"></i><i data-step="8"></i><i data-step="9"></i></span>
@@ -1919,7 +1930,7 @@ Saved 2 files.</pre></div></div>
 
 <!-- Metrics: dark, Wajo-style impact cards; every number rolls up at once -->
 <section class="slide mx-slide" data-title="What we measure" data-hook="metrics" data-zoomout>
-  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
+  <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
   <div class="mz-frame" aria-hidden="true">
     <aside class="mz-side">
       <div class="mz-ws"><span class="mz-logo"></span><span class="mz-sl">/</span>MeshCaseCompet&hellip;<span class="mz-chev">&#8964;</span></div>
@@ -1951,7 +1962,7 @@ Saved 2 files.</pre></div></div>
       <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="7.5" r="3.5"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4M15.5 4.2a3.5 3.5 0 0 1 0 6.6"/></svg>Students signed up</div><span class="mx-num" data-value="5">5</span><div class="mx-cap">People in our team room</div></div>
       <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Projects connected</div><span class="mx-num" data-value="3">3</span><div class="mx-cap">Including Mesh itself and this pitch deck</div></div>
       <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg>Active agents</div><span class="mx-num" data-value="6">6</span><div class="mx-cap">AIs working in the room</div></div>
-      <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/></svg>Messages sent</div><span class="mx-num mx-pending">&mdash;</span><div class="mx-cap">Talking here, not in Slack or Discord</div><span class="mx-tag">Pending from Andrew</span></div>
+      <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/></svg>Messages sent</div><span class="mx-num" data-value="1.67k">1.67k</span><div class="mx-cap">Sent in Mesh while building this pitch, not in Slack or Discord</div></div>
       <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Saves to one draft</div><span class="mx-num" data-value="32">32</span><div class="mx-cap">From 3 teammates' AIs, one shared draft</div></div>
       <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>Tokens used</div><span class="mx-num" data-value="432.3k">432.3k</span><div class="mx-cap">What it took to build Mesh with Mesh. About 13.5k per save; our goal is to bring that down.</div><span class="mx-tag">So far &middot; more teammates coming</span></div>
   </div>
@@ -1964,7 +1975,7 @@ Saved 2 files.</pre></div></div>
 <!-- 13 Close -->
 <!-- PARKED for now (Replit sponsors the competition). To bring it back, change "slide-parked" to "slide". -->
 <section class="slide-parked mx-slide wj-slide" data-title="Wajo partner">
-  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
+  <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
   <div class="wj-face" aria-hidden="true"><span class="wj-eyes"><span class="wj-eye"></span><span class="wj-eye"></span></span><span class="wj-smile"></span></div>
   <div class="wj-kicker">New partner</div>
   <h2 class="wj-h">Wajo is now a <b>partner of Mesh.</b></h2>
@@ -1985,7 +1996,7 @@ Saved 2 files.</pre></div></div>
 </section>
 
 <section class="slide center" data-title="Close">
-  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
+  <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
   <span class="cursor c-andrew gather" style="left:1180px; top:140px; --fx:-700px; --fy:-300px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Andrew</b></span>
   <span class="cursor c-iris gather" style="left:1340px; top:220px; --fx:400px; --fy:-260px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Iris</b></span>
   <span class="cursor c-sarah gather" style="left:1220px; top:560px; --fx:-640px; --fy:300px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Sarah</b></span>
