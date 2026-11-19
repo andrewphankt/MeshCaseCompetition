@@ -1264,6 +1264,13 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .by-tag { margin: 10px 0 0; font: 800 54px/1.12 var(--display); color: #16171b; max-width: 1500px; }
 .by-tag[data-step]:not(.hidden) { animation: bytag .6s cubic-bezier(.2,1.3,.4,1) both; }
 @keyframes bytag { from { opacity: 0; transform: translateY(16px) scale(.97); } to { opacity: 1; transform: none; } }
+
+/* push polish: bigger burst and plane, badge out of the way, channel not highlighted in Preview */
+.pv-burst i { width: 12px; height: 12px; left: -6px; top: -6px; }
+.pv-burst i:nth-child(3n) { width: 16px; height: 6px; }
+.pv-plane { width: 52px; height: 52px; margin: -26px 0 0 -26px; stroke-width: 1.4; }
+:root[data-look] .room.mesh-ui[data-view="preview"] .chan.on { background: transparent; color: var(--m-ink); }
+.demo-full:has(.room[data-view="preview"]) .spk { top: 14px; bottom: auto; right: 190px; }
 </style>
 </head>
 <body>
@@ -2412,7 +2419,7 @@ Saved 2 files.</pre></div></div>
 
   /* ---------- Demo ending: Preview, then Push ---------- */
   var pv = $('m-pv'), pvRows = $('pv-rows'), roomEl = document.querySelector('.room.mesh-ui'), footerChanged = false;
-  var BURST = [[-70,-60,140],[-40,-90,-80],[0,-100,200],[40,-88,60],[72,-58,-140],[90,-14,90],[78,30,-60],[46,58,160],[0,70,-200],[-46,56,110],[-80,26,-90],[-94,-16,40]];
+  var BURST = [[-110,-90,140],[-60,-140,-80],[0,-150,200],[60,-132,60],[108,-88,-140],[136,-20,90],[118,46,-60],[70,88,160],[0,104,-200],[-70,84,110],[-120,40,-90],[-142,-24,40]];
   each(pv.querySelectorAll('.pv-burst i'), function (b, k) { var d = BURST[k]; b.style.setProperty('--bx', d[0] + 'px'); b.style.setProperty('--by', d[1] + 'px'); b.style.setProperty('--br', d[2] + 'deg'); });
   function pvRow(face, text, who) {
     var r = el('div', 'pv-row');
