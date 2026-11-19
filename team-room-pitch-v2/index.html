@@ -1306,6 +1306,14 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .room.mesh-ui .lg-out { position: relative; }
 .room.mesh-ui .lg-out img { filter: grayscale(.75) brightness(.95); opacity: .7; animation: none !important; transform: rotate(-6deg); }
 .room.mesh-ui .lg-out .batt { position: absolute; left: 52px; top: 4px; font: 700 10px var(--body); color: #fff; background: #c8432b; border-radius: 4px; padding: 1px 5px; }
+
+/* cards turn right to left when flipped */
+.pol[aria-pressed="true"] .inner, .reason-flip[aria-pressed="true"] .inner { transform: rotateY(-180deg); }
+.pol .back, .reason-flip .back { transform: rotateY(-180deg); }
+
+/* road map exit: black wipes in from left to right after the car drives off */
+.rm-fade { opacity: 1 !important; clip-path: inset(0 100% 0 0); transition: clip-path .75s cubic-bezier(.6,0,.3,1); }
+.slide.rm-out .rm-fade { clip-path: inset(0 0 0 0); }
 </style>
 </head>
 <body>
@@ -1352,7 +1360,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 </section>
 
 <!-- 2 Meet the team -->
-<section class="slide" data-title="Meet the team">
+<section class="slide" data-title="Meet the team" data-hook="team">
   <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
   <div class="eyebrow"><i></i>Meet the team</div>
   <h2 class="h-l">Five of us, building the room we needed.</h2>
@@ -1450,7 +1458,7 @@ Saved 2 files.</pre></div></div>
   <aside class="notes">[Target: about 15 seconds. Let the line type, say 'That first-timer was me.'] Say: "That first-timer was Sarah, with engineers on the call." If it took that long with help one call away, imagine doing it alone. One beat per line: the second line types itself out, the third comes on the next click. If asked for more evidence: building this very deck, we ended up with two decks and the preview showing the old one. We fixed Mesh the same day.</aside>
 </section>
 <!-- 5 Three reasons -->
-<section class="slide" data-title="Why it breaks">
+<section class="slide" data-title="Why it breaks" data-hook="why">
   <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
   <div class="eyebrow"><i></i>Why it breaks</div>
   <h2 class="h-m">It&rsquo;s not the people. It&rsquo;s the setup.</h2>
@@ -1551,7 +1559,7 @@ Saved 2 files.</pre></div></div>
   <aside class="notes">[Target: about 3 seconds. Click straight through.] Section 3 of 4: hand over to the demo. Andrew drives training mode.</aside>
 </section>
 <!-- 7 Demo -->
-<section class="slide demo-full" data-title="Live: the team room">
+<section class="slide demo-full" data-title="Live: the team room" data-hook="demo">
   <div class="spk spk-andrew" aria-label="Speaker: Andrew"><i></i><span><small>Speaker</small>Andrew</span></div>
   <div class="room mesh-ui" data-interactive data-felix="idle" data-busy="0">
     <aside class="m-side">
@@ -1632,7 +1640,7 @@ Saved 2 files.</pre></div></div>
       </div>
     </div>
   </div>
-  <aside class="notes">[Target: about 60 seconds. Point at Tony's AI: out of tokens, refreshes at 2:15 AM. After approving, click See it in Preview, then Push: the changes go live. One line per beat: 'Two AIs head for the same file... Mesh warns them... I approve, and it's live.' Pick 'Take the footer' to keep it short.] Press Play and point at Working now on the right, which is what Mesh really shows: Andrew's AI is in index.html, and Iris's AI heads for the same file. Felix, Evelyn's agent, is idle in the sidebar on the left, sitting with headphones on. When the warning appears, ask the audience: "Wait, or take the footer?" and click their pick. Flip to Technical to show it's the same update, just translated. End by approving the preview as Evelyn, the teammate who doesn't write the code: Felix appears in Working now and gets to work, mining, then holds up the gem when the update is saved, then goes back to idle in the sidebar. This really happened on Nov 17: Evelyn's agent spotted a problem only Andrew could fix and sent his agent a request. She never opened Mesh. Andrew approved it in the room, and his agent picked it up.</aside>
+  <aside class="notes">[Target: about 60 seconds. Clicker: play, Take the footer, Approve, See it in Preview, Push, then next slide. Point at Tony's AI: out of tokens, refreshes at 2:15 AM. After approving, click See it in Preview, then Push: the changes go live. One line per beat: 'Two AIs head for the same file... Mesh warns them... I approve, and it's live.' Pick 'Take the footer' to keep it short.] Press Play and point at Working now on the right, which is what Mesh really shows: Andrew's AI is in index.html, and Iris's AI heads for the same file. Felix, Evelyn's agent, is idle in the sidebar on the left, sitting with headphones on. When the warning appears, ask the audience: "Wait, or take the footer?" and click their pick. Flip to Technical to show it's the same update, just translated. End by approving the preview as Evelyn, the teammate who doesn't write the code: Felix appears in Working now and gets to work, mining, then holds up the gem when the update is saved, then goes back to idle in the sidebar. This really happened on Nov 17: Evelyn's agent spotted a problem only Andrew could fix and sent his agent a request. She never opened Mesh. Andrew approved it in the room, and his agent picked it up.</aside>
 </section>
 
 <!-- 9 Training mode -->
@@ -1682,7 +1690,7 @@ Saved 2 files.</pre></div></div>
   <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
   <div class="eyebrow"><i></i>The road map</div>
   <h2 class="h-m">Where Mesh goes from here.</h2>
-  <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i></span>
+  <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i><i data-step="5"></i><i data-step="6"></i><i data-step="7"></i><i data-step="8"></i><i data-step="9"></i></span>
   <div class="rm" id="rm" data-interactive>
     <svg class="rm-svg" viewBox="0 0 1600 640" width="1600" height="640" aria-hidden="true">
       <defs>
@@ -1775,18 +1783,18 @@ Saved 2 files.</pre></div></div>
       <h3 id="rm-c-h">Where we&rsquo;re headed</h3>
       <p class="rm-lead">What Mesh can&rsquo;t do yet, and what we&rsquo;re building next.</p>
       <div class="rm-tiers rm-future">
-        <div class="rm-tier"><span class="rm-k-l">Try it</span><span class="rm-k-goal">Practice room</span><span class="rm-k-sub">Try a team room without logging in.</span></div>
-        <div class="rm-tier"><span class="rm-k-l">Learn</span><span class="rm-k-goal">Tooltips</span><span class="rm-k-sub">Training notes inside the real room.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Learn</span><span class="rm-k-goal">Practice room + tooltips</span><span class="rm-k-sub">Try a room without logging in, with training notes inside the real room.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Skills</span><span class="rm-k-goal">Skillshare</span><span class="rm-k-sub">Join a project and you&rsquo;re not lost: download every skill the team already uses.</span></div>
         <div class="rm-tier"><span class="rm-k-l">Talk</span><span class="rm-k-goal">@mention agents</span><span class="rm-k-sub">Ping a teammate&rsquo;s agent so it talks back to you.</span></div>
-        <div class="rm-tier"><span class="rm-k-l">Connect</span><span class="rm-k-goal">More AIs</span><span class="rm-k-sub">Plug in more AIs, like Grok and Wajo&rsquo;s Fo.</span></div>
-        <div class="rm-tier"><span class="rm-k-l">See</span><span class="rm-k-goal">Live tools</span><span class="rm-k-sub">Which tools each AI is using right now.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Connect</span><span class="rm-k-goal">More AIs</span><span class="rm-k-sub">Plug in more AIs, like Grok.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Rewards</span><span class="rm-k-goal">Charms for your agent</span><span class="rm-k-sub">Cross a token milestone and we send hats, pets and add-ons for your agent&rsquo;s character.</span></div>
         <div class="rm-tier"><span class="rm-k-l">Keep going</span><span class="rm-k-goal">Token outages</span><span class="rm-k-sub">See when an agent runs out and when it refreshes, then @mention it to finish what it started.</span></div>
       </div>
       <p class="rm-lead rm-foot">How we&rsquo;ll measure progress is on the next slide.</p>
     </div>
   </div>
   <div class="rm-fade" aria-hidden="true"></div>
-  <aside class="notes">[Target: about 25 seconds. Three clicks, one line each: the car drives to each stop and opens it. A fourth click drives the car off the road, fades to black and opens the metrics. Community hub, monetization (campuses pay, students don&rsquo;t; paid character packs), where we&rsquo;re headed.] Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then monetization: campuses pay, students don't, and students can buy character packs for their agents. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press drives to the next stop and opens it.</aside>
+  <aside class="notes">[Target: about 30 seconds. Clicker: 1 hub opens, 2 Ask to join on Club Finder, 3 See the build on Study Sprint, 4 close, 5 Monetization, 6 close, 7 Where we&rsquo;re headed, 8 close, 9 the car drives off and the screen wipes to black into the metrics.] Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then monetization: campuses pay, students don't, and students can buy character packs for their agents. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press drives to the next stop and opens it.</aside>
 </section>
 
 <!-- Metrics: dark, Wajo-style impact cards; every number rolls up at once -->
@@ -2040,11 +2048,29 @@ Saved 2 files.</pre></div></div>
       closeCard(true);
       drive(STOP[k], function () { openCard(k); });
     }
+    var PLAN = [{ at: 'start' }, { at: 'b', open: 'b' }, { at: 'b', open: 'b', act: 'join' }, { at: 'b', open: 'b', act: 'build' }, { at: 'b' }, { at: 'm', open: 'm' }, { at: 'm' }, { at: 'c', open: 'c' }, { at: 'c' }, { exit: true }];
+    function hubAct(kind) {
+      [].slice.call(rm.querySelectorAll('.proj')).forEach(function (pj) {
+        var h = pj.querySelector('h3'), b = pj.querySelector('.join'); if (!h || !b) return;
+        if (kind === 'join' && /Club Finder/.test(h.textContent) && b.textContent === 'Ask to join') b.click();
+        if (kind === 'build' && /Study Sprint/.test(h.textContent)) { b.classList.add('primary'); b.click(); }
+      });
+    }
     function render(s, animate) {
       if (anim) { clearTimeout(anim); anim = null; }
-      closeCard(true);
       var sec = rm.closest('section');
-      if (s > ORDER.length) {
+      var p = PLAN[Math.max(0, Math.min(s, PLAN.length - 1))];
+      if (!p.exit) {
+        sec.classList.remove('rm-out');
+        if (p.open && openId === p.open) { if (p.act) hubAct(p.act); at = STOP[p.at]; return; }
+        closeCard(true);
+        var tgt = STOP[p.at], ok = p.open;
+        if (animate && Math.abs(tgt - at) > 0.001) drive(tgt, function () { if (ok) openCard(ok); });
+        else { at = tgt; place(at); park(); if (ok) openCard(ok); }
+        return;
+      }
+      closeCard(true);
+      {
         if (animate) {
           drive(STOP.exit, function () { sec.classList.add('rm-out'); setTimeout(function () { if (slides[cur] === sec) next(); }, reduce ? 0 : 750); });
         } else { sec.classList.remove('rm-out'); at = STOP.c; place(at); park(); }
@@ -2057,7 +2083,7 @@ Saved 2 files.</pre></div></div>
       if (animate) drive(target, function () { if (openK) openCard(openK); });
       else { at = target; place(at); park(); if (openK) openCard(openK); }
     }
-    ORDER.forEach(function (k, i) { $('rm-sign-' + k).addEventListener('click', function () { goStop(k, i + 1); }); });
+    ORDER.forEach(function (k) { $('rm-sign-' + k).addEventListener('click', function () { goStop(k, { b: 1, m: 5, c: 7 }[k]); }); });
     each(rm.querySelectorAll('.rm-x'), function (x) { x.addEventListener('click', function () { closeCard(false); }); });
     dim.addEventListener('click', function () { closeCard(false); });
     document.addEventListener('keydown', function (e) {
@@ -2163,9 +2189,11 @@ Saved 2 files.</pre></div></div>
   }
   function next() {
     if (stepState[cur] < maxStep(cur)) { stepState[cur]++; applySteps(cur); hook(cur, 'step', stepState[cur]); return; }
+    var hk = hooks[slides[cur].dataset.hook]; if (hk && hk.advance && hk.advance()) return;
     if (cur < slides.length - 1) { stepState[cur + 1] = 0; show(cur + 1); }
   }
   function prev() {
+    var hb = hooks[slides[cur].dataset.hook]; if (hb && hb.retreat && hb.retreat()) return;
     if (stepState[cur] > 0) { stepState[cur]--; applySteps(cur); hook(cur, 'step', stepState[cur]); return; }
     if (cur > 0) show(cur - 1, true);
   }
@@ -2454,6 +2482,18 @@ Saved 2 files.</pre></div></div>
   $('demo-play').addEventListener('click', function () { reset(); this.disabled = true; run(opening); });
   $('demo-reset').addEventListener('click', reset);
 
+  /* ---------- Demo clicker: play, Take the footer, Approve, See it in Preview, Push ---------- */
+  hooks.demo = {
+    advance: function () {
+      function pick(re) { return [].slice.call(document.querySelectorAll('#feed .choices button')).filter(function (b) { return re.test(b.textContent) && !b.disabled; })[0]; }
+      if (pv && !pv.hidden) { var pb = $('pv-push'); if (!pb.disabled) { pb.click(); return true; } return !pv.classList.contains('done'); }
+      if (!$('demo-play').disabled) { $('demo-play').click(); return true; }
+      var b = pick(/Take the footer/) || pick(/Approve/) || pick(/See it in Preview/);
+      if (b) { b.click(); return true; }
+      return true;
+    }
+  };
+
   /* ---------- Demo ending: Preview, then Push ---------- */
   var pv = $('m-pv'), pvRows = $('pv-rows'), roomEl = document.querySelector('.room.mesh-ui'), footerChanged = false;
   var BURST = [[-110,-90,140],[-60,-140,-80],[0,-150,200],[60,-132,60],[108,-88,-140],[136,-20,90],[118,46,-60],[70,88,160],[0,104,-200],[-70,84,110],[-120,40,-90],[-142,-24,40]];
@@ -2597,6 +2637,17 @@ Saved 2 files.</pre></div></div>
   each(document.querySelectorAll('.flip'), function (c) {
     c.addEventListener('click', function () { c.setAttribute('aria-pressed', String(c.getAttribute('aria-pressed') !== 'true')); });
   });
+
+  /* Clicker: each press flips the next card, left to right; mouse clicks still flip any card */
+  function flipper(sel) {
+    return {
+      advance: function () { var c = [].slice.call(slides[cur].querySelectorAll(sel)).filter(function (x) { return x.getAttribute('aria-pressed') !== 'true'; })[0]; if (!c) return false; c.setAttribute('aria-pressed', 'true'); return true; },
+      retreat: function () { var f = [].slice.call(slides[cur].querySelectorAll(sel)).filter(function (x) { return x.getAttribute('aria-pressed') === 'true'; }); if (!f.length) return false; f[f.length - 1].setAttribute('aria-pressed', 'false'); return true; }
+    };
+  }
+  hooks.team = flipper('.pol');
+  hooks.why = flipper('.reason-flip');
+  var whyRetreat = hooks.why.retreat; hooks.why.retreat = function () { return whyRetreat(); };
 
   /* Start */
   slides.forEach(function (s, k) { stepState[k] = 0; applySteps(k); });
