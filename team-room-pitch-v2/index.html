@@ -1126,6 +1126,13 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .rm-sign { transition: background .2s, transform .2s; }
 .rm-sign[aria-expanded="true"] { transform: translate(-50%, -100%) scale(1.06); }
 @media (prefers-reduced-motion: reduce) { .rm-card { animation: none; } }
+
+/* Speaker badges use each person's photo from team/; until a photo exists, their agent character shows */
+.spk i { background-color: #f1f1f4; }
+.spk-evelyn i { background: url(team/evelyn.jpg) center 20% / cover no-repeat, url(sprites/stand.png) 48% 6% / 270% no-repeat #f1ecf3; }
+.spk-tony i { background: url(team/tony.jpg) center 20% / cover no-repeat, url(sprites/bear_stand.png) 50% 4% / 260% no-repeat #f1f1f4; }
+.spk-andrew i { background: url(team/andrew.jpg) center 20% / cover no-repeat, url(sprites/fox_stand.png) 50% 4% / 260% no-repeat #f1f1f4; }
+.spk-iris i { background: url(team/iris.jpg) center 20% / cover no-repeat, url(sprites/cat_stand.png) 50% 4% / 260% no-repeat #f1f1f4; }
 </style>
 </head>
 <body>
@@ -1625,10 +1632,10 @@ Saved 2 files.</pre></div></div>
 
   /* Our real team. Fill in majors, one line about each person, and photo paths (photos go in a "team" folder next to this file). */
   var TEAM = [
-    { name: 'Andrew', role: 'Builds the team room app', major: '[Major]', about: '[One line about you]', photo: 'team/andrew.jpg', color: '#2f86d6' },
-    { name: 'Iris', role: 'Built AgentMesh, shared code knowledge', major: '[Major]', about: '[One line about you]', photo: 'team/iris.jpg', color: '#2a9d66' },
-    { name: 'Sarah', role: '[Role on this project]', major: '[Major]', about: '[One line about you]', photo: 'team/sarah.jpg', color: '#e8613f' },
-    { name: 'Evelyn', role: 'Leads the pitch and research', major: '[Major]', about: '[One line about you]', photo: 'team/evelyn.jpg', color: '#d99a00' },
+    { name: 'Andrew', role: 'Lead engineer', major: 'Economics and Data Science', about: 'Builds the Mesh app and runs our team room.', photo: 'team/andrew.jpg', color: '#2f86d6' },
+    { name: 'Iris', role: 'Original founder', major: 'Business of Cinematic Arts', about: 'Mesh grew out of her original GitHub project.', photo: 'team/iris.jpg', color: '#2a9d66' },
+    { name: 'Sarah', role: 'Code engineer', major: 'Computer Science', about: 'Builds and tests the code behind Mesh.', photo: 'team/sarah.jpg', color: '#e8613f' },
+    { name: 'Evelyn', role: 'Lead product manager', major: 'Accounting', about: 'Leads the pitch, market testing and partnerships.', photo: 'team/evelyn.jpg', color: '#d99a00' },
     { name: 'Tony', role: 'Treasurer', major: 'Business Administration', about: 'Experienced in Project Management and Budgeting for creative projects.', photo: 'team/tony.jpg', color: '#8a5cf0' }
   ];
 
