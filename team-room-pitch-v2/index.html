@@ -1361,6 +1361,42 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 /* Tony: the animated GIF (spinning eyes and battery are in the art) */
 .room.mesh-ui .lg-row.lg-out { height: 56px; width: 75px; margin: -6px 0 0 40px; }
 .room.mesh-ui .lg-out img { filter: grayscale(.35) !important; opacity: .85 !important; height: 100%; }
+
+/* ---------- Slide 17: one click zooms out to show the pitch running inside our Mesh room ---------- */
+.mz-steps { display: none; }
+:root[data-look] .slide.mx-slide[data-zoomout] { padding: 0; transition: background-color .6s ease; }
+:root[data-look] .slide.mx-slide[data-zoomout][data-at="1"] { background: #f4f4f6; }
+.mz-content { position: absolute; inset: 0; padding: 70px 96px 56px; display: flex; flex-direction: column; background: #0b0b0c; transform-origin: 0 0; transition: transform 1s cubic-bezier(.7,0,.2,1), border-radius 1s, box-shadow 1s; z-index: 2; }
+[data-zoomout][data-at="1"] .mz-content { transform: translate(381px, 192px) scale(.76); border-radius: 6px; box-shadow: 0 30px 70px rgba(20,20,30,.25); }
+.mz-frame { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease .35s; font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif; color: #16171b; background-color: #f4f4f6; background-image: linear-gradient(#e7e7ea 1px, transparent 1px), linear-gradient(90deg, #e7e7ea 1px, transparent 1px); background-size: 34px 34px; }
+[data-zoomout][data-at="1"] .mz-frame { opacity: 1; }
+.mz-side { position: absolute; left: 0; top: 0; bottom: 0; width: 330px; background: #fafafa; border-right: 1px solid #e6e6e9; padding: 22px 16px; display: flex; flex-direction: column; gap: 4px; }
+.mz-ws { display: flex; align-items: center; gap: 8px; font: 700 22px var(--body); padding: 0 8px 18px; }
+.mz-logo { width: 24px; height: 24px; border-radius: 50%; background: radial-gradient(circle, #16171b 2px, transparent 2.6px) 0 0/8px 8px; opacity: .8; }
+.mz-sl { color: #8a8a93; font-weight: 500; }
+.mz-chev { margin-left: auto; color: #8a8a93; }
+.mz-nav { font: 500 21px var(--body); padding: 9px 14px; border-radius: 10px; }
+.mz-nav small { color: #8a8a93; font-size: 17px; margin-left: 6px; }
+.mz-nav.on { background: #16171b; color: #fff; }
+.mz-nav.on small { color: rgba(255,255,255,.65); }
+.mz-h { display: flex; justify-content: space-between; font: 600 15px var(--body); letter-spacing: .08em; text-transform: uppercase; color: #70737d; padding: 18px 12px 6px; }
+.mz-chan { font: 500 21px var(--body); padding: 6px 14px; } .mz-chan b { color: #8a8a93; font-weight: 500; }
+.mz-row { display: flex; align-items: center; gap: 12px; font: 500 20px/1.15 var(--body); padding: 5px 12px; }
+.mz-row i { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font: 700 14px var(--body); font-style: normal; color: #fff; flex: none; }
+.mz-row.ag span small { display: block; font-size: 15px; color: #8a8a93; }
+.mz-top { position: absolute; left: 330px; right: 0; top: 0; height: 74px; background: #fff; border-bottom: 1px solid #e6e6e9; display: flex; align-items: center; gap: 18px; padding: 0 28px; }
+.mz-top b { font: 700 24px var(--body); }
+.mz-seg { display: inline-flex; border: 1px solid #e6e6e9; border-radius: 10px; overflow: hidden; }
+.mz-seg i { font: 600 17px var(--body); font-style: normal; padding: 7px 14px; color: #70737d; }
+.mz-seg i.on { background: #16171b; color: #fff; }
+.mz-invite { margin-left: auto; background: #16171b; color: #fff; font: 600 19px var(--body); padding: 9px 20px; border-radius: 10px; }
+.mz-tabs { position: absolute; left: 381px; top: 96px; display: flex; gap: 28px; font: 500 20px var(--body); color: #70737d; }
+.mz-tabs span.on { color: #16171b; font-weight: 700; border-bottom: 3px solid #16171b; padding-bottom: 6px; }
+.mz-url { position: absolute; left: 381px; width: 1459px; top: 146px; height: 46px; background: #fff; border: 1px solid #e6e6e9; border-bottom: 0; border-radius: 8px 8px 0 0; display: flex; align-items: center; gap: 8px; padding: 0 18px; font: 500 17px var(--mono); color: #70737d; }
+.mz-url i { width: 11px; height: 11px; border-radius: 50%; background: #d9d9de; }
+.mz-url span { margin-left: 10px; }
+[data-zoomout][data-at="1"] .spk { opacity: 0; transition: opacity .3s; }
+@media (prefers-reduced-motion: reduce) { .mz-content, .mz-frame { transition: none; } }
 </style>
 </head>
 <body>
@@ -1846,8 +1882,33 @@ Saved 2 files.</pre></div></div>
 </section>
 
 <!-- Metrics: dark, Wajo-style impact cards; every number rolls up at once -->
-<section class="slide mx-slide" data-title="What we measure" data-hook="metrics">
+<section class="slide mx-slide" data-title="What we measure" data-hook="metrics" data-zoomout>
   <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
+  <div class="mz-frame" aria-hidden="true">
+    <aside class="mz-side">
+      <div class="mz-ws"><span class="mz-logo"></span><span class="mz-sl">/</span>MeshCaseCompet&hellip;<span class="mz-chev">&#8964;</span></div>
+      <div class="mz-nav on">Preview <small>draft</small></div>
+      <div class="mz-nav">Pushed <small>main</small></div>
+      <div class="mz-nav">Changes <small>draft log</small></div>
+      <div class="mz-h">Channels <span>+</span></div>
+      <div class="mz-chan"><b>#</b> general</div>
+      <div class="mz-h">People</div>
+      <div class="mz-row"><i style="background:#2f86d6">A</i>andrew</div>
+      <div class="mz-row"><i style="background:#2a9d66">I</i>liuboyuniris-ai</div>
+      <div class="mz-row"><i style="background:#8a5cf0">K</i>kafkasgames</div>
+      <div class="mz-row"><i style="background:#e8613f">L</i>lzyttsll</div>
+      <div class="mz-h">Agents <span>+</span></div>
+      <div class="mz-row ag"><i style="background:#2f86d6">F</i><span>Fable &middot; andrew<small>Idle</small></span></div>
+      <div class="mz-row ag"><i style="background:#2a9d66">I</i><span>liuboyuniris-ai<small>Idle</small></span></div>
+      <div class="mz-row ag"><i style="background:#8a5cf0">K</i><span>kafkasgames<small>Idle</small></span></div>
+      <div class="mz-row ag"><i style="background:#d99a00">H</i><span>Hana &middot; Evelyn<small>Idle</small></span></div>
+      <div class="mz-row ag"><i style="background:#ED93B1">F</i><span>Felix &middot; Evelyn<small>Idle</small></span></div>
+    </aside>
+    <div class="mz-top"><b>Preview</b><span class="mz-seg"><i class="on">Desktop</i><i>Phone</i></span><span class="mz-invite">Invite</span></div>
+    <div class="mz-tabs"><span>pitch/</span><span>team-room-pitch</span><span>team-room-pitch/train&hellip;</span><span class="on">Pitch v2</span></div>
+    <div class="mz-url"><i></i><i></i><i></i><span>mesh-case-competition-git-draft-andrewphankts-projects.vercel.app/team-room-pitch-v2/</span></div>
+  </div>
+  <div class="mz-content">
   <div class="mx-head"><span class="mx-k">Mesh impact</span><span class="mx-upd">Our own room · Nov 16&ndash;18, 2026</span></div>
   <h2 class="mx-h">We&rsquo;re making Mesh with Mesh, and this pitch too. Here&rsquo;s what it measured.</h2>
   <div class="mx-grid">
@@ -1859,7 +1920,9 @@ Saved 2 files.</pre></div></div>
       <div class="mx-card"><div class="mx-l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>Tokens used</div><span class="mx-num" data-value="432.3k">432.3k</span><div class="mx-cap">What it took to build Mesh with Mesh. About 13.5k per save; our goal is to bring that down.</div><span class="mx-tag">So far &middot; more teammates coming</span></div>
   </div>
   <p class="mx-next">Next test: do real AIs obey the same-file stop every time?</p>
-  <aside class="notes">[Target: about 20 seconds. Let the numbers roll, name the north star, move on.] This is the one dark slide, on purpose: let the numbers roll. "We didn't make these up. We're using our product to build our product: we're making Mesh with Mesh, and we built this pitch inside it too. The room measured it." Students signed up, projects connected, active agents, messages sent, saves and tokens are the measures we agreed on, and the room records every one of them from day one. Saves is the real count of saves to our shared draft. Active agents, messages and tokens come from Andrew, who owns the room; fill them in before Thursday. Close on the next test: do real AIs obey the same-file stop every time? Tokens: 432.3k is what it took to build Mesh with Mesh, about 13.5k per save. Mesh adds its own instructions and checks for teammates' changes every turn, so part of that is Mesh itself; bringing tokens per save down is a goal we track.</aside>
+  </div>
+  <span class="mz-steps" aria-hidden="true"><i data-step="1"></i></span>
+  <aside class="notes">[Clicker: one press zooms out to show this slide running inside our own Mesh room. Say: &ldquo;And this pitch? We built it right here, in Mesh.&rdquo;] [Target: about 20 seconds. Let the numbers roll, name the north star, move on.] This is the one dark slide, on purpose: let the numbers roll. "We didn't make these up. We're using our product to build our product: we're making Mesh with Mesh, and we built this pitch inside it too. The room measured it." Students signed up, projects connected, active agents, messages sent, saves and tokens are the measures we agreed on, and the room records every one of them from day one. Saves is the real count of saves to our shared draft. Active agents, messages and tokens come from Andrew, who owns the room; fill them in before Thursday. Close on the next test: do real AIs obey the same-file stop every time? Tokens: 432.3k is what it took to build Mesh with Mesh, about 13.5k per save. Mesh adds its own instructions and checks for teammates' changes every turn, so part of that is Mesh itself; bringing tokens per save down is a goal we track.</aside>
 </section>
 
 <!-- 13 Close -->
