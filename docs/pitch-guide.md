@@ -16,8 +16,8 @@ We present straight from the Mesh room, so when the pitch ends we are already in
 
 1. Before the pitch, press Push so the public site has the final deck (optional; the Preview shows the draft either way).
 2. Open the Mesh room, Preview tab, on the pitch tab, and make the Preview full screen.
-3. Click once on the left edge of the deck (that goes back a step, which does nothing on slide 1) so the arrow keys go to it, then present slides 1–19 (about 4 minutes 57 seconds).
-4. After the close, leave full screen: the judges are looking at the real room. Take questions there. The one backup slide (biggest risk) is after the close if someone asks.
+3. Click once on the left edge of the deck (that goes back a step, which does nothing on slide 1) so the arrow keys go to it, then present all 19 slides (about 4 minutes 49 seconds).
+4. End on the team slide (names and photos), then leave full screen: the judges are looking at the real room. Take questions there.
 
 ## Accuracy check
 
