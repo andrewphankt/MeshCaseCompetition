@@ -969,21 +969,22 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 
 /* ---------- Wajo partner slide: all black, Wajo-style face ---------- */
 :root[data-look] .slide.wj-slide { background: #000; color: #f4f4f5; align-items: center; justify-content: center; text-align: center; }
-.wj-face { display: flex; gap: 30px; align-items: flex-start; margin-bottom: 34px; animation: wjin .8s cubic-bezier(.2,.9,.3,1.2) both, wjbob 4s ease-in-out 1s infinite; }
-.wj-eye { width: 46px; height: 74px; background: #fff; border-radius: 50%; animation: wjblink 3.6s infinite, wjlook 7s ease-in-out infinite; }
-.wj-smile { width: 36px; height: 20px; border-bottom: 7px solid #fff; border-radius: 0 0 40px 40px; margin-top: 66px; animation: wjsmile 3.6s ease-in-out infinite; }
 .wj-kicker { font: 600 26px var(--body); letter-spacing: .14em; text-transform: uppercase; color: #8a8a93; margin-bottom: 18px; animation: txup .7s .25s ease both; }
 .wj-h { margin: 0; font: 700 84px/1.08 "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; letter-spacing: -0.02em; color: #a1a1aa; max-width: 1400px; animation: txup .7s .4s ease both; }
 .wj-h b { color: #fafafa; }
 .wj-pair { display: flex; align-items: center; gap: 22px; margin-top: 46px; background: #1f1f22; border: 1px solid #2c2c31; border-radius: 999px; padding: 22px 52px; font: 700 48px "Inter", -apple-system, Arial, sans-serif; color: #fff; animation: txup .7s .6s ease both; }
 .wj-x { color: #8a8a93; font-weight: 300; }
 .wj-sub { margin: 34px 0 0; font: 500 28px/1.4 var(--body); color: #a1a1aa; max-width: 1100px; animation: txup .7s .8s ease both; }
+/* Wajo face, matched to Wajo's own animation: tall eyes close together, small smile tucked under, a gentle tilt and glance */
+.wj-face { position: relative; display: block; width: 190px; height: 168px; margin-bottom: 30px; animation: wjin .8s cubic-bezier(.2,.9,.3,1.2) both; }
+.wj-eyes { position: absolute; left: 0; right: 0; top: 0; display: flex; justify-content: center; gap: 46px; transform-origin: 50% 70%; animation: wjtilt 5.2s ease-in-out infinite; }
+.wj-eye { width: 58px; height: 104px; background: #fff; border-radius: 50%; transform-origin: 50% 60%; animation: wjblink 5.2s ease-in-out infinite; }
+.wj-smile { position: absolute; left: 50%; top: 114px; width: 40px; height: 14px; margin-left: -22px; border-bottom: 5px solid #fff; border-radius: 0 0 40px 40px; animation: wjsmile 5.2s ease-in-out infinite; }
+@keyframes wjtilt { 0%, 55%, 100% { transform: none; } 66%, 80% { transform: translateX(-10px) rotate(-6deg); } 88% { transform: translateX(-3px) rotate(-1deg); } }
+@keyframes wjblink { 0%, 40%, 47%, 100% { transform: none; } 43% { transform: scaleY(.12); } 70%, 80% { transform: scaleX(.92); } }
+@keyframes wjsmile { 0%, 55%, 100% { transform: none; } 66%, 80% { transform: translateX(-8px); } }
 @keyframes wjin { from { opacity: 0; transform: translateY(30px) scale(.8); } to { opacity: 1; transform: none; } }
-@keyframes wjbob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
-@keyframes wjblink { 0%, 90%, 100% { scale: 1 1; } 94% { scale: 1 .1; } }
-@keyframes wjlook { 0%, 30%, 100% { translate: 0 0; } 40%, 55% { translate: -9px 0; } 65%, 80% { translate: 9px 0; } }
-@keyframes wjsmile { 0%, 100% { width: 36px; } 50% { width: 52px; } }
-@media (prefers-reduced-motion: reduce) { .wj-face, .wj-eye, .wj-smile, .wj-kicker, .wj-h, .wj-pair, .wj-sub { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .wj-face, .wj-eyes, .wj-eye, .wj-smile, .wj-kicker, .wj-h, .wj-pair, .wj-sub { animation: none !important; } }
 /* ---------- Bring your own agent (from V2) ---------- */
 .mesh-mark { overflow: visible; }
 .mesh-mark circle { transition: transform 1.4s cubic-bezier(.2,.8,.2,1), opacity 1s ease; }
@@ -1426,7 +1427,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 
 <!-- 13 Close -->
 <section class="slide mx-slide wj-slide" data-title="Wajo partner">
-  <div class="wj-face" aria-hidden="true"><span class="wj-eye"></span><span class="wj-smile"></span><span class="wj-eye"></span></div>
+  <div class="wj-face" aria-hidden="true"><span class="wj-eyes"><span class="wj-eye"></span><span class="wj-eye"></span></span><span class="wj-smile"></span></div>
   <div class="wj-kicker">New partner</div>
   <h2 class="wj-h">Wajo is now a <b>partner of Mesh.</b></h2>
   <div class="wj-pair"><span>Mesh</span><span class="wj-x">+</span><span>Wajo</span></div>
