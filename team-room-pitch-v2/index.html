@@ -1314,6 +1314,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 /* road map exit: black wipes in from left to right after the car drives off */
 .rm-fade { opacity: 1 !important; clip-path: inset(0 100% 0 0); transition: clip-path .75s cubic-bezier(.6,0,.3,1); }
 .slide.rm-out .rm-fade { clip-path: inset(0 0 0 0); }
+.room.mesh-ui .sim-top { position: static; margin-right: auto; white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -1587,7 +1588,6 @@ Saved 2 files.</pre></div></div>
       <span class="lg lg-row lg-out" data-who="t" aria-hidden="true"><img src="sprites/bear_idle.png" alt=""><b class="batt">0%</b></span>
       <div class="m-agent"><i class="m-felix" aria-hidden="true"></i><div>Felix · Evelyn's AI<small id="st-e">Idle</small></div></div>
       <span class="lg lg-row" data-who="e" aria-hidden="true"><img src="sprites/idle.png" alt=""></span>
-      <span class="sim sim-side">Simulated scene</span>
     </aside>
     <div class="feed-wrap">
       <div class="feed-bar">
@@ -1596,6 +1596,7 @@ Saved 2 files.</pre></div></div>
           <button type="button" id="mode-plain" aria-pressed="true">Plain English</button>
           <button type="button" id="mode-tech" aria-pressed="false">Technical</button>
         </div>
+        <span class="sim sim-top">Simulated scene</span>
         <button type="button" class="btn" id="demo-reset">Reset</button>
         <button type="button" class="btn primary" id="demo-play">Play the scene</button>
       </div>
