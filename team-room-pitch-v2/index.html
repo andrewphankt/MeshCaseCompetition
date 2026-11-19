@@ -1089,6 +1089,32 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .wj-slide[data-at="1"] .wj-cap { animation: txup .6s 2.6s ease both; }
 @media (prefers-reduced-motion: reduce) { .wj-net *, .wj-net { animation: none !important; opacity: 1 !important; stroke-dashoffset: 0 !important; } .wj-shine { color: #16171b !important; } }
 .by-cards { gap: 40px; } .by-card { width: 290px; } .by-card:nth-child(4) { transform: rotate(-1deg); }
+
+/* ---------- How Mesh makes money ---------- */
+.mo-grid { display: grid; grid-template-columns: 1fr 1fr 1.25fr; gap: 28px; margin-top: 30px; align-items: stretch; }
+.mo-card { background: #fff; border: 1px solid #ece6d8; border-radius: 18px; padding: 28px 28px 24px; box-shadow: 0 14px 34px rgba(40,30,10,.12); display: flex; flex-direction: column; gap: 10px; color: #16171b; }
+.mo-card:nth-child(1) { transform: rotate(-1deg); } .mo-card:nth-child(3) { transform: rotate(.8deg); }
+.mo-k { font: 700 30px/1 var(--hand); color: var(--pen, #c8432b); }
+.mo-big { font: 800 52px/1.05 var(--display); }
+.mo-tbd { background: linear-gradient(transparent 55%, rgba(255,216,77,.9) 55%); padding: 0 4px; }
+.mo-card p { margin: 0; font-size: 22px; line-height: 1.4; }
+.mo-card small { font-size: 18px; color: #70737d; line-height: 1.4; }
+.mo-crew { display: flex; align-items: flex-end; gap: 4px; margin-top: auto; height: 96px; }
+.mo-crew img { height: 100%; transform-origin: 50% 100%; animation: fsway 2.8s ease-in-out infinite; }
+.mo-crew img:nth-child(2) { animation-delay: -.7s; } .mo-crew img:nth-child(3) { animation-delay: -1.4s; } .mo-crew img:nth-child(4) { animation-delay: -2.1s; } .mo-crew img:nth-child(5) { animation-delay: -1s; }
+@media (prefers-reduced-motion: reduce) { .mo-crew img { animation: none; } }
+
+/* ---------- Speaker badge, top right of every slide ---------- */
+.spk { position: absolute; top: 24px; right: 30px; z-index: 60; display: flex; align-items: center; gap: 10px; padding: 6px 16px 6px 6px; border-radius: 999px; background: rgba(255,255,255,.92); border: 1px solid #e6ddca; box-shadow: 0 6px 16px rgba(40,30,10,.12); color: #16171b; pointer-events: none; }
+.spk i { width: 44px; height: 44px; border-radius: 50%; background: #f1f1f4 no-repeat 50% 4% / 260%; border: 2px solid var(--spk, #e6e6e9); flex: none; }
+.spk span { display: flex; flex-direction: column; font: 700 20px/1.05 var(--body); }
+.spk small { font: 600 11px/1.2 var(--body); letter-spacing: .1em; text-transform: uppercase; color: #8a8a93; }
+.spk-evelyn { --spk: #f4c0d1; } .spk-evelyn i { background-color: #f1ecf3; background-image: url(sprites/stand.png); background-position: 48% 6%; background-size: 270%; }
+.spk-tony { --spk: #c9a2ff; } .spk-tony i { background-image: url(sprites/bear_stand.png); }
+.spk-andrew { --spk: #5db9ff; } .spk-andrew i { background-image: url(sprites/fox_stand.png); }
+.spk-iris { --spk: #7fdcae; } .spk-iris i { background-image: url(sprites/cat_stand.png); }
+.mx-slide .spk, .wj-slide .spk { background: rgba(31,31,34,.92); border-color: #2c2c31; color: #f4f4f5; box-shadow: none; }
+.demo-full .spk { top: auto; bottom: 16px; right: 18px; }
 </style>
 </head>
 <body>
@@ -1097,6 +1123,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 
 <!-- 1 Title -->
 <section class="slide" data-title="Title">
+  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
   <button type="button" class="cursor c-andrew drift-a" style="left:960px; top:130px" data-peek="0"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Claude · editing the title</b></button>
   <button type="button" class="cursor c-iris drift-b" style="left:1010px; top:205px" data-peek="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Codex · editing the title</b></button>
   <button type="button" class="cursor c-sarah drift-b" style="left:1290px; top:120px" data-peek="2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Gemini · adding sign-up</b></button>
@@ -1135,6 +1162,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 
 <!-- 2 Meet the team -->
 <section class="slide" data-title="Meet the team">
+  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
   <div class="eyebrow"><i></i>Meet the team</div>
   <h2 class="h-l">Five of us, building the room we needed.</h2>
   <div class="hint" style="margin-top:12px">Tap a photo to flip it</div>
@@ -1144,6 +1172,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 
 <!-- Section 1: The problem -->
 <section class="slide mx-slide tx-slide" data-title="Section: The problem">
+  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
   <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span></div>
   <div class="tx-ghost" aria-hidden="true">01</div>
   <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
@@ -1159,6 +1188,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 </section>
 <!-- Problem 1: everyone has an agent -->
 <section class="slide" data-title="Everyone has an agent">
+  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
   <div class="eyebrow"><i></i>The problem</div>
   <h2 class="h-l pr-h">Everyone on your team has an agent now.</h2>
   <div class="terms3">
@@ -1171,6 +1201,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 </section>
 <!-- Problem 2: they can't see each other -->
 <section class="slide" data-title="They can't see each other">
+  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
   <div class="eyebrow"><i></i>The problem</div>
   <h2 class="h-l pr-h">But they can't see each other.</h2>
   <div class="terms2">
@@ -1183,6 +1214,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 </section>
 <!-- Problem 3: people become the go-between -->
 <section class="slide" data-title="People become the go-between">
+  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
   <div class="eyebrow"><i></i>The problem</div>
   <h2 class="h-l pr-h">So people become the go-between.</h2>
   <div class="chatcard">
@@ -1200,6 +1232,7 @@ Saved 2 files.</pre></div></div>
 </section>
 <!-- 4 Reframe -->
 <section class="slide center" data-title="The proof" data-hook="reframe">
+  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
   <h2 class="h-l" style="max-width:1300px">We tested it on ourselves.</h2>
   <h2 class="h-l typed" style="max-width:1300px; margin-top:20px" data-step="1" id="reframe-2">With engineers on the call, a first-timer's first save took <span class="hl">33 minutes and 20 messages</span>.</h2>
   <p class="lede proof-small" data-step="2">Two GitHub tokens were pasted by accident.</p>
@@ -1207,6 +1240,7 @@ Saved 2 files.</pre></div></div>
 </section>
 <!-- 5 Three reasons -->
 <section class="slide" data-title="Why it breaks">
+  <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
   <div class="eyebrow"><i></i>Why it breaks</div>
   <h2 class="h-m">Why building together breaks</h2>
   <p class="lede why-sub">Three things go wrong when a mixed team builds with AI.</p>
@@ -1254,6 +1288,7 @@ Saved 2 files.</pre></div></div>
 
 <!-- Section 2: Meet Mesh -->
 <section class="slide mx-slide tx-slide tx-meet" data-title="Section: Meet Mesh" data-hook="meshmark">
+  <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
   <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="past"></i><i class="on"></i><i class=""></i><i class=""></i></span></div>
   <svg class="mesh-mark" id="mesh-mark" aria-hidden="true"></svg>
   <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
@@ -1267,6 +1302,7 @@ Saved 2 files.</pre></div></div>
 </section>
 <!-- Bring your own agent: everyone's agent links into one Mesh room (layout after Andrew's slide 15) -->
 <section class="slide by-slide" data-title="Bring your own agent">
+  <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
   <div class="by-hand">&mdash; how Mesh connects</div>
   <h2 class="h-l by-h">Bring <span class="by-mark">your own</span> agent.</h2>
   <div class="by-wrap">
@@ -1288,6 +1324,7 @@ Saved 2 files.</pre></div></div>
 </section>
 <!-- Section 3: See it in action -->
 <section class="slide mx-slide tx-slide" data-title="Section: See it in action">
+  <div class="spk spk-andrew" aria-label="Speaker: Andrew"><i></i><span><small>Speaker</small>Andrew</span></div>
   <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="past"></i><i class="past"></i><i class="on"></i><i class=""></i></span></div>
   <div class="tx-ghost" aria-hidden="true">03</div>
   <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
@@ -1303,6 +1340,7 @@ Saved 2 files.</pre></div></div>
 </section>
 <!-- 7 Demo -->
 <section class="slide demo-full" data-title="Live: the team room">
+  <div class="spk spk-andrew" aria-label="Speaker: Andrew"><i></i><span><small>Speaker</small>Andrew</span></div>
   <div class="room mesh-ui" data-interactive data-felix="idle" data-busy="0">
     <aside class="m-side">
       <div class="m-ws"><span class="m-logo" aria-hidden="true"></span>Team 4<span class="m-chev" aria-hidden="true">&#8964;</span></div>
@@ -1361,6 +1399,7 @@ Saved 2 files.</pre></div></div>
 
 <!-- 9 Training mode -->
 <section class="slide" data-title="Training mode" data-hook="training" style="padding:60px 80px 40px">
+  <div class="spk spk-andrew" aria-label="Speaker: Andrew"><i></i><span><small>Speaker</small>Andrew</span></div>
   <div class="eyebrow"><i></i>Layer 2 · Easy to start · Clickable prototype</div>
   <h2 class="h-m">Practice first. Tooltips until you're ready.</h2>
   <div class="train" data-interactive>
@@ -1386,6 +1425,7 @@ Saved 2 files.</pre></div></div>
 
 <!-- Section 4: What's next -->
 <section class="slide mx-slide tx-slide" data-title="Section: What&#39;s next">
+  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
   <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="past"></i><i class="past"></i><i class="past"></i><i class="on"></i></span></div>
   <div class="tx-ghost" aria-hidden="true">04</div>
   <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
@@ -1401,6 +1441,7 @@ Saved 2 files.</pre></div></div>
 </section>
 <!-- Road map -->
 <section class="slide" data-title="The road map" data-hook="roadmap">
+  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
   <div class="eyebrow"><i></i>The road map</div>
   <h2 class="h-m">Where Mesh goes from here.</h2>
   <span class="rm-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i><i data-step="5"></i><i data-step="6"></i></span>
@@ -1474,7 +1515,34 @@ Saved 2 files.</pre></div></div>
 </section>
 
 <!-- Metrics: dark, Wajo-style impact cards; every number rolls up at once -->
+<section class="slide" data-title="How Mesh makes money">
+  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
+  <div class="eyebrow"><i></i>How Mesh makes money</div>
+  <h2 class="h-m">Campuses pay. Students don&rsquo;t.</h2>
+  <div class="mo-grid">
+    <div class="mo-card">
+      <span class="mo-k">Campuses</span>
+      <span class="mo-big"><span class="mo-tbd">$X</span> / year</span>
+      <p>A campus licenses Mesh and offers it to its students as a free resource, for students who want to make things but need introductory help with coding.</p>
+      <small>First stop: USC. Start with one club or hackathon, then license the whole campus.</small>
+    </div>
+    <div class="mo-card">
+      <span class="mo-k">Students</span>
+      <span class="mo-big">Free</span>
+      <p>Through their campus, on the AI plan they already have. Mesh never charges for AI.</p>
+    </div>
+    <div class="mo-card mo-chars">
+      <span class="mo-k">Agent characters</span>
+      <span class="mo-big">Paid packs</span>
+      <p>Every agent gets a free character. Students can buy character packs and custom looks to personify their agents.</p>
+      <div class="mo-crew" aria-hidden="true"><img src="sprites/fox_idle.png" alt=""><img src="sprites/cat_idle.png" alt=""><img src="sprites/bunny_idle.png" alt=""><img src="sprites/bear_idle.png" alt=""><img src="sprites/idle.png" alt=""></div>
+    </div>
+  </div>
+  <aside class="notes">[Target: about 15 seconds.] Campuses pay, students don't. A campus licenses Mesh and offers it free to its students, and students use the AI plan they already have. On top of that, every agent gets a free character, and students can buy character packs to personify their agents. The campus price is still a placeholder.</aside>
+</section>
+
 <section class="slide mx-slide" data-title="What we measure" data-hook="metrics">
+  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
   <div class="mx-head"><span class="mx-k">Mesh impact</span><span class="mx-upd">Our own room · Nov 16&ndash;18, 2026</span></div>
   <h2 class="mx-h">We built this pitch in Mesh. Here's what it measured.</h2>
   <div class="mx-grid">
@@ -1491,6 +1559,7 @@ Saved 2 files.</pre></div></div>
 
 <!-- 13 Close -->
 <section class="slide mx-slide wj-slide" data-title="Wajo partner">
+  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
   <div class="wj-face" aria-hidden="true"><span class="wj-eyes"><span class="wj-eye"></span><span class="wj-eye"></span></span><span class="wj-smile"></span></div>
   <div class="wj-kicker">New partner</div>
   <h2 class="wj-h">Wajo is now a <b>partner of Mesh.</b></h2>
@@ -1511,6 +1580,7 @@ Saved 2 files.</pre></div></div>
 </section>
 
 <section class="slide center" data-title="Close">
+  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
   <span class="cursor c-andrew gather" style="left:1180px; top:140px; --fx:-700px; --fy:-300px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Andrew</b></span>
   <span class="cursor c-iris gather" style="left:1340px; top:220px; --fx:400px; --fy:-260px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Iris</b></span>
   <span class="cursor c-sarah gather" style="left:1220px; top:560px; --fx:-640px; --fy:300px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Sarah</b></span>
