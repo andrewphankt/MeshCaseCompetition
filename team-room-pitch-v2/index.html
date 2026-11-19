@@ -1279,6 +1279,10 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .by-slide .by-room { margin-top: -10px; }
 .by-small { margin-top: 16px; font-size: 24px; }
 .by-tag { margin-top: 6px; font-size: 50px; }
+
+/* slide 11: keep the connectors and room glow on through the punchline (step 3) */
+.by-slide[data-at="3"] .by-lines path { opacity: 1; animation: bydash 1.2s linear infinite; }
+.by-slide[data-at="3"] .by-room { box-shadow: 0 0 0 10px rgba(237,147,177,.35), 0 18px 40px rgba(20,16,10,.28); transform: scale(1.04); }
 </style>
 </head>
 <body>
