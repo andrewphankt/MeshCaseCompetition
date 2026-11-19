@@ -1283,6 +1283,29 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 /* slide 11: keep the connectors and room glow on through the punchline (step 3) */
 .by-slide[data-at="3"] .by-lines path { opacity: 1; animation: bydash 1.2s linear infinite; }
 .by-slide[data-at="3"] .by-room { box-shadow: 0 0 0 10px rgba(237,147,177,.35), 0 18px 40px rgba(20,16,10,.28); transform: scale(1.04); }
+
+/* push: the paper plane loops with a trail, then crashes into the button as it turns to "Pushed" */
+.pv-flight { position: absolute; left: calc(50% - 500px); top: calc(50% - 340px); width: 600px; height: 400px; pointer-events: none; z-index: 3; }
+.pv-trail { position: absolute; inset: 0; overflow: visible; }
+.pv-trail path { fill: none; stroke: #9a9aa3; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; }
+.m-pv.pushing .pv-trail path { animation: pvtrail 1.7s ease-in-out forwards; }
+@keyframes pvtrail { 0% { opacity: .85; stroke-dashoffset: 1; } 92% { opacity: .85; stroke-dashoffset: 0; } 100% { opacity: 0; stroke-dashoffset: 0; } }
+.pv-jet { position: absolute; left: 0; top: 0; width: 46px; height: 46px; offset-path: path('M500 340 C 450 300, 400 262, 340 226 C 262 180, 236 104, 296 82 C 356 60, 392 132, 336 166 C 280 200, 318 268, 410 306 C 452 323, 480 334, 500 340'); offset-rotate: auto; offset-anchor: center; offset-distance: 0%; opacity: 0; }
+.pv-jet svg { width: 100%; height: 100%; fill: #fff; stroke: #16171b; stroke-width: 1.4; stroke-linejoin: round; }
+.m-pv.pushing .pv-jet { animation: pvfly 1.7s ease-in-out forwards; }
+@keyframes pvfly { 0% { offset-distance: 0%; opacity: 0; transform: scale(.6); } 8% { opacity: 1; transform: scale(1); } 94% { offset-distance: 100%; opacity: 1; transform: scale(.9); } 100% { offset-distance: 100%; opacity: 0; transform: scale(.4); } }
+.m-pv.pushing:not(.impact) .pv-burst i { animation: none; }
+.m-pv.impact .pv-burst i { animation: pvburst .9s cubic-bezier(.15,.7,.3,1) forwards; }
+.m-pv.impact .pv-push { animation: pvbump .45s cubic-bezier(.2,1.6,.4,1); }
+@keyframes pvbump { 0% { transform: scale(1); } 30% { transform: scale(.88) rotate(-3deg); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .m-pv.pushing .pv-jet, .m-pv.pushing .pv-trail path { animation: none; } }
+
+/* Tony's AI is out of tokens (placeholder pose until the "oh no" art arrives) */
+.room.mesh-ui .m-agent small.out { color: #c8432b; font-weight: 600; }
+.room.mesh-ui .m-out .m-face { filter: grayscale(.7); opacity: .75; }
+.room.mesh-ui .lg-out { position: relative; }
+.room.mesh-ui .lg-out img { filter: grayscale(.75) brightness(.95); opacity: .7; animation: none !important; transform: rotate(-6deg); }
+.room.mesh-ui .lg-out .batt { position: absolute; left: 52px; top: 4px; font: 700 10px var(--body); color: #fff; background: #c8432b; border-radius: 4px; padding: 1px 5px; }
 </style>
 </head>
 <body>
@@ -1552,8 +1575,8 @@ Saved 2 files.</pre></div></div>
       <span class="lg lg-row" data-who="i" aria-hidden="true"><img src="sprites/cat_idle.png" alt=""></span>
       <div class="m-agent"><i class="m-face" style="background-image:url(sprites/bunny_stand.png)" aria-hidden="true"></i><div>Sarah's AI<small>Idle</small></div></div>
       <span class="lg lg-row" data-who="s" aria-hidden="true"><img src="sprites/bunny_idle.png" alt=""></span>
-      <div class="m-agent"><i class="m-face" style="background-image:url(sprites/bear_stand.png)" aria-hidden="true"></i><div>Tony's AI<small>Idle</small></div></div>
-      <span class="lg lg-row" data-who="t" aria-hidden="true"><img src="sprites/bear_idle.png" alt=""></span>
+      <div class="m-agent m-out"><i class="m-face" style="background-image:url(sprites/bear_stand.png)" aria-hidden="true"></i><div>Tony's AI<small class="out">Out of tokens &middot; refreshes 2:15 AM</small></div></div>
+      <span class="lg lg-row lg-out" data-who="t" aria-hidden="true"><img src="sprites/bear_idle.png" alt=""><b class="batt">0%</b></span>
       <div class="m-agent"><i class="m-felix" aria-hidden="true"></i><div>Felix · Evelyn's AI<small id="st-e">Idle</small></div></div>
       <span class="lg lg-row" data-who="e" aria-hidden="true"><img src="sprites/idle.png" alt=""></span>
       <span class="sim sim-side">Simulated scene</span>
@@ -1604,12 +1627,12 @@ Saved 2 files.</pre></div></div>
         </div>
       </div>
       <div class="pv-list">
-        <div class="pv-lhead"><b id="pv-count">2 new</b><span class="pv-pushwrap"><button type="button" class="btn primary pv-push" id="pv-push">Push</button><span class="pv-burst" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><svg class="pv-plane" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 21 3l-6.5 18-3-7.5z"/><path d="M11.5 13.5 21 3"/></svg></span></div>
+        <div class="pv-lhead"><b id="pv-count">2 new</b><span class="pv-pushwrap"><button type="button" class="btn primary pv-push" id="pv-push">Push</button><span class="pv-burst" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="pv-flight" aria-hidden="true"><svg class="pv-trail" viewBox="0 0 600 400" width="600" height="400"><path pathLength="1" d="M500 340 C 450 300, 400 262, 340 226 C 262 180, 236 104, 296 82 C 356 60, 392 132, 336 166 C 280 200, 318 268, 410 306 C 452 323, 480 334, 500 340"/></svg><span class="pv-jet"><svg viewBox="0 0 24 24"><g transform="rotate(45 12 12)"><path d="M3 11.5 21 3l-6.5 18-3-7.5z"/><path d="M11.5 13.5 21 3"/></g></svg></span></span></span></div>
         <div class="pv-rows" id="pv-rows"></div>
       </div>
     </div>
   </div>
-  <aside class="notes">[Target: about 60 seconds. After approving, click See it in Preview, then Push: the changes go live. One line per beat: 'Two AIs head for the same file... Mesh warns them... I approve, and it's live.' Pick 'Take the footer' to keep it short.] Press Play and point at Working now on the right, which is what Mesh really shows: Andrew's AI is in index.html, and Iris's AI heads for the same file. Felix, Evelyn's agent, is idle in the sidebar on the left, sitting with headphones on. When the warning appears, ask the audience: "Wait, or take the footer?" and click their pick. Flip to Technical to show it's the same update, just translated. End by approving the preview as Evelyn, the teammate who doesn't write the code: Felix appears in Working now and gets to work, mining, then holds up the gem when the update is saved, then goes back to idle in the sidebar. This really happened on Nov 17: Evelyn's agent spotted a problem only Andrew could fix and sent his agent a request. She never opened Mesh. Andrew approved it in the room, and his agent picked it up.</aside>
+  <aside class="notes">[Target: about 60 seconds. Point at Tony's AI: out of tokens, refreshes at 2:15 AM. After approving, click See it in Preview, then Push: the changes go live. One line per beat: 'Two AIs head for the same file... Mesh warns them... I approve, and it's live.' Pick 'Take the footer' to keep it short.] Press Play and point at Working now on the right, which is what Mesh really shows: Andrew's AI is in index.html, and Iris's AI heads for the same file. Felix, Evelyn's agent, is idle in the sidebar on the left, sitting with headphones on. When the warning appears, ask the audience: "Wait, or take the footer?" and click their pick. Flip to Technical to show it's the same update, just translated. End by approving the preview as Evelyn, the teammate who doesn't write the code: Felix appears in Working now and gets to work, mining, then holds up the gem when the update is saved, then goes back to idle in the sidebar. This really happened on Nov 17: Evelyn's agent spotted a problem only Andrew could fix and sent his agent a request. She never opened Mesh. Andrew approved it in the room, and his agent picked it up.</aside>
 </section>
 
 <!-- 9 Training mode -->
@@ -1693,18 +1716,20 @@ Saved 2 files.</pre></div></div>
       </g>
       <g id="rm-car" class="rm-car">
         <ellipse class="rm-shadow" cx="4" cy="12" rx="54" ry="8"/>
-        <g class="rm-puffs"><circle class="p1" cx="-60" cy="-6" r="7"/><circle class="p2" cx="-60" cy="-6" r="7"/><circle class="p3" cx="-60" cy="-6" r="7"/></g>
+        <g class="rm-puffs"><circle class="p1" cx="-66" cy="-6" r="7"/><circle class="p2" cx="-66" cy="-6" r="7"/><circle class="p3" cx="-66" cy="-6" r="7"/></g>
         <g class="rm-body">
-          <path class="rm-antenna" d="M-30 -30 L-38 -66"/><path class="rm-pennant" d="M-38 -66 L-14 -60 L-36 -52 Z"/>
-          <path class="rm-shell" d="M-52 -6 Q-54 -26 -34 -30 L-22 -31 Q-10 -54 12 -54 L22 -54 Q40 -54 46 -34 L52 -31 Q60 -29 60 -14 L60 -6 Q60 2 52 2 L-46 2 Q-52 2 -52 -6 Z"/>
-          <path class="rm-stripe" d="M-50 -14 L58 -14"/>
-          <path class="rm-win" d="M-16 -33 Q-6 -48 10 -48 L14 -48 L14 -33 Z"/>
-          <path class="rm-win" d="M20 -48 Q34 -48 39 -33 L20 -33 Z"/>
-          <circle class="rm-light" cx="56" cy="-22" r="5"/>
-          <rect class="rm-tail" x="-54" y="-24" width="6" height="8" rx="2"/>
+          <path class="rm-antenna" d="M-36 -30 L-44 -64"/><path class="rm-pennant" d="M-44 -64 L-20 -58 L-42 -50 Z"/>
+          <g transform="scale(-1 1)">
+            <path class="rm-shell" d="M-52 -6 Q-54 -26 -34 -30 L-22 -31 Q-10 -54 12 -54 L22 -54 Q40 -54 46 -34 L52 -31 Q60 -29 60 -14 L60 -6 Q60 2 52 2 L-46 2 Q-52 2 -52 -6 Z"/>
+            <path class="rm-stripe" d="M-50 -14 L58 -14"/>
+            <path class="rm-win" d="M-16 -33 Q-6 -48 10 -48 L14 -48 L14 -33 Z"/>
+            <path class="rm-win" d="M20 -48 Q34 -48 39 -33 L20 -33 Z"/>
+          </g>
+          <circle class="rm-light" cx="48" cy="-14" r="5"/>
+          <rect class="rm-tail" x="-60" y="-24" width="6" height="8" rx="2"/>
         </g>
-        <g class="rm-wh" data-x="-28"><circle class="rm-tire" r="14"/><circle class="rm-hub" r="6"/><path class="rm-spoke" d="M-9 0 H9 M0 -9 V9"/></g>
-        <g class="rm-wh" data-x="34"><circle class="rm-tire" r="14"/><circle class="rm-hub" r="6"/><path class="rm-spoke" d="M-9 0 H9 M0 -9 V9"/></g>
+        <g class="rm-wh" data-x="-34"><circle class="rm-tire" r="14"/><circle class="rm-hub" r="6"/><path class="rm-spoke" d="M-9 0 H9 M0 -9 V9"/></g>
+        <g class="rm-wh" data-x="28"><circle class="rm-tire" r="14"/><circle class="rm-hub" r="6"/><path class="rm-spoke" d="M-9 0 H9 M0 -9 V9"/></g>
       </g>
     </svg>
     <div class="rm-carlabel" id="rm-carlabel"><b>Now: the team room</b>We're building Mesh with Mesh.</div>
@@ -1752,10 +1777,10 @@ Saved 2 files.</pre></div></div>
       <div class="rm-tiers rm-future">
         <div class="rm-tier"><span class="rm-k-l">Try it</span><span class="rm-k-goal">Practice room</span><span class="rm-k-sub">Try a team room without logging in.</span></div>
         <div class="rm-tier"><span class="rm-k-l">Learn</span><span class="rm-k-goal">Tooltips</span><span class="rm-k-sub">Training notes inside the real room.</span></div>
-        <div class="rm-tier"><span class="rm-k-l">Talk</span><span class="rm-k-goal">@mention agents</span><span class="rm-k-sub">Ping any teammate&rsquo;s agent in the chat.</span></div>
-        <div class="rm-tier"><span class="rm-k-l">Connect</span><span class="rm-k-goal">More AIs</span><span class="rm-k-sub">Plug in more AIs, like Wajo.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Talk</span><span class="rm-k-goal">@mention agents</span><span class="rm-k-sub">Ping a teammate&rsquo;s agent so it talks back to you.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Connect</span><span class="rm-k-goal">More AIs</span><span class="rm-k-sub">Plug in more AIs, like Grok and Wajo&rsquo;s Fo.</span></div>
         <div class="rm-tier"><span class="rm-k-l">See</span><span class="rm-k-goal">Live tools</span><span class="rm-k-sub">Which tools each AI is using right now.</span></div>
-        <div class="rm-tier"><span class="rm-k-l">Share</span><span class="rm-k-goal">Token help</span><span class="rm-k-sub">Ask a teammate&rsquo;s AI for help when you run out of tokens.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Keep going</span><span class="rm-k-goal">Token outages</span><span class="rm-k-sub">See when an agent runs out and when it refreshes, then @mention it to finish what it started.</span></div>
       </div>
       <p class="rm-lead rm-foot">How we&rsquo;ll measure progress is on the next slide.</p>
     </div>
@@ -2442,7 +2467,7 @@ Saved 2 files.</pre></div></div>
     pvRows.appendChild(r);
   }
   function openPreview() {
-    pv.classList.remove('pushing', 'done', 'reload'); pvRows.innerHTML = '';
+    pv.classList.remove('pushing', 'done', 'reload', 'impact'); pvRows.innerHTML = '';
     pvRow('fox', 'New title: \u201cBuild it together.\u201d', "Andrew's AI");
     if (footerChanged) pvRow('cat', 'New footer: \u201cMade at USC\u201d', "Iris's AI");
     pvRow('felix', 'Wrote the update for the team', "Felix \u00b7 Evelyn's AI");
@@ -2459,12 +2484,13 @@ Saved 2 files.</pre></div></div>
     var b = this; b.disabled = true; b.innerHTML = '<span class="spin"></span>Pushing';
     pv.classList.add('pushing');
     var rows = [].slice.call(pvRows.children);
-    rows.forEach(function (r, k) { timers.push(setTimeout(function () { r.classList.add('gone'); }, 900 + k * 220)); });
-    var t = 900 + rows.length * 220 + 350;
+    timers.push(setTimeout(function () { pv.classList.add('impact'); b.textContent = 'Pushed'; }, reduce ? 0 : 1650));
+    rows.forEach(function (r, k) { timers.push(setTimeout(function () { r.classList.add('gone'); }, 1900 + k * 220)); });
+    var t = 1900 + rows.length * 220 + 350;
     timers.push(setTimeout(function () { pv.classList.add('reload'); $('pv-count').textContent = 'Up to date'; }, t));
     timers.push(setTimeout(function () {
       pv.classList.remove('reload', 'pushing'); pv.classList.add('done');
-      b.textContent = 'Pushed'; $('pv-status').textContent = 'up to date';
+      $('pv-status').textContent = 'up to date';
       foot.className = 'file-foot ok'; foot.textContent = 'Pushed by Evelyn. Live for the team.';
     }, t + 450));
   });
