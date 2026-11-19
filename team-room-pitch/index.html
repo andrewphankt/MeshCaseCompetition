@@ -966,6 +966,24 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 @keyframes frP2 { 0% { opacity: 0; } 25% { opacity: 1; } 50% { opacity: 0; } 75% { opacity: 1; } 100% { opacity: 1; } }
 @keyframes frP3 { 0% { opacity: 0; } 50% { opacity: 1; } 75% { opacity: 0; } 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .room.mesh-ui .fr { animation: none !important; } .room.mesh-ui .fr:not(.f1) { opacity: 0 !important; } }
+
+/* ---------- Wajo partner slide: all black, Wajo-style face ---------- */
+:root[data-look] .slide.wj-slide { background: #000; color: #f4f4f5; align-items: center; justify-content: center; text-align: center; }
+.wj-face { display: flex; gap: 30px; align-items: flex-start; margin-bottom: 34px; animation: wjin .8s cubic-bezier(.2,.9,.3,1.2) both, wjbob 4s ease-in-out 1s infinite; }
+.wj-eye { width: 46px; height: 74px; background: #fff; border-radius: 50%; animation: wjblink 3.6s infinite, wjlook 7s ease-in-out infinite; }
+.wj-smile { width: 36px; height: 20px; border-bottom: 7px solid #fff; border-radius: 0 0 40px 40px; margin-top: 66px; animation: wjsmile 3.6s ease-in-out infinite; }
+.wj-kicker { font: 600 26px var(--body); letter-spacing: .14em; text-transform: uppercase; color: #8a8a93; margin-bottom: 18px; animation: txup .7s .25s ease both; }
+.wj-h { margin: 0; font: 700 84px/1.08 "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; letter-spacing: -0.02em; color: #a1a1aa; max-width: 1400px; animation: txup .7s .4s ease both; }
+.wj-h b { color: #fafafa; }
+.wj-pair { display: flex; align-items: center; gap: 22px; margin-top: 46px; background: #1f1f22; border: 1px solid #2c2c31; border-radius: 999px; padding: 22px 52px; font: 700 48px "Inter", -apple-system, Arial, sans-serif; color: #fff; animation: txup .7s .6s ease both; }
+.wj-x { color: #8a8a93; font-weight: 300; }
+.wj-sub { margin: 34px 0 0; font: 500 28px/1.4 var(--body); color: #a1a1aa; max-width: 1100px; animation: txup .7s .8s ease both; }
+@keyframes wjin { from { opacity: 0; transform: translateY(30px) scale(.8); } to { opacity: 1; transform: none; } }
+@keyframes wjbob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+@keyframes wjblink { 0%, 90%, 100% { scale: 1 1; } 94% { scale: 1 .1; } }
+@keyframes wjlook { 0%, 30%, 100% { translate: 0 0; } 40%, 55% { translate: -9px 0; } 65%, 80% { translate: 9px 0; } }
+@keyframes wjsmile { 0%, 100% { width: 36px; } 50% { width: 52px; } }
+@media (prefers-reduced-motion: reduce) { .wj-face, .wj-eye, .wj-smile, .wj-kicker, .wj-h, .wj-pair, .wj-sub { animation: none !important; } }
 </style>
 </head>
 <body>
@@ -1355,6 +1373,15 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 </section>
 
 <!-- 13 Close -->
+<section class="slide mx-slide wj-slide" data-title="Wajo partner">
+  <div class="wj-face" aria-hidden="true"><span class="wj-eye"></span><span class="wj-smile"></span><span class="wj-eye"></span></div>
+  <div class="wj-kicker">New partner</div>
+  <h2 class="wj-h">Wajo is now a <b>partner of Mesh.</b></h2>
+  <div class="wj-pair"><span>Mesh</span><span class="wj-x">+</span><span>Wajo</span></div>
+  <p class="wj-sub">Each teammate's Fo can join the room. Fo asks before it acts, so people still approve.</p>
+  <aside class="notes">[Target: about 10 seconds.] Wajo is now a partner of Mesh. Their AI, Fo, can join the room for each teammate, and it still asks before it acts, so people approve.</aside>
+</section>
+
 <section class="slide center" data-title="Close">
   <span class="cursor c-andrew gather" style="left:1180px; top:140px; --fx:-700px; --fy:-300px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Andrew</b></span>
   <span class="cursor c-iris gather" style="left:1340px; top:220px; --fx:400px; --fy:-260px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Iris</b></span>
