@@ -2192,7 +2192,7 @@ Saved 2 files.</pre></div></div>
       enter: function () {
         var f = $('train-iframe');
         if (f && !f.getAttribute('src')) f.setAttribute('src', f.dataset.src);
-        else if (f && TR.phase > 0) f.setAttribute('src', f.dataset.src + '&r=' + Date.now());
+        else if (f && (TR.phase > 0 || TR.dirty)) { f.setAttribute('src', f.dataset.src + '&r=' + Date.now()); TR.dirty = false; }
         TR.stop(); TR.size(false, true); TR.phase = 0;
         var o = $('train-open'); if (o) o.href = 'training/index.html?from=deck&slide=' + (cur + 1);
       },
@@ -2238,11 +2238,12 @@ Saved 2 files.</pre></div></div>
   };
   TR.play = function () {
     var d = TR.doc(); if (!d) return;
+    TR.dirty = true;
     var card = d.getElementById('tour-card'); if (card && !card.hidden) TR.click('tour-skip');
     var q = function (sel) { return d.querySelector(sel); };
     var tip = function (sel) { var el = sel && q(sel); if (el) el.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })); else d.body.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })); };
     TR.queue = [
-      [0, function () { TR.click('tab-chat'); var c = q('#checklist [data-learn="checklist"]'); TR.hl(c); tip('#checklist [data-learn="checklist"]'); }],
+      [0, function () { TR.click('tab-chat'); var c = q('#checklist [data-learn="checklist"]') || q('#checklist'); TR.hl(c); tip('#checklist [data-learn="checklist"]'); }],
       [5000, function () { tip(null); TR.hl(q('#tab-skills')); tip('#tab-skills'); }],
       [4500, function () { tip(null); TR.click('tab-skills'); }],
       [1500, function () { TR.hl(q('#sk-all')); }],
