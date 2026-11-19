@@ -1854,18 +1854,19 @@ Saved 2 files.</pre></div></div>
     function signAt(id, f, lift) { var p = road.getPointAtLength(total * f); var b = $(id); b.style.left = p.x + 'px'; b.style.top = (p.y - lift) + 'px'; b.style.setProperty('--post', (lift - b.offsetHeight - 30) + 'px'); }
     ORDER.forEach(function (k, i) { signAt('rm-sign-' + k, STOP[k], i % 2 ? 230 : 140); });
     function drive(to, done) {
-      if (anim) cancelAnimationFrame(anim);
+      if (anim) clearTimeout(anim);
       car.classList.remove('idle');
       if (!(reduce || Math.abs(to - at) < 0.001)) car.classList.add('driving');
       if (reduce || Math.abs(to - at) < 0.001) { at = to; place(at); park(); if (done) done(); return; }
       var from = at, t0 = null, dur = 1600;
-      function tick(now) {
+      function tick() {
+        var now = performance.now();
         if (t0 === null) t0 = now;
         var t = Math.min(1, (now - t0) / dur), e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
         at = from + (to - from) * e; place(at);
-        if (t < 1) anim = requestAnimationFrame(tick); else { anim = null; park(); if (done) done(); }
+        if (t < 1) anim = setTimeout(tick, 16); else { anim = null; park(); if (done) done(); }
       }
-      anim = requestAnimationFrame(tick);
+      anim = setTimeout(tick, 0);
     }
     function openCard(k) {
       closeCard(true); openId = k;
@@ -1885,7 +1886,7 @@ Saved 2 files.</pre></div></div>
       drive(STOP[k], function () { openCard(k); });
     }
     function render(s, animate) {
-      if (anim) { cancelAnimationFrame(anim); anim = null; }
+      if (anim) { clearTimeout(anim); anim = null; }
       closeCard(true);
       var sec = rm.closest('section');
       if (s > ORDER.length) {
