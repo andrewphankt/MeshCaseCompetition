@@ -1140,6 +1140,8 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 /* Road runs off the right edge; the last click drives the car out and fades to black into the metrics */
 .rm-fade { position: absolute; inset: 0; background: #0b0b0c; opacity: 0; pointer-events: none; transition: opacity .7s ease; z-index: 90; }
 .slide.rm-out .rm-fade { opacity: 1; }
+.ba-link { color: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; font-weight: 700; }
+.src-link { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 </style>
 </head>
 <body>
@@ -1224,7 +1226,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     </div>
   </div>
   </div>
-  <div class="src">Stack Overflow Developer Survey 2025, via SD Times and The New Stack</div>
+  <div class="src"><a class="src-link" href="https://survey.stackoverflow.co/2025/ai" target="_blank" rel="noopener" onclick="event.stopPropagation()">Stack Overflow Developer Survey 2025</a>, via SD Times and The New Stack</div>
   <aside class="notes">This is the problem the whole pitch answers. Read the headline, let the 84 dots fill: almost every developer uses AI. Then click: only 17 in 100 say AI agents made their team work better together. AI made building alone easy; building together is still broken. Why now: this year, AI coding tools went from one person to whole teams.</aside>
 </section>
 <!-- 3b Where people get stuck -->
@@ -1232,9 +1234,9 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <div class="eyebrow"><i></i>Where people get stuck</div>
   <h2 class="h-l" style="max-width:1300px">People with ideas can get an AI to write code. Then they get stuck.</h2>
   <ol class="prob-lines">
-    <li data-step="1"><b>1</b>You don't know the words.</li>
-    <li data-step="2"><b>2</b>You can't follow what your AI, or your team's, just did.</li>
-    <li data-step="3"><b>3</b>You don't know who could help.</li>
+    <li data-step="1"><b>1</b>You don't know the language.</li>
+    <li data-step="2"><b>2</b>You can't tell what your AI, or your teammates' AIs, just changed.</li>
+    <li data-step="3"><b>3</b>You don't even know where to start asking for help.</li>
   </ol>
   <aside class="notes">This is who Mesh is for: people with ideas, not engineers. Pause after each line.</aside>
 </section>
@@ -1666,9 +1668,9 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   /* Our real team. Fill in majors, one line about each person, and photo paths (photos go in a "team" folder next to this file). */
   var TEAM = [
     { name: 'Andrew', role: 'Lead engineer', major: 'Economics and Data Science', about: 'Builds the Mesh app and runs our team room.', photo: 'team/andrew.jpg', color: '#2f86d6' },
-    { name: 'Iris', role: 'Original founder', major: 'Business of Cinematic Arts', about: 'Mesh grew out of her original GitHub project.', photo: 'team/iris.jpg', color: '#2a9d66' },
-    { name: 'Sarah', role: 'Code engineer', major: 'Computer Science', about: 'Builds and tests the code behind Mesh.', photo: 'team/sarah.jpg', color: '#e8613f' },
-    { name: 'Evelyn', role: 'Lead product manager', major: 'Accounting · Master’s in Finance', about: 'Leads the pitch, market testing and partnerships.', photo: 'team/evelyn.jpg', color: '#d99a00' },
+    { name: 'Iris', role: 'Original founder', major: 'Business of Cinematic Arts', about: 'Mesh started as a small passion project she built on GitHub 6 months ago.', photo: 'team/iris.jpg', color: '#2a9d66' },
+    { name: 'Sarah', role: 'Code engineer', major: 'Computer Science', about: 'Builds and tests the code behind Mesh. She is also the founder of Voiceprint.', photo: 'team/sarah.jpg', color: '#e8613f' },
+    { name: 'Evelyn', role: 'Lead product manager', major: 'Accounting · Master’s in Finance', about: 'Leads the pitch, market testing and partnerships. Developer and founder behind CaseQuarters.', link: { text: 'CaseQuarters', href: 'https://casequarters.com' }, photo: 'team/evelyn.jpg', color: '#d99a00' },
     { name: 'Tony', role: 'Treasurer', major: 'Business Administration', about: 'Experienced in Project Management and Budgeting for creative projects.', photo: 'team/tony.jpg', color: '#8a5cf0' }
   ];
 
@@ -2298,7 +2300,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       }
       front.appendChild(ph); front.appendChild(el('span', 'cap', t.name)); front.appendChild(el('span', 'role', t.role));
       var back = el('span', 'face back');
-      back.appendChild(el('span', 'bn', t.name)); back.appendChild(el('span', 'bm', t.major)); back.appendChild(el('span', 'ba', t.about));
+      back.appendChild(el('span', 'bn', t.name)); back.appendChild(el('span', 'bm', t.major)); var ba = el('span', 'ba', t.about); if (t.link && t.about.indexOf(t.link.text) > -1) { var i = t.about.indexOf(t.link.text); ba.textContent = t.about.slice(0, i); var a = document.createElement('a'); a.href = t.link.href; a.target = '_blank'; a.rel = 'noopener'; a.className = 'ba-link'; a.textContent = t.link.text; a.addEventListener('click', function (e) { e.stopPropagation(); }); ba.appendChild(a); ba.appendChild(document.createTextNode(t.about.slice(i + t.link.text.length))); } back.appendChild(ba);
       inner.appendChild(front); inner.appendChild(back); b.appendChild(inner); wrap.appendChild(b);
     });
   })();
