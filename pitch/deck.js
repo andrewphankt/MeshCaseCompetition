@@ -86,6 +86,7 @@
   var progress = document.getElementById('progress'), secNames = [], secOf = [];
   var num = document.createElement('div'); num.id = 'num'; stage.appendChild(num);
   slides.forEach(function (s, i) {
+    if (s.dataset.section === 'Backup') { secOf[i] = -1; return; }
     var name = s.dataset.section || (secNames.length ? secNames[secNames.length - 1] : '');
     if (s.dataset.section && secNames[secNames.length - 1] !== name) secNames.push(name);
     secOf[i] = secNames.indexOf(name);
