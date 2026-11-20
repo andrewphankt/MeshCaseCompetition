@@ -1520,7 +1520,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .room.mesh-ui .su-list li.flash { background: #fce8ee; }
 .room.mesh-ui .su-hand { position: absolute; left: 96px; top: 18px; font: 700 34px/1 var(--hand); color: #c8432b; }
 /* terminal pop-out: this is where people prompt their agents */
-.room.mesh-ui .m-term { position: absolute; left: 300px; bottom: 28px; width: 640px; z-index: 25; border-radius: 14px; overflow: hidden; background: #16171b; box-shadow: 0 24px 60px rgba(0,0,0,.35), 0 0 0 2px #13151d; animation: mtIn .45s cubic-bezier(.2,1.3,.4,1) both; font: 500 17px/1.5 var(--mono); color: #e8e6e1; }
+.room.mesh-ui .m-term { position: absolute; left: 300px; bottom: 28px; width: 640px; z-index: 35; border-radius: 14px; overflow: hidden; background: #16171b; box-shadow: 0 24px 60px rgba(0,0,0,.35), 0 0 0 2px #13151d; animation: mtIn .45s cubic-bezier(.2,1.3,.4,1) both; font: 500 17px/1.5 var(--mono); color: #e8e6e1; }
 .room.mesh-ui .m-term.out { animation: mtOut .4s ease both; }
 @keyframes mtIn { from { opacity: 0; transform: translateY(40px) scale(.94); } to { opacity: 1; transform: none; } }
 @keyframes mtOut { to { opacity: 0; transform: translateY(30px) scale(.96); } }
@@ -1968,7 +1968,7 @@ Saved 2 files.</pre></div></div>
       <div class="tview"><div class="tload">Loading the room…</div><iframe id="train-iframe" title="Live Mesh room with training mode on (clickable prototype)" data-src="training/index.html?embed=1"></iframe></div>
     </div>
   </div>
-  <aside class="notes">[Clicker: 1) room fills the screen 2) it plays the setup on its own: checklist, Skills &rarr; Add all 5, Changes &rarr; Fix it, back to #general (about 20 seconds; a click skips to the end) 3) training mode turns off 4) room shrinks back 5) next slide.] [Target: about 25 seconds. Show ONE thing: hover a training note OR paste a fake ghp_ key. Not both.] This is the live team room with training mode on: someone who finished onboarding and is still getting used to Mesh. You can use it right on the slide. Training mode is the switch at the top right: tooltips that explain everything, which you turn off once you're comfortable. Turning it off also hides the setup checklist on the right. The practice room is separate: a safe copy with practice teammates, where nothing touches the real project. Hover the Changes tab to show a training note, then press "Start here" for the tour. Paste a fake "ghp_" token into the message box to show it gets blocked. The 5-minute goal is a placeholder target: Evelyn confirms the number. "Open it full screen" opens it in a new tab.</aside>
+  <aside class="notes">[Clicker: 1) room fills the screen 2) it plays on its own: Where to do what, Skills &rarr; Add all 5, Changes, What every agent does by itself, back to #general (about 20 seconds; a click skips to the end) 3) training mode turns off 4) room shrinks back 5) next slide.] [Target: about 25 seconds. Show ONE thing: hover a training note OR paste a fake ghp_ key. Not both.] This is the live team room with training mode on: someone who finished onboarding and is still getting used to Mesh. You can use it right on the slide. Training mode is the switch at the top right: tooltips that explain everything, which you turn off once you're comfortable. Turning it off also hides the setup checklist on the right. The practice room is separate: a safe copy with practice teammates, where nothing touches the real project. Hover the Changes tab to show a training note, then press "Start here" for the tour. Paste a fake "ghp_" token into the message box to show it gets blocked. The 5-minute goal is a placeholder target: Evelyn confirms the number. "Open it full screen" opens it in a new tab.</aside>
 </section>
 
 
@@ -2369,16 +2369,15 @@ Saved 2 files.</pre></div></div>
     var q = function (sel) { return d.querySelector(sel); };
     var tip = function (sel) { var el = sel && q(sel); if (el) el.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })); else d.body.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })); };
     TR.queue = [
-      [0, function () { TR.click('tab-chat'); var c = q('#checklist [data-learn="checklist"]') || q('#checklist'); TR.hl(c); tip('#checklist [data-learn="checklist"]'); }],
+      [0, function () { TR.click('tab-chat'); TR.hl(q('#map')); tip('#map [data-learn="places"]'); }],
       [5000, function () { tip(null); TR.hl(q('#tab-skills')); tip('#tab-skills'); }],
       [4500, function () { tip(null); TR.click('tab-skills'); }],
       [1500, function () { TR.hl(q('#sk-all')); }],
       [1500, function () { TR.click('sk-all'); }],
       [5500, function () { TR.hl(q('#tab-changes')); tip('#tab-changes'); }],
       [4500, function () { tip(null); TR.click('tab-changes'); }],
-      [1500, function () { TR.hl(q('#fix-from-save')); }],
-      [1500, function () { TR.click('fix-from-save'); }],
-      [3000, function () { TR.click('tab-chat'); TR.hl(q('#tab-chat')); }],
+      [3000, function () { TR.click('tab-chat'); TR.hl(q('#auto')); tip('#auto [data-learn="auto"]'); }],
+      [5000, function () { tip(null); TR.hl(q('#tab-chat')); }],
       [2000, function () { TR.hl(null); tip(null); }]
     ];
     (function run() {
@@ -2899,7 +2898,7 @@ Saved 2 files.</pre></div></div>
     var h = document.querySelector('.room.mesh-ui .feed-bar .ch'); if (h) h.textContent = '#' + name;
   }
   function pick(re) { return [].slice.call(document.querySelectorAll('#feed .choices button')).filter(function (b) { return re.test(b.textContent) && !b.disabled; })[0]; }
-  fx.irisTermAway = function () { later(900, termClose); };
+  fx.irisTermAway = function () { timers.push(setTimeout(termClose, 900)); };
   var BEATS = [
     /* 1 Continue with GitHub */
     function () { press('su-gh'); tick(1); later(350, function () { suStep(1); }); 
@@ -2954,9 +2953,9 @@ Saved 2 files.</pre></div></div>
       run([{ who: 'priya', text: "Team heard! I'm prompting it in my Claude Code now.", wait: 300 }]);
       later(1300, function () { termOpen("Evelyn's terminal · Claude Code"); });
       var t = termType([{ p: 'Write up what changed for the team and save it to the draft.' }, { o: 'Felix: On it.', wait: 500, fx: function () { felix('work'); } }, { o: '✓ Saved to the team draft. Posted in the room.', cls: 'ok', wait: 2600, fx: function () { felix('saved'); } }], 1600);
-      later(t + 700, termClose);
+      timers.push(setTimeout(termClose, t + 700));
       later(t + 900, function () { run([{ who: 'room', plain: 'A preview is ready. Nothing goes live until someone presses Push.', tech: 'preview: draft (andrew + iris + evelyn) · awaiting push', preview: true, wait: 200 }]); });
-      later(t + 3200, function () { felix('idle'); });
+      timers.push(setTimeout(function () { felix('idle'); }, t + 3200));
     },
     /* 11 Preview */
     function () { var b = pick(/See it in Preview/); if (b) b.click(); else openPreview(); },
