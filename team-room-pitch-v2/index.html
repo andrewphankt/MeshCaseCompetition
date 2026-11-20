@@ -1652,6 +1652,13 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .follow .follow-links p { max-width: none; display: flex; flex-direction: column; gap: 2px; }
 .follow .follow-links span { font: 600 14px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
 .follow .follow-links b { font: 700 22px var(--mono); color: var(--text); }
+
+.follow .mvp-link { display: flex; flex-direction: column; gap: 4px; padding: 14px 20px; border-radius: 14px; background: #fff; border: 2px solid #13151d; text-decoration: none; color: var(--text); cursor: pointer; animation: mvpGlow 2.2s ease-in-out infinite; transition: transform .15s; }
+.follow .mvp-link span { font: 600 14px var(--mono); color: #c8432b; text-transform: uppercase; letter-spacing: .06em; }
+.follow .mvp-link b { font: 700 22px var(--mono); color: #13151d; }
+.follow .mvp-link:hover { transform: translateY(-2px) scale(1.03); }
+@keyframes mvpGlow { 0%, 100% { box-shadow: 0 0 0 0 rgba(237,147,177,.0), 0 0 14px 2px rgba(255,216,77,.55); } 50% { box-shadow: 0 0 0 8px rgba(237,147,177,.35), 0 0 34px 10px rgba(255,216,77,.75); } }
+@media (prefers-reduced-motion: reduce) { .follow .mvp-link { animation: none; box-shadow: 0 0 0 6px rgba(237,147,177,.35), 0 0 24px 6px rgba(255,216,77,.6); } }
 </style>
 </head>
 <body>
@@ -1692,7 +1699,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <div class="follow" id="follow" hidden data-interactive>
     <div class="qr" id="qr" aria-label="QR code to open the working Mesh MVP"></div>
     <div class="follow-links">
-      <p><span>Try the working MVP</span><b>tinyurl.com/meshsandbox</b></p>
+      <a class="mvp-link" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener"><span>Try out our MVP</span><b>tinyurl.com/meshsandbox &#8599;</b></a>
     </div>
   </div>
   <div class="peek" id="peek" hidden></div>
