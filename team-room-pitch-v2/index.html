@@ -1647,6 +1647,11 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .mm-slide .mm-list { font-size: 15.5px; gap: 5px; }
 .mm-slide .mm-rev { box-shadow: inset 0 3px 0 #ED93B1; }
 .mm-slide .mm-foot { margin-top: 14px; padding: 12px 20px; font-size: 16.5px; }
+
+.follow .follow-links { display: grid; gap: 12px; }
+.follow .follow-links p { max-width: none; display: flex; flex-direction: column; gap: 2px; }
+.follow .follow-links span { font: 600 14px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.follow .follow-links b { font: 700 22px var(--mono); color: var(--text); }
 </style>
 </head>
 <body>
@@ -1686,7 +1691,10 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   </div>
   <div class="follow" id="follow" hidden data-interactive>
     <div class="qr" id="qr" aria-label="QR code to open this deck on your phone"></div>
-    <p>Scan to follow along and try the demo yourself</p>
+    <div class="follow-links">
+      <p><span>Follow along</span><b>tinyurl.com/meshroom</b></p>
+      <p><span>Try the working MVP</span><b>tinyurl.com/meshsandbox</b></p>
+    </div>
   </div>
   <div class="peek" id="peek" hidden></div>
   <aside class="notes">[Target: about 10 seconds. Say the name and the one-line subtitle, then click.] Each floating cursor is a teammate's AI at work. Tap the two editing the title: they're on the same line, which is the problem this whole pitch solves. Let the lines draw in: every teammate's agent works on its own line, and the room merges them into one shared draft. Click the lines to replay. Invite the audience to scan the QR code so they can play the demo on their phones. Set the product name in this panel once the team picks one.</aside>
@@ -2388,7 +2396,7 @@ Saved 2 files.</pre></div></div>
 <script>
 (function () {
   /* The link the QR code opens. Change it here, or in the Notes panel, when the deck moves. */
-  var DEFAULT_FOLLOW_URL = 'https://casequarters.com/roomtest/pitch/';
+  var DEFAULT_FOLLOW_URL = 'https://tinyurl.com/meshroom';
 
   /* Our real team. Fill in majors, one line about each person, and photo paths (photos go in a "team" folder next to this file). */
   var TEAM = [
