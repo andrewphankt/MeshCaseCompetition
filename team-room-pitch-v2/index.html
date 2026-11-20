@@ -2425,6 +2425,7 @@ Saved 2 files.</pre></div></div>
     var a = fr.getBoundingClientRect();
     sl.classList.toggle('train-big', big);
     var dd = TR.doc(); if (dd && dd.body) dd.body.classList.toggle('embed', !big);
+    var fr2 = $('train-iframe'); if (fr2) fr2.onload = function () { var d2 = TR.doc(); if (d2 && d2.body) d2.body.classList.toggle('embed', !sl.classList.contains('train-big')); };
     if (instant || reduce) return;
     var b = fr.getBoundingClientRect(), k = a.width / b.width;
     fr.style.transition = 'none'; fr.style.transformOrigin = '0 0';
@@ -2443,8 +2444,13 @@ Saved 2 files.</pre></div></div>
     if (tog && el.getAttribute('aria-pressed') === 'false') return;
     el.click();
   };
-  TR.play = function () {
-    var d = TR.doc(); if (!d) return;
+  TR.play = function (tries) {
+    var d = TR.doc();
+    /* the room inside the frame may still be loading: wait for it instead of silently doing nothing */
+    if (!d || d.readyState !== 'complete' || !d.getElementById('tab-chat')) {
+      tries = (tries || 0) + 1; if (tries > 40) return;
+      TR.timer = setTimeout(function () { TR.play(tries); }, 150); return;
+    }
     TR.dirty = true;
     var card = d.getElementById('tour-card'); if (card && !card.hidden) TR.click('tour-skip');
     var q = function (sel) { return d.querySelector(sel); };
@@ -2473,6 +2479,7 @@ Saved 2 files.</pre></div></div>
   };
   TR.stop = function () { clearTimeout(TR.timer); TR.timer = null; TR.queue = []; };
   TR.finish = function () { clearTimeout(TR.timer); TR.timer = null; while (TR.queue.length) TR.queue.shift()[1](); TR.hl(null); var dd = TR.doc(); if (dd) { var t = dd.getElementById('tip'); if (t) t.hidden = true; } };
+  window.addEventListener('load', function () { setTimeout(function () { var f = $('train-iframe'); if (f && !f.getAttribute('src')) f.setAttribute('src', f.dataset.src); }, 1500); });
   /* Arrow keys pressed inside the training frame still move the deck */
   window.addEventListener('message', function (e) {
     var f = $('train-iframe');
