@@ -1614,6 +1614,20 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 
 .rm-k-sub .rm-k-line { display: block; margin-top: 8px; }
 .rm-k-sub b { font-weight: 700; color: inherit; }
+
+/* Appendix: operating costs, same look as the metrics slide */
+.oc-slide { padding-bottom: 40px; }
+.oc-slide .mx-h { margin: 12px 0 20px; }
+.oc-totals { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+.oc-totals .mx-card { min-height: 0; padding: 18px 26px 20px; }
+.oc-big { font: 700 60px/1.05 "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; letter-spacing: -0.03em; color: #fafafa; font-variant-numeric: tabular-nums; }
+.oc-tablecard { min-height: 0; padding: 10px 26px 12px; }
+.oc-table { width: 100%; border-collapse: collapse; font: 500 19px "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; color: #d4d4d8; font-variant-numeric: tabular-nums; }
+.oc-table th, .oc-table td { padding: 9px 0; border-bottom: 1px solid #2c2c31; text-align: right; }
+.oc-table th[scope="row"], .oc-table thead th:first-child { text-align: left; font-weight: 500; }
+.oc-table thead th { font-weight: 600; color: #a1a1aa; font-size: 16px; }
+.oc-table tr:last-child th, .oc-table tr:last-child td { border-bottom: 0; }
+.oc-table .oc-total th, .oc-table .oc-total td { font-weight: 700; color: #fafafa; }
 </style>
 </head>
 <body>
@@ -2266,6 +2280,30 @@ Saved 2 files.</pre></div></div>
   </div>
   <p class="lede" style="margin-top:40px"><span class="pname" data-name>Mesh</span>. Anyone can build, together.</p>
   <aside class="notes">[Target: about 15 seconds. Three lines, then 'Mesh. Anyone can build, together.'] Our five cursors gather in the room as the slide opens. End on the three lines, then the last line: "Mesh. Anyone can build, together." Then invite questions.</aside>
+</section>
+<!-- Appendix: operating costs -->
+<section class="slide mx-slide oc-slide" data-title="Appendix: Operating costs">
+  <div class="mx-head"><span class="mx-k">Appendix</span><span class="mx-upd">Estimated monthly operating costs</span></div>
+  <h2 class="mx-h">What it costs to run Mesh.</h2>
+  <div class="oc-totals">
+    <div class="mx-card"><div class="mx-l">Early MVP / month</div><span class="oc-big">$70&ndash;$475</span><div class="mx-cap">Where we are today</div></div>
+    <div class="mx-card"><div class="mx-l">1,000 active users / month</div><span class="oc-big">$2,350&ndash;$14,300</span><div class="mx-cap">Most of it is AI model calls</div></div>
+  </div>
+  <div class="mx-card oc-tablecard">
+    <table class="oc-table">
+      <thead><tr><th scope="col">Expense</th><th scope="col">Early MVP / month</th><th scope="col">1,000 active users / month</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">AI model API calls</th><td>$50&ndash;$300</td><td>$2,000&ndash;$12,000</td></tr>
+        <tr><th scope="row">Code execution and previews</th><td>$10&ndash;$60</td><td>$200&ndash;$1,500</td></tr>
+        <tr><th scope="row">Backend hosting</th><td>$10&ndash;$40</td><td>$50&ndash;$250</td></tr>
+        <tr><th scope="row">Database and storage</th><td>$0&ndash;$25</td><td>$30&ndash;$200</td></tr>
+        <tr><th scope="row">Realtime chat and coordination</th><td>$0&ndash;$20</td><td>$20&ndash;$150</td></tr>
+        <tr><th scope="row">Monitoring and miscellaneous</th><td>$0&ndash;$30</td><td>$50&ndash;$200</td></tr>
+        <tr class="oc-total"><th scope="row">Total</th><td>$70&ndash;$475</td><td>$2,350&ndash;$14,300</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <aside class="notes">[Appendix, for Q&amp;A only.] Estimated monthly operating costs. Early MVP: $70 to $475 a month. At 1,000 active users: $2,350 to $14,300 a month. AI model API calls are the biggest line by far ($2,000 to $12,000 at 1,000 users).</aside>
 </section>
 
 
