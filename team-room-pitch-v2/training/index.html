@@ -406,23 +406,14 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
     </section>
 
     <aside class="right">
-      <div id="map">
-        <h3>Where to do what</h3>
-        <div class="map" data-learn="places">
-          <div class="place you"><b>Your agent (terminal or app)</b><span>Where you ask for changes. You don't prompt inside Mesh.</span></div>
-          <div class="place room"><b>Preview</b><span>The team's shared draft, live. Every page gets a tab.</span></div>
-          <div class="place room"><b>Changes</b><span>What every agent did, in plain words.</span></div>
-          <div class="place room"><b>Push</b><span>Sends the draft to the real site. Nothing goes live until someone presses it.</span></div>
-          <div class="place room"><b>#general and channels</b><span>Talk to the team. @ someone to ping them.</span></div>
-          <div class="place room"><b>Requests</b><span>Ask a teammate's agent for something. They approve or decline.</span></div>
-        </div>
-      </div>
-      <div id="auto" style="margin-top:18px">
-        <h3>What every agent does by itself</h3>
-        <div class="map" data-learn="auto">
-          <div class="place"><b>Before each message</b><span>It hears what teammates changed and asked for.</span></div>
-          <div class="place"><b>Before each edit</b><span>It checks nobody else's agent is in that file.</span></div>
-          <div class="place"><b>After each turn</b><span>It saves to the draft and says in one line what it changed.</span></div>
+      <div id="away">
+        <h3>While you were away</h3>
+        <div class="map" data-learn="away">
+          <div class="place room"><b>Max saved the new header</b><span>Andrew's AI &middot; index.html &middot; 12 min ago</span></div>
+          <div class="place room"><b>Gwen is updating the footer</b><span>Iris's AI &middot; working now</span></div>
+          <div class="place"><b>Alice is busy</b><span>Sarah's AI &middot; in another file</span></div>
+          <div class="place"><b>Dante is out of tokens</b><span>Tony's AI &middot; back at 3:37 PM</span></div>
+          <div class="place you"><b>Andrew asked for a review</b><span>#general &middot; &ldquo;Can someone check the deck before tomorrow?&rdquo;</span></div>
         </div>
       </div>
     </aside>
@@ -468,8 +459,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
     composer: { t: 'Message box', m: 'Messages here go to the room, and the room is shared with your team.', h: 'Never paste passwords, tokens or keys. Mesh blocks text that looks like one.' },
     skills: { t: 'Skills', m: "Instructions your agent follows, picked by the team for this project. Adding them makes every agent work the same way.", h: 'New here? Press <b>Add all</b>. Mesh adds them to your agent for you.' },
     checklist: { t: 'Setup checklist', m: 'Mesh checks your computer before you start, so saves never fail silently.', h: 'Every red item has a one-click fix. No Terminal needed.' },
-    places: { t: 'Where to do what', m: "You ask your own agent for changes in your terminal or app. Mesh is where the team sees, talks, previews and pushes.", h: "You never prompt inside Mesh." },
-    auto: { t: 'Agents look after themselves', m: 'Every agent listens to the room before it answers, checks for teammates in the same file before it edits, and reports what it changed after.', h: 'Setup is automatic too: sign in, pick the project, one paste.' }
+    away: { t: 'Catch up in one glance', m: 'Everything your team and their agents did while you were gone, in plain words. No scrolling through chat to figure it out.', h: 'Your agent reads this too before its next message, so it never redoes a teammate&rsquo;s work.' }
   };
   var GLOSSARY = [
     ['Terminal', 'A window where you type commands to your computer instead of clicking. Your agent uses one behind the scenes.'],
@@ -654,7 +644,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
     { sel: '#tab-preview', tab: 'preview', t: 'Preview: see the work', b: 'The latest shared draft, right here. The public site only changes when the owner publishes.' },
     { sel: '#tab-skills', tab: 'skills', t: 'Skills: set up your agent', b: "The team's skills for this project. Press Add all, and your agent follows the same rules as everyone else's." },
     { sel: '#channels', tab: 'chat', t: 'Talk to your team', b: 'Channels are group chats for the project. Agents post here too, before they change anything.' },
-    { sel: '#map', tab: 'chat', t: 'Where to do what', b: "You ask your own agent for changes in your terminal or app. Mesh is where the team talks, previews and pushes. You never prompt inside Mesh." },
+    { sel: '#away', tab: 'chat', t: 'While you were away', b: 'A plain-English catch-up of what teammates and their agents did. Your agent reads it too, so nobody redoes work.' },
     { sel: '#starter', tab: 'chat', t: 'Try your first change', b: 'Pick a starter request and paste it into your own Claude chat. Watch your save appear in Changes with your name on it.' }
   ];
   var ti = 0;
