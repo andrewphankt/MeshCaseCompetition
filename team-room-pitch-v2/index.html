@@ -1467,6 +1467,74 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .ph-e { background: url(team/evelyn.jpg) center 20% / cover no-repeat, url(sprites/stand.png) 48% 6% / 270% no-repeat #f1ecf3 !important; }
 .ph-fox { background: url(sprites/fox_stand.png) 50% 4% / 260% no-repeat #f1f1f4 !important; }
 .ph-cat { background: url(sprites/cat_stand.png) 50% 4% / 260% no-repeat #f1f1f4 !important; }
+
+/* ---------- Slide 14, take 2: join (setup), then the room. Agents get prompted in terminals, never in Mesh ---------- */
+.room.mesh-ui .m-setup { position: absolute; inset: 0; z-index: 30; display: grid; grid-template-columns: 1fr 380px; gap: 40px; align-items: center; padding: 60px 70px 60px 90px; background: #f7f2e8; background-image: radial-gradient(circle, #ddd3c0 1.1px, transparent 1.4px); background-size: 26px 26px; transition: opacity .6s ease, transform .7s cubic-bezier(.7,0,.2,1); }
+.room.mesh-ui .m-setup.leaving { opacity: 0; transform: scale(1.06); pointer-events: none; }
+.room.mesh-ui .m-setup[hidden] { display: none; }
+.room.mesh-ui .su-card { position: relative; background: #fffdf8; border: 2px solid #13151d; border-radius: 22px; box-shadow: 0 10px 0 rgba(19,21,29,.12); height: 600px; display: flex; flex-direction: column; align-items: center; padding: 34px 40px; }
+.room.mesh-ui .su-stepper { display: flex; align-items: center; gap: 12px; font: 600 16px var(--body); color: #8b8577; }
+.room.mesh-ui .su-stepper span { display: flex; align-items: center; gap: 8px; }
+.room.mesh-ui .su-stepper b { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #d8cfbd; display: grid; place-items: center; font: 700 14px var(--body); transition: all .3s; }
+.room.mesh-ui .su-stepper hr { width: 70px; border: 0; border-top: 2px dashed #d8cfbd; margin: 0; }
+.room.mesh-ui .su-stepper .now { color: #13151d; } .room.mesh-ui .su-stepper .now b { border-color: #13151d; background: #13151d; color: #fff; }
+.room.mesh-ui .su-stepper .done { color: #2a9d66; } .room.mesh-ui .su-stepper .done b { border-color: #2a9d66; background: #2a9d66; color: #fff; font-size: 0; }
+.room.mesh-ui .su-stepper .done b::after { content: "\2713"; font-size: 15px; }
+.room.mesh-ui .su-stepper hr.done { border-top: 2px solid #2a9d66; }
+.room.mesh-ui .su-pane { display: none; flex: 1; width: 100%; flex-direction: column; align-items: center; justify-content: center; gap: 22px; animation: enter .4s ease both; }
+.room.mesh-ui .m-setup[data-s="0"] .su-pane[data-p="0"], .room.mesh-ui .m-setup[data-s="1"] .su-pane[data-p="1"], .room.mesh-ui .m-setup[data-s="2"] .su-pane[data-p="2"], .room.mesh-ui .m-setup[data-s="3"] .su-pane[data-p="3"], .room.mesh-ui .m-setup[data-s="4"] .su-pane[data-p="3"] { display: flex; }
+.room.mesh-ui .su-pane h3 { margin: 0; font: 600 44px/1.1 var(--display); color: #13151d; text-align: center; }
+.room.mesh-ui .su-logo { width: 74px; height: 74px; }
+.room.mesh-ui .su-word { font: 800 20px var(--body); letter-spacing: .3em; color: #13151d; margin-top: -10px; }
+.room.mesh-ui .su-btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 30px; border-radius: 14px; border: 2px solid #13151d; background: #13151d; color: #fff; font: 600 22px var(--body); cursor: pointer; box-shadow: 0 5px 0 #ED93B1; transition: transform .12s, box-shadow .12s; }
+.room.mesh-ui .su-btn svg { width: 26px; height: 26px; }
+.room.mesh-ui .su-btn.pressed { transform: translateY(4px); box-shadow: 0 1px 0 #ED93B1; }
+.room.mesh-ui #su-copy .c2 { display: none; } .room.mesh-ui #su-copy.copied .c1 { display: none; } .room.mesh-ui #su-copy.copied .c2 { display: inline; } .room.mesh-ui #su-copy.copied { background: #2a9d66; border-color: #2a9d66; }
+.room.mesh-ui .su-search { width: 520px; display: flex; align-items: center; gap: 2px; padding: 14px 18px; border: 2px solid #13151d; border-radius: 12px; background: #fff; font: 500 22px var(--body); color: #13151d; min-height: 58px; }
+.room.mesh-ui .su-search em { font-style: normal; color: #a49d8e; margin-left: 4px; }
+.room.mesh-ui .su-caret { width: 2px; height: 26px; background: #13151d; animation: suBlink 1s step-end infinite; }
+@keyframes suBlink { 50% { opacity: 0; } }
+.room.mesh-ui .su-repos { width: 520px; display: grid; gap: 10px; }
+.room.mesh-ui .su-repo { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border: 2px solid #e2d9c7; border-radius: 12px; background: #fff; font: 500 19px var(--body); color: #13151d; text-align: left; cursor: pointer; transition: all .3s; }
+.room.mesh-ui .su-repo em { font: 600 13px var(--body); font-style: normal; color: #8b8577; border: 1px solid #e2d9c7; border-radius: 999px; padding: 2px 10px; }
+.room.mesh-ui .su-repo.match { border-color: #13151d; background: #fce8ee; box-shadow: 0 4px 0 #ED93B1; }
+.room.mesh-ui .su-repo.dim { transition: opacity .3s; } .room.mesh-ui .m-setup.typed .su-repo.dim { opacity: .3; }
+.room.mesh-ui .su-repo.pressed { transform: translateY(3px); box-shadow: 0 1px 0 #ED93B1; }
+.room.mesh-ui .su-small { font: 500 18px var(--body); color: #8b8577; }
+.room.mesh-ui .su-agents { display: grid; grid-template-columns: repeat(4, 150px); gap: 16px; }
+.room.mesh-ui .su-agent { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 22px 10px; border: 2px solid #e2d9c7; border-radius: 16px; background: #fff; font: 600 17px var(--body); color: #13151d; cursor: pointer; transition: all .3s; }
+.room.mesh-ui .su-agent .by-ic { width: 58px; height: 58px; border-radius: 14px; background: var(--c); display: grid; place-items: center; }
+.room.mesh-ui .su-agent .by-ic svg { width: 32px; height: 32px; }
+.room.mesh-ui .su-agent.pick { border-color: #13151d; background: #fce8ee; box-shadow: 0 5px 0 #ED93B1; transform: translateY(-4px); }
+.room.mesh-ui .su-list { background: #fffdf8; border: 2px solid #13151d; border-radius: 18px; padding: 24px 24px 16px; box-shadow: 0 8px 0 rgba(19,21,29,.12); }
+.room.mesh-ui .su-h { font: 700 36px/1 var(--hand); color: #c8432b; }
+.room.mesh-ui .su-sub { display: block; font: 500 15px var(--body); color: #8b8577; margin: 6px 0 12px; }
+.room.mesh-ui .su-list ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.room.mesh-ui .su-list li { display: flex; gap: 12px; align-items: center; padding: 8px 6px; border-radius: 10px; transition: background .4s; }
+.room.mesh-ui .su-list li i { width: 26px; height: 26px; flex: none; border-radius: 50%; border: 2px dashed #cfc6b4; display: grid; place-items: center; font: 800 14px var(--body); font-style: normal; color: #fff; transition: all .35s cubic-bezier(.2,1.6,.4,1); }
+.room.mesh-ui .su-list li b { display: block; font: 600 17px var(--body); color: #8b8577; transition: color .3s; }
+.room.mesh-ui .su-list li small { font: 500 13.5px var(--body); color: #a49d8e; }
+.room.mesh-ui .su-list li.on i { border: 2px solid #2a9d66; background: #2a9d66; transform: scale(1.12); }
+.room.mesh-ui .su-list li.on i::after { content: "\2713"; }
+.room.mesh-ui .su-list li.on b { color: #13151d; }
+.room.mesh-ui .su-list li.flash { background: #fce8ee; }
+.room.mesh-ui .su-hand { position: absolute; left: 96px; top: 18px; font: 700 34px/1 var(--hand); color: #c8432b; }
+/* terminal pop-out: this is where people prompt their agents */
+.room.mesh-ui .m-term { position: absolute; left: 300px; bottom: 28px; width: 640px; z-index: 35; border-radius: 14px; overflow: hidden; background: #16171b; box-shadow: 0 24px 60px rgba(0,0,0,.35), 0 0 0 2px #13151d; animation: mtIn .45s cubic-bezier(.2,1.3,.4,1) both; font: 500 17px/1.5 var(--mono); color: #e8e6e1; }
+.room.mesh-ui .m-term.out { animation: mtOut .4s ease both; }
+@keyframes mtIn { from { opacity: 0; transform: translateY(40px) scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes mtOut { to { opacity: 0; transform: translateY(30px) scale(.96); } }
+.room.mesh-ui .m-term.over-setup { left: auto; right: 470px; bottom: 60px; }
+.room.mesh-ui .mt-bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; background: #24252b; font: 600 14px var(--body); color: #b9b6ae; }
+.room.mesh-ui .mt-bar i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; } .room.mesh-ui .mt-bar i:nth-child(2) { background: #febc2e; } .room.mesh-ui .mt-bar i:nth-child(3) { background: #28c840; }
+.room.mesh-ui .mt-bar span { margin-left: 8px; color: #fff; }
+.room.mesh-ui .mt-bar em { margin-left: auto; font-style: normal; font: 700 12px var(--body); letter-spacing: .06em; text-transform: uppercase; color: #13151d; background: #ffd84d; border-radius: 999px; padding: 3px 10px; }
+.room.mesh-ui .mt-body { padding: 14px 18px 18px; min-height: 120px; }
+.room.mesh-ui .mt-body div { white-space: pre-wrap; }
+.room.mesh-ui .mt-body .p { color: #fff; } .room.mesh-ui .mt-body .p::before { content: "> "; color: #ED93B1; }
+.room.mesh-ui .mt-body .o { color: #a9a6a0; } .room.mesh-ui .mt-body .ok { color: #7fdcae; } .room.mesh-ui .mt-body .w { color: #ffd84d; }
+.room.mesh-ui .mt-body .cur::after { content: ""; display: inline-block; width: 9px; height: 18px; background: #e8e6e1; margin-left: 2px; vertical-align: -3px; animation: suBlink 1s step-end infinite; }
+@media (prefers-reduced-motion: reduce) { .room.mesh-ui .m-term, .room.mesh-ui .su-pane { animation: none; } .room.mesh-ui .m-setup { transition: none; } }
 </style>
 </head>
 <body>
@@ -1825,9 +1893,57 @@ Saved 2 files.</pre></div></div>
         <div class="pv-rows" id="pv-rows"></div>
       </div>
     </div>
+    <div class="m-setup" id="m-setup" data-s="0">
+      <div class="su-card">
+        <div class="su-stepper"><span data-n="1"><b>1</b>Sign in</span><hr data-n="1"><span data-n="2"><b>2</b>Project</span><hr data-n="2"><span data-n="3"><b>3</b>Agent</span></div>
+        <div class="su-pane" data-p="0">
+          <span class="m-logo su-logo" aria-hidden="true"></span>
+          <div class="su-word">MESH</div>
+          <h3>Different agents, same project</h3>
+          <button type="button" class="su-btn" id="su-gh"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>Continue with GitHub</button>
+        </div>
+        <div class="su-pane" data-p="1">
+          <h3>Pick your project</h3>
+          <div class="su-search"><span id="su-q"></span><i class="su-caret"></i><em id="su-ph">Search your GitHub</em></div>
+          <div class="su-repos">
+            <button type="button" class="su-repo" id="su-repo"><span>andrewphankt / <b>MeshCaseCompetition</b></span><em>Public</em></button>
+            <div class="su-repo dim"><span>team4 / <b>study-sprint</b></span><em>Private</em></div>
+            <div class="su-repo dim"><span>team4 / <b>club-finder</b></span><em>Private</em></div>
+          </div>
+          <div class="su-small">Or let Mesh make a new one for you</div>
+        </div>
+        <div class="su-pane" data-p="2">
+          <h3>Which agent do you use?</h3>
+          <div class="su-agents" id="su-agents"></div>
+          <div class="su-small">Keep the one you already use.</div>
+        </div>
+        <div class="su-pane" data-p="3">
+          <h3>Paste this into Claude Code</h3>
+          <button type="button" class="su-btn" id="su-copy"><span class="c1">Copy</span><span class="c2">&#10003; Copied</span></button>
+          <div class="su-small">One paste. Your agent sets itself up.</div>
+        </div>
+      </div>
+      <aside class="su-list">
+        <div class="su-h">Setup</div>
+        <small class="su-sub">Mesh ticks these off by itself. No buttons.</small>
+        <ol>
+          <li data-k="1"><i></i><div><b>Signed in with GitHub</b><small>Step 1 of Mesh.</small></div></li>
+          <li data-k="2"><i></i><div><b>Project picked</b><small>Your GitHub repo, or a new one.</small></div></li>
+          <li data-k="3"><i></i><div><b>Agent connected</b><small>One paste.</small></div></li>
+          <li data-k="4"><i></i><div><b>Git ready</b><small>Installed for you if missing.</small></div></li>
+          <li data-k="5"><i></i><div><b>Allowed to edit</b><small>Added to the repo when you join.</small></div></li>
+          <li data-k="6"><i></i><div><b>Preview on</b><small>The team&rsquo;s live draft.</small></div></li>
+        </ol>
+      </aside>
+      <div class="su-hand">&mdash; joining the team room</div>
+    </div>
+    <div class="m-term" id="m-term" hidden>
+      <div class="mt-bar"><i></i><i></i><i></i><span id="mt-title">Terminal</span><em>Outside Mesh</em></div>
+      <div class="mt-body" id="mt-body"></div>
+    </div>
     <div class="fl" id="rm-flight" aria-hidden="true"><svg><path pathLength="1" d="M0 0"/></svg><span class="fl-jet"><svg viewBox="0 0 24 24"><g transform="rotate(45 12 12)"><path d="M3 11.5 21 3l-6.5 18-3-7.5z"/><path d="M11.5 13.5 21 3"/></g></svg></span></div>
   </div>
-  <aside class="notes">[Target: about 60 seconds. Clicker: play, Take the footer, Approve, See it in Preview, Push, then next slide. Point at Tony's AI: out of tokens, refreshes at 2:15 AM. After approving, click See it in Preview, then Push: the changes go live. One line per beat: 'Two AIs head for the same file... Mesh warns them... I approve, and it's live.' Pick 'Take the footer' to keep it short.] Press Play and point at Working now on the right, which is what Mesh really shows: Andrew's AI is in index.html, and Iris's AI heads for the same file. Felix, Evelyn's agent, is idle in the sidebar on the left, sitting with headphones on. When the warning appears, ask the audience: "Wait, or take the footer?" and click their pick. Flip to Technical to show it's the same update, just translated. End by approving the preview as Evelyn, the teammate who doesn't write the code: Felix appears in Working now and gets to work, mining, then holds up the gem when the update is saved, then goes back to idle in the sidebar. This really happened on Nov 17: Evelyn's agent spotted a problem only Andrew could fix and sent his agent a request. She never opened Mesh. Andrew approved it in the room, and his agent picked it up.</aside>
+  <aside class="notes">[Speaker: Andrew. About 70 seconds. 12 clicks.] JOIN: (1) Continue with GitHub. (2) Pick the project. (3) Pick your agent: keep the one you already use. (4) One paste into your agent; Mesh ticks off the rest of setup by itself. (5) You're in the team room. THE ROOM: (6) Andrew says his agent is on the header. (7) Iris hasn't read the chat. She prompts her agent in HER terminal, not in Mesh. Before it edits, her agent checks the room and catches that Andrew's agent is already there. (8) Take the footer: no collision. (9) Andrew: get this to Evelyn. (10) Evelyn prompts Felix in her own Claude Code. Say it: "You never prompt inside Mesh. Mesh is where the team talks; your terminal is where you talk to your agent." (11) Preview: the shared draft. (12) Push: nothing goes live until someone presses it. Point at Tony's AI (out of tokens) and Sarah's (busy) if there's time.</aside>
 </section>
 
 <!-- 9 Training mode -->
@@ -1852,7 +1968,7 @@ Saved 2 files.</pre></div></div>
       <div class="tview"><div class="tload">Loading the room…</div><iframe id="train-iframe" title="Live Mesh room with training mode on (clickable prototype)" data-src="training/index.html?embed=1"></iframe></div>
     </div>
   </div>
-  <aside class="notes">[Clicker: 1) room fills the screen 2) it plays the setup on its own: checklist, Skills &rarr; Add all 5, Changes &rarr; Fix it, back to #general (about 20 seconds; a click skips to the end) 3) training mode turns off 4) room shrinks back 5) next slide.] [Target: about 25 seconds. Show ONE thing: hover a training note OR paste a fake ghp_ key. Not both.] This is the live team room with training mode on: someone who finished onboarding and is still getting used to Mesh. You can use it right on the slide. Training mode is the switch at the top right: tooltips that explain everything, which you turn off once you're comfortable. Turning it off also hides the setup checklist on the right. The practice room is separate: a safe copy with practice teammates, where nothing touches the real project. Hover the Changes tab to show a training note, then press "Start here" for the tour. Paste a fake "ghp_" token into the message box to show it gets blocked. The 5-minute goal is a placeholder target: Evelyn confirms the number. "Open it full screen" opens it in a new tab.</aside>
+  <aside class="notes">[Clicker: 1) room fills the screen 2) it plays on its own: Where to do what, Skills &rarr; Add all 5, Changes, What every agent does by itself, back to #general (about 20 seconds; a click skips to the end) 3) training mode turns off 4) room shrinks back 5) next slide.] [Target: about 25 seconds. Show ONE thing: hover a training note OR paste a fake ghp_ key. Not both.] This is the live team room with training mode on: someone who finished onboarding and is still getting used to Mesh. You can use it right on the slide. Training mode is the switch at the top right: tooltips that explain everything, which you turn off once you're comfortable. Turning it off also hides the setup checklist on the right. The practice room is separate: a safe copy with practice teammates, where nothing touches the real project. Hover the Changes tab to show a training note, then press "Start here" for the tour. Paste a fake "ghp_" token into the message box to show it gets blocked. The 5-minute goal is a placeholder target: Evelyn confirms the number. "Open it full screen" opens it in a new tab.</aside>
 </section>
 
 
@@ -2253,16 +2369,15 @@ Saved 2 files.</pre></div></div>
     var q = function (sel) { return d.querySelector(sel); };
     var tip = function (sel) { var el = sel && q(sel); if (el) el.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })); else d.body.dispatchEvent(new MouseEvent('mouseover', { bubbles: true })); };
     TR.queue = [
-      [0, function () { TR.click('tab-chat'); var c = q('#checklist [data-learn="checklist"]') || q('#checklist'); TR.hl(c); tip('#checklist [data-learn="checklist"]'); }],
+      [0, function () { TR.click('tab-chat'); TR.hl(q('#map')); tip('#map [data-learn="places"]'); }],
       [5000, function () { tip(null); TR.hl(q('#tab-skills')); tip('#tab-skills'); }],
       [4500, function () { tip(null); TR.click('tab-skills'); }],
       [1500, function () { TR.hl(q('#sk-all')); }],
       [1500, function () { TR.click('sk-all'); }],
       [5500, function () { TR.hl(q('#tab-changes')); tip('#tab-changes'); }],
       [4500, function () { tip(null); TR.click('tab-changes'); }],
-      [1500, function () { TR.hl(q('#fix-from-save')); }],
-      [1500, function () { TR.click('fix-from-save'); }],
-      [3000, function () { TR.click('tab-chat'); TR.hl(q('#tab-chat')); }],
+      [3000, function () { TR.click('tab-chat'); TR.hl(q('#auto')); tip('#auto [data-learn="auto"]'); }],
+      [5000, function () { tip(null); TR.hl(q('#tab-chat')); }],
       [2000, function () { TR.hl(null); tip(null); }]
     ];
     (function run() {
@@ -2639,11 +2754,11 @@ Saved 2 files.</pre></div></div>
     st('st-a', 'Idle'); st('st-i', 'Idle');
   }
   var fx = {
-    mayaClaim: function () { wnRow('a', 'index.html', "Andrew's AI · Andrew · editing the title", 'busy', 'var(--jordan)', 'A'); foot.className = 'file-foot'; foot.textContent = "Andrew's AI is working in index.html."; st('st-a', 'Editing the title', 'busy'); },
-    jordanApproach: function () { wnRow('i', 'index.html', "Iris's AI · Iris · heading for the same file", 'wait', 'var(--sam)', 'I'); foot.className = 'file-foot warn'; foot.textContent = "Iris's AI is heading for the same file."; st('st-i', 'Heading for the title', 'wait'); },
+    mayaClaim: function () { wnRow('a', 'index.html · header', "Andrew's AI · Andrew · editing the header", 'busy', 'var(--jordan)', 'A'); foot.className = 'file-foot'; foot.textContent = "Andrew's AI is working in index.html."; st('st-a', 'Editing the header', 'busy'); },
+    jordanApproach: function () { wnRow('i', 'index.html', "Iris's AI · Iris · heading for the same file", 'wait', 'var(--sam)', 'I'); foot.className = 'file-foot warn'; foot.textContent = "Iris's AI is heading for the same file."; st('st-i', 'Heading for the header', 'wait'); },
     jordanFooter: function () { wnRow('i', 'index.html · footer', "Iris's AI · Iris · editing the footer", 'busy', 'var(--sam)', 'I'); foot.className = 'file-foot ok'; foot.textContent = 'No collision. Two AIs, two different parts.'; st('st-i', 'Editing the footer', 'busy'); },
     jordanWait: function () { wnRow('i', 'Waiting for index.html', "Iris's AI · Iris · waiting its turn", 'wait', 'var(--sam)', 'I'); foot.className = 'file-foot ok'; foot.textContent = "Iris's AI is waiting its turn."; st('st-i', 'Waiting its turn', 'wait'); },
-    mayaDone: function () { wnRow('a', 'Saved: new title', "Andrew's AI · Andrew · just now", 'done', 'var(--jordan)', 'A'); st('st-a', 'Saved to draft'); },
+    mayaDone: function () { wnRow('a', 'Saved: new header', "Andrew's AI · Andrew · just now", 'done', 'var(--jordan)', 'A'); st('st-a', 'Saved to draft'); },
     footerDone: function () { footerChanged = true; wnRow('i', 'Saved: new footer', "Iris's AI · Iris · just now", 'done', 'var(--sam)', 'I'); st('st-i', 'Saved to draft'); },
     approved: function () {
       wnClear();
@@ -2685,6 +2800,7 @@ Saved 2 files.</pre></div></div>
         var b = el('button', 'btn' + (ch.primary ? ' primary' : ''), ch.label); b.type = 'button';
         b.addEventListener('click', function () {
           each(c.querySelectorAll('button'), function (x) { x.disabled = true; x.style.opacity = x === b ? '1' : '.4'; });
+          if (ch.beat != null) DEMO.beat = Math.max(DEMO.beat, ch.beat);
           run(ch.then);
         });
         c.appendChild(b);
@@ -2719,6 +2835,7 @@ Saved 2 files.</pre></div></div>
   }
   function run(seq) {
     var delay = 0;
+    var total = seq.reduce(function (n, m) { return n + (m.wait || 1200); }, 0); DEMO.until = Math.max(DEMO.until, Date.now() + total + 300);
     seq.forEach(function (m) {
       delay += m.wait || 1200;
       var t1 = setTimeout(function () {
@@ -2730,52 +2847,151 @@ Saved 2 files.</pre></div></div>
       timers.push(t1);
     });
   }
-  var opening = [
-    { who: 'maya', text: 'Make the landing page title friendlier.', wait: 700 },
-    { who: 'mayaAI', plain: "I'm starting on the landing page title. I'll post when it's ready.", tech: 'claim src/pages/index.html · <h1> (line 3) · branch draft/andrew', fx: 'mayaClaim' },
-    { who: 'jordan', text: 'Change the landing page title to "Ship it together."', fx: 'jordanApproach' },
-    { who: 'jordanAI', warn: true,
-      plain: "Andrew's AI is already changing this title. Want me to wait, or take the footer instead?",
-      tech: 'conflict: src/pages/index.html line 3 claimed by agent:andrew 40s ago · options: queue | reroute(footer)',
-      choices: [
-        { label: 'Wait for Andrew', then: [
-          { who: 'jordanAI', plain: "Okay, I'll wait and pass your title idea to Andrew's AI.", tech: 'queued · notify agent:andrew · attach suggestion', fx: 'jordanWait' },
-          { who: 'mayaAI', plain: 'Done. New title: "Build it together." I used part of Iris\'s idea.', tech: 'commit on draft/andrew · preview build ready', fx: 'mayaDone' },
-          { who: 'priya', text: 'I can actually follow this! Love the new title.' },
-          { who: 'room', plain: 'A preview is ready. Nothing goes live until someone approves it.', tech: 'preview: draft/andrew · status: awaiting approval', approve: true }
-        ]},
-        { label: 'Take the footer', primary: true, then: [
-          { who: 'jordanAI', plain: "On it. I'll update the footer instead, so nothing collides.", tech: 'claim src/pages/index.html · footer (line 11) · branch draft/iris', fx: 'jordanFooter' },
-          { who: 'mayaAI', plain: 'Title is done: "Build it together."', tech: 'commit on draft/andrew · preview build ready', fx: 'mayaDone' },
-          { who: 'priya', text: 'I can actually follow this! Can the footer say "Made at USC"?' },
-          { who: 'jordanAI', plain: 'Done. The footer now says "Made at USC."', tech: 'commit on draft/iris · footer text updated', fx: 'footerDone' },
-          { who: 'room', plain: 'A preview is ready. Nothing goes live until someone approves it.', tech: 'preview: draft/andrew + draft/iris · status: awaiting approval', approve: true }
-        ]}
-      ] }
+  /* ---------- Slide 14 script: join, then the room. One clicker press = one beat. ---------- */
+  var DEMO = { beat: 0, until: 0 };
+  function later(ms, f) { timers.push(setTimeout(f, ms)); DEMO.until = Math.max(DEMO.until, Date.now() + ms + 200); }
+  var setup = $('m-setup'), term = $('m-term'), termBody = $('mt-body');
+  /* agent cards: reuse the logos from slide 11 */
+  (function () {
+    var box = $('su-agents'), cards = document.querySelectorAll('.by-cards')[0];
+    if (!box || !cards) return;
+    each(cards.querySelectorAll('.by-card'), function (c, k) {
+      var b = el('button', 'su-agent'); b.type = 'button';
+      var ic = c.querySelector('.by-ic'); if (ic) b.appendChild(ic.cloneNode(true));
+      b.appendChild(el('span', null, c.querySelector('b').textContent));
+      if (k === 0) b.id = 'su-claude';
+      box.appendChild(b);
+    });
+  })();
+  function suStep(n) {
+    setup.setAttribute('data-s', n);
+    each(setup.querySelectorAll('.su-stepper [data-n]'), function (x) {
+      var k = +x.getAttribute('data-n');
+      x.classList.toggle('done', k <= n && !(x.tagName === 'SPAN' && k === n + 1));
+      x.classList.toggle('now', x.tagName === 'SPAN' && k === n + 1);
+      if (x.tagName === 'SPAN' && k <= n) { x.classList.add('done'); x.classList.remove('now'); }
+    });
+  }
+  function tick(k) { var li = setup.querySelector('.su-list li[data-k="' + k + '"]'); if (!li) return; li.classList.add('on', 'flash'); setTimeout(function () { li.classList.remove('flash'); }, 700); }
+  function press(id) { var b = $(id); if (!b) return; b.classList.add('pressed'); setTimeout(function () { b.classList.remove('pressed'); }, 180); }
+  function termOpen(title, where) { term.hidden = false; term.className = 'm-term' + (where ? ' ' + where : ''); $('mt-title').textContent = title; termBody.innerHTML = ''; }
+  function termClose() { if (term.hidden) return; term.classList.add('out'); setTimeout(function () { term.hidden = true; term.classList.remove('out'); }, 400); }
+  /* lines: [{p: 'typed prompt'} | {o: 'output', cls: 'ok'|'w'}], start delay in ms; returns when it ends */
+  function termType(lines, t0) {
+    var t = t0 || 300;
+    lines.forEach(function (ln) {
+      if (ln.p != null) {
+        var d; later(t, function () { d = el('div', 'p cur'); termBody.appendChild(d); });
+        var txt = ln.p, step = reduce ? 0 : 28;
+        for (var c = 1; c <= txt.length; c++) (function (c) { later(t + 60 + c * step, function () { d.textContent = txt.slice(0, c); }); })(c);
+        t += 60 + txt.length * step + 450;
+        later(t, function () { d.classList.remove('cur'); });
+      } else {
+        t += ln.wait || 700;
+        (function (ln) { later(t, function () { termBody.appendChild(el('div', ln.cls || 'o', ln.o)); if (ln.fx) ln.fx(); }); })(ln);
+      }
+    });
+    return t;
+  }
+  function chan(name) {
+    each(document.querySelectorAll('.room.mesh-ui .chan'), function (c) { c.classList.toggle('on', c.textContent.replace('#', '').trim() === name); });
+    var h = document.querySelector('.room.mesh-ui .feed-bar .ch'); if (h) h.textContent = '#' + name;
+  }
+  function pick(re) { return [].slice.call(document.querySelectorAll('#feed .choices button')).filter(function (b) { return re.test(b.textContent) && !b.disabled; })[0]; }
+  fx.irisTermAway = function () { timers.push(setTimeout(termClose, 900)); };
+  var BEATS = [
+    /* 1 Continue with GitHub */
+    function () { press('su-gh'); tick(1); later(350, function () { suStep(1); }); 
+      var q = 'MeshCase'; later(700, function () { $('su-ph').style.display = 'none'; });
+      for (var c = 1; c <= q.length; c++) (function (c) { later(700 + c * 90, function () { $('su-q').textContent = q.slice(0, c); }); })(c);
+      later(700 + q.length * 90 + 200, function () { setup.classList.add('typed'); $('su-repo').classList.add('match'); }); },
+    /* 2 pick the project */
+    function () { press('su-repo'); tick(2); later(350, function () { suStep(2); }); },
+    /* 3 pick your agent */
+    function () { var c = $('su-claude'); if (c) c.classList.add('pick'); later(700, function () { suStep(3); }); },
+    /* 4 one paste: the agent sets itself up, Mesh ticks the rest */
+    function () {
+      var b = $('su-copy'); press('su-copy'); b.classList.add('copied');
+      later(500, function () { termOpen("Evelyn's terminal · Claude Code", 'over-setup'); });
+      var t = termType([{ p: 'Join the MeshCaseCompetition room on Mesh (pasted)' }, { o: 'Connecting to Mesh…', wait: 500 }, { o: '✓ Connected. Felix is in the team room.', cls: 'ok', fx: function () { tick(3); } }], 800);
+      later(t + 450, function () { tick(4); }); later(t + 900, function () { tick(5); }); later(t + 1350, function () { tick(6); });
+    },
+    /* 5 into the room */
+    function () { termClose(); setup.classList.add('leaving'); chan('general'); later(700, function () { setup.hidden = true; }); },
+    /* 6 Andrew: my agent is on the header */
+    function () { run([
+      { who: 'maya', text: 'Hey, I have my agent working on the header.', wait: 300, fx: 'mayaClaim' },
+      { who: 'mayaAI', plain: "I'm on the header in index.html. I'll post when it's done.", tech: 'claim index.html · <header> (lines 1–6) · branch draft/andrew', wait: 1500 }
+    ]); },
+    /* 7 Iris prompts in HER terminal (not in Mesh); her agent checks the room first and catches it */
+    function () {
+      termOpen("Iris's terminal · Gemini CLI");
+      var t = termType([{ p: 'Change the header title to "Ship it together."' }, { o: 'Checking the Mesh room before I edit…', wait: 600, fx: function () { fx.jordanApproach(); } }, { o: "⚠ Andrew's AI is already in the header. I asked in the room.", cls: 'w', wait: 1100 }], 300);
+      later(t - 300, function () { run([{ who: 'jordanAI', warn: true, wait: 300,
+        plain: "Andrew's AI is already changing the header. Want me to wait, or take the footer instead?",
+        tech: 'conflict: index.html <header> claimed by agent:andrew · options: queue | reroute(footer)',
+        choices: [
+          { label: 'Wait for Andrew', beat: 8, then: [
+            { who: 'jordan', text: "Oops, didn't see that, Andrew! I'll wait.", wait: 500, fx: 'irisTermAway' },
+            { who: 'jordanAI', plain: "Okay, I'll wait and pass the title idea to Andrew's AI.", tech: 'queued · notify agent:andrew · attach suggestion', fx: 'jordanWait' },
+            { who: 'mayaAI', plain: 'Header is done: "Build it together."', tech: 'commit on draft/andrew · preview build ready', fx: 'mayaDone' }
+          ]},
+          { label: 'Take the footer', primary: true, beat: 8, then: [
+            { who: 'jordan', text: "Oops, didn't see that, Andrew! Great, I'll take the footer.", wait: 500, fx: 'irisTermAway' },
+            { who: 'jordanAI', plain: "On it. I'll take the footer instead, so nothing collides.", tech: 'claim index.html · <footer> (line 11) · branch draft/iris', fx: 'jordanFooter' },
+            { who: 'mayaAI', plain: 'Header is done: "Build it together."', tech: 'commit on draft/andrew · preview build ready', fx: 'mayaDone', wait: 1500 },
+            { who: 'jordanAI', plain: 'Footer is done: "Made at USC."', tech: 'commit on draft/iris · footer text updated', fx: 'footerDone', wait: 1500 }
+          ]}
+        ] }]); });
+    },
+    /* 8 Iris takes the footer (same as clicking it) */
+    function () { var b = pick(/Take the footer/); if (b) b.click(); },
+    /* 9 Andrew hands it to Evelyn */
+    function () { run([{ who: 'maya', text: 'Nice. We need to get this over to Evelyn.', wait: 300 }]); },
+    /* 10 Evelyn prompts HER agent in HER terminal; Felix does the work */
+    function () {
+      run([{ who: 'priya', text: "Team heard! I'm prompting it in my Claude Code now.", wait: 300 }]);
+      later(1300, function () { termOpen("Evelyn's terminal · Claude Code"); });
+      var t = termType([{ p: 'Write up what changed for the team and save it to the draft.' }, { o: 'Felix: On it.', wait: 500, fx: function () { felix('work'); } }, { o: '✓ Saved to the team draft. Posted in the room.', cls: 'ok', wait: 2600, fx: function () { felix('saved'); } }], 1600);
+      timers.push(setTimeout(termClose, t + 700));
+      later(t + 900, function () { run([{ who: 'room', plain: 'A preview is ready. Nothing goes live until someone presses Push.', tech: 'preview: draft (andrew + iris + evelyn) · awaiting push', preview: true, wait: 200 }]); });
+      timers.push(setTimeout(function () { felix('idle'); }, t + 3200));
+    },
+    /* 11 Preview */
+    function () { var b = pick(/See it in Preview/); if (b) b.click(); else openPreview(); },
+    /* 12 Push */
+    function () { var pb = $('pv-push'); if (pb && !pb.disabled) pb.click(); }
   ];
   function reset() {
-    timers.forEach(clearTimeout); timers = [];
+    timers.forEach(clearTimeout); timers = []; DEMO.beat = 0; DEMO.until = 0;
     feed.innerHTML = '';
     var h = el('div', 'empty-hint'); h.id = 'demo-hint';
-    h.innerHTML = 'Andrew and Iris ask their AIs to change the same title at the same time. Press <b>Play the scene</b> and watch the file on the right.';
+    h.innerHTML = 'Andrew and Iris both send their AIs to the header. Press <b>Next</b> (or the clicker) to walk through it.';
     feed.appendChild(h);
-    $('demo-play').disabled = false;
-    buildFile();
+    buildFile(); chan('landing-page');
     footerChanged = false; if (pv) closePreview();
+    term.hidden = true; term.className = 'm-term';
+    setup.hidden = false; setup.classList.remove('leaving', 'typed'); suStep(0);
+    each(setup.querySelectorAll('.su-list li'), function (li) { li.classList.remove('on', 'flash'); });
+    $('su-q').textContent = ''; $('su-ph').style.display = ''; $('su-repo').classList.remove('match');
+    $('su-copy').classList.remove('copied'); each(setup.querySelectorAll('.su-agent'), function (x) { x.classList.remove('pick'); });
   }
-  $('demo-play').addEventListener('click', function () { reset(); this.disabled = true; run(opening); });
+  function demoNext() {
+    if (Date.now() < DEMO.until) return true;               /* let the current beat finish */
+    if (DEMO.beat >= BEATS.length) return pv && !pv.hidden && !pv.classList.contains('done') ? true : false;
+    BEATS[DEMO.beat++](); return true;
+  }
+  $('demo-play').textContent = 'Next';
+  $('demo-play').addEventListener('click', function () { demoNext(); });
   $('demo-reset').addEventListener('click', reset);
+  /* mouse users can click the setup screens directly */
+  [['su-gh', 0], ['su-repo', 1], ['su-copy', 3]].forEach(function (x) { $(x[0]).addEventListener('click', function () { if (DEMO.beat === x[1]) demoNext(); }); });
+  $('su-agents').addEventListener('click', function (e) { var b = e.target.closest('.su-agent'); if (!b || DEMO.beat !== 2) return; each(setup.querySelectorAll('.su-agent'), function (x) { x.classList.remove('pick'); }); b.classList.add('pick'); DEMO.beat = 3; later(700, function () { suStep(3); }); });
 
-  /* ---------- Demo clicker: play, Take the footer, Approve, See it in Preview, Push ---------- */
+  /* ---------- Demo clicker ---------- */
   hooks.demo = {
-    advance: function () {
-      function pick(re) { return [].slice.call(document.querySelectorAll('#feed .choices button')).filter(function (b) { return re.test(b.textContent) && !b.disabled; })[0]; }
-      if (pv && !pv.hidden) { var pb = $('pv-push'); if (!pb.disabled) { pb.click(); return true; } return !pv.classList.contains('done'); }
-      if (!$('demo-play').disabled) { $('demo-play').click(); return true; }
-      var b = pick(/Take the footer/) || pick(/Approve/) || pick(/See it in Preview/);
-      if (b) { b.click(); return true; }
-      return true;
-    }
+    enter: function () { reset(); },
+    advance: demoNext
   };
 
   /* ---------- Demo ending: Preview, then Push ---------- */
@@ -2792,7 +3008,7 @@ Saved 2 files.</pre></div></div>
   }
   function openPreview() {
     pv.classList.remove('pushing', 'done', 'reload', 'impact'); pvRows.innerHTML = '';
-    pvRow('fox', 'New title: \u201cBuild it together.\u201d', "Andrew's AI");
+    pvRow('fox', 'New header: \u201cBuild it together.\u201d', "Andrew's AI");
     if (footerChanged) pvRow('cat', 'New footer: \u201cMade at USC\u201d', "Iris's AI");
     pvRow('felix', 'Wrote the update for the team', "Felix \u00b7 Evelyn's AI");
     $('pv-count').textContent = pvRows.children.length + ' new';

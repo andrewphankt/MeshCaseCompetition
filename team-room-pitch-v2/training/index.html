@@ -277,6 +277,8 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
 .ph-e { background: url(../team/evelyn.jpg) center 20% / cover no-repeat, url(../sprites/stand.png) 48% 6% / 270% no-repeat #f1ecf3 !important; }
 .ph-fox { background: url(../sprites/fox_stand.png) 50% 4% / 260% no-repeat #f1f1f4 !important; }
 .ph-cat { background: url(../sprites/cat_stand.png) 50% 4% / 260% no-repeat #f1f1f4 !important; }
+
+#failed-save { display: none !important; }
 </style>
 </head>
 <body class="training">
@@ -404,23 +406,23 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
     </section>
 
     <aside class="right">
-      <div id="checklist">
-        <h3>Setup checklist</h3>
-        <div data-learn="checklist">
-          <div class="check done" id="ck-git"><span class="mark">✓</span><div><b>Git is installed</b><span>The tool that saves versions of your files.</span></div></div>
-          <div class="check" id="ck-name"><span class="mark">!</span><div><b>Your name is on your saves</b><span>Saves need a name and email, or they fail.</span><br><button type="button" data-fix="name">Fix it</button></div></div>
-          <div class="check" id="ck-github"><span class="mark">!</span><div><b>Signed in to GitHub</b><span>Needed to send your saves to the team.</span><br><button type="button" data-fix="github">Sign in with GitHub</button></div></div>
-          <div class="check" id="ck-access"><span class="mark">!</span><div><b>Allowed to edit this project</b><span>The owner adds you as a collaborator.</span><br><button type="button" data-fix="access">Ask Andrew</button></div></div>
-          <div class="check" id="ck-skills"><span class="mark">!</span><div><b>Your agent has the team's skills</b><span>So it follows the same rules as everyone else's.</span><br><button type="button" data-fix="skills">Open Skills</button></div></div>
-          <div class="check done" id="ck-host"><span class="mark">✓</span><div><b>Hosting connected</b><span>Done by the owner, once.</span></div></div>
-        </div>
-      </div>
-      <div id="map" style="margin-top:18px">
+      <div id="map">
         <h3>Where to do what</h3>
         <div class="map" data-learn="places">
-          <div class="place you"><b>Your Claude chat</b><span>Ask your own agent for changes and "what does this mean?" Never paste passwords here.</span></div>
-          <div class="place room"><b>This room</b><span>See who saved what, preview the work, and talk to teammates.</span></div>
-          <div class="place"><b>The Terminal</b><span>Rarely needed. Typing a password there shows nothing; that's normal.</span></div>
+          <div class="place you"><b>Your agent (terminal or app)</b><span>Where you ask for changes. You don't prompt inside Mesh.</span></div>
+          <div class="place room"><b>Preview</b><span>The team's shared draft, live. Every page gets a tab.</span></div>
+          <div class="place room"><b>Changes</b><span>What every agent did, in plain words.</span></div>
+          <div class="place room"><b>Push</b><span>Sends the draft to the real site. Nothing goes live until someone presses it.</span></div>
+          <div class="place room"><b>#general and channels</b><span>Talk to the team. @ someone to ping them.</span></div>
+          <div class="place room"><b>Requests</b><span>Ask a teammate's agent for something. They approve or decline.</span></div>
+        </div>
+      </div>
+      <div id="auto" style="margin-top:18px">
+        <h3>What every agent does by itself</h3>
+        <div class="map" data-learn="auto">
+          <div class="place"><b>Before each message</b><span>It hears what teammates changed and asked for.</span></div>
+          <div class="place"><b>Before each edit</b><span>It checks nobody else's agent is in that file.</span></div>
+          <div class="place"><b>After each turn</b><span>It saves to the draft and says in one line what it changed.</span></div>
         </div>
       </div>
     </aside>
@@ -466,7 +468,8 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
     composer: { t: 'Message box', m: 'Messages here go to the room, and the room is shared with your team.', h: 'Never paste passwords, tokens or keys. Mesh blocks text that looks like one.' },
     skills: { t: 'Skills', m: "Instructions your agent follows, picked by the team for this project. Adding them makes every agent work the same way.", h: 'New here? Press <b>Add all</b>. Mesh adds them to your agent for you.' },
     checklist: { t: 'Setup checklist', m: 'Mesh checks your computer before you start, so saves never fail silently.', h: 'Every red item has a one-click fix. No Terminal needed.' },
-    places: { t: 'Three places, three jobs', m: 'Your Claude chat is for you and your agent. This room is for the team. The Terminal is your computer, directly.', h: "When in doubt, ask your Claude chat: 'what does this mean?'" }
+    places: { t: 'Where to do what', m: "You ask your own agent for changes in your terminal or app. Mesh is where the team sees, talks, previews and pushes.", h: "You never prompt inside Mesh." },
+    auto: { t: 'Agents look after themselves', m: 'Every agent listens to the room before it answers, checks for teammates in the same file before it edits, and reports what it changed after.', h: 'Setup is automatic too: sign in, pick the project, one paste.' }
   };
   var GLOSSARY = [
     ['Terminal', 'A window where you type commands to your computer instead of clicking. Your agent uses one behind the scenes.'],
@@ -551,7 +554,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
   /* Setup checklist with one-click fixes */
   var state = { name: false, github: false, access: false };
   function markDone(id, label) {
-    var c = $(id); c.classList.remove('wait'); c.classList.add('done');
+    var c = $(id); if (!c) return; c.classList.remove('wait'); c.classList.add('done');
     c.querySelector('.mark').textContent = '✓';
     var b = c.querySelector('button'); if (b) b.remove();
     if (label) c.querySelector(':scope > div > span').textContent = label;
@@ -574,7 +577,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
     if (kind === 'name') { state.name = true; markDone('ck-name', 'Set to Evelyn. Your saves now carry your name.'); toast('Name and email set. No Terminal needed.'); }
     if (kind === 'github') { state.github = true; markDone('ck-github', 'Signed in through your browser. No token to copy or paste.'); toast('Signed in to GitHub through your browser.'); }
     if (kind === 'access') {
-      state.access = true; var c = $('ck-access'); c.classList.add('wait'); c.querySelector('.mark').textContent = '…';
+      state.access = true; var c = $('ck-access'); if (!c) return; c.classList.add('wait'); c.querySelector('.mark').textContent = '…';
       var b = c.querySelector('button'); if (b) b.remove();
       c.querySelector(':scope > div > span').textContent = 'Request sent to Andrew. Only the owner can approve this.';
       toast('Asked Andrew for edit access.');
@@ -584,7 +587,7 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
   }
   /* When every item is done, the checklist folds away: you're ready to go */
   function allSet() {
-    if (!(state.name && state.github && state.approved && state.skills) || $('ck-done')) return;
+    if (!$('checklist') || !(state.name && state.github && state.approved && state.skills) || $('ck-done')) return;
     setTimeout(function () {
       var box = $('checklist').querySelector('[data-learn="checklist"]');
       box.innerHTML = '<div class="allset" id="ck-done"><span class="mark">✓</span><div><b>All set. You\'re ready to go.</b><span>Setup is done, so the checklist folds away.</span></div></div>';
@@ -647,12 +650,11 @@ body.embed.training .ln-q:hover { filter: brightness(.96); }
   var TOUR = [
     { sel: '#room-head', tab: 'chat', t: 'Welcome to your team room', b: "This is where your teammates and each teammate's AI agent build one project together. Here's a one-minute tour." },
     { sel: '#conn', tab: 'chat', t: 'Are you connected?', b: 'This line tells you whether your work is reaching the team, and when it last did. Red means your saves are only on your computer.' },
-    { sel: '#checklist', tab: 'chat', t: 'Fix setup in one click', b: 'Mesh checks your computer first: your name on saves, a GitHub sign-in, edit access, the team\'s skills. Every red item has a button. No Terminal, no tokens.' },
     { sel: '#tab-changes', tab: 'changes', t: 'Changes: who saved what', b: "When an agent finishes, the work is saved and sent to the team. If a save fails, it shows up in red with the reason. It never fails silently." },
     { sel: '#tab-preview', tab: 'preview', t: 'Preview: see the work', b: 'The latest shared draft, right here. The public site only changes when the owner publishes.' },
     { sel: '#tab-skills', tab: 'skills', t: 'Skills: set up your agent', b: "The team's skills for this project. Press Add all, and your agent follows the same rules as everyone else's." },
     { sel: '#channels', tab: 'chat', t: 'Talk to your team', b: 'Channels are group chats for the project. Agents post here too, before they change anything.' },
-    { sel: '#map', tab: 'chat', t: 'Three places, three jobs', b: 'Your Claude chat is for asking your own agent. This room is for the team. The Terminal is rarely needed.' },
+    { sel: '#map', tab: 'chat', t: 'Where to do what', b: "You ask your own agent for changes in your terminal or app. Mesh is where the team talks, previews and pushes. You never prompt inside Mesh." },
     { sel: '#starter', tab: 'chat', t: 'Try your first change', b: 'Pick a starter request and paste it into your own Claude chat. Watch your save appear in Changes with your name on it.' }
   ];
   var ti = 0;
