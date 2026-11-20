@@ -1666,7 +1666,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <h2 class="h-l">Five of us, building the room we needed.</h2>
   <div class="hint" style="margin-top:12px">Tap a photo to flip it</div>
   <div class="polaroids" id="polaroids" data-interactive></div>
-  <aside class="notes">[Target: about 10 seconds. Names only; skip the photo flips.] Introduce each person as you tap their photo; the back shows their major and background. Fill in the TEAM list at the top of the script, and put photos in a "team" folder next to this file (for example team/iris.jpg).</aside>
+  <aside class="notes">[Target: about 10 seconds. One click goes straight to slide 3. Invite people following along to flip the photos to learn more about us.] Introduce each person as you tap their photo; the back shows their major and background. Fill in the TEAM list at the top of the script, and put photos in a "team" folder next to this file (for example team/iris.jpg).</aside>
 </section>
 
 <!-- Section 1: The problem -->
@@ -3301,7 +3301,7 @@ Saved 2 files.</pre></div></div>
       retreat: function () { var f = [].slice.call(slides[cur].querySelectorAll(sel)).filter(function (x) { return x.getAttribute('aria-pressed') === 'true'; }); if (!f.length) return false; f[f.length - 1].setAttribute('aria-pressed', 'false'); return true; }
     };
   }
-  hooks.team = flipper('.pol');
+  /* Slide 2: the clicker goes straight to slide 3; people can still click the photos to flip them */
   hooks.why = flipper('.reason-flip');
   var whyRetreat = hooks.why.retreat; hooks.why.retreat = function () { return whyRetreat(); };
 
