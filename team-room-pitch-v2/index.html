@@ -2025,7 +2025,7 @@ Saved 2 files.</pre></div></div>
     </div>
     <div class="fl" id="rm-flight" aria-hidden="true"><span class="fl-boom" id="fl-boom"><b></b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><svg><path pathLength="1" d="M0 0"/></svg><span class="fl-jet"><svg viewBox="0 0 24 24"><g transform="rotate(45 12 12)"><path d="M3 11.5 21 3l-6.5 18-3-7.5z"/><path d="M11.5 13.5 21 3"/></g></svg></span></div>
   </div>
-  <aside class="notes">[Speaker: Andrew. About 70 seconds. 12 clicks.] JOIN: (1) Continue with GitHub. (2) Pick the project. (3) Pick your agent: keep the one you already use. (4) One paste into your agent; Mesh ticks off the rest of setup by itself. (5) You're in the team room. THE ROOM: (6) Andrew says his agent is on the header. (7) Iris hasn't read the chat. She prompts her agent in HER terminal, not in Mesh. Before it edits, her agent checks the room and catches that Andrew's agent is already there. (8) Take the footer: no collision. (9) Andrew: get this to Evelyn. (10) Evelyn prompts Felix in her own Claude Code. Say it: "You never prompt inside Mesh. Mesh is where the team talks; your terminal is where you talk to your agent." (11) Preview: the shared draft. (12) Push: nothing goes live until someone presses it. Point at Dante (out of tokens) and Sarah's (busy) if there's time.</aside>
+  <aside class="notes">[Speaker: Andrew. About 70 seconds. 7 clicks.] JOIN (one click each): (1) Continue with GitHub. (2) Pick the project. (3) Pick your agent: keep the one you already use. (4) One paste into your agent; Mesh ticks off the rest of setup by itself. (5) You're in the team room. THE ROOM PLAYS ITSELF (about 35 seconds, clicks are ignored while it runs): Andrew says his agent is on the header. Iris hasn't read the chat; she prompts her agent in HER terminal, not in Mesh. Her agent checks the room before editing and catches that Max is already there, then takes the footer. Andrew: get this to Evelyn. Evelyn prompts Felix in her own Claude Code. Say it: "You never prompt inside Mesh. Mesh is where the team talks; your terminal is where you talk to your agent." It stops at "A preview is ready." (6) Preview: the shared draft. (7) Push: nothing goes live until someone presses it.</aside>
 </section>
 
 <!-- 9 Training mode -->
@@ -3012,7 +3012,7 @@ Saved 2 files.</pre></div></div>
       later(t + 450, function () { tick(4); }); later(t + 900, function () { tick(5); }); later(t + 1350, function () { tick(6); });
     },
     /* 5 into the room */
-    function () { termClose(); setup.classList.add('leaving'); chan('general'); later(700, function () { setup.hidden = true; }); },
+    function () { termClose(); setup.classList.add('leaving'); chan('general'); later(700, function () { setup.hidden = true; }); autoRoom(); },
     /* 6 Andrew: my agent is on the header */
     function () { run([
       { who: 'maya', text: 'Hey, I have my agent working on the header.', wait: 300, fx: 'mayaClaim' },
@@ -3057,8 +3057,25 @@ Saved 2 files.</pre></div></div>
     /* 12 Push */
     function () { var pb = $('pv-push'); if (pb && !pb.disabled) pb.click(); }
   ];
+  /* Once you're in the room, the scene plays itself (beats 6-10) with pauses to talk over.
+     It stops at "A preview is ready"; the next clicks open Preview and press Push. */
+  var ROOM_PAUSE = { 5: 900, 6: 2000, 7: 3800, 8: 2200, 9: 2000 };
+  function autoRoom() {
+    DEMO.auto = true;
+    (function tick() {
+      if (!DEMO.auto) return;
+      if (DEMO.beat >= 10) { DEMO.auto = false; return; }
+      var wait = Math.max(0, DEMO.until - Date.now()) + (ROOM_PAUSE[DEMO.beat] || 1800);
+      timers.push(setTimeout(function () {
+        if (!DEMO.auto) return;
+        if (Date.now() < DEMO.until) { tick(); return; }
+        if (DEMO.beat < 10) BEATS[DEMO.beat++]();
+        tick();
+      }, wait));
+    })();
+  }
   function reset() {
-    timers.forEach(clearTimeout); timers = []; DEMO.beat = 0; DEMO.until = 0;
+    timers.forEach(clearTimeout); timers = []; DEMO.beat = 0; DEMO.until = 0; DEMO.auto = false;
     feed.innerHTML = '';
     var h = el('div', 'empty-hint'); h.id = 'demo-hint';
     h.innerHTML = 'Andrew and Iris both send their AIs to the header. Press <b>Next</b> (or the clicker) to walk through it.';
@@ -3072,6 +3089,7 @@ Saved 2 files.</pre></div></div>
     $('su-copy').classList.remove('copied'); each(setup.querySelectorAll('.su-agent'), function (x) { x.classList.remove('pick'); });
   }
   function demoNext() {
+    if (DEMO.auto) return true;                             /* the room scene is playing itself */
     if (Date.now() < DEMO.until) return true;               /* let the current beat finish */
     if (DEMO.beat >= BEATS.length) return pv && !pv.hidden && !pv.classList.contains('done') ? true : false;
     BEATS[DEMO.beat++](); return true;
