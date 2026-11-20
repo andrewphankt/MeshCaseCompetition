@@ -1550,6 +1550,67 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 @keyframes flbits { 0% { opacity: 1; transform: translate(0,0) rotate(0); } 100% { opacity: 0; transform: translate(var(--bx), var(--by)) rotate(var(--br)); } }
 .room.mesh-ui #nav-changes.hit { animation: navhit .9s ease; }
 @media (prefers-reduced-motion: reduce) { .room.mesh-ui .fl.go .fl-jet, .room.mesh-ui .fl.boom .fl-boom * { animation: none; } }
+
+/* ---------- Slide 14 setup, take 2: the real Mesh look (from Andrew's screenshots) ---------- */
+.room.mesh-ui .m-setup { --rf: Inter, -apple-system, "Helvetica Neue", "Segoe UI", system-ui, sans-serif; background: linear-gradient(120deg, #fbe3d4 0%, #f3c9dc 30%, #dfd4f2 60%, #b9c8f3 100%); background-size: auto; padding: 50px 60px 50px 70px; grid-template-columns: 1fr 360px; gap: 36px; }
+.room.mesh-ui .su-hand { display: none; }
+.room.mesh-ui .su-card { height: 720px; padding: 0 0 26px; border: 0; border-radius: 14px; background: #fff; box-shadow: 0 30px 70px rgba(60,50,120,.25), 0 0 0 1px rgba(0,0,0,.06); overflow: hidden; font-family: var(--rf); }
+.room.mesh-ui .su-chrome { align-self: stretch; display: flex; align-items: flex-end; gap: 14px; padding: 12px 16px 0; background: #e9e9ee; }
+.room.mesh-ui .su-dots { display: flex; gap: 8px; padding-bottom: 12px; } .room.mesh-ui .su-dots i { width: 13px; height: 13px; border-radius: 50%; background: #ff5f57; } .room.mesh-ui .su-dots i:nth-child(2) { background: #febc2e; } .room.mesh-ui .su-dots i:nth-child(3) { background: #28c840; }
+.room.mesh-ui .su-tab { display: flex; align-items: center; gap: 8px; background: #fff; border-radius: 10px 10px 0 0; padding: 9px 120px 9px 16px; font: 500 16px var(--rf); color: #16171b; }
+.room.mesh-ui .su-tablogo { width: 16px; height: 16px; }
+.room.mesh-ui .su-url { align-self: stretch; display: flex; align-items: center; gap: 14px; padding: 8px 16px 10px; background: #fff; border-bottom: 1px solid #ececf0; }
+.room.mesh-ui .su-arrows { color: #9a9aa3; font-size: 15px; letter-spacing: 2px; }
+.room.mesh-ui .su-addr { flex: 1; background: #f1f1f4; border-radius: 999px; padding: 6px 16px; font: 400 15px var(--rf); color: #3a3b42; }
+.room.mesh-ui .su-stepper { margin-top: 18px; font: 500 14px var(--rf); color: #8b8c94; gap: 10px; }
+.room.mesh-ui .su-stepper b { width: 22px; height: 22px; border: 1.5px solid #c9cad1; font: 600 12px var(--rf); }
+.room.mesh-ui .su-stepper hr { width: 40px; border-top: 1.5px solid #d8d9de; }
+.room.mesh-ui .su-stepper .now { color: #16171b; } .room.mesh-ui .su-stepper .now b { background: #16171b; border-color: #16171b; color: #fff; }
+.room.mesh-ui .su-stepper .done { color: #16171b; } .room.mesh-ui .su-stepper .done b { background: #16171b; border-color: #16171b; }
+.room.mesh-ui .su-stepper .done b::after { font-size: 12px; } .room.mesh-ui .su-stepper hr.done { border-top: 1.5px solid #16171b; }
+.room.mesh-ui .su-pane { gap: 16px; padding: 0 40px; }
+.room.mesh-ui .su-pane h3 { font: 700 34px/1.15 var(--rf); letter-spacing: -.01em; color: #16171b; }
+.room.mesh-ui .su-logo { width: 64px; height: 64px; }
+.room.mesh-ui .su-word { font: 700 15px var(--rf); letter-spacing: .32em; margin-top: -8px; }
+.room.mesh-ui .su-btn { padding: 13px 26px; border-radius: 8px; border: 0; background: #16171b; font: 600 18px var(--rf); box-shadow: none; }
+.room.mesh-ui .su-btn svg { width: 20px; height: 20px; }
+.room.mesh-ui .su-btn.pressed { transform: scale(.96); box-shadow: none; }
+.room.mesh-ui .su-what { position: absolute; bottom: 24px; font: 500 14px/1.3 var(--rf); color: #6e6f78; text-align: center; }
+.room.mesh-ui .su-card { position: relative; }
+.room.mesh-ui .su-search { width: 440px; padding: 10px 14px; border: 1px solid #dcdde2; border-radius: 8px; font: 400 17px var(--rf); min-height: 46px; }
+.room.mesh-ui .su-search em { color: #a2a3ab; }
+.room.mesh-ui .su-caret { height: 20px; width: 1.5px; }
+.room.mesh-ui .su-repos { width: 440px; gap: 0; border: 1px solid #ececf0; border-radius: 8px; overflow: hidden; }
+.room.mesh-ui .su-repo { border: 0; border-bottom: 1px solid #f0f0f3; border-radius: 0; padding: 12px 14px; font: 400 15.5px var(--rf); box-shadow: none; }
+.room.mesh-ui .su-repo:last-child { border-bottom: 0; }
+.room.mesh-ui .su-repo em { border: 0; padding: 0; font: 400 13px var(--rf); color: #8b8c94; }
+.room.mesh-ui .su-repo.match { background: #f1f1f4; border-color: #f0f0f3; box-shadow: inset 3px 0 0 #16171b; }
+.room.mesh-ui .su-repo.pressed { transform: none; background: #e6e6ea; }
+.room.mesh-ui .su-row2 { width: 440px; display: flex; gap: 8px; }
+.room.mesh-ui .su-link-in { flex: 1; border: 1px solid #dcdde2; border-radius: 8px; padding: 10px 14px; font: 400 15px var(--rf); color: #a2a3ab; }
+.room.mesh-ui .su-ghost { border: 1px solid #dcdde2; border-radius: 8px; padding: 10px 14px; font: 500 15px var(--rf); color: #8b8c94; }
+.room.mesh-ui .su-invite { font: 500 14px var(--rf); color: #3a3b42; }
+.room.mesh-ui .su-agents { grid-template-columns: repeat(3, 150px); gap: 14px; }
+.room.mesh-ui .su-agent { border: 1px solid #ececf0; border-radius: 10px; padding: 24px 10px 18px; font: 500 15px var(--rf); gap: 14px; }
+.room.mesh-ui .su-agent .by-ic { width: 48px; height: 48px; background: transparent !important; }
+.room.mesh-ui .su-agent .by-ic svg { width: 40px; height: 40px; }
+.room.mesh-ui .su-agent .by-ic svg path { fill: var(--lg, #16171b); }
+.room.mesh-ui .su-agent:nth-child(1) .by-ic svg path { fill: #D97757; } .room.mesh-ui .su-agent:nth-child(2) .by-ic svg path { fill: #16171b; } .room.mesh-ui .su-agent:nth-child(3) .by-ic svg path { fill: #8e6ee8; }
+.room.mesh-ui .su-agent.pick { border-color: #16171b; background: #fff; box-shadow: 0 0 0 2px #16171b; transform: none; }
+.room.mesh-ui .su-plogo .by-ic { width: 56px; height: 56px; background: transparent !important; display: grid; place-items: center; }
+.room.mesh-ui .su-plogo svg { width: 48px; height: 48px; } .room.mesh-ui .su-plogo svg path { fill: #D97757; }
+.room.mesh-ui .su-copybtn { padding: 12px 40px; font-size: 17px; }
+.room.mesh-ui #su-copy.copied { background: #16171b; }
+.room.mesh-ui .su-show { font: 500 14px var(--rf); color: #6e6f78; }
+.room.mesh-ui .su-links { display: flex; gap: 22px; font: 500 14px var(--rf); color: #6e6f78; }
+.room.mesh-ui .su-list { border: 0; border-radius: 14px; box-shadow: 0 20px 50px rgba(60,50,120,.2), 0 0 0 1px rgba(0,0,0,.05); background: #fff; font-family: var(--rf); }
+.room.mesh-ui .su-h { font: 700 22px var(--rf); color: #16171b; }
+.room.mesh-ui .su-list li b { font: 600 16px var(--rf); color: #a2a3ab; } .room.mesh-ui .su-list li small { font: 400 13px var(--rf); }
+.room.mesh-ui .su-list li i { border: 1.5px dashed #c9cad1; }
+.room.mesh-ui .su-list li.on i { background: #16171b; border: 1.5px solid #16171b; }
+.room.mesh-ui .su-list li.on b { color: #16171b; }
+.room.mesh-ui .su-list li.flash { background: #f1f1f4; }
+.room.mesh-ui .m-term.over-setup { right: 440px; bottom: 70px; }
 </style>
 </head>
 <body>
@@ -1910,32 +1971,38 @@ Saved 2 files.</pre></div></div>
     </div>
     <div class="m-setup" id="m-setup" data-s="0">
       <div class="su-card">
+        <div class="su-chrome"><span class="su-dots"><i></i><i></i><i></i></span><span class="su-tab"><span class="m-logo su-tablogo" aria-hidden="true"></span>Mesh</span></div>
+        <div class="su-url"><span class="su-arrows">&larr; &rarr;</span><span class="su-addr">agentslack-production.up.railway.app</span></div>
         <div class="su-stepper"><span data-n="1"><b>1</b>Sign in</span><hr data-n="1"><span data-n="2"><b>2</b>Project</span><hr data-n="2"><span data-n="3"><b>3</b>Agent</span></div>
         <div class="su-pane" data-p="0">
           <span class="m-logo su-logo" aria-hidden="true"></span>
           <div class="su-word">MESH</div>
-          <h3>Different agents, same project</h3>
-          <button type="button" class="su-btn" id="su-gh"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>Continue with GitHub</button>
+          <h3>Different Agents, Same Project</h3>
+          <button type="button" class="su-btn" id="su-gh"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10M18 10c0 4-6 3-12 7"/></svg>Continue with GitHub</button>
+          <div class="su-what">What Is Mesh<br>&#8964;</div>
         </div>
         <div class="su-pane" data-p="1">
           <h3>Pick your project</h3>
-          <div class="su-search"><span id="su-q"></span><i class="su-caret"></i><em id="su-ph">Search your GitHub</em></div>
+          <div class="su-search"><span id="su-q"></span><i class="su-caret"></i><em id="su-ph">Search</em></div>
           <div class="su-repos">
             <button type="button" class="su-repo" id="su-repo"><span>andrewphankt / <b>MeshCaseCompetition</b></span><em>Public</em></button>
             <div class="su-repo dim"><span>team4 / <b>study-sprint</b></span><em>Private</em></div>
             <div class="su-repo dim"><span>team4 / <b>club-finder</b></span><em>Private</em></div>
+            <div class="su-repo dim"><span>andrewphankt / <b>landing-page</b></span><em>Public</em></div>
           </div>
-          <div class="su-small">Or let Mesh make a new one for you</div>
+          <div class="su-row2"><span class="su-link-in">Or paste a GitHub link</span><span class="su-ghost">Open Project</span></div>
+          <div class="su-invite">I Have an Invite Link</div>
         </div>
         <div class="su-pane" data-p="2">
           <h3>Which agent do you use?</h3>
           <div class="su-agents" id="su-agents"></div>
-          <div class="su-small">Keep the one you already use.</div>
         </div>
         <div class="su-pane" data-p="3">
-          <h3>Paste this into Claude Code</h3>
-          <button type="button" class="su-btn" id="su-copy"><span class="c1">Copy</span><span class="c2">&#10003; Copied</span></button>
-          <div class="su-small">One paste. Your agent sets itself up.</div>
+          <span class="su-plogo" id="su-plogo"></span>
+          <h3>Paste this into Claude</h3>
+          <button type="button" class="su-btn su-copybtn" id="su-copy"><span class="c1">&#10697; Copy</span><span class="c2">&#10003; Copied</span></button>
+          <div class="su-show">&#9656; Show the text</div>
+          <div class="su-links"><span>Back</span><span>Use Terminal Instead</span></div>
         </div>
       </div>
       <aside class="su-list">
@@ -2358,6 +2425,7 @@ Saved 2 files.</pre></div></div>
     var a = fr.getBoundingClientRect();
     sl.classList.toggle('train-big', big);
     var dd = TR.doc(); if (dd && dd.body) dd.body.classList.toggle('embed', !big);
+    var fr2 = $('train-iframe'); if (fr2) fr2.onload = function () { var d2 = TR.doc(); if (d2 && d2.body) d2.body.classList.toggle('embed', !sl.classList.contains('train-big')); };
     if (instant || reduce) return;
     var b = fr.getBoundingClientRect(), k = a.width / b.width;
     fr.style.transition = 'none'; fr.style.transformOrigin = '0 0';
@@ -2376,8 +2444,13 @@ Saved 2 files.</pre></div></div>
     if (tog && el.getAttribute('aria-pressed') === 'false') return;
     el.click();
   };
-  TR.play = function () {
-    var d = TR.doc(); if (!d) return;
+  TR.play = function (tries) {
+    var d = TR.doc();
+    /* the room inside the frame may still be loading: wait for it instead of silently doing nothing */
+    if (!d || d.readyState !== 'complete' || !d.getElementById('tab-chat')) {
+      tries = (tries || 0) + 1; if (tries > 40) return;
+      TR.timer = setTimeout(function () { TR.play(tries); }, 150); return;
+    }
     TR.dirty = true;
     var card = d.getElementById('tour-card'); if (card && !card.hidden) TR.click('tour-skip');
     var q = function (sel) { return d.querySelector(sel); };
@@ -2406,6 +2479,7 @@ Saved 2 files.</pre></div></div>
   };
   TR.stop = function () { clearTimeout(TR.timer); TR.timer = null; TR.queue = []; };
   TR.finish = function () { clearTimeout(TR.timer); TR.timer = null; while (TR.queue.length) TR.queue.shift()[1](); TR.hl(null); var dd = TR.doc(); if (dd) { var t = dd.getElementById('tip'); if (t) t.hidden = true; } };
+  window.addEventListener('load', function () { setTimeout(function () { var f = $('train-iframe'); if (f && !f.getAttribute('src')) f.setAttribute('src', f.dataset.src); }, 1500); });
   /* Arrow keys pressed inside the training frame still move the deck */
   window.addEventListener('message', function (e) {
     var f = $('train-iframe');
@@ -2874,11 +2948,13 @@ Saved 2 files.</pre></div></div>
   (function () {
     var box = $('su-agents'), cards = document.querySelectorAll('.by-cards')[0];
     if (!box || !cards) return;
+    var LBL = ['Claude', 'Codex', 'Gemini CLI'];
     each(cards.querySelectorAll('.by-card'), function (c, k) {
+      if (k > 2) return;
       var b = el('button', 'su-agent'); b.type = 'button';
       var ic = c.querySelector('.by-ic'); if (ic) b.appendChild(ic.cloneNode(true));
-      b.appendChild(el('span', null, c.querySelector('b').textContent));
-      if (k === 0) b.id = 'su-claude';
+      b.appendChild(el('span', null, LBL[k]));
+      if (k === 0) { b.id = 'su-claude'; var pl = $('su-plogo'); if (pl && ic) pl.appendChild(ic.cloneNode(true)); }
       box.appendChild(b);
     });
   })();
