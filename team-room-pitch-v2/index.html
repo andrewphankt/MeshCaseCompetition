@@ -1628,6 +1628,16 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .oc-table thead th { font-weight: 600; color: #a1a1aa; font-size: 16px; }
 .oc-table tr:last-child th, .oc-table tr:last-child td { border-bottom: 0; }
 .oc-table .oc-total th, .oc-table .oc-total td { font-weight: 700; color: #fafafa; }
+
+/* Appendix: how Mesh makes money */
+.mm-lead { margin: -6px 0 20px; font: 500 20px/1.45 "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; color: #a1a1aa; max-width: 1350px; }
+.mm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.mm-grid .mx-card { min-height: 0; padding: 20px 24px 22px; }
+.mm-big { font: 700 44px/1.05 "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; letter-spacing: -0.03em; color: #fafafa; margin: 2px 0 6px; }
+.mm-list { margin: 0; padding-left: 20px; display: grid; gap: 8px; font: 500 17.5px/1.4 "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; color: #c4c4cc; }
+.mm-list b { color: #fafafa; font-weight: 600; }
+.mm-foot { margin: 20px 0 0; padding: 16px 22px; border-radius: 16px; background: #1c1c1f; font: 500 18px/1.45 "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; color: #a1a1aa; }
+.mm-foot b { color: #fafafa; }
 </style>
 </head>
 <body>
@@ -2280,6 +2290,22 @@ Saved 2 files.</pre></div></div>
   </div>
   <p class="lede" style="margin-top:40px"><span class="pname" data-name>Mesh</span>. Anyone can build, together.</p>
   <aside class="notes">[Target: about 15 seconds. Three lines, then 'Mesh. Anyone can build, together.'] Our five cursors gather in the room as the slide opens. End on the three lines, then the last line: "Mesh. Anyone can build, together." Then invite questions.</aside>
+</section>
+<!-- Appendix: how Mesh makes money -->
+<section class="slide mx-slide oc-slide mm-slide" data-title="Appendix: How Mesh makes money">
+  <div class="mx-head"><span class="mx-k">Appendix</span><span class="mx-upd">Business model</span></div>
+  <h2 class="mx-h">How Mesh makes money.</h2>
+  <p class="mm-lead">Our moat is convenience. Teams bring the agents they already use (Claude Code, Codex, Gemini CLI, Antigravity) into one room on one GitHub repo. No new tool to learn and no new AI to pay for. Mesh is the room between your agents.</p>
+  <div class="mm-grid">
+    <div class="mx-card"><div class="mx-l">Campuses</div><span class="mm-big">License</span>
+      <ul class="mm-list"><li>We sell Mesh to campuses, which offer it to their students.</li><li>In year one, the license is priced to cover our costs.</li><li>First stop: USC.</li></ul></div>
+    <div class="mx-card"><div class="mx-l">Every team</div><span class="mm-big">Free, forever</span>
+      <ul class="mm-list"><li>The team room: chat, requests between agents, and Changes.</li><li>Live previews for plain websites and React/Vite sites, built from your repo and hosted on our domain.</li><li>No hosting account and no setup.</li></ul></div>
+    <div class="mx-card"><div class="mx-l">Paid</div><span class="mm-big">Add-ons</span>
+      <ul class="mm-list"><li><b>Cloud Preview:</b> full apps with a server and a database get a live preview too, similar to Replit.</li><li><b>Built-in database</b> for every project, no setup.</li><li><b>Agent characters:</b> custom decorations, $3 each to start.</li></ul></div>
+  </div>
+  <p class="mm-foot"><b>Costs today: close to zero.</b> The free tier runs on our existing server, and the domain is about $10 a year. Paid features only cost us money when a team uses them, so each paid team covers its own cost.</p>
+  <aside class="notes">[Appendix, for Q&amp;A only.] Our moat is convenience: bring the agents you already use into one room. Campuses pay for a license that covers our costs in year one, starting at USC. Every team gets the room and website previews free forever. Paid: Cloud Preview and a built-in database for full apps, and custom agent characters at $3 each to start. Costs today are close to zero; paid features pay for themselves.</aside>
 </section>
 <!-- Appendix: operating costs -->
 <section class="slide mx-slide oc-slide" data-title="Appendix: Operating costs">
