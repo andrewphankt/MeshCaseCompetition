@@ -1535,6 +1535,21 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .room.mesh-ui .mt-body .o { color: #a9a6a0; } .room.mesh-ui .mt-body .ok { color: #7fdcae; } .room.mesh-ui .mt-body .w { color: #ffd84d; }
 .room.mesh-ui .mt-body .cur::after { content: ""; display: inline-block; width: 9px; height: 18px; background: #e8e6e1; margin-left: 2px; vertical-align: -3px; animation: suBlink 1s step-end infinite; }
 @media (prefers-reduced-motion: reduce) { .room.mesh-ui .m-term, .room.mesh-ui .su-pane { animation: none; } .room.mesh-ui .m-setup { transition: none; } }
+
+/* push plane, take 4: no trail, one clean loop, straight into Changes, then it explodes */
+.room.mesh-ui .fl > svg { display: none; }
+.room.mesh-ui .fl.go .fl-jet { animation: flfly4 var(--fly) cubic-bezier(.45,.05,.55,.95) forwards; }
+@keyframes flfly4 { 0% { offset-distance: 0%; opacity: 0; transform: scale(.5); } 6% { opacity: 1; transform: scale(1); } 97% { opacity: 1; transform: scale(1); } 100% { offset-distance: 100%; opacity: 0; transform: scale(.6); } }
+.room.mesh-ui .fl-boom { position: absolute; width: 0; height: 0; pointer-events: none; z-index: 2; }
+.room.mesh-ui .fl-boom b { position: absolute; left: -10px; top: -10px; width: 20px; height: 20px; border-radius: 50%; background: #ffd84d; opacity: 0; }
+.room.mesh-ui .fl-boom i { position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 2px; background: #16171b; opacity: 0; }
+.room.mesh-ui .fl-boom i:nth-child(3n) { background: #ED93B1; } .room.mesh-ui .fl-boom i:nth-child(4n) { background: #ffd84d; width: 10px; height: 5px; }
+.room.mesh-ui .fl.boom .fl-boom b { animation: flring .6s ease-out forwards; }
+.room.mesh-ui .fl.boom .fl-boom i { animation: flbits .8s cubic-bezier(.15,.7,.3,1) forwards; }
+@keyframes flring { 0% { opacity: .95; transform: scale(.3); } 100% { opacity: 0; transform: scale(5); } }
+@keyframes flbits { 0% { opacity: 1; transform: translate(0,0) rotate(0); } 100% { opacity: 0; transform: translate(var(--bx), var(--by)) rotate(var(--br)); } }
+.room.mesh-ui #nav-changes.hit { animation: navhit .9s ease; }
+@media (prefers-reduced-motion: reduce) { .room.mesh-ui .fl.go .fl-jet, .room.mesh-ui .fl.boom .fl-boom * { animation: none; } }
 </style>
 </head>
 <body>
@@ -1821,7 +1836,7 @@ Saved 2 files.</pre></div></div>
       <div class="m-nav">
         <div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>Preview</div>
         <div id="nav-updates"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>Updates</div>
-        <div><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Changes</div>
+        <div id="nav-changes"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Changes</div>
         <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.2 5.6L20 9.3l-4.5 3.9 1.4 5.8L12 16l-4.9 3 1.4-5.8L4 9.3l5.8-.7z"/></svg>Skills<span class="m-count">5</span></div>
       </div>
       <div class="m-h">Channels<span>+</span></div>
@@ -1941,7 +1956,7 @@ Saved 2 files.</pre></div></div>
       <div class="mt-bar"><i></i><i></i><i></i><span id="mt-title">Terminal</span><em>Outside Mesh</em></div>
       <div class="mt-body" id="mt-body"></div>
     </div>
-    <div class="fl" id="rm-flight" aria-hidden="true"><svg><path pathLength="1" d="M0 0"/></svg><span class="fl-jet"><svg viewBox="0 0 24 24"><g transform="rotate(45 12 12)"><path d="M3 11.5 21 3l-6.5 18-3-7.5z"/><path d="M11.5 13.5 21 3"/></g></svg></span></div>
+    <div class="fl" id="rm-flight" aria-hidden="true"><span class="fl-boom" id="fl-boom"><b></b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><svg><path pathLength="1" d="M0 0"/></svg><span class="fl-jet"><svg viewBox="0 0 24 24"><g transform="rotate(45 12 12)"><path d="M3 11.5 21 3l-6.5 18-3-7.5z"/><path d="M11.5 13.5 21 3"/></g></svg></span></div>
   </div>
   <aside class="notes">[Speaker: Andrew. About 70 seconds. 12 clicks.] JOIN: (1) Continue with GitHub. (2) Pick the project. (3) Pick your agent: keep the one you already use. (4) One paste into your agent; Mesh ticks off the rest of setup by itself. (5) You're in the team room. THE ROOM: (6) Andrew says his agent is on the header. (7) Iris hasn't read the chat. She prompts her agent in HER terminal, not in Mesh. Before it edits, her agent checks the room and catches that Andrew's agent is already there. (8) Take the footer: no collision. (9) Andrew: get this to Evelyn. (10) Evelyn prompts Felix in her own Claude Code. Say it: "You never prompt inside Mesh. Mesh is where the team talks; your terminal is where you talk to your agent." (11) Preview: the shared draft. (12) Push: nothing goes live until someone presses it. Point at Dante (out of tokens) and Sarah's (busy) if there's time.</aside>
 </section>
@@ -3001,6 +3016,7 @@ Saved 2 files.</pre></div></div>
   /* ---------- Demo ending: Preview, then Push ---------- */
   var pv = $('m-pv'), pvRows = $('pv-rows'), roomEl = document.querySelector('.room.mesh-ui'), footerChanged = false;
   var BURST = [[-110,-90,140],[-60,-140,-80],[0,-150,200],[60,-132,60],[108,-88,-140],[136,-20,90],[118,46,-60],[70,88,160],[0,104,-200],[-70,84,110],[-120,40,-90],[-142,-24,40]];
+  each(document.querySelectorAll('#fl-boom i'), function (b, k) { var d = BURST[k % BURST.length]; b.style.setProperty('--bx', d[0] * .7 + 'px'); b.style.setProperty('--by', d[1] * .7 + 'px'); b.style.setProperty('--br', d[2] + 'deg'); });
   each(pv.querySelectorAll('.pv-burst i'), function (b, k) { var d = BURST[k]; b.style.setProperty('--bx', d[0] + 'px'); b.style.setProperty('--by', d[1] + 'px'); b.style.setProperty('--br', d[2] + 'deg'); });
   function pvRow(face, text, who) {
     var r = el('div', 'pv-row');
@@ -3036,22 +3052,31 @@ Saved 2 files.</pre></div></div>
     var fl = $('rm-flight'); if (!fl || !dur) return;
     var R = roomEl.getBoundingClientRect(), sc = R.width / roomEl.offsetWidth;
     function pt(el, fx, fy) { var r = el.getBoundingClientRect(); return [(r.left + r.width * fx - R.left) / sc, (r.top + r.height * fy - R.top) / sc]; }
-    var S = pt(btn, .5, .5), E = pt($('nav-updates'), .8, .5), C = pt(document.querySelector('.pv-stage'), .5, .5), cx = C[0], cy = C[1];
-    var P = [S, [S[0] - 170, S[1] - 110], [cx + 200, cy + 60], [cx + 40, cy + 40], [cx - 50, cy - 70], [cx + 30, cy - 170], [cx + 130, cy - 80], [cx + 40, cy + 30], [cx - 220, cy + 10], [(cx + E[0]) / 2, (cy + E[1]) / 2 + 30], E];
-    var d = catmull(P), svg = fl.querySelector('svg');
-    svg.setAttribute('viewBox', '0 0 ' + roomEl.offsetWidth + ' ' + roomEl.offsetHeight);
-    svg.querySelector('path').setAttribute('d', d);
+    var S = pt(btn, .5, .5), E = pt($('nav-changes'), .55, .5), C = pt(document.querySelector('.pv-stage'), .5, .55);
+    var P = [], f = function (v) { return v.toFixed(1); };
+    /* 1. dip out of the Push button and glide left */
+    var L0 = [C[0] + 260, C[1] + 60];
+    for (var t = 0; t <= 1.0001; t += 0.05) { var u = 1 - t; P.push([u * u * S[0] + 2 * u * t * (S[0] - 60) + t * t * L0[0], u * u * S[1] + 2 * u * t * (L0[1] + 40) + t * t * L0[1]]); }
+    /* 2. one clean loop (a trochoid: moving left, up and over the top, back down) */
+    var Rr = 130, k = 55;
+    for (var a = 0.15; a <= Math.PI * 2 + 0.0001; a += 0.12) P.push([L0[0] - k * a - Rr * Math.sin(a), L0[1] - Rr + Rr * Math.cos(a)]);
+    /* 3. straight into Changes */
+    var L1 = P[P.length - 1];
+    for (var t2 = 0.08; t2 <= 1.0001; t2 += 0.08) { var e = t2 * t2 * (3 - 2 * t2); P.push([L1[0] + (E[0] - L1[0]) * t2, L1[1] + (E[1] - L1[1]) * e]); }
+    var d = 'M' + P.map(function (p) { return f(p[0]) + ' ' + f(p[1]); }).join(' L');
     fl.querySelector('.fl-jet').style.offsetPath = "path('" + d + "')";
+    var boom = $('fl-boom'); boom.style.left = E[0] + 'px'; boom.style.top = E[1] + 'px';
     fl.style.setProperty('--fly', dur + 'ms');
-    fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
-    timers.push(setTimeout(function () { fl.classList.remove('go'); }, dur + 900));
+    fl.classList.remove('go', 'boom'); void fl.offsetWidth; fl.classList.add('go');
+    timers.push(setTimeout(function () { fl.classList.add('boom'); }, dur - 60));
+    timers.push(setTimeout(function () { fl.classList.remove('go', 'boom'); }, dur + 1200));
   }
   $('pv-push').addEventListener('click', function () {
     var b = this; b.disabled = true; b.innerHTML = '<span class="spin"></span>Pushing';
     pv.classList.add('pushing', 'impact');
     var FLY = reduce ? 0 : 2400;
     launchPlane(b, FLY);
-    timers.push(setTimeout(function () { b.textContent = 'Pushed'; var u = $('nav-updates'); u.classList.remove('hit'); void u.offsetWidth; u.classList.add('hit'); }, FLY));
+    timers.push(setTimeout(function () { b.textContent = 'Pushed'; var u = $('nav-changes'); u.classList.remove('hit'); void u.offsetWidth; u.classList.add('hit'); }, FLY));
     var rows = [].slice.call(pvRows.children);
     rows.forEach(function (r, k) { timers.push(setTimeout(function () { r.classList.add('gone'); }, FLY + 150 + k * 200)); });
     var t = FLY + 150 + rows.length * 200 + 300;
