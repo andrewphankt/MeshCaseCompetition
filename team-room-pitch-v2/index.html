@@ -1662,6 +1662,8 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 
 .follow .mvp-link { padding: 16px 26px; }
 .follow .mvp-link b { font: 700 24px var(--body); }
+
+.follow .qr { display: none !important; }
 </style>
 </head>
 <body>
@@ -1700,7 +1702,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <span class="mlab shared-lab" style="left:924px; top:122px">One shared draft</span>
   </div>
   <div class="follow" id="follow" hidden data-interactive>
-    <div class="qr" id="qr" aria-label="QR code to open the working Mesh MVP"></div>
+    <div class="qr" id="qr" hidden aria-hidden="true"></div>
     <div class="follow-links">
       <a class="mvp-link" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener"><b>Try out our MVP &#8599;</b></a>
     </div>
