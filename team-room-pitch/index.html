@@ -2159,7 +2159,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 </section>
 
 <!-- 7 Demo -->
-<section class="slide demo-full" data-title="Live: the team room" data-hook="demo">
+<section class="slide demo-full" data-title="Live: the team room" data-hook="demo" data-start="room">
   <div class="spk spk-andrew" aria-label="Speaker: Andrew"><i></i><span><small>Speaker</small>Andrew</span></div>
   <div class="room mesh-ui" data-interactive data-felix="idle" data-busy="0">
     <aside class="m-side">
@@ -2295,7 +2295,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     </div>
     <div class="fl" id="rm-flight" aria-hidden="true"><span class="fl-boom" id="fl-boom"><b></b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><svg><path pathLength="1" d="M0 0"/></svg><span class="fl-jet"><svg viewBox="0 0 24 24"><g transform="rotate(45 12 12)"><path d="M3 11.5 21 3l-6.5 18-3-7.5z"/><path d="M11.5 13.5 21 3"/></g></svg></span></div>
   </div>
-  <aside class="notes">[Speaker: Andrew. About 70 seconds. 7 clicks.] JOIN (one click each): (1) Continue with GitHub. (2) Pick the project. (3) Pick your agent: keep the one you already use. (4) One paste into your agent; Mesh ticks off the rest of setup by itself. (5) You're in the team room. THE ROOM PLAYS ITSELF (about 35 seconds, clicks are ignored while it runs): Andrew says his agent is on the header. Iris hasn't read the chat; she prompts her agent in HER terminal, not in Mesh. Her agent checks the room before editing and catches that Max is already there, then takes the footer. Andrew: get this to Evelyn. Evelyn prompts Felix in her own Claude Code. Say it: "You never prompt inside Mesh. Mesh is where the team talks; your terminal is where you talk to your agent." It stops at "A preview is ready." (6) Preview: the shared draft. (7) Push: nothing goes live until someone presses it.</aside>
+  <aside class="notes">[Speaker: Andrew. COLD OPEN, about 55 seconds. 3 clicks.] The room is already open in #general, no setup screens. Say: &ldquo;This is our team room. Watch what happens when two of our AIs go for the same file.&rdquo; (1) Click: the room plays itself, about 35 seconds; clicks are ignored while it runs. Andrew says his agent Max is on the header. Iris hasn&rsquo;t read the chat; she prompts her agent Gwen in HER terminal, not in Mesh. Gwen checks the room before editing, sees Max is already there, and takes the footer instead. Andrew: get this to Evelyn. Evelyn prompts Felix in her own Claude Code. Say it: &ldquo;You never prompt inside Mesh. Mesh is where the team talks; your terminal is where you talk to your agent.&rdquo; It stops at &ldquo;A preview is ready.&rdquo; (2) Preview: the shared draft. (3) Push: nothing goes live until a person presses it. Then training mode. If anyone asks how people join: one GitHub sign-in, pick the project, pick your agent, one paste (the setup screens are still in the deck: remove data-start=&quot;room&quot; to show them).</aside>
 </section>
 
 <!-- 9 Training mode -->
@@ -3749,8 +3749,16 @@ Saved 2 files.</pre></div></div>
   $('su-agents').addEventListener('click', function (e) { var b = e.target.closest('.su-agent'); if (!b || DEMO.beat !== 2) return; each(setup.querySelectorAll('.su-agent'), function (x) { x.classList.remove('pick'); }); b.classList.add('pick'); DEMO.beat = 3; later(700, function () { suStep(3); }); });
 
   /* ---------- Demo clicker ---------- */
+  /* Cold open: data-start="room" on the slide skips the 4 setup screens and opens in #general.
+     The first click starts the room scene (beat 5). Remove the attribute to bring setup back. */
+  function skipSetup() {
+    setup.hidden = true; setup.classList.add('leaving'); suStep(3);
+    each(setup.querySelectorAll('.su-list li'), function (li) { li.classList.add('on'); });
+    chan('general'); DEMO.beat = 4;
+    var h = $('demo-hint'); if (h) h.innerHTML = 'Andrew and Iris both send their AIs to the header. Press <b>Next</b> (or the clicker) to watch.';
+  }
   hooks.demo = {
-    enter: function () { reset(); },
+    enter: function () { reset(); var s = document.querySelector('.slide.demo-full'); if (s && s.dataset.start === 'room') skipSetup(); },
     advance: demoNext
   };
 
