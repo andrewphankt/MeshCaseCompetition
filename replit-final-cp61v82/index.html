@@ -1913,6 +1913,21 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .lm-slide[data-at="1"] .lm-pt { opacity: .55; transition: opacity .6s; }
 @keyframes lmDrop { from { opacity: 0; transform: translateY(-60px) scale(.5); } }
 @keyframes lmPulse { 50% { transform: scale(1.08); border-color: rgba(237,147,177,.9); } }
+
+/* Where we're headed: 7 items, 4 columns */
+.rm-tiers.rm-future { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+/* Road map cards in the builder look: dark tiles, readable text (was light tiles with light text) */
+:root[data-look="builder"] .rm-card { background: #0e1015 !important; border: 1px solid #23262f !important; box-shadow: 0 30px 80px rgba(0,0,0,.6) !important; }
+:root[data-look="builder"] .rm-card .rm-tier { background: #14161c !important; border: 1px solid #23262f !important; border-top: 3px solid var(--pink) !important; border-radius: 8px !important; box-shadow: none !important; }
+:root[data-look="builder"] .rm-card .rm-k-l { font: 500 12px var(--mono) !important; letter-spacing: .1em; color: var(--pink) !important; min-height: 0 !important; }
+:root[data-look="builder"] .rm-card .rm-k-goal { color: #eef0f5 !important; }
+:root[data-look="builder"] .rm-card :is(.rm-k-sub, .rm-k-now, .rm-k-arrow) { color: #a3a9b8 !important; }
+:root[data-look="builder"] .rm-card .rm-k-sub b { color: #eef0f5 !important; }
+.rm-tiers.rm-future .rm-tier { padding: 12px 14px 14px; gap: 6px; }
+.rm-tiers.rm-future .rm-k-goal { font-size: 24px; }
+.rm-tiers.rm-future .rm-k-sub { font-size: 14px; line-height: 1.35; }
+.rm-tiers.rm-future .rm-k-l { min-height: 0; }
 /* BUILDER:AUTO START */
 :root[data-look="builder"] body { background: #0a0b0e; }
 :root[data-look="builder"] #stage { box-shadow: 0 30px 80px rgba(58,63,76,0.45); }
@@ -2798,7 +2813,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
       <h3 id="rm-m-h">Campuses pay. Students don&rsquo;t.</h3>
       <p class="rm-lead">A campus licenses Mesh and offers it to its students as a free resource, for students who want to make things but need introductory help with coding.</p>
       <div class="rm-tiers">
-        <div class="rm-tier"><span class="rm-k-l">Campuses</span><span class="rm-k-goal"><span class="rm-tbd">$X</span> / year</span><span class="rm-k-sub">A campus-wide license. First stop: USC. Start with one club or hackathon, then license the whole campus.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Campuses</span><span class="rm-k-goal">Year one at cost</span><span class="rm-k-sub">A campus-wide license, after a free pilot. First stop: USC. Start with one club or hackathon, then license the whole campus.</span></div>
         <div class="rm-tier"><span class="rm-k-l">Students</span><span class="rm-k-goal">Free</span><span class="rm-k-sub">Through their campus, on the AI plan they already have. Mesh never charges for AI.</span></div>
         <div class="rm-tier"><span class="rm-k-l">Agent characters</span><span class="rm-k-goal">Paid packs</span><span class="rm-k-sub">Every agent gets a free character. Students can buy character packs and custom looks to personify their agents.</span><span class="mo-crew" aria-hidden="true"><img src="sprites/fox_idle.png" alt=""><img src="sprites/cat_idle.png" alt=""><img src="sprites/bunny_idle.png" alt=""><img src="sprites/bear_idle.png" alt=""><img src="sprites/idle.png" alt=""></span></div>
       </div>
@@ -2814,13 +2829,14 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
         <div class="rm-tier"><span class="rm-k-l">Talk</span><span class="rm-k-goal">@mention agents</span><span class="rm-k-sub">Ping a teammate&rsquo;s agent so it talks back to you.</span></div>
         <div class="rm-tier"><span class="rm-k-l">Connect</span><span class="rm-k-goal">More AIs</span><span class="rm-k-sub">Plug in more AIs, like Grok and Wajo.</span></div>
         <div class="rm-tier"><span class="rm-k-l">Rewards</span><span class="rm-k-goal">Charms for your agent</span><span class="rm-k-sub">Cross a token milestone and we send hats, pets and add-ons for your agent&rsquo;s character.</span></div>
+        <div class="rm-tier"><span class="rm-k-l">Game teams</span><span class="rm-k-goal">Unity support</span><span class="rm-k-sub">Build Unity games together: scenes edited one at a time, previews in the browser.</span></div>
         <div class="rm-tier"><span class="rm-k-l">Keep going</span><span class="rm-k-goal">Token outages</span><span class="rm-k-sub">See when an agent runs out and when it refreshes, then @mention it to finish what it started.</span></div>
       </div>
       <p class="rm-lead rm-foot">How we&rsquo;ll measure progress is on the next slide.</p>
     </div>
   </div>
   <div class="rm-fade" aria-hidden="true"></div>
-  <aside class="notes">[Target: about 30 seconds. Clicker: 1 hub opens, 2 Ask to join on Club Finder, 3 See the build on Study Sprint, 4 close, 5 Monetization, 6 close, 7 Where we&rsquo;re headed, 8 close, 9 the car drives off and the screen wipes to black into the metrics.] Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then monetization: campuses pay, students don't, and students can buy character packs for their agents. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press drives to the next stop and opens it.</aside>
+  <aside class="notes">[Target: about 30 seconds. Clicker: 1 hub opens, 2 Ask to join on Club Finder, 3 See the build on Study Sprint, 4 close, 5 Monetization, 6 close, 7 Where we&rsquo;re headed, 8 close, 9 the car drives off and the screen wipes to black into the metrics.] Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then monetization: campuses pay, students don't, and students can buy character packs for their agents. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press drives to the next stop and opens it. UNITY (in &ldquo;Where we&rsquo;re headed&rdquo;): &ldquo;Next, game teams: Unity projects with scenes edited one at a time and previews in the browser.&rdquo;</aside>
 </section>
 
 <!-- Appendix: how Mesh makes money -->
