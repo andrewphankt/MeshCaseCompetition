@@ -1870,20 +1870,10 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .cp-foot { margin: 22px 0 0; font: 600 24px/1.3 var(--display); letter-spacing: -0.02em; color: #eef0f5; }
 .cp-foot span { color: #8b91a1; font-weight: 400; font-family: var(--body); font-size: 20px; margin-left: 8px; }
 
-/* Title: characters move exactly like the live demo (same frames, same timing) */
+/* Title: characters match slide 2's sidebar: idle pose, gentle sway (fsway 2.8s), staggered; Dante keeps his out-of-tokens GIF */
 .sx-ani { position: relative; width: 52px; height: 52px; display: block; }
-.sx-ani img { position: absolute; inset: 0; width: 52px; height: 52px; object-fit: contain; object-position: 50% 100%; opacity: 0; }
-/* strike: wind up, swing, hit and hold (Max's hammer .9s, Felix's pickaxe 1.1s) */
-.sx-ani[data-c="fox"] { --fr: .9s; } .sx-ani[data-c="felix"] { --fr: 1.1s; }
-.sx-ani:is([data-c="fox"],[data-c="felix"]) .f1 { animation: frS1 var(--fr) step-end infinite; }
-.sx-ani:is([data-c="fox"],[data-c="felix"]) .f2 { animation: frS2 var(--fr) step-end infinite; }
-.sx-ani:is([data-c="fox"],[data-c="felix"]) .f3 { animation: frS3 var(--fr) step-end infinite; }
-/* back and forth: Gwen watering, 1.6s */
-.sx-ani[data-c="cat"] { --fr: 1.6s; }
-.sx-ani[data-c="cat"] .f1 { animation: frP1 var(--fr) step-end infinite; }
-.sx-ani[data-c="cat"] .f2 { animation: frP2 var(--fr) step-end infinite; }
-.sx-ani[data-c="cat"] .f3 { animation: frP3 var(--fr) step-end infinite; }
-@media (prefers-reduced-motion: reduce) { .sx-ani img { animation: none !important; } .sx-ani .f1 { opacity: 1; } }
+.sx-ani img { position: absolute; left: 0; right: 0; bottom: 0; height: 50px; width: 100%; object-fit: contain; object-position: 50% 100%; transform-origin: 50% 95%; animation: fsway 2.8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .sx-ani img { animation: none !important; } }
 
 /* Landscape map: Mesh hidden until the click */
 .lm-slide { padding: 56px 110px 36px; }
@@ -2291,9 +2281,9 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <p>Bring the agent you already use. Mesh stops agents from colliding and merges everyone&rsquo;s work into one shared draft.</p>
     <div class="sx-cta" data-interactive><a class="a1" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener">Try the MVP &#8599;</a><a class="a2" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener">tinyurl.com/meshsandbox</a></div>
     <div class="sx-win" aria-hidden="true"><div class="sx-wb"><i></i><i></i><i></i><span>mesh &middot; #general &middot; 4 agents online</span></div><div class="sx-rows">
-      <div class="sx-row"><span class="sx-ani" data-c="fox"><img class="f1" src="sprites/fox_f1.png" alt=""><img class="f2" src="sprites/fox_f2.png" alt=""><img class="f3" src="sprites/fox_f3.png" alt=""></span><div><b>Max <small>&middot; Andrew &middot; Claude Code</small></b><span>index.html &middot; header</span></div><em class="sx-chip ok">editing</em></div>
-      <div class="sx-row"><span class="sx-ani" data-c="cat"><img class="f1" src="sprites/cat_f1.png" alt=""><img class="f2" src="sprites/cat_f2.png" alt=""><img class="f3" src="sprites/cat_f3.png" alt=""></span><div><b>Gwen <small>&middot; Iris &middot; Gemini</small></b><span>wants index.html &middot; header</span></div><em class="sx-chip blk">blocked &rarr; footer</em></div>
-      <div class="sx-row"><span class="sx-ani" data-c="felix"><img class="f1" src="sprites/felix_f1.png" alt=""><img class="f2" src="sprites/felix_f2.png" alt=""><img class="f3" src="sprites/felix_f3.png" alt=""></span><div><b>Felix <small>&middot; Evelyn &middot; Claude Code</small></b><span>styles.css</span></div><em class="sx-chip ok">saved</em></div>
+      <div class="sx-row"><span class="sx-ani" data-c="fox"><img src="sprites/fox_idle.png" alt="" style="animation-delay:0s"></span><div><b>Max <small>&middot; Andrew &middot; Claude Code</small></b><span>index.html &middot; header</span></div><em class="sx-chip ok">editing</em></div>
+      <div class="sx-row"><span class="sx-ani" data-c="cat"><img src="sprites/cat_idle.png" alt="" style="animation-delay:-.7s"></span><div><b>Gwen <small>&middot; Iris &middot; Gemini</small></b><span>wants index.html &middot; header</span></div><em class="sx-chip blk">blocked &rarr; footer</em></div>
+      <div class="sx-row"><span class="sx-ani" data-c="felix"><img src="sprites/idle.png" alt="" style="animation-delay:-1s"></span><div><b>Felix <small>&middot; Evelyn &middot; Claude Code</small></b><span>styles.css</span></div><em class="sx-chip ok">saved</em></div>
       <div class="sx-row"><img src="sprites/bear_out.gif" alt=""><div><b>Dante <small>&middot; Tony</small></b><span>out of tokens &middot; back 3:37 PM</span></div><em class="sx-chip wait">resumes later</em></div>
     </div><div class="sx-term"><span class="p">$</span> mesh status<br><span class="m">draft</span> <span class="g">&check; 32 saves</span> &middot; preview ready<br><span class="m">main</span>&nbsp; waiting for a person to press <span class="p">Push</span></div></div>
     <div class="sx-meta"><span>Andrew &middot; Iris &middot; Sarah &middot; Evelyn &middot; Tony</span><span>USC</span><span>Thu, Dec 3, 2026</span></div>
