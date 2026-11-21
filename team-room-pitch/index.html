@@ -1745,6 +1745,49 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .cn-band span { font: 600 16px/1.2 var(--body); background: rgba(247,242,232,.1); border: 1px solid rgba(247,242,232,.25); padding: 7px 12px; border-radius: 999px; }
 .cn-band i { font-style: normal; color: #ED93B1; font-weight: 400; }
 .ar-slide .by-hand, .cn-slide .by-hand { margin-bottom: 12px; }
+
+/* An emerging market: timeline with the AgentMesh reveal */
+.em-slide { padding: 56px 110px 40px; }
+.em-h { font-size: 64px; line-height: 1; font-weight: 800; letter-spacing: -0.05em; margin: 6px 0 6px; }
+.em-sub { font: 400 24px/1.3 var(--body); color: var(--muted); margin: 0 0 6px; }
+.em-line { position: relative; width: 1380px; height: 250px; margin-top: 4px; }
+.em-axis { position: absolute; left: 30px; right: 20px; top: 125px; height: 2px; background: #2a2e3a; }
+.em-tick { position: absolute; top: 119px; width: 1px; height: 14px; background: #3a3f4c; }
+.em-tick b { position: absolute; top: 18px; left: -14px; width: 30px; text-align: center; font: 500 12px var(--mono); color: #6b7182; letter-spacing: .06em; text-transform: uppercase; }
+.em-nov { position: absolute; top: 106px; height: 40px; border-radius: 6px; background: rgba(237,147,177,.08); border: 1px dashed rgba(237,147,177,.45); transition: background .4s; }
+.em-pt { position: absolute; top: 125px; width: 0; height: 0; }
+.em-pt > i { position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 50%; background: #c9cede; box-shadow: 0 0 0 4px #0c0d11; }
+.em-pt span { position: absolute; left: -70px; width: 140px; text-align: center; display: flex; flex-direction: column; gap: 2px; }
+.em-pt.em-up span { bottom: 18px; } .em-pt.em-dn span { top: 40px; }
+.em-pt.em-up::before, .em-pt.em-dn::before { content: ""; position: absolute; left: 0; width: 1px; background: #2a2e3a; }
+.em-pt.em-up::before { bottom: 8px; height: 10px; } .em-pt.em-dn::before { top: 8px; height: 30px; }
+.em-pt small { font: 500 12px var(--mono); color: #6b7182; letter-spacing: .06em; }
+.em-pt b { font: 700 18px/1.1 var(--display); letter-spacing: -0.02em; color: var(--text); }
+.em-pt em { font: 400 13px/1.2 var(--body); font-style: normal; color: var(--muted); }
+.em-me { opacity: 0; }
+.em-me > i { background: var(--pink); width: 20px; height: 20px; left: -10px; top: -10px; box-shadow: 0 0 0 5px #0c0d11, 0 0 0 9px rgba(237,147,177,.35), 0 0 28px rgba(237,147,177,.7); }
+.em-me span { top: 30px; left: -110px; width: 220px; }
+.em-me b { color: var(--pink); font-size: 24px; }
+.em-me em { color: #eef0f5; font-size: 14px; }
+.em-arc { position: absolute; left: 0; top: 40px; width: 1380px; height: 120px; overflow: visible; pointer-events: none; }
+.em-arc path { fill: none; stroke: var(--pink); stroke-width: 2.5; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; }
+.em-story { margin-top: 4px; }
+.em-k { font: 500 13px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--pink); margin-bottom: 8px; }
+.em-cards { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.em-cards div { background: #101217; border: 1px solid #23262f; border-radius: 6px; padding: 9px 10px; font: 400 13.5px/1.3 var(--body); color: #c9cede; }
+.em-cards small { display: block; font: 500 11.5px var(--mono); color: #6b7182; letter-spacing: .05em; margin-bottom: 4px; }
+.em-cards b { color: var(--text); font-weight: 600; }
+.em-cards .em-x { border-color: rgba(255,201,77,.4); } .em-cards .em-x b { color: #ffc94d; }
+.em-cards .em-now { border-color: var(--pink); } .em-cards .em-now b { color: var(--pink); }
+.em-q { margin: 18px 0 0; font: 600 30px/1.2 var(--display); letter-spacing: -0.03em; }
+.em-q span { color: var(--pink); }
+.em-src { position: absolute; left: 110px; bottom: 44px; font: 400 12px var(--body); color: #4c5262; }
+.em-slide[data-at="1"] .em-nov, .em-slide[data-at="2"] .em-nov { background: rgba(237,147,177,.16); }
+.em-slide[data-at="3"] .em-me { opacity: 1; animation: emDrop .7s cubic-bezier(.2,1.4,.4,1) .9s both; }
+.em-slide[data-at="3"] .em-arc path { opacity: 1; animation: emArc 1s ease-out forwards; }
+.em-slide[data-at="3"] .em-q { opacity: .35; }
+@keyframes emArc { to { stroke-dashoffset: 0; } }
+@keyframes emDrop { from { opacity: 0; transform: translateY(-40px) scale(.6); } }
 /* BUILDER:AUTO START */
 :root[data-look="builder"] body { background: #0a0b0e; }
 :root[data-look="builder"] #stage { box-shadow: 0 30px 80px rgba(58,63,76,0.45); }
@@ -2458,10 +2501,41 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <div class="tx-hand">&mdash; part two</div>
     <h2 class="tx-title">Why it had to <span class="tx-mark">exist</span></h2>
     <p class="tx-sub">What building with AI looks like without a room.</p>
-    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Built alone, not together</li><li>They can&rsquo;t see each other</li><li>We tested it on ourselves</li></ul></div>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>An emerging market</li><li>Built alone, not together</li><li>They can&rsquo;t see each other</li><li>We tested it on ourselves</li></ul></div>
   </div>
   <aside class="notes">[Speaker: Iris. Target: about 3 seconds. Click straight through.] Part 2 of 3: &ldquo;You just watched Mesh stop a collision. Here&rsquo;s why we had to build it.&rdquo;</aside>
 </section>
+<!-- An emerging market: timeline with the AgentMesh reveal (Replit final) -->
+<section class="slide em-slide" data-title="An emerging market">
+  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
+  <div class="by-hand">&mdash; why now</div>
+  <h2 class="em-h">An <span class="by-mark">emerging</span> market.</h2>
+  <p class="em-sub">In 2026, everyone started building rooms for AI agents.</p>
+  <div class="em-line">
+    <div class="em-axis"></div><i class="em-tick" style="left:40px"><b>Mar</b></i><i class="em-tick" style="left:185px"><b>Apr</b></i><i class="em-tick" style="left:326px"><b>May</b></i><i class="em-tick" style="left:472px"><b>Jun</b></i><i class="em-tick" style="left:613px"><b>Jul</b></i><i class="em-tick" style="left:758px"><b>Aug</b></i><i class="em-tick" style="left:904px"><b>Sep</b></i><i class="em-tick" style="left:1044px"><b>Oct</b></i><i class="em-tick" style="left:1190px"><b>Nov</b></i><i class="em-tick" style="left:1331px"><b>Dec</b></i>
+    <div class="em-nov" style="left:1190px; width:166px"></div>
+    <div class="em-pt em-up" style="left:87px"><i></i><span><small>Mar 11</small><b>Replit Agent 4</b><em>team collaboration</em></span></div><div class="em-pt em-dn" style="left:706px"><i></i><span><small>Jul 21</small><b>Buzz</b><em>Block</em></span></div><div class="em-pt em-up" style="left:847px"><i></i><span><small>Aug 20</small><b>Slack Code</b><em>Salesforce</em></span></div><div class="em-pt em-dn" style="left:1021px"><i></i><span><small>Sep 26</small><b>Agentmash</b><em>agents warn each other</em></span></div><div class="em-pt em-up" style="left:1232px"><i></i><span><small>Nov 10</small><b>Cursor Projects</b><em>goes multiplayer</em></span></div>
+    <svg class="em-arc" viewBox="0 0 1380 120" aria-hidden="true"><path pathLength="1" d="M1340 80 C 1300 -110, 640 -110, 373 66"/></svg>
+    <div class="em-pt em-me" style="left:373px"><i></i><span><small>May 11, 2026</small><b>AgentMesh</b><em>Iris&rsquo;s first version, 10 weeks before Buzz</em></span></div>
+  </div>
+  <div class="em-story" data-step="1">
+    <div class="em-k">Our November</div>
+    <div class="em-cards">
+      <div><small>Nov 5*</small><b>Product SC gives us the case</b></div>
+      <div><small>Our first idea</small><b>An AI that joins our meetings and speaks up</b></div>
+      <div class="em-x"><small>Nov 10&ndash;12</small><b>Anthropic launches Claude Meetings.</b> We pivot.</div>
+      <div><small>The pivot</small><b>Back to an old passion project of Iris&rsquo;s</b></div>
+      <div><small>Nov 16</small><b>First Mesh build</b></div>
+      <div><small>Nov 19</small><b>Qualifiers: we advance</b></div>
+      <div class="em-now"><small>Dec 3</small><b>Today, with you</b></div>
+    </div>
+  </div>
+  <p class="em-q" data-step="2">Mesh started as one of Iris&rsquo;s old passion projects. <span>When do you think it began?</span></p>
+  <span class="cx-steps" aria-hidden="true"><i data-step="3"></i></span>
+  <p class="em-src">Dates from company announcements, GitHub and npm. AgentMesh: github.com/liuboyuniris-ai/agentmesh. *Assignment date to confirm.</p>
+  <aside class="notes">[Speaker: Iris. Target: about 40 seconds. 3 clicks.] Open: &ldquo;This is an emerging market. Almost every product here launched in 2026.&rdquo; Walk the line left to right: Replit started it with Agent 4 in March, then Block&rsquo;s Buzz, Slack Code, Agentmash and Cursor, most of them in the last four months. (1) Click, our November: Product SC gave us the case. Our first idea was an AI that joins our meetings and speaks up like a teammate. Days later, Anthropic launched Claude Meetings, so we pivoted, back to an old passion project of mine. First Mesh build on November 16, qualifiers on the 19th, and today we&rsquo;re here with you. (2) Click, ask the room: &ldquo;Mesh started as one of my old passion projects. When do you think it began?&rdquo; Pause. (3) Click, the reveal: &ldquo;May 11. Ten weeks before Block launched Buzz.&rdquo; Then: &ldquo;We&rsquo;re not chasing this market. We were already in it.&rdquo; Careful wording: say &ldquo;published before Buzz, Slack Code, Agentmash and Cursor,&rdquo; not &ldquo;first ever.&rdquo; Replit Agent 4 (March) and AQ (February) came earlier, and the May version didn&rsquo;t have the collision check yet. If asked: the May 11 repo is public on GitHub.</aside>
+</section>
+
 
 <section class="slide" data-title="The problem" data-hook="stat">
   <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
