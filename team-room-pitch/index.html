@@ -1664,6 +1664,87 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 .follow .mvp-link b { font: 700 24px var(--body); }
 
 .follow .qr { display: none !important; }
+/* How it works: architecture slide */
+.ar-slide { padding: 58px 110px 40px; }
+.ar-h { font-size: 60px; line-height: 1.04; font-weight: 800; margin: 6px 0 22px; }
+.ar-dia { position: relative; height: 330px; display: grid; grid-template-columns: 384px 112px 388px 112px 384px; }
+.ar-card { position: relative; z-index: 1; background: #fffdf8; border: 2px solid #1f1c17; border-radius: 16px; padding: 14px 16px; height: 286px; box-shadow: 0 5px 0 #e2d9c7; transition: box-shadow .35s, transform .35s; }
+.ar-lap { grid-column: 1; } .ar-room { grid-column: 3; } .ar-git { grid-column: 5; }
+.ar-k { display: flex; align-items: center; gap: 8px; font: 700 13px/1 var(--body); letter-spacing: .12em; text-transform: uppercase; color: #6e6656; margin-bottom: 12px; }
+.ar-k svg { width: 20px; height: 20px; color: #1f1c17; }
+.ar-k .mesh-mark.small { width: 22px; height: 22px; }
+.ar-agents { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.ar-agents span { font: 600 14px/1 var(--body); color: #fff; background: var(--c); padding: 6px 9px; border-radius: 999px; }
+.ar-term { background: #1f1c17; border-radius: 10px; padding: 10px 12px; font: 500 15px/1 var(--mono); color: #f7f2e8; }
+.ar-tt { color: #a89f8c; font-size: 13px; margin-bottom: 8px; }
+.ar-hk { display: flex; justify-content: space-between; align-items: baseline; padding: 6px 8px; margin: 0 -8px; border-radius: 6px; transition: background .3s, color .3s; }
+.ar-hk i { font: italic 400 13px var(--body); color: #a89f8c; }
+.ar-fine { font: 400 14px/1.3 var(--body); color: #6e6656; margin-top: 10px; }
+.ar-row { display: flex; flex-direction: column; gap: 3px; padding: 9px 12px; border: 1.5px solid #e2d9c7; border-radius: 10px; margin-bottom: 8px; transition: border-color .3s, background .3s; }
+.ar-row b { font: 600 18px/1.1 var(--body); } .ar-row i { font: 400 14px/1.2 var(--body); color: #6e6656; font-style: normal; }
+.ar-block { position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; gap: 10px; align-items: center; background: #fde2dc; border: 1.5px solid #c8432b; border-radius: 10px; padding: 8px 10px; opacity: 0; transform: translateY(8px) scale(.96); transition: opacity .35s, transform .35s cubic-bezier(.2,1.3,.4,1); }
+.ar-block span { font-size: 24px; } .ar-block b { display: block; font: 600 15px/1.2 var(--body); color: #a33a22; } .ar-block i { font: 400 13px var(--body); color: #6e6656; font-style: normal; }
+.ar-br { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; align-items: baseline; padding: 10px 12px; border: 1.5px solid #e2d9c7; border-radius: 10px; transition: border-color .3s, background .3s; }
+.ar-br code { grid-row: span 2; font: 600 22px/1 var(--mono); background: #f1ebdf; padding: 6px 9px; border-radius: 7px; }
+.ar-br span { font: 600 16px/1.1 var(--body); } .ar-br em { font: 400 14px var(--body); color: #6e6656; font-style: normal; }
+.ar-push { display: flex; align-items: center; gap: 10px; margin: 8px 0 8px 26px; padding-left: 16px; border-left: 3px dashed #c9bfa9; height: 54px; transition: border-color .3s; }
+.ar-push span { font: 700 15px/1 var(--body); color: #fff; background: #1f1c17; padding: 7px 14px; border-radius: 999px; transition: background .3s, box-shadow .3s; }
+.ar-push i { font: italic 400 14px var(--body); color: #6e6656; }
+.ar-wires { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; overflow: visible; pointer-events: none; }
+.ar-w { fill: none; stroke: #c9bfa9; stroke-width: 3; stroke-dasharray: .03 .02; transition: stroke .3s; }
+.ar-lbl { position: absolute; font: 600 13px/1 var(--mono); color: #6e6656; background: #f7f2e8; padding: 3px 6px; border-radius: 5px; }
+.ar-la { left: 405px; top: 136px; } .ar-lg { left: 600px; top: 300px; } .ar-lg b { color: #1f1c17; }
+.ar-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 18px; }
+.ar-st { position: relative; background: #fffdf8; border: 1.5px solid #e2d9c7; border-radius: 14px; padding: 14px 16px 12px 16px; }
+.ar-st > b { position: absolute; top: -14px; left: 14px; width: 30px; height: 30px; border-radius: 50%; background: #ED93B1; color: #1f1c17; font: 700 16px/30px var(--body); text-align: center; border: 2px solid #1f1c17; }
+.ar-st h4 { font: 700 21px/1.1 var(--display); margin: 6px 0 6px; }
+.ar-st p { font: 400 15.5px/1.32 var(--body); color: #3a352c; margin: 0 0 8px; }
+.ar-st code { display: block; font: 500 13px/1.2 var(--mono); color: #f7f2e8; background: #1f1c17; padding: 6px 8px; border-radius: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ar-tag { font: 700 30px/1.2 var(--display); margin: 20px 0 0; text-align: center; }
+/* The current step lights up its part of the diagram */
+.ar-slide[data-at="1"] .ar-h1, .ar-slide[data-at="2"] .ar-h2, .ar-slide[data-at="3"] .ar-h3 { background: #ED93B1; color: #1f1c17; }
+.ar-slide[data-at="1"] .ar-h1 i, .ar-slide[data-at="2"] .ar-h2 i, .ar-slide[data-at="3"] .ar-h3 i { color: #1f1c17; }
+.ar-slide[data-at="1"] .ar-r1, .ar-slide[data-at="2"] .ar-r2, .ar-slide[data-at="3"] .ar-r3 { border-color: #ED93B1; background: #fdeef3; }
+.ar-slide[data-at="1"] .ar-room, .ar-slide[data-at="2"] .ar-room, .ar-slide[data-at="3"] .ar-room { box-shadow: 0 0 0 8px rgba(237,147,177,.3), 0 5px 0 #e2d9c7; }
+.ar-slide[data-at="1"] :is(.ar-wa, .ar-wb, .ar-wg), .ar-slide[data-at="2"] :is(.ar-wa, .ar-wb), .ar-slide[data-at="3"] :is(.ar-wa, .ar-wg) { stroke: #c8432b; animation: arflow 1s linear infinite; }
+.ar-slide[data-at="1"] .ar-b1, .ar-slide[data-at="3"] .ar-b1, .ar-slide[data-at="4"] .ar-b1 { border-color: #ED93B1; background: #fdeef3; }
+.ar-slide[data-at="1"] .ar-git, .ar-slide[data-at="3"] .ar-git, .ar-slide[data-at="4"] .ar-git { box-shadow: 0 0 0 8px rgba(237,147,177,.3), 0 5px 0 #e2d9c7; }
+.ar-slide[data-at="2"] .ar-block { opacity: 1; transform: none; }
+.ar-slide[data-at="2"] .ar-r3 { opacity: .25; }
+.ar-slide[data-at="4"] .ar-push { border-color: #c8432b; }
+.ar-slide[data-at="4"] .ar-push span { background: #c8432b; box-shadow: 0 0 0 6px rgba(200,67,43,.2); animation: arpulse 1.2s ease-in-out infinite; }
+.ar-slide[data-at="4"] .ar-b2 { border-color: #1f1c17; }
+.ar-slide[data-at="1"] .ar-lap, .ar-slide[data-at="2"] .ar-lap, .ar-slide[data-at="3"] .ar-lap { box-shadow: 0 0 0 8px rgba(237,147,177,.3), 0 5px 0 #e2d9c7; }
+.ar-slide:not([data-at="0"]) .ar-st:not(.hidden) { border-color: #e2d9c7; }
+.ar-slide[data-at="1"] .ar-st[data-step="1"], .ar-slide[data-at="2"] .ar-st[data-step="2"], .ar-slide[data-at="3"] .ar-st[data-step="3"], .ar-slide[data-at="4"] .ar-st[data-step="4"] { border: 2px solid #1f1c17; box-shadow: 0 5px 0 #ED93B1; }
+@keyframes arflow { to { stroke-dashoffset: -.05; } }
+@keyframes arpulse { 50% { transform: scale(1.08); } }
+/* Who we've listened to: LinkedIn-style cards */
+.cn-slide { padding: 52px 90px 36px; }
+.cn-h { font-size: 58px; line-height: 1.04; font-weight: 800; margin: 4px 0 14px; }
+.cn-grid { display: flex; flex-direction: column; gap: 12px; }
+.cn-row { display: grid; grid-template-columns: 112px 1fr; align-items: center; gap: 12px; }
+.cn-lab { font: 700 15px/1.15 var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--cg); border-left: 4px solid var(--cg); padding-left: 10px; }
+.cn-ind { --cg: #2f86d6; } .cn-fac { --cg: #8a5cf0; } .cn-stu { --cg: #2a9d66; }
+.cn-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.cn-card { position: relative; background: #fff; border: 1px solid #ddd6c8; border-radius: 10px; overflow: hidden; padding: 0 12px 10px; height: 170px; box-shadow: 0 2px 6px rgba(40,30,10,.08); }
+.cn-ban { height: 42px; margin: 0 -12px; background: linear-gradient(120deg, var(--cg), color-mix(in srgb, var(--cg) 45%, #fff)); }
+.cn-av { position: absolute; top: 14px; left: 12px; width: 54px; height: 54px; border-radius: 50%; border: 3px solid #fff; background: #f1ebdf; display: grid; place-items: center; font: 700 19px/1 var(--body); color: #1f1c17; overflow: hidden; }
+.cn-av img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cn-card b { display: block; margin-top: 30px; font: 700 17.5px/1.15 var(--body); color: #1f1c17; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cn-card p { margin: 3px 0 2px; font: 400 13.2px/1.25 var(--body); color: #3a352c; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.cn-card small { display: block; font: 400 12.5px/1.2 var(--body); color: #6e6656; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cn-card em { position: absolute; top: 50px; right: 10px; font: 600 11px/1 var(--body); font-style: normal; color: var(--cg); background: color-mix(in srgb, var(--cg) 12%, #fff); border: 1px solid color-mix(in srgb, var(--cg) 40%, #fff); padding: 4px 7px; border-radius: 999px; max-width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cn-next { --cg: #F26207; border: 2px dashed #F26207; background: #fff8f2; }
+.cn-next .cn-av { background: #F26207; color: #fff; }
+.cn-row[data-step]:not(.hidden) .cn-card { animation: cnpop .45s cubic-bezier(.2,1.3,.4,1) both; }
+.cn-row .cn-card:nth-child(2) { animation-delay: .06s; } .cn-row .cn-card:nth-child(3) { animation-delay: .12s; } .cn-row .cn-card:nth-child(4) { animation-delay: .18s; } .cn-row .cn-card:nth-child(5) { animation-delay: .24s; }
+@keyframes cnpop { from { opacity: 0; transform: translateY(14px) scale(.96); } }
+.cn-band { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; padding: 12px 18px; background: #1f1c17; color: #f7f2e8; border-radius: 14px; box-shadow: 0 5px 0 #ED93B1; }
+.cn-band b { font: 700 22px/1 var(--display); margin-right: 4px; }
+.cn-band span { font: 600 16px/1.2 var(--body); background: rgba(247,242,232,.1); border: 1px solid rgba(247,242,232,.25); padding: 7px 12px; border-radius: 999px; }
+.cn-band i { font-style: normal; color: #ED93B1; font-weight: 400; }
+.ar-slide .by-hand, .cn-slide .by-hand { margin-bottom: 12px; }
 </style>
 </head>
 <body>
@@ -1938,10 +2019,57 @@ Saved 2 files.</pre></div></div>
   <div class="tx-main">
     <div class="tx-hand">&mdash; part three</div>
     <h2 class="tx-title">See it in <span class="tx-mark">action</span></h2>
-    <p class="tx-sub">A live room, then training mode.</p>
-    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Live demo</li><li>Training mode</li></ul></div>
+    <p class="tx-sub">Under the hood, a live room, then training mode.</p>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>How it works</li><li>Live demo</li><li>Training mode</li></ul></div>
   </div>
   <aside class="notes">[Target: about 3 seconds. Click straight through.] Section 3 of 4: hand over to the demo. Andrew drives training mode.</aside>
+</section>
+<!-- How it works: architecture (Replit final) -->
+<section class="slide ar-slide" data-title="How it works">
+  <div class="spk spk-andrew" aria-label="Speaker: Andrew"><i></i><span><small>Speaker</small>Andrew</span></div>
+  <div class="by-hand">&mdash; under the hood</div>
+  <h2 class="ar-h">How Mesh works: <span class="by-mark">one agent turn.</span></h2>
+  <div class="ar-dia">
+    <div class="ar-card ar-lap">
+      <div class="ar-k">Each teammate&rsquo;s laptop</div>
+      <div class="ar-agents"><span style="--c:#D97757">Claude Code</span><span style="--c:#0d0d0d">Codex</span><span style="--c:#6f7fe0">Gemini CLI</span><span style="--c:#34A853">Antigravity</span></div>
+      <div class="ar-term">
+        <div class="ar-tt">.agentslack/hooks/</div>
+        <div class="ar-hk ar-h1"><b>prompt.sh</b><i>before each task</i></div>
+        <div class="ar-hk ar-h2"><b>before-edit.sh</b><i>before each edit</i></div>
+        <div class="ar-hk ar-h3"><b>stop.sh</b><i>after each turn</i></div>
+      </div>
+      <div class="ar-fine">The agent runs on its owner&rsquo;s plan. Mesh never runs it.</div>
+    </div>
+    <div class="ar-card ar-room">
+      <div class="ar-k"><svg class="mesh-mark small" aria-hidden="true"></svg>Mesh room</div>
+      <div class="ar-row ar-r1"><b>Team feed</b><i>what changed, messages, requests</i></div>
+      <div class="ar-row ar-r2"><b>Who&rsquo;s in which file</b><i>live, per agent</i></div>
+      <div class="ar-row ar-r3"><b>Save notes</b><i>every save, in plain English</i></div>
+      <div class="ar-block"><span>&#9995;</span><div><b>Max (Andrew) is in index.html &middot; header</b><i>Wait, or take the footer?</i></div></div>
+    </div>
+    <div class="ar-card ar-git">
+      <div class="ar-k"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>Your team&rsquo;s GitHub repo</div>
+      <div class="ar-br ar-b1"><code>draft</code><span>one shared branch</span><em>&rarr; live preview</em></div>
+      <div class="ar-push"><span>Push</span><i>a person decides</i></div>
+      <div class="ar-br ar-b2"><code>main</code><span>the real site</span></div>
+    </div>
+    <svg class="ar-wires" viewBox="0 0 1380 330" aria-hidden="true">
+      <path class="ar-w ar-wa" pathLength="1" d="M384 120 H496"/>
+      <path class="ar-w ar-wb" pathLength="1" d="M496 170 H384"/>
+      <path class="ar-w ar-wg" pathLength="1" d="M200 286 C 200 326, 1180 326, 1180 286"/>
+    </svg>
+    <span class="ar-lbl ar-la">HTTPS</span>
+    <span class="ar-lbl ar-lg">git pull / push &middot; <b>draft</b></span>
+  </div>
+  <div class="ar-steps">
+    <div class="ar-st" data-step="1"><b>1</b><h4>Before each task</h4><p>Pull the latest draft. Hear what teammates changed, plus messages for this agent.</p><code>git pull --rebase origin draft</code></div>
+    <div class="ar-st" data-step="2"><b>2</b><h4>Before each edit</h4><p>Ask the room who&rsquo;s in this file. If another agent is, stop and ask your person.</p><code>edit blocked &rarr; wait or switch</code></div>
+    <div class="ar-st" data-step="3"><b>3</b><h4>After each turn</h4><p>Save to the shared draft. Same lines changed? Keep both; the agent combines them.</p><code>git push origin HEAD:draft</code></div>
+    <div class="ar-st" data-step="4"><b>4</b><h4>Preview, then Push</h4><p>The draft is a live preview. Nothing reaches the real site until a person presses Push.</p><code>draft &rarr; main &middot; human only</code></div>
+  </div>
+  <p class="ar-tag" data-step="5">No new IDE. No new model bill. <span class="by-mark">A connector, a room, one branch.</span></p>
+  <aside class="notes">[Speaker: Andrew. Target: about 35 seconds. 5 clicks, one per step, then the tagline.] This is for the engineers in the room. Each teammate keeps their own agent on their own laptop. Mesh adds a small connector: three hooks the agent already supports (in Claude Code: UserPromptSubmit, PreToolUse on Edit and Write, and Stop; Codex and Gemini use their equivalents). Click 1, before each task: the hook pulls the team&rsquo;s latest draft and hands the agent what teammates changed and any messages for it. Click 2, before each edit: it asks the room who is in that file. If another agent is, the edit is blocked and the agent asks its person: wait, or take another part. Click 3, after each turn: it saves to one shared branch called draft. If two agents changed the same lines, both versions are kept and the agent must combine them. Click 4: the draft is a live preview; only a person can Push it to main. Click 5: no new IDE, no new model bill. A connector, a room, one branch. Then: &ldquo;Let&rsquo;s see it live.&rdquo; If asked how the room decides who&rsquo;s in a file, or how merges work in detail: stay at this level until our provisional patent is filed. Partnership angle if asked: any agent with hooks can join a Mesh room, and the draft can preview or deploy anywhere, including Replit.</aside>
 </section>
 <!-- 7 Demo -->
 <section class="slide demo-full" data-title="Live: the team room" data-hook="demo">
@@ -2304,6 +2432,36 @@ Saved 2 files.</pre></div></div>
   <aside class="notes">[Target: about 15 seconds. One click: the room from slide 10 comes back, Fo slides in and connects, and the Mesh room lights up.] Wajo is now a partner of Mesh. Their AI, Fo, can join the room for each teammate, and it still asks before it acts, so people approve.</aside>
 </section>
 
+<!-- Who we've listened to (consultation) -->
+<section class="slide cn-slide" data-title="Who we've listened to">
+  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
+  <div class="by-hand">&mdash; who we&rsquo;ve listened to</div>
+  <h2 class="cn-h">Built with <span class="by-mark">every point of view.</span></h2>
+  <div class="cn-grid">
+    <div class="cn-row cn-ind" data-step="1"><div class="cn-lab">Industry</div><div class="cn-cards">
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">AR<img src="people/adnan.jpg" alt="" onerror="this.remove()"></span><b>Adnan Rahim</b><p>Director, Internal Audit &amp; Global SOX Compliance</p><small>Meta</small><em>Mentor</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">EB<img src="people/eric.jpg" alt="" onerror="this.remove()"></span><b>Eric Block</b><p>Tax Partner, Private Equity Portfolio Company Tax</p><small>EY</small><em>Saw the deck &middot; B2B</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">GK<img src="people/greg.jpg" alt="" onerror="this.remove()"></span><b>Greg Kling</b><p>Consultant; former faculty advisor, USC FanTAXtic</p><small>KVM Strategic</small><em>Deck tester</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">MW<img src="people/marcus.jpg" alt="" onerror="this.remove()"></span><b>Marcus Wooling</b><p>Manager, Accounting Advisory &middot; USC MBA candidate</p><small>KPMG alum</small><em>Deck tester</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">W<img src="people/wajo.jpg" alt="" onerror="this.remove()"></span><b>Wajo team</b><p>Makers of Fo, an AI executive assistant</p><small>Wajo</small><em>Integration talks</em></div>
+    </div></div>
+    <div class="cn-row cn-fac" data-step="2"><div class="cn-lab">Faculty, law &amp; IP</div><div class="cn-cards">
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">KT<img src="people/kathy.jpg" alt="" onerror="this.remove()"></span><b>Kathy Takayama</b><p>Asst. Professor of the Practice, Data Sciences &amp; Operations; ~20 yrs at HP/HPE</p><small>USC Marshall</small><em>Mentor</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">TA<img src="people/terry.jpg" alt="" onerror="this.remove()"></span><b>Terry Allen</b><p>Assistant Professor of Law</p><small>USC Gould School of Law</small><em>Advisor call</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">DS<img src="people/sokol.jpg" alt="" onerror="this.remove()"></span><b>D. Daniel Sokol</b><p>Carolyn Craig Franklin Chair in Law; Professor of Law and Business</p><small>USC Gould &amp; Marshall</small><em>Team Zoom</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">CB<img src="people/bramlett.jpg" alt="" onerror="this.remove()"></span><b>Charles Bramlett, PhD</b><p>Technology Licensing Manager</p><small>USC Stevens Center</small><em>Licensing</em></div>
+    </div></div>
+    <div class="cn-row cn-stu" data-step="3"><div class="cn-lab">Students &amp; builders</div><div class="cn-cards">
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">GW<img src="people/grayson.jpg" alt="" onerror="this.remove()"></span><b>Grayson Whitney</b><p>Deck tester</p><small>Mesh market test</small><em>Deck tester</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">L<img src="people/linna.jpg" alt="" onerror="this.remove()"></span><b>Linna</b><p>Deck tester</p><small>Mesh market test</small><em>Deck tester</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">S<img src="people/steph.jpg" alt="" onerror="this.remove()"></span><b>Steph</b><p>Deck tester &middot; preferred the cleaner deck</p><small>Mesh market test</small><em>Deck tester</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">P<img src="people/packrat.jpg" alt="" onerror="this.remove()"></span><b>Packrat</b><p>Builder in our Discord community</p><small>Discord</small><em>Deck tester</em></div>
+      <div class="cn-card cn-next"><div class="cn-ban"></div><span class="cn-av">?</span><b>You, next</b><p>The Replit team: tell us what to build next.</p><small>Replit</small><em>Your feedback</em></div>
+    </div></div>
+  </div>
+  <div class="cn-band" data-step="4"><b>Because we listened:</b><span>Fewer click puzzles, a demo that plays itself <i>&middot; testers</i></span><span>A B2B track <i>&middot; industry</i></span><span>Our IP protected before today <i>&middot; faculty &amp; USC Stevens</i></span></div>
+  <aside class="notes">[Speaker: Evelyn. Target: about 25 seconds. 4 clicks: industry, faculty and IP, students and builders, then what we changed.] We didn&rsquo;t build Mesh in a bubble. Click: industry, from Meta&rsquo;s internal audit to an EY tax partner, consultants and an AI startup. Click: USC faculty in business, law and tech transfer. Click: students and builders who tested our deck, including people who preferred the other version. We want to hear the views that disagree with us. Click: and it changed what we built: fewer click puzzles and a demo that plays itself, a B2B track, and our IP protected before today. The last card is you: we want Replit&rsquo;s feedback too. BEFORE PRESENTING: get each person&rsquo;s OK to be named (especially Adnan and Eric), and don&rsquo;t say anyone endorses Mesh or gave legal advice. Photos: add people/[name].jpg only with permission; otherwise initials show.</aside>
+</section>
 <section class="slide center" data-title="Close">
   <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
   <span class="cursor c-andrew gather" style="left:1180px; top:140px; --fx:-700px; --fy:-300px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Andrew</b></span>
