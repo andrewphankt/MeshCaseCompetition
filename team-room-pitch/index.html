@@ -2001,6 +2001,85 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 :root[data-look="builder"] .rm-sign:hover, :root[data-look="builder"] .rm-sign[aria-expanded="true"] { background: var(--pink); color: #14070d; }
 :root[data-look="builder"] .rm-carlabel b { font: 700 24px/1.1 var(--body); letter-spacing: -0.02em; color: var(--pink); }
 :root[data-look="builder"] .ar-agents span { box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
+
+/* =================== SHARP SYSTEM (builder look) =================== */
+.sx-only { display: none; }
+:root[data-look="builder"] .sx-only { display: block; }
+/* Persistent chrome: header (Mesh / chapter) and footer (index) on every slide */
+.sx-head, .sx-foot { display: none; }
+:root[data-look="builder"] .sx-head { display: flex; position: absolute; top: 26px; left: 110px; right: 300px; z-index: 30; align-items: center; gap: 10px; font: 500 13px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #6b7182; pointer-events: none; }
+:root[data-look="builder"] .sx-head b { color: #eef0f5; font-weight: 600; letter-spacing: .14em; }
+:root[data-look="builder"] .sx-head i { font-style: normal; color: var(--pink); }
+:root[data-look="builder"] .sx-foot { display: flex; position: absolute; left: 110px; right: 110px; bottom: 18px; z-index: 30; justify-content: space-between; font: 500 12px/1 var(--mono); letter-spacing: .1em; color: #4c5262; pointer-events: none; }
+:root[data-look="builder"] :is(.demo-full, .train-big, [data-zoomout][data-at="1"]) :is(.sx-head, .sx-foot) { display: none; }
+/* Speaker: quiet, no pill */
+:root[data-look="builder"] .spk { top: 18px; right: 30px; background: transparent; border: 0; padding: 0; gap: 10px; }
+:root[data-look="builder"] .spk i { width: 32px; height: 32px; border-radius: 6px; border: 1px solid #2a2e3a; }
+:root[data-look="builder"] .spk span { font: 600 15px/1.1 var(--body); }
+:root[data-look="builder"] .spk small { font: 500 10px/1.2 var(--mono); letter-spacing: .14em; color: #6b7182; }
+/* Eyebrows and labels: mono, muted, a small pink square */
+:root[data-look="builder"] .eyebrow, :root[data-look="builder"] :is(.by-hand, .tx-hand) { color: #8b91a1 !important; }
+:root[data-look="builder"] .eyebrow i { width: 7px; height: 7px; border-radius: 1px; box-shadow: none; }
+:root[data-look="builder"] :is(.by-hand, .tx-hand)::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 10px; background: var(--pink); vertical-align: 2px; border-radius: 1px; }
+/* Type: one heading size, tight tracking, left aligned */
+:root[data-look="builder"] h2.h-l, :root[data-look="builder"] :is(.ar-h, .cn-h) { font-size: 62px; line-height: 1.02; letter-spacing: -0.05em; font-weight: 700; }
+:root[data-look="builder"] .h-xl { letter-spacing: -0.06em; }
+/* Cards: hairline borders, small radius, no shadows or glows */
+:root[data-look="builder"] :is(.ar-card, .ar-st, .cn-card, .by-card, .by-room, .scene, .term, .gone, .comp-sheet, .comp-table, .pol .front, .pol .back, .mo-card, .numrow, .cm-wrap, .chat, .rm-card, .cx-room) { border-radius: 6px !important; box-shadow: none !important; }
+:root[data-look="builder"] :is(.ar-card, .ar-st, .cn-card, .by-card) { background: #101217; border: 1px solid #23262f; }
+:root[data-look="builder"] .ar-slide[data-at] :is(.ar-card, .ar-st) { box-shadow: none !important; }
+:root[data-look="builder"] .ar-slide:is([data-at="1"],[data-at="2"],[data-at="3"]) :is(.ar-lap, .ar-room), :root[data-look="builder"] .ar-slide:is([data-at="1"],[data-at="3"],[data-at="4"]) .ar-git { border-color: var(--pink); }
+:root[data-look="builder"] .ar-slide:is([data-at="1"],[data-at="2"],[data-at="3"],[data-at="4"]) .ar-st:not(.hidden) { opacity: .4; }
+:root[data-look="builder"] .ar-slide[data-at="1"] .ar-st[data-step="1"], :root[data-look="builder"] .ar-slide[data-at="2"] .ar-st[data-step="2"], :root[data-look="builder"] .ar-slide[data-at="3"] .ar-st[data-step="3"], :root[data-look="builder"] .ar-slide[data-at="4"] .ar-st[data-step="4"] { opacity: 1; border: 1px solid var(--pink); }
+:root[data-look="builder"] .ar-st > b { border-radius: 4px; border: 0; background: var(--pink); width: 26px; height: 26px; line-height: 26px; font-family: var(--mono); font-size: 13px; }
+:root[data-look="builder"] .cn-ban { height: 4px; }
+:root[data-look="builder"] .cn-card { padding-top: 14px; }
+:root[data-look="builder"] .cn-av { position: static; width: 40px; height: 40px; border-radius: 6px; border: 0; font-size: 15px; margin-bottom: 8px; }
+:root[data-look="builder"] .cn-card b { margin-top: 0; }
+:root[data-look="builder"] .cn-card em { top: 26px; border-radius: 4px; }
+:root[data-look="builder"] .cn-band { border-radius: 6px; box-shadow: none; background: #101217; border: 1px solid #23262f; }
+:root[data-look="builder"] .cn-band span { border-radius: 4px; }
+:root[data-look="builder"] .mvp-link { box-shadow: none !important; border-radius: 6px !important; }
+
+/* Section dividers: editorial, no cursors or threads */
+:root[data-look="builder"] .tx-slide :is(.tx-threads, .cursor, .tx-bars, .tx-k) { display: none !important; }
+:root[data-look="builder"] .tx-slide { background: #08090c !important; }
+:root[data-look="builder"] .tx-ghost { left: auto; right: 90px; top: 60px; bottom: auto; font: 200 440px/1 var(--display); letter-spacing: -0.06em; -webkit-text-stroke: 1.5px #2a2e3a; color: transparent; }
+:root[data-look="builder"] .tx-main { margin-top: 0; }
+:root[data-look="builder"] .tx-title { font: 700 128px/0.95 var(--display); letter-spacing: -0.06em; }
+:root[data-look="builder"] .tx-sub { font: 400 26px/1.35 var(--body); color: #8b91a1; }
+:root[data-look="builder"] .tx-next { display: block; border-top: 1px solid #23262f; padding-top: 18px; max-width: 1380px; }
+:root[data-look="builder"] .tx-arrow { display: none !important; }
+:root[data-look="builder"] .tx-list { counter-reset: tx; gap: 0; display: grid; grid-template-columns: repeat(6, 1fr); }
+:root[data-look="builder"] .tx-list li { counter-increment: tx; background: none !important; border: 0 !important; border-left: 1px solid #23262f !important; border-radius: 0 !important; padding: 2px 14px !important; font: 500 15px/1.3 var(--body) !important; color: #c9cede !important; }
+:root[data-look="builder"] .tx-list li::before { content: counter(tx, decimal-leading-zero); display: block; font: 500 12px var(--mono); color: var(--pink); margin-bottom: 6px; letter-spacing: .08em; }
+
+/* Title slide: headline + live room window */
+:root[data-look="builder"] .slide[data-title="Title"] :is(.title-top, .merge, .cursor, .peek, .follow) { display: none !important; }
+.sx-title { position: absolute; inset: 0; padding: 120px 110px 70px; }
+.sx-title .sx-k { font: 500 15px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #8b91a1; }
+.sx-title .sx-k i { display: inline-block; width: 7px; height: 7px; background: var(--pink); margin-right: 10px; vertical-align: 2px; border-radius: 1px; }
+.sx-title h1 { font: 800 104px/0.96 var(--display); letter-spacing: -0.06em; margin: 40px 0 28px; max-width: 760px; color: #eef0f5; }
+.sx-title h1 em { font-style: normal; color: var(--pink); }
+.sx-title p { font: 400 25px/1.45 var(--body); color: #a3a9b8; max-width: 640px; margin: 0; }
+.sx-cta { display: flex; gap: 12px; margin-top: 44px; }
+.sx-cta a { font: 600 18px/1 var(--body); padding: 16px 22px; border-radius: 6px; text-decoration: none; }
+.sx-cta .a1 { background: var(--pink); color: #14070d; }
+.sx-cta .a2 { border: 1px solid #2a2e3a; color: #eef0f5; font-family: var(--mono); font-size: 16px; }
+.sx-meta { position: absolute; left: 110px; bottom: 60px; display: flex; gap: 24px; font: 500 13px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: #6b7182; }
+.sx-win { position: absolute; right: 110px; top: 150px; width: 640px; background: #101217; border: 1px solid #23262f; border-radius: 8px; overflow: hidden; }
+.sx-wb { height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 14px; border-bottom: 1px solid #23262f; font: 500 13px var(--mono); color: #6b7182; }
+.sx-wb i { width: 10px; height: 10px; border-radius: 50%; background: #2a2e3a; } .sx-wb span { margin-left: 10px; }
+.sx-rows { padding: 16px; }
+.sx-row { display: grid; grid-template-columns: 58px 1fr auto; align-items: center; gap: 12px; padding: 8px 12px; border: 1px solid #1d2028; border-radius: 6px; margin-bottom: 8px; background: #0c0d11; }
+.sx-row img { width: 52px; height: 52px; object-fit: contain; object-position: bottom; }
+.sx-row b { display: block; font: 600 16px var(--body); color: #eef0f5; } .sx-row b small { font: 400 13px var(--body); color: #6b7182; }
+.sx-row span { font: 500 13px var(--mono); color: #8b91a1; }
+.sx-chip { font: 500 12px var(--mono); padding: 5px 8px; border-radius: 4px; }
+.sx-chip.ok { color: #7fdcae; background: rgba(127,220,174,.1); } .sx-chip.blk { color: #ff7fb0; background: rgba(255,127,176,.12); } .sx-chip.wait { color: #ffc94d; background: rgba(255,201,77,.1); }
+.sx-term { margin: 4px 16px 16px; background: #08090c; border: 1px solid #1d2028; border-radius: 6px; padding: 12px 14px; font: 500 14px/1.65 var(--mono); color: #c9cede; }
+.sx-term .p { color: var(--pink); } .sx-term .g { color: #7fdcae; } .sx-term .m { color: #6b7182; }
+:root[data-look="builder"] .slide[data-title="Title"] .sx-foot { display: none; }
 /* BUILDER:MANUAL END */
 </style>
 </head>
@@ -2016,6 +2095,19 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <button type="button" class="cursor c-sarah drift-b" style="left:1290px; top:120px" data-peek="2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Gemini · adding sign-up</b></button>
   <button type="button" class="cursor c-evelyn drift-a" style="left:1230px; top:300px" data-peek="3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Claude · fixing the footer</b></button>
   <button type="button" class="cursor c-tony drift-a" style="left:1080px; top:390px" data-peek="4"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Codex · writing tests</b></button>
+  <div class="sx-title sx-only">
+    <div class="sx-k"><i></i>Replit Case Competition &middot; Final</div>
+    <h1>The team room for <em>AI&nbsp;agents.</em></h1>
+    <p>Bring the agent you already use. Mesh stops agents from colliding and merges everyone&rsquo;s work into one shared draft.</p>
+    <div class="sx-cta" data-interactive><a class="a1" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener">Try the MVP &#8599;</a><a class="a2" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener">tinyurl.com/meshsandbox</a></div>
+    <div class="sx-win" aria-hidden="true"><div class="sx-wb"><i></i><i></i><i></i><span>mesh &middot; #general &middot; 4 agents online</span></div><div class="sx-rows">
+      <div class="sx-row"><img src="sprites/fox_work.png" alt=""><div><b>Max <small>&middot; Andrew &middot; Claude Code</small></b><span>index.html &middot; header</span></div><em class="sx-chip ok">editing</em></div>
+      <div class="sx-row"><img src="sprites/cat_work.png" alt=""><div><b>Gwen <small>&middot; Iris &middot; Gemini</small></b><span>wants index.html &middot; header</span></div><em class="sx-chip blk">blocked &rarr; footer</em></div>
+      <div class="sx-row"><img src="sprites/felix_f1.png" alt=""><div><b>Felix <small>&middot; Evelyn &middot; Claude Code</small></b><span>styles.css</span></div><em class="sx-chip ok">saved</em></div>
+      <div class="sx-row"><img src="sprites/bear_out.png" alt=""><div><b>Dante <small>&middot; Tony</small></b><span>out of tokens &middot; back 3:37 PM</span></div><em class="sx-chip wait">resumes later</em></div>
+    </div><div class="sx-term"><span class="p">$</span> mesh status<br><span class="m">draft</span> <span class="g">&check; 32 saves</span> &middot; preview ready<br><span class="m">main</span>&nbsp; waiting for a person to press <span class="p">Push</span></div></div>
+    <div class="sx-meta"><span>Andrew &middot; Iris &middot; Sarah &middot; Evelyn &middot; Tony</span><span>USC</span><span>Thu, Dec 3, 2026</span></div>
+  </div>
   <div class="title-top">
     <div class="eyebrow"><i></i>Replit Case Competition · Final</div>
     <h1 class="h-xl"><span class="pname" data-name>Mesh</span></h1>
@@ -3829,6 +3921,22 @@ Saved 2 files.</pre></div></div>
     var h = /^#slide-(\d+)$/.exec(location.hash);
     if (h && +h[1] - 1 !== cur) show(+h[1] - 1, true);
   });
+})();
+</script>
+<script>
+/* Sharp chrome (builder look): Mesh / chapter header and slide index on every slide */
+(function () {
+  var slides = document.querySelectorAll('#stage section.slide'), n = slides.length, ch = 0, name = 'Intro';
+  for (var i = 0; i < n; i++) {
+    var s = slides[i], t = s.getAttribute('data-title') || '';
+    if (t.indexOf('Section: ') === 0) { ch++; name = t.slice(9); }
+    else if (t.indexOf('Appendix') === 0) { name = 'Appendix'; }
+    var h = document.createElement('div'); h.className = 'sx-head'; h.setAttribute('aria-hidden', 'true');
+    h.innerHTML = '<b>Mesh</b><span>/</span>' + (ch && name !== 'Appendix' ? '<i>0' + ch + '</i>' : '') + '<span>' + name.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</span>';
+    var f = document.createElement('div'); f.className = 'sx-foot'; f.setAttribute('aria-hidden', 'true');
+    f.innerHTML = '<span>Replit final &middot; Dec 3, 2026</span><span>' + (i + 1 < 10 ? '0' : '') + (i + 1) + ' / ' + n + '</span>';
+    s.appendChild(h); s.appendChild(f);
+  }
 })();
 </script>
 </body>
