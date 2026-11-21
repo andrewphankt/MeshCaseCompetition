@@ -1844,6 +1844,71 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 @keyframes ptStamp { 0% { opacity: 0; transform: scale(2.6) rotate(-28deg); } 70% { opacity: 1; transform: scale(.94) rotate(-10deg); } 100% { opacity: 1; transform: scale(1) rotate(-12deg); } }
 @keyframes ptShake { 25% { transform: translate(3px,-2px); } 50% { transform: translate(-3px,2px); } 75% { transform: translate(2px,1px); } }
 .pt-slide .pt-seal.hidden, .pt-slide .pt-seal { transform: rotate(-12deg); }
+
+/* Business model: first campus pilots strip */
+.mm-pilot { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 12px 0 0; padding: 10px 14px; border: 1px solid var(--pink); border-radius: 6px; background: rgba(237,147,177,.07); font: 400 15px/1.2 var(--body); color: #c9cede; }
+.mm-pilot .mm-pk { font: 500 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--pink); margin-right: 4px; }
+.mm-pilot b { color: #eef0f5; font-weight: 600; }
+.mm-pilot i { font-style: normal; color: #8b91a1; font-size: 13px; margin-right: 10px; }
+.mm-pilot em { margin-left: auto; font: 600 11px var(--mono); font-style: normal; letter-spacing: .06em; text-transform: uppercase; color: #ffc94d; border: 1px solid rgba(255,201,77,.45); padding: 3px 8px; border-radius: 4px; }
+
+/* First campus pilots */
+.cp-slide { padding: 60px 110px 40px; }
+.cp-h { font: 800 60px/1.02 var(--display); letter-spacing: -0.05em; margin: 8px 0 12px; }
+.cp-h span { color: var(--pink); }
+.cp-sub { font: 400 23px/1.3 var(--body); color: #a3a9b8; margin: 0 0 26px; }
+.cp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.cp-card { background: #101217; border: 1px solid #23262f; border-radius: 8px; padding: 20px 22px; }
+.cp-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.cp-tag { font: 500 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #6b7182; }
+.cp-st { font: 600 11px var(--mono); font-style: normal; letter-spacing: .06em; text-transform: uppercase; color: #ffc94d; border: 1px solid rgba(255,201,77,.45); padding: 3px 8px; border-radius: 4px; }
+.cp-card b { display: block; font: 700 30px/1.1 var(--display); letter-spacing: -0.03em; color: #eef0f5; margin-bottom: 10px; }
+.cp-card p { font: 400 18px/1.45 var(--body); color: #a3a9b8; margin: 0 0 14px; }
+.cp-card strong { color: #eef0f5; font-weight: 600; }
+.cp-offer { font: 500 14px/1.35 var(--mono); color: var(--pink); border-top: 1px solid #23262f; padding-top: 12px; }
+.cp-foot { margin: 22px 0 0; font: 600 24px/1.3 var(--display); letter-spacing: -0.02em; color: #eef0f5; }
+.cp-foot span { color: #8b91a1; font-weight: 400; font-family: var(--body); font-size: 20px; margin-left: 8px; }
+
+/* Title: characters animate (3-frame loops; Dante's out-of-tokens GIF) */
+.sx-ani { position: relative; width: 52px; height: 52px; display: block; }
+.sx-ani img { position: absolute; inset: 0; width: 52px; height: 52px; object-fit: contain; object-position: bottom; opacity: 0; animation: sxFr .9s steps(1) infinite; }
+.sx-ani .f2 { animation-delay: .3s; } .sx-ani .f3 { animation-delay: .6s; }
+@keyframes sxFr { 0% { opacity: 1; } 33.34% { opacity: 0; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .sx-ani img { animation: none; } .sx-ani .f1 { opacity: 1; } }
+
+/* Landscape map: Mesh hidden until the click */
+.lm-slide { padding: 56px 110px 36px; }
+.lm-h { font: 800 56px/1.05 var(--display); letter-spacing: -0.05em; margin: 6px 0 16px; height: 62px; position: relative; }
+.lm-h span { position: absolute; left: 0; top: 0; transition: opacity .5s, transform .5s; white-space: nowrap; }
+.lm-h em { font-style: normal; color: var(--pink); }
+.lm-b { opacity: 0; transform: translateY(12px); }
+.lm-plot { position: relative; width: 1380px; height: 520px; border: 1px solid #1d2028; border-radius: 8px; background: rgba(16,18,23,.6); }
+.lm-ax { position: absolute; background: #2a2e3a; }
+.lm-x { left: 0; right: 0; top: 50%; height: 1px; } .lm-y { top: 0; bottom: 0; left: 50%; width: 1px; }
+.lm-lab { position: absolute; font: 500 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #6b7182; }
+.lm-top { top: 10px; left: 50%; transform: translateX(-50%); } .lm-bot { bottom: 10px; left: 50%; transform: translateX(-50%); }
+.lm-left { left: 14px; top: calc(50% - 22px); } .lm-right { right: 14px; top: calc(50% - 22px); }
+.lm-pt { position: absolute; width: 0; height: 0; }
+.lm-pt i { position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 50%; background: #5c6270; box-shadow: 0 0 0 4px rgba(12,13,17,.9); }
+.lm-pt span { position: absolute; top: -10px; white-space: nowrap; display: flex; flex-direction: column; }
+.lm-r span { left: 14px; } .lm-l span { right: 14px; text-align: right; }
+.lm-pt b { font: 600 15px/1.15 var(--body); color: #c9cede; }
+.lm-pt em { font: 400 12px/1.2 var(--body); font-style: normal; color: #6b7182; }
+.lm-gap { position: absolute; width: 0; height: 0; transition: opacity .4s; }
+.lm-gap span { position: absolute; left: -46px; top: -46px; width: 92px; height: 92px; border-radius: 50%; border: 2px dashed rgba(237,147,177,.55); display: grid; place-items: center; font: 700 34px var(--display); color: rgba(237,147,177,.8); animation: lmPulse 2.2s ease-in-out infinite; }
+.lm-me { position: absolute; width: 0; height: 0; opacity: 0; }
+.lm-me i { position: absolute; left: -16px; top: -16px; width: 32px; height: 32px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 0 6px rgba(12,13,17,.9), 0 0 0 11px rgba(237,147,177,.35), 0 0 40px rgba(237,147,177,.8); }
+.lm-me span { position: absolute; right: 30px; top: -22px; text-align: right; white-space: nowrap; display: flex; flex-direction: column; }
+.lm-me b { font: 800 34px/1 var(--display); letter-spacing: -0.03em; color: var(--pink); }
+.lm-me em { font: 500 14px var(--mono); font-style: normal; color: #eef0f5; margin-top: 4px; }
+.lm-src { position: absolute; left: 110px; bottom: 44px; font: 400 12px var(--body); color: #4c5262; }
+.lm-slide[data-at="1"] .lm-a { opacity: 0; transform: translateY(-12px); }
+.lm-slide[data-at="1"] .lm-b { opacity: 1; transform: none; }
+.lm-slide[data-at="1"] .lm-gap { opacity: 0; }
+.lm-slide[data-at="1"] .lm-me { opacity: 1; animation: lmDrop .7s cubic-bezier(.2,1.4,.4,1) .2s both; }
+.lm-slide[data-at="1"] .lm-pt { opacity: .55; transition: opacity .6s; }
+@keyframes lmDrop { from { opacity: 0; transform: translateY(-60px) scale(.5); } }
+@keyframes lmPulse { 50% { transform: scale(1.08); border-color: rgba(237,147,177,.9); } }
 /* BUILDER:AUTO START */
 :root[data-look="builder"] body { background: #0a0b0e; }
 :root[data-look="builder"] #stage { box-shadow: 0 30px 80px rgba(58,63,76,0.45); }
@@ -2217,10 +2282,10 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <p>Bring the agent you already use. Mesh stops agents from colliding and merges everyone&rsquo;s work into one shared draft.</p>
     <div class="sx-cta" data-interactive><a class="a1" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener">Try the MVP &#8599;</a><a class="a2" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener">tinyurl.com/meshsandbox</a></div>
     <div class="sx-win" aria-hidden="true"><div class="sx-wb"><i></i><i></i><i></i><span>mesh &middot; #general &middot; 4 agents online</span></div><div class="sx-rows">
-      <div class="sx-row"><img src="sprites/fox_work.png" alt=""><div><b>Max <small>&middot; Andrew &middot; Claude Code</small></b><span>index.html &middot; header</span></div><em class="sx-chip ok">editing</em></div>
-      <div class="sx-row"><img src="sprites/cat_work.png" alt=""><div><b>Gwen <small>&middot; Iris &middot; Gemini</small></b><span>wants index.html &middot; header</span></div><em class="sx-chip blk">blocked &rarr; footer</em></div>
-      <div class="sx-row"><img src="sprites/felix_f1.png" alt=""><div><b>Felix <small>&middot; Evelyn &middot; Claude Code</small></b><span>styles.css</span></div><em class="sx-chip ok">saved</em></div>
-      <div class="sx-row"><img src="sprites/bear_out.png" alt=""><div><b>Dante <small>&middot; Tony</small></b><span>out of tokens &middot; back 3:37 PM</span></div><em class="sx-chip wait">resumes later</em></div>
+      <div class="sx-row"><span class="sx-ani"><img class="f1" src="sprites/fox_f1.png" alt=""><img class="f2" src="sprites/fox_f2.png" alt=""><img class="f3" src="sprites/fox_f3.png" alt=""></span><div><b>Max <small>&middot; Andrew &middot; Claude Code</small></b><span>index.html &middot; header</span></div><em class="sx-chip ok">editing</em></div>
+      <div class="sx-row"><span class="sx-ani"><img class="f1" src="sprites/cat_f1.png" alt=""><img class="f2" src="sprites/cat_f2.png" alt=""><img class="f3" src="sprites/cat_f3.png" alt=""></span><div><b>Gwen <small>&middot; Iris &middot; Gemini</small></b><span>wants index.html &middot; header</span></div><em class="sx-chip blk">blocked &rarr; footer</em></div>
+      <div class="sx-row"><span class="sx-ani"><img class="f1" src="sprites/felix_f1.png" alt=""><img class="f2" src="sprites/felix_f2.png" alt=""><img class="f3" src="sprites/felix_f3.png" alt=""></span><div><b>Felix <small>&middot; Evelyn &middot; Claude Code</small></b><span>styles.css</span></div><em class="sx-chip ok">saved</em></div>
+      <div class="sx-row"><img src="sprites/bear_out.gif" alt=""><div><b>Dante <small>&middot; Tony</small></b><span>out of tokens &middot; back 3:37 PM</span></div><em class="sx-chip wait">resumes later</em></div>
     </div><div class="sx-term"><span class="p">$</span> mesh status<br><span class="m">draft</span> <span class="g">&check; 32 saves</span> &middot; preview ready<br><span class="m">main</span>&nbsp; waiting for a person to press <span class="p">Push</span></div></div>
     <div class="sx-meta"><span>Andrew &middot; Iris &middot; Sarah &middot; Evelyn &middot; Tony</span><span>USC</span><span>Thu, Dec 3, 2026</span></div>
   </div>
@@ -2434,7 +2499,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <div class="tx-hand">&mdash; part one</div>
     <h2 class="tx-title">What just <span class="tx-mark">happened</span></h2>
     <p class="tx-sub">Under the hood, and why every agent fits.</p>
-    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>How it works</li><li>Bring your own agent</li><li>How Mesh compares</li></ul></div>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>How it works</li><li>Bring your own agent</li><li>How Mesh compares</li><li>The landscape</li></ul></div>
   </div>
   <aside class="notes">[Speaker: Andrew. Target: about 3 seconds. Click straight through.] Part 1 of 3, right after the cold open: &ldquo;So what just happened?&rdquo; Then How it works.</aside>
 </section>
@@ -2544,6 +2609,24 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <span class="comp-steps" data-step="1" aria-hidden="true"></span>
   <aside class="notes">[Click once: the Mesh column pops in and its checks fill top to bottom.] [Speaker: Iris. Target: about 25 seconds. The last two rows set up the next part: updates living in people, and tools that assume you already code.] AQ and Nimbalyst are our closest competitors: both work with existing coding agents and subscriptions. Buzz, from Block, puts people and agents like Claude Code and Codex in shared channels, but it is still in developer preview and we did not find a live app preview or a same-file stop; meanwhile Lovable brings the team into its app builder. Slack plus GitHub can connect the workflow, but a team using separate local agents still manages the handoffs. Mesh combines our own agents and plans with one shared draft, a team preview, and a check before a teammate's agent edits the same file. A dash means we did not find this specific feature in the reviewed documentation; it does not mean the competitor cannot offer it. The stop row compares a pre-edit same-file check, not every form of conflict prevention: other tools may use isolated tasks, drafts, or collaborative editing. Slack + GitHub here means the separate-agent workflow, not a claim about every Copilot or Slack integration. Existing plans means connecting external Claude Code and Codex subscriptions, not merely using a product's own paid plan. Sources, reviewed Nov 19, 2026: Buzz https://block.xyz/inside/introducing-buzz-where-humans-and-agents-work-together and https://engineering.block.xyz/blog/buzz ; AQ https://www.agentqueue.dev/ ; Nimbalyst https://nimbalyst.com/teams/ and https://nimbalyst.com/  ; Lovable https://docs.lovable.dev/features/collaboration ; Slack + GitHub https://docs.github.com/en/integrations/how-tos/slack/integrate-github-with-slack . Mesh capabilities follow the team room guide and this deck.</aside>
 </section>
+<!-- Landscape map: everyone else, then Mesh appears in the empty corner (Replit final) -->
+<section class="slide lm-slide" data-title="Where everyone is building">
+  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
+  <div class="by-hand">&mdash; the landscape</div>
+  <h2 class="lm-h"><span class="lm-a">Where everyone is building.</span><span class="lm-b">And where <em>Mesh</em> is.</span></h2>
+  <div class="lm-plot">
+    <div class="lm-ax lm-x"></div><div class="lm-ax lm-y"></div>
+    <span class="lm-lab lm-top">Beginners &amp; mixed teams</span><span class="lm-lab lm-bot">Professional engineers</span>
+    <span class="lm-lab lm-left">One company&rsquo;s AI</span><span class="lm-lab lm-right">Any AI you already use</span>
+    <div class="lm-gap" style="left:1245px;top:66px"><span>?</span></div>
+    <div class="lm-pt lm-r" style="left:185px;top:82px"><i></i><span><b>Lovable</b><em>app builder, its own AI</em></span></div><div class="lm-pt lm-r" style="left:320px;top:152px"><i></i><span><b>Replit (Agent 4)</b><em>teammates + Replit&rsquo;s agent</em></span></div><div class="lm-pt lm-r" style="left:959px;top:178px"><i></i><span><b>Slack Code</b><em>agents inside Slack</em></span></div><div class="lm-pt lm-r" style="left:875px;top:231px"><i></i><span><b>Microsoft Teams agents</b></span></div><div class="lm-pt lm-r" style="left:1077px;top:298px"><i></i><span><b>Buzz</b><em>Block &middot; chat workspace</em></span></div><div class="lm-pt lm-l" style="left:976px;top:358px"><i></i><span><b>Nimbalyst Teams</b><em>visual workspace</em></span></div><div class="lm-pt lm-r" style="left:1245px;top:380px"><i></i><span><b>Agentmash</b><em>warnings for engineers</em></span></div><div class="lm-pt lm-r" style="left:1186px;top:454px"><i></i><span><b>AQ</b><em>cloud harness</em></span></div><div class="lm-pt lm-l" style="left:1094px;top:501px"><i></i><span><b>Superconductor</b></span></div><div class="lm-pt lm-r" style="left:799px;top:419px"><i></i><span><b>Paradev</b><em>many agents, one person</em></span></div><div class="lm-pt lm-l" style="left:892px;top:469px"><i></i><span><b>GitHub Agent HQ</b></span></div><div class="lm-pt lm-l" style="left:614px;top:380px"><i></i><span><b>Zed Delta</b></span></div><div class="lm-pt lm-r" style="left:438px;top:450px"><i></i><span><b>Cursor Projects</b><em>teams, if everyone uses Cursor</em></span></div><div class="lm-pt lm-l" style="left:532px;top:465px"><i></i><span><b>Amp</b></span></div>
+    <div class="lm-me" style="left:1245px;top:66px"><i></i><span><b>Mesh</b><em>beginners &middot; any AI &middot; the full loop</em></span></div>
+  </div>
+  <span class="cx-steps" aria-hidden="true"><i data-step="1"></i></span>
+  <p class="lm-src">Placement is our read of each product&rsquo;s public materials, Nov 2026.</p>
+  <aside class="notes">[Speaker: Iris. About 25 seconds. 1 click. Comes right after &ldquo;How Mesh compares.&rdquo;] &ldquo;Here&rsquo;s where everyone else is building. Up and down: who it&rsquo;s for, beginners or professional engineers. Left and right: whether you&rsquo;re locked into one company&rsquo;s AI, or bring the AI you already use.&rdquo; Point out the pattern: almost everyone sits at the bottom, built for engineers. The few products for beginners, Lovable and Replit, lock you into their own AI. &ldquo;Which leaves this corner almost empty.&rdquo; (1) Click: Mesh lands top right. &ldquo;That&rsquo;s Mesh: built for beginners and mixed teams, with any AI you already use.&rdquo; If asked about Slack Code, the closest neighbor: &ldquo;It&rsquo;s for companies already on Slack, one task per channel. Mesh gives the whole team one shared draft and is free for students.&rdquo; Placement is our judgment from public materials; say &ldquo;our read of the market,&rdquo; not &ldquo;the market says.&rdquo;</aside>
+</section>
+
 
 <!-- Section 1: The problem -->
 <section class="slide mx-slide tx-slide" data-title="Section: Why it had to exist">
@@ -2619,7 +2702,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <div class="tx-hand">&mdash; part three</div>
     <h2 class="tx-title">Where it <span class="tx-mark">goes</span></h2>
     <p class="tx-sub">Where Mesh goes next, and how we&rsquo;ll know it&rsquo;s working.</p>
-    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Road map</li><li>What we measure</li></ul></div>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Road map</li><li>How we make money</li><li>What we measure</li></ul></div>
   </div>
   <aside class="notes">[Speaker: Tony. Target: about 3 seconds. Click straight through.] Part 3 of 4: where Mesh goes, and how we&rsquo;ll measure it.</aside>
 </section>
@@ -2736,6 +2819,30 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <aside class="notes">[Target: about 30 seconds. Clicker: 1 hub opens, 2 Ask to join on Club Finder, 3 See the build on Study Sprint, 4 close, 5 Monetization, 6 close, 7 Where we&rsquo;re headed, 8 close, 9 the car drives off and the screen wipes to black into the metrics.] Start at the car: this part is real, and we built this deck inside Mesh. Click the hub: this is next, and it's planned, not built, including Skillshare. Then monetization: campuses pay, students don't, and students can buy character packs for their agents. Click "Where we're headed": product features we can't do yet. How we'll measure progress is the next slide. Clicker: each press drives to the next stop and opens it.</aside>
 </section>
 
+<!-- Appendix: how Mesh makes money -->
+<!-- Business model: promoted from the appendix into Part 3 (Replit final) -->
+<section class="slide mx-slide oc-slide mm-slide" data-title="How Mesh makes money">
+  <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
+  <div class="mx-head"><span class="mx-k">Business model</span><span class="mx-upd">Students free &middot; campuses pay</span></div>
+  <h2 class="mx-h">How Mesh makes money.</h2>
+  <p class="mm-lead">Our moat is convenience. Teams bring the agents they already use (Claude Code, Codex, Gemini CLI, Antigravity) into one room on one GitHub repo. No new tool to learn and no new AI to pay for. Mesh is the room between your agents.</p>
+  <div class="mm-grid">
+    <div class="mx-card mm-rev"><div class="mx-l">Campuses</div><span class="mm-big">Licensing</span>
+      <ul class="mm-list"><li>Campuses license Mesh for their students.</li><li>Year one is priced to cover our costs. First stops: USC, Santa Monica College, LA Trade-Tech.</li></ul></div>
+    <div class="mx-card mm-rev"><div class="mx-l">Businesses</div><span class="mm-big">Team sales</span>
+      <ul class="mm-list"><li>We sell Mesh to business teams whose people already code with AI agents.</li></ul></div>
+    <div class="mx-card mm-rev"><div class="mx-l">Companies</div><span class="mm-big">Partnerships</span>
+      <ul class="mm-list"><li><b>Other AI coding tools</b> plug into the room.</li><li><b>Microsoft Teams and calendar:</b> see inside Mesh when a teammate is at lunch or busy.</li></ul></div>
+    <div class="mx-card"><div class="mx-l">Students</div><span class="mm-big">Free for now</span>
+      <ul class="mm-list"><li>That&rsquo;s our current mission: help students build with AI, together.</li><li>The team room, chat, requests and Changes, plus live previews for websites and React/Vite. No hosting, no setup.</li></ul></div>
+    <div class="mx-card"><div class="mx-l">Paid</div><span class="mm-big">Add-ons</span>
+      <ul class="mm-list"><li><b>Cloud Preview:</b> full apps with a server and a database get a live preview, similar to Replit.</li><li><b>Built-in database</b> for every project, no setup.</li></ul></div>
+    <div class="mx-card"><div class="mx-l">Agent characters</div><span class="mm-big">$3 each to start</span>
+      <ul class="mm-list"><li>Every agent gets a free character. Custom decorations personalize your team&rsquo;s agents.</li></ul></div>
+  </div>
+  <p class="mm-foot"><b>Costs today: close to zero.</b> The free tier runs on our existing server, and the domain is about $10 a year. Paid features only cost us money when a team uses them, so each paid team covers its own cost.</p>
+  <aside class="notes">[Speaker: Tony. About 35 seconds. Right after the road map; this is the money slide, so own it.] &ldquo;Here&rsquo;s how Mesh makes money. Students use it free; that&rsquo;s our mission. Campuses pay. Year one is priced to cover our costs, starting at USC, and we&rsquo;re lining up our first community college pilots, which Evelyn will show at the end.&rdquo; Then: business team sales, partnerships with other AI tools and Microsoft Teams, paid add-ons like Cloud Preview and a built-in database, and $3 agent characters. Close: &ldquo;Our costs today are close to zero, so each paid team covers its own cost.&rdquo; STATUS WORDING: say &ldquo;reaching out&rdquo; or &ldquo;in conversation&rdquo; only as far as it&rsquo;s true on Dec 3. Update the pilot strip from &ldquo;Pilot outreach underway&rdquo; to &ldquo;In conversation&rdquo; or &ldquo;Meeting scheduled&rdquo; once they reply. If asked the campus price: &ldquo;Year one is priced to cover our costs; we&rsquo;re setting it with our first pilot campuses.&rdquo;</aside>
+</section>
 <!-- Metrics: dark, Wajo-style impact cards; every number rolls up at once -->
 <section class="slide mx-slide" data-title="What we measure" data-hook="metrics" data-zoomout>
   <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
@@ -2792,7 +2899,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <div class="tx-hand">&mdash; part four</div>
     <h2 class="tx-title">How we got <span class="tx-mark">here</span></h2>
     <p class="tx-sub">The people who shaped Mesh, the market we&rsquo;re in, and the team behind it.</p>
-    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Who we&rsquo;ve listened to</li><li>An emerging market</li><li>One more thing</li><li>The team</li></ul></div>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Who we&rsquo;ve listened to</li><li>First campus pilots</li><li>An emerging market</li><li>One more thing</li><li>The team</li></ul></div>
   </div>
   <aside class="notes">[Speaker: Evelyn. Target: about 3 seconds. Click straight through.] Part 4 of 4, the wrap-up: &ldquo;So how did we get here?&rdquo;</aside>
 </section>
@@ -2826,6 +2933,24 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   </div>
   <div class="cn-band" data-step="4"><b>Because we listened:</b><span>Fewer click puzzles, a demo that plays itself <i>&middot; testers</i></span><span>A B2B track <i>&middot; industry</i></span><span>Our IP protected before today <i>&middot; faculty &amp; USC Stevens</i></span></div>
   <aside class="notes">[Speaker: Evelyn. Target: about 25 seconds. 4 clicks: industry, faculty and IP, students and builders, then what we changed.] We didn&rsquo;t build Mesh in a bubble. Click: industry, from a mentor at Meta to a Big 4 partner, consultants and an AI startup. Click: USC faculty in business, law and tech transfer, including Professor Kathy Takayama, who spent about 20 years leading technology programs at HP and HPE. Click: students and builders who tested our deck, including people who preferred the other version. We want to hear the views that disagree with us. Click: and it changed what we built: fewer click puzzles and a demo that plays itself, a B2B track, and our IP protected before today. The last card is you: we want Replit&rsquo;s feedback too. BEFORE PRESENTING: get each person&rsquo;s OK to be named (the Meta and Big 4 cards stay unnamed until they agree), and don&rsquo;t say anyone endorses Mesh or gave legal advice. Photos: add people/[name].jpg only with permission; otherwise initials show.</aside>
+</section>
+
+<!-- First campus pilots: proof we're building a product, not just competing (Replit final) -->
+<section class="slide cp-slide" data-title="First campus pilots">
+  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
+  <div class="by-hand">&mdash; beyond the case</div>
+  <h2 class="cp-h">We&rsquo;re not here to win a case.<br><span>We&rsquo;re building a product.</span></h2>
+  <p class="cp-sub">Our first campus pilots: free for students, licensed by the campus.</p>
+  <div class="cp-cards">
+    <div class="cp-card" data-step="1"><div class="cp-top"><span class="cp-tag">Community college</span><em class="cp-st">Outreach underway</em></div>
+      <b>Santa Monica College</b><p>Just launched an <strong>Applied AI certificate</strong> (Fall 2026) and a new bachelor&rsquo;s in cloud computing. Their students are learning to build with AI; Mesh lets them do it as a team.</p>
+      <div class="cp-offer">Proposal: free Spring 2027 pilot with one course or program</div></div>
+    <div class="cp-card" data-step="2"><div class="cp-top"><span class="cp-tag">Community college</span><em class="cp-st">Outreach underway</em></div>
+      <b>Los Angeles Trade-Technical College</b><p><strong>Two miles from USC</strong>, and one of the nine colleges in the LA Community College District. A pilot here is a door to the whole district.</p>
+      <div class="cp-offer">Proposal: free Spring 2027 pilot with its computer information systems program</div></div>
+  </div>
+  <p class="cp-foot" data-step="2">Then USC, our home campus. <span>Students free. Campuses pay. Year one priced to cover our costs.</span></p>
+  <aside class="notes">[Speaker: Evelyn. About 25 seconds. 2 clicks. Comes right after &ldquo;Who we&rsquo;ve listened to.&rdquo;] &ldquo;We took this seriously. We&rsquo;re not here to win a case; we&rsquo;re building a product.&rdquo; (1) Click: &ldquo;Santa Monica College just launched an Applied AI certificate. Their students are learning to build with AI, and Mesh lets them do it as a team.&rdquo; (2) Click: &ldquo;And LA Trade-Tech, two miles from USC, one of nine colleges in the LA Community College District. One pilot opens the door to the whole district. Then USC, our home campus. Students free, campuses pay.&rdquo; STATUS: update the yellow chips before Dec 3 to exactly what&rsquo;s true: &ldquo;Outreach underway&rdquo; (emails sent), &ldquo;In conversation&rdquo; (they replied) or &ldquo;Meeting scheduled.&rdquo; Never say they&rsquo;ve agreed until they have.</aside>
 </section>
 
 <!-- An emerging market: zooming timeline with the AgentMesh reveal (Replit final) -->
@@ -2886,28 +3011,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <aside class="notes">[Speaker: Evelyn. The finale, about 15 seconds.] &ldquo;Thank you for listening to our talk. Before you is our team: Andrew, Evelyn, Tony, Iris and Sarah. We are Mesh.&rdquo; Pause, smile, then invite questions. The MVP link is on screen for anyone who wants to try it. People following along can flip the photos to learn about each of us.</aside>
 </section>
 
-<!-- Appendix: how Mesh makes money -->
-<section class="slide mx-slide oc-slide mm-slide" data-title="Appendix: How Mesh makes money">
-  <div class="mx-head"><span class="mx-k">Appendix</span><span class="mx-upd">Business model</span></div>
-  <h2 class="mx-h">How Mesh makes money.</h2>
-  <p class="mm-lead">Our moat is convenience. Teams bring the agents they already use (Claude Code, Codex, Gemini CLI, Antigravity) into one room on one GitHub repo. No new tool to learn and no new AI to pay for. Mesh is the room between your agents.</p>
-  <div class="mm-grid">
-    <div class="mx-card mm-rev"><div class="mx-l">Campuses</div><span class="mm-big">Licensing</span>
-      <ul class="mm-list"><li>Campuses license Mesh for their students.</li><li>Year one is priced to cover our costs. First stop: USC.</li></ul></div>
-    <div class="mx-card mm-rev"><div class="mx-l">Businesses</div><span class="mm-big">Team sales</span>
-      <ul class="mm-list"><li>We sell Mesh to business teams whose people already code with AI agents.</li></ul></div>
-    <div class="mx-card mm-rev"><div class="mx-l">Companies</div><span class="mm-big">Partnerships</span>
-      <ul class="mm-list"><li><b>Other AI coding tools</b> plug into the room.</li><li><b>Microsoft Teams and calendar:</b> see inside Mesh when a teammate is at lunch or busy.</li></ul></div>
-    <div class="mx-card"><div class="mx-l">Students</div><span class="mm-big">Free for now</span>
-      <ul class="mm-list"><li>That&rsquo;s our current mission: help students build with AI, together.</li><li>The team room, chat, requests and Changes, plus live previews for websites and React/Vite. No hosting, no setup.</li></ul></div>
-    <div class="mx-card"><div class="mx-l">Paid</div><span class="mm-big">Add-ons</span>
-      <ul class="mm-list"><li><b>Cloud Preview:</b> full apps with a server and a database get a live preview, similar to Replit.</li><li><b>Built-in database</b> for every project, no setup.</li></ul></div>
-    <div class="mx-card"><div class="mx-l">Agent characters</div><span class="mm-big">$3 each to start</span>
-      <ul class="mm-list"><li>Every agent gets a free character. Custom decorations personalize your team&rsquo;s agents.</li></ul></div>
-  </div>
-  <p class="mm-foot"><b>Costs today: close to zero.</b> The free tier runs on our existing server, and the domain is about $10 a year. Paid features only cost us money when a team uses them, so each paid team covers its own cost.</p>
-  <aside class="notes">[Appendix. Tony.] Our moat is convenience: bring the agents you already use into one room. Students use Mesh free for now; that's our current mission. We make money three ways: campus licensing for students (year one priced to cover our costs, starting at USC), business team sales, and company partnerships for integrations. Paid add-ons: Cloud Preview and a built-in database for full apps. Agent characters start at $3 each. Costs today are close to zero: our existing server and a domain of about $10 a year.</aside>
-</section>
+
 
 <!-- Appendix: operating costs -->
 <section class="slide mx-slide oc-slide" data-title="Appendix: Operating costs">
