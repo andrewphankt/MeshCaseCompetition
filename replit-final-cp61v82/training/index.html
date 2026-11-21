@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mesh Training Mode</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Matches the pitch deck's notebook look: paper, ink, red pen, yellow highlighter, and each teammate's color. Training notes look like a teacher's margin notes. */
+  --bg: #f7f2e8;
+  --surface: #fffdf8;
+  --line: #e2d9c7;
+  --text: #1f1c17;
+  --muted: #6e6656;
+  --blue: #2f86d6;
+  --amber: #d99a00;
+  --pink: #e0567f;
+  --green: #2a9d66;
+  --red: #c8432b;
+  --coral: #e8613f;
+  --purple: #8a5cf0;
+  --learn: #fff3b8;
+  --learn-line: #ecd77a;
+  --learn-ink: #1f1c17;
+  --hi: #ffd84d;
+  --ink-btn: #1f1c17;
+  --font: "IBM Plex Sans", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --m-bg: #ffffff; --m-side: #fafafa; --m-line: #e6e6e9; --m-ink: #16171b; --m-mute: #70737d; --m-soft: #f2f2f4;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { background: var(--m-bg); color: var(--m-ink); font: 16px/1.5 var(--font); }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+.app { display: grid; grid-template-rows: auto 1fr; height: 100%; }
+
+/* Training bar: training-mode extras, kept apart from the Mesh layout */
+.tbar { display: flex; align-items: center; gap: 12px; padding: 8px 16px; background: var(--learn); border-bottom: 1px solid var(--learn-line); flex-wrap: wrap; }
+.tbar-lab { font: 700 22px/1 var(--hand); color: var(--red); }
+.spacer { flex: 1; }
+.backdeck { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px; background: #fff; border: 1px solid var(--learn-line); color: var(--text); font-weight: 600; font-size: 14px; text-decoration: none; }
+.backdeck[hidden] { display: none; }
+.hbtn { background: #fff; border: 1px solid var(--m-line); border-radius: 9px; padding: 7px 13px; font-weight: 600; font-size: 14px; color: var(--m-ink); }
+.hbtn.primary { background: var(--m-ink); color: #fff; border-color: var(--m-ink); }
+.toggle { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14px; background: transparent; border: 0; padding: 4px 2px; }
+.toggle .sw { width: 42px; height: 24px; border-radius: 999px; background: #cfcfd4; position: relative; transition: background .2s; }
+.toggle .sw::after { content: ""; position: absolute; left: 3px; top: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .2s; }
+.toggle[aria-pressed="true"] .sw { background: var(--red); }
+.toggle[aria-pressed="true"] .sw::after { transform: translateX(18px); }
+.proto { font: 600 12px var(--mono); color: var(--muted); border: 1px dashed var(--learn-line); border-radius: 6px; padding: 4px 8px; background: #fff; }
+
+/* Mesh layout (same as the live demo slide): sidebar, channel, side panel */
+.app { display: grid; grid-template-rows: auto 1fr; height: 100%; }
+.main { display: grid; grid-template-columns: 250px minmax(0, 1fr) 320px; min-height: 0; background: var(--m-bg); }
+aside.m-side { background: var(--m-side); border-right: 1px solid var(--m-line); padding: 14px 10px; display: flex; flex-direction: column; gap: 2px; overflow: auto; }
+.m-ws { display: flex; align-items: center; gap: 9px; font: 700 17px var(--font); color: var(--m-ink); padding: 4px 8px 12px; }
+.m-logo { width: 20px; height: 20px; border-radius: 50%; background: radial-gradient(circle, var(--m-ink) 2px, transparent 2.5px) 0 0/7px 7px; opacity: .8; flex: none; }
+.m-ws .slash { color: var(--m-mute); font-weight: 500; margin-right: -5px; }
+.m-chev { margin-left: auto; color: var(--m-mute); font-size: 15px; }
+.m-nav { display: flex; flex-direction: column; gap: 1px; }
+.m-nav .tab { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: transparent; border: 0; font: 500 15px var(--font); color: var(--m-ink); padding: 7px 10px; border-radius: 8px; }
+.m-nav .tab small { font-size: 13px; color: var(--m-mute); }
+.m-nav .tab:hover, .m-nav .tab[aria-selected="true"] { background: var(--m-soft); }
+.m-nav svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.m-h { display: flex; justify-content: space-between; align-items: center; font: 600 12px var(--font); letter-spacing: .08em; text-transform: uppercase; color: var(--m-mute); padding: 12px 10px 5px; }
+.m-h span { font-size: 16px; letter-spacing: 0; }
+.chan { display: block; width: 100%; text-align: left; background: transparent; border: 0; font: 500 15px var(--font); color: var(--m-ink); padding: 6px 10px; border-radius: 8px; }
+.chan b { color: var(--m-mute); font-weight: 500; margin-right: 6px; }
+.chan.on { background: var(--m-ink); color: #fff; }
+.chan.on b { color: rgba(255,255,255,.7); }
+.person { display: flex; align-items: center; gap: 10px; padding: 4px 10px; font: 500 15px var(--font); color: var(--m-ink); }
+.person small { color: var(--m-mute); font-size: 13px; }
+.av { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 700 12px var(--font); color: #fff; flex: none; }
+.m-agent { display: flex; align-items: center; gap: 10px; padding: 4px 10px; font: 500 15px/1.15 var(--font); color: var(--m-ink); }
+.m-agent small { display: block; font: 500 12.5px var(--font); color: var(--m-mute); margin-top: 2px; }
+.m-agent small.bad { color: #c8432b; }
+.m-face { width: 30px; height: 30px; border-radius: 50%; flex: none; background: #f1f1f4 no-repeat 50% 4% / 260%; border: 2px solid #e6e6e9; }
+.m-face.felix { background: #f1ecf3 url(../sprites/stand.png) no-repeat 48% 6% / 270%; border-color: #f4c0d1; }
+.side-foot { margin-top: auto; padding: 14px 6px 2px; }
+
+/* Center: one channel; Preview and Changes open from the sidebar */
+.center { display: flex; flex-direction: column; min-height: 0; border-right: 1px solid var(--m-line); }
+.ch-head { display: flex; align-items: center; gap: 12px; padding: 10px 18px; border-bottom: 1px solid var(--m-line); min-height: 58px; }
+.ch-head .ch { font: 700 19px var(--font); color: var(--m-ink); }
+.stack { display: flex; margin-left: auto; padding-left: 8px; }
+.stack .av { width: 28px; height: 28px; border: 2px solid #fff; margin-left: -8px; font-size: 11px; }
+.conn { display: inline-flex; align-items: center; gap: 7px; font: 600 13px var(--font); color: #b26a00; max-width: 200px; line-height: 1.2; }
+.conn i { width: 10px; height: 10px; border-radius: 50%; background: #f0a020; display: inline-block; flex: none; }
+.conn.ok { color: #1a7f4b; } .conn.ok i { background: #1a9e5c; }
+.me-av { width: 34px; height: 34px; border-radius: 9px; background: #d99a00; color: #fff; display: grid; place-items: center; font: 700 14px var(--font); flex: none; }
+.panel { flex: 1; overflow: auto; padding: 14px 20px; display: none; }
+.panel.on { display: block; }
+.msg { display: grid; grid-template-columns: 38px 1fr; gap: 12px; margin-bottom: 14px; color: #2a2c33; font-size: 16px; }
+.msg .av { width: 38px; height: 38px; font-size: 14px; }
+.msg .m-face { width: 38px; height: 38px; }
+.msg .who { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-weight: 700; color: var(--m-ink); }
+.msg .who .of { font-weight: 500; color: var(--m-mute); }
+.msg .who small { font: 500 13px var(--font); color: var(--m-mute); }
+.badge { font: 600 11px var(--font); letter-spacing: .06em; color: var(--m-mute); border: 1px solid var(--m-line); border-radius: 5px; padding: 1px 6px; }
+.learnline { display: none; margin-top: 8px; font-size: 14px; color: var(--learn-ink); background: var(--learn); border: 1px solid var(--learn-line); border-radius: 4px; padding: 8px 12px; box-shadow: 0 6px 14px rgba(60,45,20,.08); transform: rotate(-.3deg); }
+.learnline::before { content: "Training note "; font: 700 19px/1 var(--hand); color: var(--red); margin-right: 4px; }
+body.training .learnline { display: block; }
+.welcome { background: #fff; border: 1px solid var(--m-line); border-radius: 12px; padding: 18px 20px 16px; margin: 4px 0 18px; box-shadow: 0 2px 8px rgba(20,20,30,.05); }
+.welcome h2 { margin: 0 0 6px; font: 700 21px/1.2 var(--font); color: var(--m-ink); }
+.welcome p { margin: 0 0 12px; color: var(--m-mute); }
+.starters { display: flex; flex-wrap: wrap; gap: 8px; }
+.starter { background: var(--m-soft); border: 1px solid var(--m-line); border-radius: 999px; padding: 7px 13px; font-size: 14px; font-weight: 600; color: var(--m-ink); }
+.starter:hover { background: var(--learn); border-color: var(--learn-line); }
+.composer { padding: 10px 16px 14px; }
+.composer form { display: flex; align-items: center; gap: 12px; border: 1.5px solid var(--m-ink); border-radius: 12px; padding: 7px 7px 7px 14px; background: #fff; }
+.composer .pic { width: 20px; height: 20px; fill: none; stroke: var(--m-mute); stroke-width: 1.8; flex: none; }
+.composer input { flex: 1; min-width: 0; border: 0; outline: 0; padding: 8px 0; background: transparent; font-size: 16px; }
+.composer .gif { font: 700 13px var(--font); color: var(--m-mute); letter-spacing: .04em; }
+.send { width: 38px; height: 38px; display: grid; place-items: center; background: var(--m-soft); color: var(--m-mute); border: 0; border-radius: 9px; font: 700 18px/1 var(--font); }
+.send:not(:disabled):hover { background: var(--m-ink); color: #fff; }
+.send:disabled { opacity: .4; cursor: not-allowed; }
+.guard { display: none; margin-top: 10px; background: rgba(200,67,43,.1); color: var(--red); border-radius: 10px; padding: 10px 12px; font-size: 14px; font-weight: 600; }
+.guard.on { display: block; }
+
+/* Right: training-mode extras (checklist and map); hidden when training mode is off */
+body:not(.training) aside.right { display: none; }
+body:not(.training) .main { grid-template-columns: 250px minmax(0, 1fr); }
+aside.right { padding: 16px; overflow: auto; background: var(--m-bg); }
+.right h3 { font: 700 24px/1 var(--hand); color: var(--red); margin: 0 0 8px; }
+.right h3 + * { margin-bottom: 18px; }
+
+/* Skills */
+.sk-top { display: flex; align-items: flex-start; gap: 16px; margin: 2px 0 12px; }
+.sk-top b { display: block; font-size: 19px; color: var(--m-ink); }
+.sk-top span { display: block; color: var(--m-mute); font-size: 15px; margin-top: 2px; }
+.sk-top .hbtn { margin-left: auto; flex: none; }
+.sk-list { display: grid; gap: 10px; margin-top: 12px; }
+.sk { display: flex; align-items: center; gap: 14px; border: 1px solid var(--m-line); border-radius: 12px; padding: 12px 14px; background: #fff; }
+.sk > div { flex: 1; }
+.sk b { display: block; font-size: 16px; color: var(--m-ink); }
+.sk span { display: block; font-size: 14px; color: #2a2c33; }
+.sk small { display: block; font-size: 12.5px; color: var(--m-mute); margin-top: 3px; }
+.sk-add { flex: none; background: var(--m-ink); color: #fff; border: 0; border-radius: 9px; padding: 7px 14px; font-weight: 600; font-size: 14px; }
+.sk.added .sk-add { background: rgba(42,157,102,.12); color: #1a7f4b; cursor: default; }
+
+/* Changes */
+.save { display: grid; grid-template-columns: 34px 1fr auto; gap: 12px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.save .file { font: 14px var(--mono); color: var(--muted); }
+.save time { font: 13px var(--mono); color: var(--muted); }
+.save.fail { background: rgba(200,67,43,.07); border-radius: 8px; padding: 14px; border: 1px solid rgba(200,67,43,.35); margin: 10px 0; }
+.save.fail .why { color: var(--red); font-weight: 600; }
+.fixbtn { margin-top: 8px; background: var(--red); color: #fff; border: 0; border-radius: 8px; padding: 7px 12px; font-weight: 600; font-size: 14px; }
+.branchnote { font-size: 14px; color: var(--muted); margin: 0 0 8px; }
+.code { font: 13px var(--mono); background: var(--bg); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; }
+
+/* Preview */
+.preview-frame { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
+.preview-bar { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+.preview-bar .url { font: 13px var(--mono); background: var(--bg); padding: 4px 10px; border-radius: 6px; flex: 1; }
+.preview-body { padding: 36px; background: #f7f2e8; color: var(--text); min-height: 260px; position: relative; overflow: hidden; background-image: radial-gradient(circle, #ddd3c0 1.1px, transparent 1.4px); background-size: 24px 24px; }
+.preview-body h4 { font: 800 58px/1 var(--display); margin: 0 0 10px; display: inline-block; background: linear-gradient(transparent 56%, rgba(255,216,77,.92) 56%, rgba(255,216,77,.92) 90%, transparent 90%); padding: 0 .08em; }
+.preview-body p { margin: 0; color: var(--muted); font-size: 18px; }
+.preview-body svg { position: absolute; left: 0; right: 0; bottom: 20px; width: 100%; height: 110px; }
+.pubrow { display: flex; gap: 12px; align-items: center; margin-top: 14px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+
+/* Right: checklist and map */
+.check { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.check:last-child { border-bottom: 0; }
+.allset { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 12px; border-radius: 10px; background: rgba(42,157,102,.08); border: 1px solid rgba(42,157,102,.3); }
+.allset .mark { background: var(--green); }
+.allset b { display: block; font-size: 15px; font-weight: 600; } .allset span { font-size: 13px; color: var(--muted); }
+.mark { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 13px; color: #fff; background: var(--red); }
+.check.done .mark { background: var(--green); }
+.check.wait .mark { background: var(--amber); }
+.check b { display: block; font-size: 15px; font-weight: 600; }
+.check span { font-size: 13px; color: var(--muted); }
+.check button { margin-top: 6px; background: var(--ink-btn); color: var(--surface); border: 0; border-radius: 8px; padding: 6px 10px; font-weight: 600; font-size: 13px; }
+.map { display: grid; gap: 10px; }
+.place { border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; background: var(--surface); }
+.place b { display: block; font-weight: 600; }
+.place span { font-size: 13px; color: var(--muted); }
+.place.you { border-left: 4px solid var(--blue); }
+.place.room { border-left: 4px solid var(--amber); }
+
+/* Training mode highlights and the explainer card */
+body.training [data-learn] { outline: 1.5px dashed rgba(200,67,43,.45); outline-offset: 3px; border-radius: 6px; cursor: help; }
+body.training [data-learn]:hover { outline-style: solid; outline-color: var(--red); }
+.tip { position: fixed; z-index: 30; width: min(340px, calc(100% - 24px)); background: var(--learn); color: var(--text); border: 1px solid var(--learn-line); border-radius: 4px; padding: 14px 16px 14px; box-shadow: 0 18px 36px rgba(60,45,20,.22); font-size: 15px; pointer-events: none; transform: rotate(-.6deg); }
+.tip[hidden] { display: none; }
+.tip .t { font: 700 28px/1 var(--hand); color: var(--red); }
+.tip .m { margin: 4px 0 0; }
+.tip .h { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--learn-line); color: #4d4637; font-size: 14px; }
+.tip .h b { color: var(--text); background: linear-gradient(transparent 50%, rgba(255,216,77,.95) 50%); padding: 0 3px; }
+
+/* Walkthrough */
+.tour-shade { position: fixed; inset: 0; z-index: 40; pointer-events: none; }
+.tour-shade[hidden] { display: none; }
+.spot { position: fixed; border-radius: 10px; box-shadow: 0 0 0 9999px rgba(31,28,23,.55); outline: 3px solid var(--hi); transition: all .35s ease; z-index: 41; pointer-events: none; }
+.tour-card { position: fixed; z-index: 42; width: min(380px, calc(100% - 24px)); background: var(--surface); border: 1px solid #e6ddca; border-radius: 6px; padding: 20px 22px; box-shadow: 0 24px 50px rgba(0,0,0,.3); }
+.tour-card[hidden] { display: none; }
+.tour-card .step { font: 700 24px/1 var(--hand); color: var(--red); }
+.tour-card h2 { margin: 6px 0 8px; font: 700 24px/1.15 var(--display); }
+.tour-card p { margin: 0; color: var(--muted); }
+.tour-nav { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
+.tour-nav button { border-radius: 8px; padding: 8px 14px; font-weight: 600; border: 1px solid var(--line); background: transparent; }
+.tour-nav .go { background: var(--ink-btn); color: var(--surface); border-color: var(--ink-btn); }
+
+/* Glossary drawer */
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(420px, 100%); background: var(--surface); border-left: 1px solid var(--line); z-index: 35; display: flex; flex-direction: column; box-shadow: -20px 0 40px rgba(0,0,0,.12); }
+.drawer[hidden] { display: none; }
+.drawer header { justify-content: space-between; }
+.drawer input { margin: 14px 20px 6px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--bg); }
+.gl { overflow: auto; padding: 6px 20px 20px; }
+.gl dt { font: 700 18px var(--display); margin-top: 16px; }
+.gl dd { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+.gl dd em { font-style: normal; color: var(--text); }
+
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(16px); background: var(--ink-btn); color: var(--surface); padding: 11px 18px; border-radius: 12px; font-weight: 600; font-size: 15px; opacity: 0; transition: all .25s ease; z-index: 50; pointer-events: none; max-width: calc(100% - 32px); text-align: center; }
+.toast.on { opacity: 1; transform: translateX(-50%); }
+.proto { font: 600 12px var(--mono); color: var(--muted); border: 1px dashed var(--line); border-radius: 6px; padding: 4px 8px; }
+
+@media (max-width: 1100px) { .main { grid-template-columns: 230px minmax(0,1fr); } aside.right { display: none; } }
+@media (max-width: 760px) { .main { grid-template-columns: 1fr; } aside.m-side { display: none; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* In the deck's frame (?embed=1): one training note at a time; older notes fold into a "?" */
+.ln-q { display: none; }
+body.embed.training .learnline.collapsed { display: none; }
+body.embed.training .ln-q { display: inline-grid; place-items: center; width: 22px; height: 22px; margin-top: 6px; border-radius: 50%; border: 1px solid var(--learn-line); background: var(--learn); color: var(--red); font: 700 14px/1 var(--body, sans-serif); cursor: pointer; padding: 0; }
+body.embed.training .ln-q:hover { filter: brightness(.96); }
+
+/* Agents: same as the live room on slide 14 (character under each name, AI logo on the right) */
+.m-agent .m-ai { margin-left: auto; width: 22px; height: 22px; border-radius: 6px; background: var(--c); display: grid; place-items: center; flex: none; }
+.m-agent .m-ai svg { width: 13px; height: 13px; }
+.lg-row { display: block; position: relative; height: 44px; margin: -2px 0 4px 44px; }
+.lg-row img { height: 100%; display: block; transform-origin: 50% 95%; animation: fsway 2.8s ease-in-out infinite; }
+.lg-row[data-who="i"] img { animation-delay: -.7s; } .lg-row[data-who="e"] img { animation-delay: -1s; }
+@keyframes fsway { 0%, 100% { transform: translateY(0) rotate(-4deg); } 25% { transform: translateY(-2px) rotate(0deg) scale(.985, 1.035); } 50% { transform: translateY(-1px) rotate(4deg); } 75% { transform: translateY(-2px) rotate(0deg) scale(.985, 1.035); } }
+.m-agent small.out { color: #c8432b; font-weight: 600; }
+.m-agent small.busy { color: #b26a00; font-weight: 600; }
+.m-out .m-face { filter: grayscale(.7); opacity: .75; } .m-out .m-ai { opacity: .55; }
+/* placeholders until the ChatGPT art arrives: Sarah sleepy and faded, Tony with a BUSY tag */
+.lg-out img { animation: none; filter: grayscale(.55); opacity: .72; transform: rotate(-8deg); }
+.lg-out img.art, .lg-busy img.art { filter: none; opacity: 1; transform: none; }
+.lg-row b { position: absolute; left: 48px; top: 2px; font: 700 10px var(--body, system-ui); color: #fff; border-radius: 4px; padding: 1px 5px; }
+.tag-out { background: #c8432b; } .tag-busy { background: #b26a00; }
+.lg-busy img { animation: none; }
+.lg-row img.art ~ b { display: none; }
+@media (prefers-reduced-motion: reduce) { .lg-row img { animation: none !important; } }
+
+/* People as one row of circles, like the live room on slide 14 */
+#people { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+#people .m-h { flex-basis: 100%; }
+#people .person { font-size: 0; padding: 0; gap: 0; }
+#people .person small { display: none; }
+#people .person .av { font-size: 11px; }
+#people .person:first-of-type { margin-left: 8px; }
+
+/* AI logo: small, right next to the agent's name */
+.m-agent .m-nm { display: inline-flex; align-items: center; gap: 6px; }
+.m-agent .m-nm .m-ai { margin-left: 0 !important; width: 17px !important; height: 17px !important; border-radius: 5px !important; }
+.m-agent .m-nm .m-ai svg { width: 10px !important; height: 10px !important; }
+
+.lg-row.lg-busy { height: 52px; margin-top: -4px; }
+
+.lg-row.lg-out { height: 52px; margin-top: -4px; }
+
+/* People show their slide 2 photo (their character until a photo exists); agents show their character */
+.ph { color: transparent !important; overflow: hidden; }
+.ph-a { background: url(../team/andrew.jpg) center 20% / cover no-repeat, url(../sprites/fox_stand.png) 50% 4% / 260% no-repeat #f1f1f4 !important; }
+.ph-i { background: url(../team/iris.jpg) center 20% / cover no-repeat, url(../sprites/cat_stand.png) 50% 4% / 260% no-repeat #f1f1f4 !important; }
+.ph-s { background: url(../team/sarah.jpg) center 20% / cover no-repeat, url(../sprites/bunny_stand.png) 50% 4% / 260% no-repeat #f1f1f4 !important; }
+.ph-t { background: url(../team/tony.jpg) center 20% / cover no-repeat, url(../sprites/bear_stand.png) 50% 4% / 260% no-repeat #f1f1f4 !important; }
+.ph-e { background: url(../team/evelyn.jpg) center 20% / cover no-repeat, url(../sprites/stand.png) 48% 6% / 270% no-repeat #f1ecf3 !important; }
+.ph-fox { background: url(../sprites/fox_stand.png) 50% 4% / 260% no-repeat #f1f1f4 !important; }
+.ph-cat { background: url(../sprites/cat_stand.png) 50% 4% / 260% no-repeat #f1f1f4 !important; }
+
+#failed-save { display: none !important; }
+</style>
+</head>
+<body class="training">
+<div class="app">
+  <div class="tbar" id="train-bar">
+    <a class="backdeck" id="back-deck" href="../index.html" hidden>← Back to the deck</a>
+    <span class="tbar-lab">Live team room</span>
+    <span class="proto">Prototype</span>
+    <span class="spacer"></span>
+    <button type="button" class="hbtn" id="open-glossary">Glossary</button>
+    <button type="button" class="hbtn primary" id="start-tour">Start here</button>
+    <button type="button" class="toggle" id="training-toggle" aria-pressed="true"><span class="sw" aria-hidden="true"></span>Training mode</button>
+  </div>
+
+  <div class="main">
+    <aside class="m-side">
+      <div class="m-ws" data-learn="repo"><span class="m-logo" aria-hidden="true"></span><span class="slash">/</span>MeshCaseCompetition<span class="m-chev" aria-hidden="true">&#8964;</span></div>
+      <div class="m-nav" role="tablist">
+        <button type="button" class="tab" role="tab" aria-selected="false" data-tab="preview" id="tab-preview" data-learn="preview"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>Preview <small>draft</small></button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-tab="changes" id="tab-changes" data-learn="changes"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Changes <small>draft log</small></button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-tab="skills" id="tab-skills" data-learn="skills"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.2 5.6L20 9.3l-4.5 3.9 1.4 5.8L12 16l-4.9 3 1.4-5.8L4 9.3l5.8-.7z"/></svg>Skills <small id="skills-count">0 of 5 added</small></button>
+      </div>
+      <div id="channels">
+        <div class="m-h">Channels<span>+</span></div>
+        <div data-learn="channel">
+          <button type="button" class="chan on tab" data-tab="chat" id="tab-chat"><b>#</b>general</button>
+          <button type="button" class="chan"><b>#</b>pitch</button>
+          <button type="button" class="chan"><b>#</b>decisions</button>
+        </div>
+      </div>
+      <div id="people">
+        <div class="m-h">People</div>
+        <div class="person"><span class="av ph ph-a" style="background:#2f6fd6">A</span>Andrew <small>owner</small></div>
+        <div class="person"><span class="av ph ph-i" style="background:#22895a">I</span>Iris</div>
+        <div class="person"><span class="av ph ph-s" style="background:#e8613f">S</span>Sarah</div>
+        <div class="person"><span class="av ph ph-t" style="background:#8a5cf0">T</span>Tony</div>
+        <div class="person"><span class="av ph ph-e" style="background:#d99a00">E</span>Evelyn <small>you</small></div>
+      </div>
+      <div class="m-h">Agents<span>+</span></div>
+      <div data-learn="agent">
+        <div class="m-agent"><i class="m-face" style="background-image:url(../sprites/fox_stand.png)" aria-hidden="true"></i><div><span class="m-nm">Max · Andrew's AI<span class="m-ai" style="--c:#D97757" title="Claude"><svg viewBox="0 0 24 24" aria-label="Claude"><path fill="#fff" d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></span></span><small>Idle</small></div></div>
+        <span class="lg-row" data-who="a" aria-hidden="true"><img src="../sprites/fox_idle.png" alt=""></span>
+        <div class="m-agent"><i class="m-face" style="background-image:url(../sprites/cat_stand.png)" aria-hidden="true"></i><div><span class="m-nm">Gwen · Iris's AI<span class="m-ai" style="--c:linear-gradient(135deg,#4285F4,#9B72CB 60%,#D96570)" title="Gemini"><svg viewBox="0 0 24 24" aria-label="Gemini"><path fill="#fff" d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span></span><small>Idle</small></div></div>
+        <span class="lg-row" data-who="i" aria-hidden="true"><img src="../sprites/cat_idle.png" alt=""></span>
+        <div class="m-agent m-out"><i class="m-face" style="background-image:url(../sprites/bunny_stand.png)" aria-hidden="true"></i><div><span class="m-nm">Alice · Sarah's AI<span class="m-ai" style="--c:#0d0d0d" title="Codex"><svg viewBox="0 0 24 24" aria-label="Codex"><path fill="#fff" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span></span><small class="out">Out of tokens</small><small>Refreshes 3:37 PM</small></div></div>
+        <span class="lg-row lg-out" data-who="s" aria-hidden="true"><img src="../sprites/bunny_out.gif" alt="" id="sarah-out-img" class="art"><b class="tag-out">0%</b></span>
+        <div class="m-agent m-busy"><i class="m-face" style="background-image:url(../sprites/bear_stand.png)" aria-hidden="true"></i><div><span class="m-nm">Dante · Tony's AI<span class="m-ai" style="--c:#0d0d0d" title="ChatGPT"><svg viewBox="0 0 24 24" aria-label="ChatGPT"><path fill="#fff" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span></span><small class="busy">Busy</small></div></div>
+        <span class="lg-row lg-busy" data-who="t" aria-hidden="true"><img src="../sprites/door_busy.gif" alt="" id="tony-busy-img" class="art"><b class="tag-busy">BUSY</b></span>
+        <div class="m-agent"><i class="m-face felix" aria-hidden="true"></i><div><span class="m-nm">Felix · Evelyn's AI<span class="m-ai" style="--c:#D97757" title="Claude"><svg viewBox="0 0 24 24" aria-label="Claude"><path fill="#fff" d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></span></span><small id="st-e">Idle</small></div></div>
+        <span class="lg-row" data-who="e" aria-hidden="true"><img src="../sprites/idle.png" alt=""></span>
+      </div>
+    </aside>
+
+    <section class="center">
+      <div class="ch-head" id="room-head" data-learn="room">
+        <span class="ch" id="ch-title"># general</span>
+        <span class="stack" aria-hidden="true"><span class="av ph ph-a" style="background:#2f6fd6">A</span><span class="av ph ph-i" style="background:#22895a">I</span><span class="av ph ph-s" style="background:#e8613f">S</span><span class="av ph ph-t" style="background:#8a5cf0">T</span></span>
+        <button type="button" class="hbtn primary" data-learn="invite" id="invite">Invite</button>
+        <span class="conn" id="conn" data-learn="connection"><i></i><span id="conn-text">Your work isn't reaching the team yet</span></span>
+        <span class="me-av ph ph-e" aria-label="You: Evelyn">E</span>
+      </div>
+
+      <div class="panel on" id="panel-chat" role="tabpanel">
+        <div class="welcome" id="starter">
+          <h2>Welcome to MeshCaseCompetition, Evelyn</h2>
+          <p>This is the team's pitch deck project. The live demo and the team slide are still unfinished. Not sure what to ask your agent? Pick one:</p>
+          <div class="starters">
+            <button type="button" class="starter">Show me what's in this project, in plain English</button>
+            <button type="button" class="starter">What's unfinished, and what can I help with?</button>
+            <button type="button" class="starter">Make one small change so I can see how saving works</button>
+          </div>
+        </div>
+        <div class="msg"><span class="av ph ph-a" style="background:#2f6fd6">A</span><div><div class="who">Andrew <small>11:38 PM</small></div>Room's up. Connect your agents with the link I posted, then say hi.</div></div>
+        <div class="msg"><i class="m-face" style="background-image:url(../sprites/fox_stand.png)" aria-hidden="true"></i><div><div class="who">Max <span class="of">Andrew's Claude</span><span class="badge">AGENT</span><small>11:42 PM</small></div>Saved: updated <span class="code">room/landing.html</span>.<div class="learnline">What happened: Andrew's agent saved its work (a <b>commit</b>) and sent it to GitHub (a <b>push</b>). Now everyone's copy can get it.</div></div></div>
+        <div class="msg"><span class="av ph ph-i" style="background:#22895a">I</span><div><div class="who">Iris <small>11:51 PM</small></div>Can someone check the deck before tomorrow?</div></div>
+        <div class="msg"><i class="m-face felix" aria-hidden="true"></i><div><div class="who">Felix <span class="of">Evelyn's Claude</span><span class="badge">AGENT</span><small>11:58 PM</small></div>I'm about to change <span class="code">pitch/index.html</span>, slide 2 only.<div class="learnline">Why I post this first: teammates' agents see it and won't edit the same slide at the same time.</div></div></div>
+      </div>
+
+      <div class="panel" id="panel-changes" role="tabpanel">
+        <p class="branchnote">Everyone's saves land on the shared draft <span class="code" data-learn="branch">draft</span>. Newest first.</p>
+        <div id="saves">
+          <div class="save fail" id="failed-save"><i class="m-face felix" aria-hidden="true"></i><div><b>Felix · Evelyn's AI</b> <span class="file">pitch/index.html</span><div class="why">Your work didn't reach the team. This computer isn't signed in to GitHub.</div><div class="learnline">Your changes are safe on your computer. They just can't be sent (pushed) until you sign in. Fix it once and every future save goes through.</div><button type="button" class="fixbtn" id="fix-from-save">Fix it: sign in to GitHub</button></div><time>12:02 AM</time></div>
+          <div class="save"><i class="m-face" style="background-image:url(../sprites/fox_stand.png)" aria-hidden="true"></i><div><b>Max · Andrew's AI</b> <span class="file">room/landing.html</span><div class="learnline">A save (commit) is a snapshot of the files with a name on it. This one is Andrew's.</div></div><time>11:42 PM</time></div>
+          <div class="save"><i class="m-face" style="background-image:url(../sprites/cat_stand.png)" aria-hidden="true"></i><div><b>Gwen · Iris's AI</b> <span class="file">README.md</span></div><time>11:20 PM</time></div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-preview" role="tabpanel">
+        <div class="preview-frame">
+          <div class="preview-bar"><span data-learn="previewvs">Preview of the shared draft</span><span class="url">mesh · MeshCaseCompetition · draft</span><button type="button" class="hbtn" id="refresh">Refresh</button></div>
+          <div class="preview-body">
+            <h4>Mesh</h4>
+            <p>A team room for coding agents, built for student teams.</p>
+            <svg viewBox="0 0 800 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0 15 H260 C350 15 360 55 450 55" stroke="#2f86d6" stroke-width="4" fill="none"/><path d="M0 55 H450" stroke="#e3a614" stroke-width="4" fill="none"/><path d="M0 95 H260 C350 95 360 55 450 55" stroke="#e0567f" stroke-width="4" fill="none"/><path d="M450 55 H800" stroke="#1f1c17" stroke-width="7"/><circle cx="450" cy="55" r="6" fill="#1f1c17"/></svg>
+          </div>
+        </div>
+        <div class="pubrow"><span data-learn="hosting">Public site: <span class="code">roomtest-six.vercel.app</span></span><span>Updates when the owner publishes (deploys).</span></div>
+      </div>
+
+      <div class="panel" id="panel-skills" role="tabpanel">
+        <div class="sk-top">
+          <div><b>Skills for this project</b><span>This room mostly uses Claude agents. Add the team's skills so your agent works the way everyone else's does.</span></div>
+          <button type="button" class="hbtn primary" id="sk-all">Add all 5</button>
+        </div>
+        <div class="learnline">A skill is a set of instructions your agent follows, like a recipe card. Mesh adds it to your agent for you. Nothing to download or set up.</div>
+        <div class="sk-list" id="sk-list">
+          <div class="sk"><div><b>Mesh room</b><span>Posts before it edits a file and saves to the shared draft, so agents don't collide.</span><small>Required · added by Andrew</small></div><button type="button" class="sk-add">Add</button></div>
+          <div class="sk"><div><b>Pitch deck slides</b><span>Edits slides in our deck and keeps the speaker notes and timing in sync.</span><small>For this project · added by Andrew</small></div><button type="button" class="sk-add">Add</button></div>
+          <div class="sk"><div><b>Explain it simply</b><span>Explains code, errors and terms in plain English when you ask "what does this mean?"</span><small>Recommended for new people</small></div><button type="button" class="sk-add">Add</button></div>
+          <div class="sk"><div><b>Keep secrets safe</b><span>Never pastes passwords, tokens or keys into chats or files.</span><small>Required · added by Andrew</small></div><button type="button" class="sk-add">Add</button></div>
+          <div class="sk"><div><b>Check the preview</b><span>Opens the preview and checks for errors before it saves.</span><small>For this project · added by Iris</small></div><button type="button" class="sk-add">Add</button></div>
+        </div>
+      </div>
+
+      <div class="composer" data-learn="composer">
+        <form id="composer">
+          <label for="msg-input" class="sr" style="position:absolute; left:-9999px">Message the team</label>
+          <svg class="pic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>
+          <input id="msg-input" type="text" placeholder="Message #general (try pasting something that starts with ghp_)" autocomplete="off">
+          <span class="gif" aria-hidden="true">GIF</span>
+          <button type="submit" class="send" id="send" aria-label="Send">&#8593;</button>
+        </form>
+        <div class="guard" id="guard">That looks like a password or token. It wasn't sent. If you pasted a real one anywhere, delete it on GitHub and make a new one.</div>
+      </div>
+    </section>
+
+    <aside class="right">
+      <div id="away">
+        <h3>While you were away</h3>
+        <div class="map" data-learn="away">
+          <div class="place room"><b>Max saved the landing page</b><span>Andrew's AI &middot; room/landing.html &middot; 11:42 PM</span></div>
+          <div class="place room"><b>Gwen is updating the footer</b><span>Iris's AI &middot; working now</span></div>
+          <div class="place"><b>Alice is out of tokens</b><span>Sarah's AI &middot; back at 3:37 PM</span></div>
+          <div class="place"><b>Dante is busy</b><span>Tony's AI &middot; in a meeting</span></div>
+          <div class="place you"><b>Andrew asked for a review</b><span>#general &middot; &ldquo;Can someone check the deck before tomorrow?&rdquo;</span></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="tip" id="tip" hidden role="tooltip"></div>
+<div class="tour-shade" id="tour-shade" hidden><div class="spot" id="spot"></div></div>
+<div class="tour-card" id="tour-card" hidden role="dialog" aria-labelledby="tour-title">
+  <div class="step" id="tour-step"></div>
+  <h2 id="tour-title"></h2>
+  <p id="tour-body"></p>
+  <div class="tour-nav"><button type="button" id="tour-skip">Skip</button><button type="button" id="tour-back">Back</button><button type="button" class="go" id="tour-next">Next</button></div>
+</div>
+<div class="drawer" id="glossary" hidden>
+  <header><b>Glossary</b><button type="button" class="hbtn" id="close-glossary">Close</button></header>
+  <input id="gl-search" type="search" placeholder="Search a word, like push or token" aria-label="Search the glossary">
+  <dl class="gl" id="gl-list"></dl>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  function $(id) { return document.getElementById(id); }
+  function each(list, fn) { Array.prototype.forEach.call(list, fn); }
+  var toastT;
+  function toast(msg) { var t = $('toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('on'); }, 2600); }
+
+  /* Plain-language explanations, from the "Starting From Zero" diagnostic */
+  var LEARN = {
+    room: { t: 'The room', m: "Your team's shared space: messages, every agent's saves, and a preview of the work.", h: 'Start with <b>Start here</b> for a one-minute tour.' },
+    repo: { t: 'Repo (repository)', m: "The project's online home on GitHub, plus its full history. Everyone's copy syncs with it.", h: 'This room is connected to the repo named here.' },
+    connection: { t: 'Connection status', m: 'Shows whether your agent is connected and when your work last reached the team.', h: 'Red means your saves are only on your computer. Use the <b>Setup checklist</b> to fix it.' },
+    channel: { t: 'Channels', m: 'Topics for talking with your teammates, like group chats.', h: 'Ask questions in <b>#general</b>.' },
+    agent: { t: 'Agent', m: 'An AI, like Claude, that can read and change the project files and run commands for you.', h: "Each person's agent posts here when it starts and finishes work." },
+    invite: { t: 'Invite a teammate', m: 'Adds someone to the room. To change files, the repo owner must also add them on GitHub as a collaborator.', h: 'Only the owner can grant edit access.' },
+    chat: { t: 'Chat', m: 'Where teammates and their agents talk and post updates.', h: 'Agents post what they are about to change, so nobody collides.' },
+    changes: { t: 'Changes', m: 'Every save (commit) from every agent, with a name on it.', h: 'If a save failed, it shows here in red with a fix.' },
+    preview: { t: 'Preview', m: 'A test view of the latest shared draft. Check your work here.', h: 'No hosting company needed to see it.' },
+    branch: { t: 'Branch / draft', m: "A separate line of work in a repo. Mesh puts everyone's saves on one shared branch called draft.", h: 'The public site only changes when the owner publishes.' },
+    previewvs: { t: 'Preview vs public site', m: 'A preview is a test view for checking work. The public site is what everyone else sees.', h: 'Use the preview freely. It never goes public by itself.' },
+    hosting: { t: 'Hosting and deploy', m: 'A hosting company (here, Vercel) puts files online at a link. Deploying uploads a new version to it.', h: 'The owner connects hosting once.' },
+    composer: { t: 'Message box', m: 'Messages here go to the room, and the room is shared with your team.', h: 'Never paste passwords, tokens or keys. Mesh blocks text that looks like one.' },
+    skills: { t: 'Skills', m: "Instructions your agent follows, picked by the team for this project. Adding them makes every agent work the same way.", h: 'New here? Press <b>Add all</b>. Mesh adds them to your agent for you.' },
+    checklist: { t: 'Setup checklist', m: 'Mesh checks your computer before you start, so saves never fail silently.', h: 'Every red item has a one-click fix. No Terminal needed.' },
+    away: { t: 'Catch up in one glance', m: 'Everything your team and their agents did while you were gone, in plain words. No scrolling through chat to figure it out.', h: 'Your agent reads this too before its next message, so it never redoes a teammate&rsquo;s work.' }
+  };
+  var GLOSSARY = [
+    ['Terminal', 'A window where you type commands to your computer instead of clicking. Your agent uses one behind the scenes.'],
+    ['Folder / project', 'The files that make up your work, on your own computer.'],
+    ['Repo (repository)', "The project's online home on GitHub, plus its full history. Everyone's copy syncs with it."],
+    ['GitHub', 'The website that stores repos and controls who may change them.'],
+    ['Git', 'The tool that records versions of files and syncs them with GitHub.'],
+    ['Branch / draft', 'A separate line of work in a repo. Mesh puts everyone on one shared branch called draft.'],
+    ['Save (commit)', 'A recorded snapshot of changes, with your name on it.'],
+    ['Push', 'Sending your saved snapshots from your computer up to GitHub.'],
+    ['Owner / collaborator', "The owner controls the repo. Collaborators are invited and can push, but can't change its settings."],
+    ['Password, token, key', 'Secrets that prove who you are. A token or API key is a long generated password for a tool. Never paste one into a chat.'],
+    ['Skill', "A set of instructions an agent follows, like a recipe card. The team picks skills for the project in the Skills tab."],
+    ['Agent', 'An AI, like Claude, that can read and change your project files and run commands for you.'],
+    ['Claude tokens (usage)', 'A different meaning of token: how much AI usage you have left. Not a password.'],
+    ['Hooks', 'Small scripts that run automatically at set moments, like when your agent finishes a turn. They keep the room in sync.'],
+    ['Hosting', 'A company, like Vercel, that puts your files online at a web link.'],
+    ['Deploy', 'Uploading a version of the project to the hosting company.'],
+    ['Preview vs public site', 'A preview is a test link for checking work. The public site is what everyone sees.'],
+    ['localhost', 'A web address that only works on your own computer.']
+  ];
+
+  /* Training mode toggle */
+  var training = true;
+  $('training-toggle').addEventListener('click', function () {
+    training = !training;
+    this.setAttribute('aria-pressed', String(training));
+    document.body.classList.toggle('training', training);
+    if (!training) $('tip').hidden = true;
+    toast(training ? 'Training mode on: point at anything outlined to learn what it is.' : 'Training mode off. The setup checklist and tips are hidden.');
+  });
+
+  /* Explainer card on hover or tap */
+  var tip = $('tip');
+  function showTip(target, x, y) {
+    var d = LEARN[target.dataset.learn]; if (!d) return;
+    tip.innerHTML = '<div class="t"></div><p class="m"></p><div class="h"></div>';
+    tip.querySelector('.t').textContent = d.t;
+    tip.querySelector('.m').textContent = d.m;
+    tip.querySelector('.h').innerHTML = d.h;
+    tip.hidden = false;
+    var r = target.getBoundingClientRect();
+    var left = Math.min(Math.max(12, r.left), window.innerWidth - tip.offsetWidth - 12);
+    var top = r.bottom + 10;
+    if (top + tip.offsetHeight > window.innerHeight - 12) top = Math.max(12, r.top - tip.offsetHeight - 10);
+    tip.style.left = left + 'px'; tip.style.top = top + 'px';
+  }
+  document.addEventListener('mouseover', function (e) {
+    if (!training || !$('tour-card').hidden) return;
+    var t = e.target.closest('[data-learn]');
+    if (t) showTip(t); else tip.hidden = true;
+  });
+  document.addEventListener('focusin', function (e) {
+    if (!training) return;
+    var t = e.target.closest('[data-learn]'); if (t) showTip(t);
+  });
+  document.addEventListener('touchstart', function (e) {
+    if (!training) return;
+    var t = e.target.closest('[data-learn]'); if (t) showTip(t); else tip.hidden = true;
+  }, { passive: true });
+
+  /* Tabs */
+  each(document.querySelectorAll('.tab'), function (tab) {
+    tab.addEventListener('click', function () { selectTab(tab.dataset.tab); });
+  });
+  function selectTab(name) {
+    each(document.querySelectorAll('.tab'), function (t) { t.setAttribute('aria-selected', String(t.dataset.tab === name)); });
+    each(document.querySelectorAll('.panel'), function (p) { p.classList.toggle('on', p.id === 'panel-' + name); });
+    $('tab-chat').classList.toggle('on', name === 'chat');
+    $('ch-title').textContent = { chat: '# general', changes: 'Changes', preview: 'Preview', skills: 'Skills' }[name] || '# general';
+  }
+
+  /* Starter requests go to your own Claude chat */
+  each(document.querySelectorAll('.starter'), function (b) {
+    b.addEventListener('click', function () {
+      var text = b.textContent;
+      try { navigator.clipboard.writeText(text).catch(function () {}); } catch (err) {}
+      toast('Copied. Paste it into your own Claude chat, not this room.');
+    });
+  });
+
+  /* Setup checklist with one-click fixes */
+  var state = { name: false, github: false, access: false };
+  function markDone(id, label) {
+    var c = $(id); if (!c) return; c.classList.remove('wait'); c.classList.add('done');
+    c.querySelector('.mark').textContent = '✓';
+    var b = c.querySelector('button'); if (b) b.remove();
+    if (label) c.querySelector(':scope > div > span').textContent = label;
+  }
+  function updateConn() {
+    var ok = state.name && state.github;
+    var c = $('conn'); c.classList.toggle('ok', ok);
+    var st = $('st-e'); if (ok && st) { st.textContent = 'Idle'; st.classList.remove('bad'); }
+    $('conn-text').textContent = ok ? 'Connected as evelyn · saving to the team' : "Your work isn't reaching the team yet";
+    if (ok) {
+      var f = $('failed-save');
+      if (f) {
+        f.outerHTML = '<div class="save"><i class="m-face felix" aria-hidden="true"></i><div><b>Felix · Evelyn\'s AI</b> <span class="file">pitch/index.html</span><div class="learnline">Sent! Your save reached GitHub (a push), so teammates see it in their copy.</div></div><time>just now</time></div>';
+        toast('Your earlier save just reached the team.');
+      }
+    }
+  }
+  function fix(kind) {
+    if (kind === 'skills') { selectTab('skills'); return; }
+    if (kind === 'name') { state.name = true; markDone('ck-name', 'Set to Evelyn. Your saves now carry your name.'); toast('Name and email set. No Terminal needed.'); }
+    if (kind === 'github') { state.github = true; markDone('ck-github', 'Signed in through your browser. No token to copy or paste.'); toast('Signed in to GitHub through your browser.'); }
+    if (kind === 'access') {
+      state.access = true; var c = $('ck-access'); if (!c) return; c.classList.add('wait'); c.querySelector('.mark').textContent = '…';
+      var b = c.querySelector('button'); if (b) b.remove();
+      c.querySelector(':scope > div > span').textContent = 'Request sent to Andrew. Only the owner can approve this.';
+      toast('Asked Andrew for edit access.');
+      setTimeout(function () { state.approved = true; markDone('ck-access', 'Andrew approved. You can edit this project.'); toast('Andrew approved your access.'); allSet(); }, 2500);
+    }
+    updateConn(); allSet();
+  }
+  /* When every item is done, the checklist folds away: you're ready to go */
+  function allSet() {
+    if (!$('checklist') || !(state.name && state.github && state.approved && state.skills) || $('ck-done')) return;
+    setTimeout(function () {
+      var box = $('checklist').querySelector('[data-learn="checklist"]');
+      box.innerHTML = '<div class="allset" id="ck-done"><span class="mark">✓</span><div><b>All set. You\'re ready to go.</b><span>Setup is done, so the checklist folds away.</span></div></div>';
+      toast("Setup done. You're ready to go.");
+    }, 1400);
+  }
+  each(document.querySelectorAll('[data-fix]'), function (b) { b.addEventListener('click', function () { fix(b.dataset.fix); }); });
+  $('fix-from-save').addEventListener('click', function () { if (!state.name) fix('name'); fix('github'); });
+  $('invite').addEventListener('click', function () { toast('Invite link copied. The owner also adds them on GitHub.'); });
+  $('refresh').addEventListener('click', function () { toast('Preview is showing the latest shared draft.'); });
+
+  /* Skills: add the team's skills to your agent */
+  var skills = [].slice.call(document.querySelectorAll('.sk'));
+  function addSkill(sk, quiet) {
+    if (sk.classList.contains('added')) return;
+    sk.classList.add('added'); var b = sk.querySelector('.sk-add'); b.textContent = 'Added ✓'; b.disabled = true;
+    var n = document.querySelectorAll('.sk.added').length;
+    $('skills-count').textContent = n === skills.length ? 'all added' : n + ' of ' + skills.length + ' added';
+    if (!quiet) toast('Added "' + sk.querySelector('b').textContent + '" to Felix.');
+    if (n === skills.length) {
+      state.skills = true; $('sk-all').disabled = true; $('sk-all').textContent = 'All added';
+      if ($('ck-skills')) markDone('ck-skills', 'All 5 skills added to Felix.');
+      allSet();
+    }
+  }
+  skills.forEach(function (sk) { sk.querySelector('.sk-add').addEventListener('click', function () { addSkill(sk); }); });
+  $('sk-all').addEventListener('click', function () { skills.forEach(function (sk) { addSkill(sk, true); }); toast("All 5 skills added. Felix now works the way the team does."); });
+
+  /* Secret guard */
+  var SECRET = /(ghp_|gho_|github_pat_|as_|sk-|xox[bp]-)[A-Za-z0-9_\-]{6,}/;
+  var input = $('msg-input');
+  input.addEventListener('input', function () {
+    var bad = SECRET.test(input.value);
+    $('guard').classList.toggle('on', bad);
+    $('send').disabled = bad;
+  });
+  $('composer').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (SECRET.test(input.value) || !input.value.trim()) return;
+    var msg = document.createElement('div'); msg.className = 'msg';
+    msg.innerHTML = '<span class="av ph ph-e" style="background:#d99a00">E</span><div><div class="who">Evelyn <small>now</small></div><span></span></div>';
+    msg.querySelector('div span:last-child').textContent = input.value;
+    selectTab('chat');
+    $('panel-chat').appendChild(msg); input.value = '';
+    $('panel-chat').scrollTop = $('panel-chat').scrollHeight;
+  });
+
+  /* Glossary */
+  function renderGlossary(q) {
+    var dl = $('gl-list'); dl.innerHTML = '';
+    GLOSSARY.filter(function (g) { return !q || (g[0] + ' ' + g[1]).toLowerCase().indexOf(q.toLowerCase()) > -1; })
+      .forEach(function (g) { var dt = document.createElement('dt'); dt.textContent = g[0]; var dd = document.createElement('dd'); dd.textContent = g[1]; dl.appendChild(dt); dl.appendChild(dd); });
+    if (!dl.children.length) { var dd = document.createElement('dd'); dd.textContent = 'No match. Ask your Claude chat: "what does this mean?"'; dl.appendChild(dd); }
+  }
+  $('open-glossary').addEventListener('click', function () { $('glossary').hidden = false; renderGlossary(''); $('gl-search').focus(); });
+  $('close-glossary').addEventListener('click', function () { $('glossary').hidden = true; });
+  $('gl-search').addEventListener('input', function () { renderGlossary(this.value); });
+
+  /* Start here: a guided tour */
+  var TOUR = [
+    { sel: '#room-head', tab: 'chat', t: 'Welcome to your team room', b: "This is where your teammates and each teammate's AI agent build one project together. Here's a one-minute tour." },
+    { sel: '#conn', tab: 'chat', t: 'Are you connected?', b: 'This line tells you whether your work is reaching the team, and when it last did. Red means your saves are only on your computer.' },
+    { sel: '#tab-changes', tab: 'changes', t: 'Changes: who saved what', b: "When an agent finishes, the work is saved and sent to the team. If a save fails, it shows up in red with the reason. It never fails silently." },
+    { sel: '#tab-preview', tab: 'preview', t: 'Preview: see the work', b: 'The latest shared draft, right here. The public site only changes when the owner publishes.' },
+    { sel: '#tab-skills', tab: 'skills', t: 'Skills: set up your agent', b: "The team's skills for this project. Press Add all, and your agent follows the same rules as everyone else's." },
+    { sel: '#channels', tab: 'chat', t: 'Talk to your team', b: 'Channels are group chats for the project. Agents post here too, before they change anything.' },
+    { sel: '#away', tab: 'chat', t: 'While you were away', b: 'A plain-English catch-up of what teammates and their agents did. Your agent reads it too, so nobody redoes work.' },
+    { sel: '#starter', tab: 'chat', t: 'Try your first change', b: 'Pick a starter request and paste it into your own Claude chat. Watch your save appear in Changes with your name on it.' }
+  ];
+  var ti = 0;
+  function placeTour() {
+    var s = TOUR[ti];
+    selectTab(s.tab);
+    var el = document.querySelector(s.sel);
+    var r = el.getBoundingClientRect();
+    var spot = $('spot'), pad = 6;
+    spot.style.left = (r.left - pad) + 'px'; spot.style.top = (r.top - pad) + 'px';
+    spot.style.width = (r.width + pad * 2) + 'px'; spot.style.height = (r.height + pad * 2) + 'px';
+    $('tour-step').textContent = 'Step ' + (ti + 1) + ' of ' + TOUR.length;
+    $('tour-title').textContent = s.t; $('tour-body').textContent = s.b;
+    $('tour-back').disabled = ti === 0;
+    $('tour-next').textContent = ti === TOUR.length - 1 ? 'Done' : 'Next';
+    var card = $('tour-card'); card.hidden = false;
+    var cw = card.offsetWidth, ch = card.offsetHeight;
+    var left = r.right + 18, top = r.top;
+    if (left + cw > window.innerWidth - 12) left = r.left - cw - 18;
+    if (left < 12) { left = Math.min(Math.max(12, r.left), window.innerWidth - cw - 12); top = r.bottom + 18; }
+    if (top + ch > window.innerHeight - 12) top = Math.max(12, window.innerHeight - ch - 12);
+    card.style.left = left + 'px'; card.style.top = top + 'px';
+  }
+  function startTour() { if (!training) $('training-toggle').click(); ti = 0; tip.hidden = true; $('tour-shade').hidden = false; placeTour(); $('tour-next').focus(); }
+  function endTour() { $('tour-shade').hidden = true; $('tour-card').hidden = true; selectTab('chat'); }
+  $('start-tour').addEventListener('click', startTour);
+  $('tour-next').addEventListener('click', function () { if (ti < TOUR.length - 1) { ti++; placeTour(); } else endTour(); });
+  $('tour-back').addEventListener('click', function () { if (ti > 0) { ti--; placeTour(); } });
+  $('tour-skip').addEventListener('click', endTour);
+  window.addEventListener('resize', function () { if (!$('tour-card').hidden) placeTour(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { endTour(); $('glossary').hidden = true; tip.hidden = true; }
+    if ($('tour-card').hidden) return;
+    if (e.key === 'ArrowRight') $('tour-next').click();
+    if (e.key === 'ArrowLeft') $('tour-back').click();
+  });
+
+  /* Opened from the pitch deck: in-slide frame (?embed=1) or full screen (?from=deck) */
+  var params = new URLSearchParams(location.search);
+  var EMBED = params.get('embed') === '1';
+  if (EMBED) (function () {
+    document.body.classList.add('embed');
+    var busy = false;
+    function tidy() {
+      if (busy) return; busy = true;
+      var all = [].slice.call(document.querySelectorAll('.learnline')), last = new Map();
+      all.forEach(function (n) { last.set(n.closest('.panel') || document.body, n); });
+      all.forEach(function (n) {
+        var newest = last.get(n.closest('.panel') || document.body) === n, q = n.previousElementSibling;
+        var hasQ = q && q.classList && q.classList.contains('ln-q');
+        n.classList.toggle('collapsed', !newest && !n.classList.contains('open'));
+        if (!newest && !hasQ) {
+          var b = document.createElement('button'); b.type = 'button'; b.className = 'ln-q'; b.textContent = '?';
+          b.title = 'Show this training note'; b.setAttribute('aria-label', 'Show this training note');
+          b.addEventListener('click', function (e) { e.stopPropagation(); n.classList.toggle('open'); n.classList.toggle('collapsed', !n.classList.contains('open')); });
+          n.parentNode.insertBefore(b, n);
+        }
+        if (newest && hasQ) q.remove();
+      });
+      busy = false;
+    }
+    tidy();
+    new MutationObserver(function () { setTimeout(tidy, 0); }).observe(document.body, { childList: true, subtree: true });
+  })();
+  if (params.get('from') === 'deck') {
+    var bd = $('back-deck'); bd.hidden = false;
+    bd.href = '../index.html#slide-' + (parseInt(params.get('slide'), 10) || 1);
+  }
+  /* Inside the deck's frame, arrow keys still move the slides */
+  if (EMBED) document.addEventListener('keydown', function (e) {
+    if (!$('tour-card').hidden || !$('glossary').hidden) return;
+    if (e.target.closest && e.target.closest('input, textarea')) return;
+    if (['ArrowRight', 'ArrowLeft', 'PageDown', 'PageUp'].indexOf(e.key) < 0) return;
+    e.preventDefault();
+    try { parent.postMessage({ meshDeckKey: e.key }, '*'); } catch (err) {}
+  });
+
+  /* First visit opens the tour (not inside the deck's frame, where the presenter starts it) */
+  if (!EMBED) {
+    var seen = false;
+    try { seen = localStorage.getItem('mesh-tour-seen') === '1'; localStorage.setItem('mesh-tour-seen', '1'); } catch (err) {}
+    if (!seen) setTimeout(startTour, 500);
+  }
+})();
+</script>
+</body>
+</html>
