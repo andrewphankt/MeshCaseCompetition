@@ -1816,6 +1816,11 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 @keyframes emDrop { from { opacity: 0; transform: translateY(-40px) scale(.6); } }
 @keyframes emX { 0% { opacity: 0; transform: scale(2.2); } 25% { opacity: 1; transform: scale(1); } 70% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(200px) rotate(40deg); } }
 @keyframes emFall { to { opacity: 0; transform: translateY(220px) rotate(-25deg); } }
+
+.em-close { margin: 6px 0 0; font: 600 30px/1.2 var(--display); letter-spacing: -0.03em; opacity: 0; transition: opacity .6s; }
+.em-close span { color: var(--pink); }
+.em-slide[data-at="6"] .em-q { display: none; }
+.em-slide[data-at="6"] .em-close { opacity: 1; transition-delay: 2.8s; }
 /* BUILDER:AUTO START */
 :root[data-look="builder"] body { background: #0a0b0e; }
 :root[data-look="builder"] #stage { box-shadow: 0 30px 80px rgba(58,63,76,0.45); }
@@ -2529,26 +2534,11 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <div class="tx-hand">&mdash; part two</div>
     <h2 class="tx-title">Why it had to <span class="tx-mark">exist</span></h2>
     <p class="tx-sub">What building with AI looks like without a room.</p>
-    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>An emerging market</li><li>Built alone, not together</li><li>They can&rsquo;t see each other</li><li>We tested it on ourselves</li></ul></div>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Built alone, not together</li><li>They can&rsquo;t see each other</li><li>We tested it on ourselves</li></ul></div>
   </div>
   <aside class="notes">[Speaker: Iris. Target: about 3 seconds. Click straight through.] Part 2 of 3: &ldquo;You just watched Mesh stop a collision. Here&rsquo;s why we had to build it.&rdquo;</aside>
 </section>
-<!-- An emerging market: zooming timeline with the AgentMesh reveal (Replit final) -->
-<section class="slide em-slide" data-title="An emerging market">
-  <div class="spk spk-iris" aria-label="Speaker: Iris"><i></i><span><small>Speaker</small>Iris</span></div>
-  <div class="by-hand">&mdash; why now</div>
-  <h2 class="em-h">An <span class="by-mark">emerging</span> market.</h2>
-  <p class="em-sub"><span class="em-s0">In 2026, everyone started building rooms for AI agents.</span><span class="em-s1">Our November.</span></p>
-  <div class="em-line">
-    <div class="em-axis"></div><i class="em-tick" style="--xf:40px;--xz:-9019px"><b>Mar</b></i><i class="em-tick" style="--xf:185px;--xz:-7871px"><b>Apr</b></i><i class="em-tick" style="--xf:326px;--xz:-6759px"><b>May</b></i><i class="em-tick" style="--xf:472px;--xz:-5610px"><b>Jun</b></i><i class="em-tick" style="--xf:613px;--xz:-4498px"><b>Jul</b></i><i class="em-tick" style="--xf:758px;--xz:-3349px"><b>Aug</b></i><i class="em-tick" style="--xf:904px;--xz:-2201px"><b>Sep</b></i><i class="em-tick" style="--xf:1044px;--xz:-1089px"><b>Oct</b></i><i class="em-tick" style="--xf:1190px;--xz:60px"><b>Nov</b></i><i class="em-tick" style="--xf:1331px;--xz:1172px"><b>Dec</b></i><i class="em-tick em-wk" style="--xf:1223px;--xz:319px"><b>Nov 8</b></i><i class="em-tick em-wk" style="--xf:1256px;--xz:579px"><b>Nov 15</b></i><i class="em-tick em-wk" style="--xf:1288px;--xz:838px"><b>Nov 22</b></i><i class="em-tick em-wk" style="--xf:1321px;--xz:1098px"><b>Nov 29</b></i><div class="em-nov" style="--a:60px;--b:1320px;--af:1190px;--bf:1356px"></div><div class="em-pack" style="--a:579px;--b:727px;--af:1256px;--bf:1274px"><span>a week of packaging<br>status meetings every day</span></div>
-    <div class="em-pt em-up em-mkt" style="--xf:87px;--xz:-8649px"><i></i><span><small>Mar 11</small><b>Replit Agent 4</b><em>team collaboration</em></span></div><div class="em-pt em-dn em-mkt" style="--xf:706px;--xz:-3757px"><i></i><span><small>Jul 21</small><b>Buzz</b><em>Block</em></span></div><div class="em-pt em-up em-mkt" style="--xf:847px;--xz:-2645px"><i></i><span><small>Aug 20</small><b>Slack Code</b><em>Salesforce</em></span></div><div class="em-pt em-dn em-mkt" style="--xf:1021px;--xz:-1274px"><i></i><span><small>Sep 26</small><b>Agentmash</b><em>agents warn each other</em></span></div><div class="em-pt em-up em-mkt em-cur" style="--xf:1232px;--xz:394px"><i></i><span><small>Nov 10</small><b>Cursor Projects</b><em>goes multiplayer</em></span></div><div class="em-pt em-up em-ours em-idea" style="--xf:1209px;--xz:208px"><i></i><span><small>Nov 5</small><b>We get the case</b><em>Our idea: AI in the room with us that interrupts like a human, so we stay on track</em></span></div><div class="em-pt em-dn em-ours em-cm" style="--xf:1237px;--xz:431px"><i></i><span><small>Nov 10&ndash;12</small><b>Anthropic launches Claude Meetings</b><em>Claude joins your meetings</em></span></div><div class="em-pt em-up em-ours em-build" style="--xf:1256px;--xz:579px"><i></i><span><small>Nov 15</small><b>First Mesh build</b><em>back to the drawing board: an old passion project</em></span></div><div class="em-pt em-up em-ours em-qual" style="--xf:1274px;--xz:727px"><i></i><span><small>Nov 19</small><b>Qualifiers</b><em>we advance</em></span></div><div class="em-pt em-dn em-ours em-today" style="--xf:1340px;--xz:1246px"><i></i><span><small>Dec 3</small><b>Today</b><em>pitching to you</em></span></div><svg class="em-arc" viewBox="0 0 1380 120" aria-hidden="true"><path pathLength="1" d="M1340 80 C 1300 -110, 640 -110, 373 66"/></svg><div class="em-pt em-me" style="--xf:373px;--xz:-6388px"><i></i><span><small>May 11, 2026</small><b>AgentMesh</b><em>Iris&rsquo;s first version, 10 weeks before Buzz</em></span></div>
-    <div class="em-x" style="--xf:1209px;--xz:208px" aria-hidden="true">&times;</div>
-  </div>
-  <p class="em-q">We said Mesh was an old passion project. <span>Can you guess when it started?</span></p>
-  <span class="cx-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i><i data-step="5"></i><i data-step="6"></i></span>
-  <p class="em-src">Dates from company announcements, GitHub and npm. AgentMesh: github.com/liuboyuniris-ai/agentmesh. Nov 5 assignment date to confirm.</p>
-  <aside class="notes">[Speaker: Iris. Target: about 50 seconds. 6 clicks.] OPEN on the market: &ldquo;This is an emerging market. Almost everything on this line launched in 2026.&rdquo; Replit started the wave with Agent 4 in March, then Buzz, Slack Code, Agentmash and Cursor. (1) Click, the timeline zooms into November: &ldquo;On November 5 we got this case. Our idea: bring Claude, or any AI, into the room with us, so it can interrupt us like a human and keep us on track.&rdquo; (2) Click: &ldquo;Days later, Anthropic launched Claude Meetings.&rdquo; Our idea gets an X and falls off the line. &ldquo;They have the resources. We didn&rsquo;t have the time.&rdquo; (3) Click: &ldquo;So we went back to the drawing board and picked up an old passion project. First Mesh build: November 15. A week of packaging, status meetings every day.&rdquo; Qualifiers on the 19th. (4) Click: &ldquo;And today, December 3, we&rsquo;re pitching it to you.&rdquo; (5) Click, ask the room: &ldquo;We said Mesh was an old passion project. Can you guess when it started?&rdquo; Pause and let them guess. (6) Click, the timeline zooms all the way back out and AgentMesh lands in May: &ldquo;May 11. Ten weeks before Block launched Buzz. We&rsquo;re not chasing this market. We were already in it.&rdquo; Careful wording: say &ldquo;before Buzz, Slack Code, Agentmash and Cursor,&rdquo; not &ldquo;first ever.&rdquo; Replit Agent 4 (March) and AQ (February) came earlier, and the May version didn&rsquo;t have the collision check yet. If asked: the May 11 repo is public on GitHub.</aside>
-</section>
+
 
 
 <section class="slide" data-title="The problem" data-hook="stat">
@@ -2596,7 +2586,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 
 <!-- Section 4: What's next -->
 <section class="slide mx-slide tx-slide" data-title="Section: Where it goes">
-  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
+  <div class="spk spk-tony" aria-label="Speaker: Tony"><i></i><span><small>Speaker</small>Tony</span></div>
   <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="past"></i><i class="past"></i><i class="on"></i></span></div>
   <div class="tx-ghost" aria-hidden="true">03</div>
   <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
@@ -2605,51 +2595,10 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <div class="tx-main">
     <div class="tx-hand">&mdash; part three</div>
     <h2 class="tx-title">Where it <span class="tx-mark">goes</span></h2>
-    <p class="tx-sub">Who&rsquo;s building it, who we&rsquo;ve listened to, and the road ahead.</p>
-    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Meet the team</li><li>Who we&rsquo;ve listened to</li><li>Road map</li><li>What we measure</li></ul></div>
+    <p class="tx-sub">Where Mesh goes next, and how we&rsquo;ll know it&rsquo;s working.</p>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Road map</li><li>What we measure</li></ul></div>
   </div>
-  <aside class="notes">[Speaker: Evelyn. Target: about 3 seconds. Click straight through.] Part 3 of 3: the people behind Mesh, then where it goes.</aside>
-</section>
-
-<!-- 2 Meet the team -->
-<section class="slide" data-title="Meet the team" data-hook="team">
-  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
-  <div class="eyebrow"><i></i>Meet the team</div>
-  <h2 class="h-l">Five of us, building the room we needed.</h2>
-  <div class="hint" style="margin-top:12px">Tap a photo to flip it</div>
-  <div class="polaroids" id="polaroids" data-interactive></div>
-  <aside class="notes">[Target: about 10 seconds. One click goes straight to the next slide. Invite people following along to flip the photos to learn more about us.] Introduce each person as you tap their photo; the back shows their major and background. Fill in the TEAM list at the top of the script, and put photos in a "team" folder next to this file (for example team/iris.jpg).</aside>
-</section>
-
-<!-- Who we've listened to (consultation) -->
-<section class="slide cn-slide" data-title="Who we've listened to">
-  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
-  <div class="by-hand">&mdash; who we&rsquo;ve listened to</div>
-  <h2 class="cn-h">Built with <span class="by-mark">every point of view.</span></h2>
-  <div class="cn-grid">
-    <div class="cn-row cn-ind" data-step="1"><div class="cn-lab">Industry</div><div class="cn-cards">
-      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">M</span><b>Meta</b><p>Industry mentor</p><small>Big tech</small><em>Mentor</em></div>
-      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">B4</span><b>Big 4 partner</b><p>Partner at a Big 4 firm</p><small>Professional services</small><em>Saw the deck &middot; B2B</em></div>
-      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">GK<img src="people/greg.jpg" alt="" onerror="this.remove()"></span><b>Greg Kling</b><p>Consultant; former faculty advisor, USC FanTAXtic</p><small>KVM Strategic</small><em>Deck tester</em></div>
-      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">MW<img src="people/marcus.jpg" alt="" onerror="this.remove()"></span><b>Marcus Wooling</b><p>Manager, Accounting Advisory &middot; USC MBA candidate</p><small>KPMG alum</small><em>Deck tester</em></div>
-      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">W<img src="people/wajo.jpg" alt="" onerror="this.remove()"></span><b>Wajo team</b><p>Makers of Fo, an AI executive assistant</p><small>Wajo</small><em>Integration talks</em></div>
-    </div></div>
-    <div class="cn-row cn-fac" data-step="2"><div class="cn-lab">Faculty, law &amp; IP</div><div class="cn-cards">
-      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">KT<img src="people/kathy.jpg" alt="" onerror="this.remove()"></span><b>Kathy Takayama</b><p>Asst. Professor of the Practice, Data Sciences &amp; Operations; ~20 yrs at HP/HPE</p><small>USC Marshall</small><em>Mentor</em></div>
-      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">TA<img src="people/terry.jpg" alt="" onerror="this.remove()"></span><b>Terry Allen</b><p>Assistant Professor of Law</p><small>USC Gould School of Law</small><em>Advisor call</em></div>
-      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">DS<img src="people/sokol.jpg" alt="" onerror="this.remove()"></span><b>D. Daniel Sokol</b><p>Carolyn Craig Franklin Chair in Law; Professor of Law and Business</p><small>USC Gould &amp; Marshall</small><em>Team Zoom</em></div>
-      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">CB<img src="people/bramlett.jpg" alt="" onerror="this.remove()"></span><b>Charles Bramlett, PhD</b><p>Technology Licensing Manager</p><small>USC Stevens Center</small><em>Licensing</em></div>
-    </div></div>
-    <div class="cn-row cn-stu" data-step="3"><div class="cn-lab">Students &amp; builders</div><div class="cn-cards">
-      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">GW<img src="people/grayson.jpg" alt="" onerror="this.remove()"></span><b>Grayson Whitney</b><p>Deck tester</p><small>Mesh market test</small><em>Deck tester</em></div>
-      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">L<img src="people/linna.jpg" alt="" onerror="this.remove()"></span><b>Linna</b><p>Deck tester</p><small>Mesh market test</small><em>Deck tester</em></div>
-      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">S<img src="people/steph.jpg" alt="" onerror="this.remove()"></span><b>Steph</b><p>Deck tester &middot; preferred the cleaner deck</p><small>Mesh market test</small><em>Deck tester</em></div>
-      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">P<img src="people/packrat.jpg" alt="" onerror="this.remove()"></span><b>Packrat</b><p>Builder in our Discord community</p><small>Discord</small><em>Deck tester</em></div>
-      <div class="cn-card cn-next"><div class="cn-ban"></div><span class="cn-av">?</span><b>You, next</b><p>The Replit team: tell us what to build next.</p><small>Replit</small><em>Your feedback</em></div>
-    </div></div>
-  </div>
-  <div class="cn-band" data-step="4"><b>Because we listened:</b><span>Fewer click puzzles, a demo that plays itself <i>&middot; testers</i></span><span>A B2B track <i>&middot; industry</i></span><span>Our IP protected before today <i>&middot; faculty &amp; USC Stevens</i></span></div>
-  <aside class="notes">[Speaker: Evelyn. Target: about 25 seconds. 4 clicks: industry, faculty and IP, students and builders, then what we changed.] We didn&rsquo;t build Mesh in a bubble. Click: industry, from a mentor at Meta to a Big 4 partner, consultants and an AI startup. Click: USC faculty in business, law and tech transfer. Click: students and builders who tested our deck, including people who preferred the other version. We want to hear the views that disagree with us. Click: and it changed what we built: fewer click puzzles and a demo that plays itself, a B2B track, and our IP protected before today. The last card is you: we want Replit&rsquo;s feedback too. BEFORE PRESENTING: get each person&rsquo;s OK to be named (the Meta and Big 4 cards stay unnamed until they agree), and don&rsquo;t say anyone endorses Mesh or gave legal advice. Photos: add people/[name].jpg only with permission; otherwise initials show.</aside>
+  <aside class="notes">[Speaker: Tony. Target: about 3 seconds. Click straight through.] Part 3 of 4: where Mesh goes, and how we&rsquo;ll measure it.</aside>
 </section>
 
 <!-- Road map -->
@@ -2808,21 +2757,81 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <aside class="notes">[Clicker: one press zooms out to show this slide running inside our own Mesh room. Say: &ldquo;And this pitch? We built it right here, in Mesh.&rdquo; The &lsquo;Market research integration&rsquo; tab is a teaser: if asked, a showcase where students from the school jump in, test what you built and leave feedback your agents can read.] [Target: about 20 seconds. Let the numbers roll, name the north star, move on.] This is the one dark slide, on purpose: let the numbers roll. "We didn't make these up. We're using our product to build our product: we're making Mesh with Mesh, and we built this pitch inside it too. The room measured it." Students signed up, projects connected, active agents, messages sent, saves and tokens are the measures we agreed on, and the room records every one of them from day one. Saves is the real count of saves to our shared draft. Active agents, messages and tokens come from Andrew, who owns the room; fill them in before Thursday. Close on the next test: do real AIs obey the same-file stop every time? Tokens: 432.3k is what it took to build Mesh with Mesh, about 13.5k per save. Mesh adds its own instructions and checks for teammates' changes every turn, so part of that is Mesh itself; bringing tokens per save down is a goal we track.</aside>
 </section>
 
-<section class="slide center" data-title="Close">
+<!-- Part 4: How we got here (cloned from Section 4: What's next -->
+<section class="slide mx-slide tx-slide" data-title="Section: How we got here">
   <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
-  <span class="cursor c-andrew gather" style="left:1180px; top:140px; --fx:-700px; --fy:-300px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Andrew</b></span>
-  <span class="cursor c-iris gather" style="left:1340px; top:220px; --fx:400px; --fy:-260px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Iris</b></span>
-  <span class="cursor c-sarah gather" style="left:1220px; top:560px; --fx:-640px; --fy:300px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Sarah</b></span>
-  <span class="cursor c-evelyn gather" style="left:1360px; top:640px; --fx:360px; --fy:260px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Evelyn</b></span>
-  <span class="cursor c-tony gather" style="left:1290px; top:390px; --fx:520px; --fy:40px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Tony</b></span>
-  <div class="close-lines">
-    <div>The room makes teams <span>work</span>.</div>
-    <div>Training mode makes it <span>easy to start</span>.</div>
-    <div>The hub makes it <span>grow</span>.</div>
+  <div class="tx-top"><span class="tx-k">Mesh</span><span class="tx-bars" aria-hidden="true"><i class="past"></i><i class="past"></i><i class="on"></i></span></div>
+  <div class="tx-ghost" aria-hidden="true">04</div>
+  <svg class="tx-threads" viewBox="0 0 1600 220" aria-hidden="true"><path class="tl t1" pathLength="1" d="M0 60 C 500 60, 700 150, 1600 150"/><path class="tl t2" pathLength="1" d="M0 150 L 1600 150"/><path class="tl t3" pathLength="1" d="M0 220 C 500 220, 700 150, 1600 150"/></svg>
+  <span class="cursor c-tony drift-a" style="left:1060px; top:470px" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Dante · writing tests</b></span>
+  <span class="cursor c-iris drift-b" style="left:1200px; top:570px" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Gwen · packing for the road</b></span>
+  <div class="tx-main">
+    <div class="tx-hand">&mdash; part four</div>
+    <h2 class="tx-title">How we got <span class="tx-mark">here</span></h2>
+    <p class="tx-sub">The people who shaped Mesh, the market we&rsquo;re in, and the team behind it.</p>
+    <div class="tx-next"><span class="tx-arrow">coming up &rarr;</span><ul class="tx-list"><li>Who we&rsquo;ve listened to</li><li>An emerging market</li><li>The team</li></ul></div>
   </div>
-  <p class="lede" style="margin-top:40px"><span class="pname" data-name>Mesh</span>. Anyone can build, together.</p>
-  <div class="sx-close sx-only"><div class="sx-cta" data-interactive><a class="a1" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener">Try the MVP &#8599;</a><a class="a2" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener">tinyurl.com/meshsandbox</a></div></div>
-  <aside class="notes">[Target: about 15 seconds. Three lines, then 'Mesh. Anyone can build, together.'] Our five cursors gather in the room as the slide opens. End on the three lines, then the last line: "Mesh. Anyone can build, together." Then invite questions.</aside>
+  <aside class="notes">[Speaker: Evelyn. Target: about 3 seconds. Click straight through.] Part 4 of 4, the wrap-up: &ldquo;So how did we get here?&rdquo;</aside>
+</section>
+
+<!-- Who we've listened to (consultation) -->
+<section class="slide cn-slide" data-title="Who we've listened to">
+  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
+  <div class="by-hand">&mdash; who we&rsquo;ve listened to</div>
+  <h2 class="cn-h">Built with <span class="by-mark">every point of view.</span></h2>
+  <div class="cn-grid">
+    <div class="cn-row cn-ind" data-step="1"><div class="cn-lab">Industry</div><div class="cn-cards">
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">M</span><b>Meta</b><p>Industry mentor</p><small>Big tech</small><em>Mentor</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">B4</span><b>Big 4 partner</b><p>Partner at a Big 4 firm</p><small>Professional services</small><em>Saw the deck &middot; B2B</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">GK<img src="people/greg.jpg" alt="" onerror="this.remove()"></span><b>Greg Kling</b><p>Consultant; former faculty advisor, USC FanTAXtic</p><small>KVM Strategic</small><em>Deck tester</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">MW<img src="people/marcus.jpg" alt="" onerror="this.remove()"></span><b>Marcus Wooling</b><p>Manager, Accounting Advisory &middot; USC MBA candidate</p><small>KPMG alum</small><em>Deck tester</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">W<img src="people/wajo.jpg" alt="" onerror="this.remove()"></span><b>Wajo team</b><p>Makers of Fo, an AI executive assistant</p><small>Wajo</small><em>Integration talks</em></div>
+    </div></div>
+    <div class="cn-row cn-fac" data-step="2"><div class="cn-lab">Faculty, law &amp; IP</div><div class="cn-cards">
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">KT<img src="people/kathy.jpg" alt="" onerror="this.remove()"></span><b>Kathy Takayama</b><p>Asst. Professor of the Practice, Data Sciences &amp; Operations; ~20 yrs at HP/HPE</p><small>USC Marshall</small><em>Mentor</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">TA<img src="people/terry.jpg" alt="" onerror="this.remove()"></span><b>Terry Allen</b><p>Assistant Professor of Law</p><small>USC Gould School of Law</small><em>Advisor call</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">DS<img src="people/sokol.jpg" alt="" onerror="this.remove()"></span><b>D. Daniel Sokol</b><p>Carolyn Craig Franklin Chair in Law; Professor of Law and Business</p><small>USC Gould &amp; Marshall</small><em>Team Zoom</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">CB<img src="people/bramlett.jpg" alt="" onerror="this.remove()"></span><b>Charles Bramlett, PhD</b><p>Technology Licensing Manager</p><small>USC Stevens Center</small><em>Licensing</em></div>
+    </div></div>
+    <div class="cn-row cn-stu" data-step="3"><div class="cn-lab">Students &amp; builders</div><div class="cn-cards">
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">GW<img src="people/grayson.jpg" alt="" onerror="this.remove()"></span><b>Grayson Whitney</b><p>Deck tester</p><small>Mesh market test</small><em>Deck tester</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">L<img src="people/linna.jpg" alt="" onerror="this.remove()"></span><b>Linna</b><p>Deck tester</p><small>Mesh market test</small><em>Deck tester</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">S<img src="people/steph.jpg" alt="" onerror="this.remove()"></span><b>Steph</b><p>Deck tester &middot; preferred the cleaner deck</p><small>Mesh market test</small><em>Deck tester</em></div>
+      <div class="cn-card"><div class="cn-ban"></div><span class="cn-av">P<img src="people/packrat.jpg" alt="" onerror="this.remove()"></span><b>Packrat</b><p>Builder in our Discord community</p><small>Discord</small><em>Deck tester</em></div>
+      <div class="cn-card cn-next"><div class="cn-ban"></div><span class="cn-av">?</span><b>You, next</b><p>The Replit team: tell us what to build next.</p><small>Replit</small><em>Your feedback</em></div>
+    </div></div>
+  </div>
+  <div class="cn-band" data-step="4"><b>Because we listened:</b><span>Fewer click puzzles, a demo that plays itself <i>&middot; testers</i></span><span>A B2B track <i>&middot; industry</i></span><span>Our IP protected before today <i>&middot; faculty &amp; USC Stevens</i></span></div>
+  <aside class="notes">[Speaker: Evelyn. Target: about 25 seconds. 4 clicks: industry, faculty and IP, students and builders, then what we changed.] We didn&rsquo;t build Mesh in a bubble. Click: industry, from a mentor at Meta to a Big 4 partner, consultants and an AI startup. Click: USC faculty in business, law and tech transfer. Click: students and builders who tested our deck, including people who preferred the other version. We want to hear the views that disagree with us. Click: and it changed what we built: fewer click puzzles and a demo that plays itself, a B2B track, and our IP protected before today. The last card is you: we want Replit&rsquo;s feedback too. BEFORE PRESENTING: get each person&rsquo;s OK to be named (the Meta and Big 4 cards stay unnamed until they agree), and don&rsquo;t say anyone endorses Mesh or gave legal advice. Photos: add people/[name].jpg only with permission; otherwise initials show.</aside>
+</section>
+
+<!-- An emerging market: zooming timeline with the AgentMesh reveal (Replit final) -->
+<section class="slide em-slide" data-title="An emerging market">
+  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
+  <div class="by-hand">&mdash; why now</div>
+  <h2 class="em-h">An <span class="by-mark">emerging</span> market.</h2>
+  <p class="em-sub"><span class="em-s0">In 2026, everyone started building rooms for AI agents.</span><span class="em-s1">Our November.</span></p>
+  <div class="em-line">
+    <div class="em-axis"></div><i class="em-tick" style="--xf:40px;--xz:-9019px"><b>Mar</b></i><i class="em-tick" style="--xf:185px;--xz:-7871px"><b>Apr</b></i><i class="em-tick" style="--xf:326px;--xz:-6759px"><b>May</b></i><i class="em-tick" style="--xf:472px;--xz:-5610px"><b>Jun</b></i><i class="em-tick" style="--xf:613px;--xz:-4498px"><b>Jul</b></i><i class="em-tick" style="--xf:758px;--xz:-3349px"><b>Aug</b></i><i class="em-tick" style="--xf:904px;--xz:-2201px"><b>Sep</b></i><i class="em-tick" style="--xf:1044px;--xz:-1089px"><b>Oct</b></i><i class="em-tick" style="--xf:1190px;--xz:60px"><b>Nov</b></i><i class="em-tick" style="--xf:1331px;--xz:1172px"><b>Dec</b></i><i class="em-tick em-wk" style="--xf:1223px;--xz:319px"><b>Nov 8</b></i><i class="em-tick em-wk" style="--xf:1256px;--xz:579px"><b>Nov 15</b></i><i class="em-tick em-wk" style="--xf:1288px;--xz:838px"><b>Nov 22</b></i><i class="em-tick em-wk" style="--xf:1321px;--xz:1098px"><b>Nov 29</b></i><div class="em-pack" style="--a:579px;--b:727px;--af:1256px;--bf:1274px"><span>a week of packaging<br>status meetings every day</span></div>
+    <div class="em-pt em-up em-mkt" style="--xf:87px;--xz:-8649px"><i></i><span><small>Mar 11</small><b>Replit Agent 4</b><em>teammates + Replit&rsquo;s agent</em></span></div><div class="em-pt em-dn em-mkt" style="--xf:706px;--xz:-3757px"><i></i><span><small>Jul 21</small><b>Buzz</b><em>Block &middot; a chat workspace</em></span></div><div class="em-pt em-up em-mkt" style="--xf:847px;--xz:-2645px"><i></i><span><small>Aug 20</small><b>Slack Code</b><em>inside Slack</em></span></div><div class="em-pt em-dn em-mkt" style="--xf:1021px;--xz:-1274px"><i></i><span><small>Sep 26</small><b>Agentmash</b><em>warnings for engineers</em></span></div><div class="em-pt em-up em-mkt em-cur" style="--xf:1232px;--xz:394px"><i></i><span><small>Nov 10</small><b>Cursor Projects</b><em>teams, if everyone uses Cursor</em></span></div><div class="em-pt em-up em-ours em-idea" style="--xf:1209px;--xz:208px"><i></i><span><small>Nov 5</small><b>We get the case</b><em>Our idea: AI in the room with us that interrupts like a human, so we stay on track</em></span></div><div class="em-pt em-dn em-ours em-cm" style="--xf:1237px;--xz:431px"><i></i><span><small>Nov 10&ndash;12</small><b>Anthropic launches Claude Meetings</b><em>Claude joins your meetings</em></span></div><div class="em-pt em-up em-ours em-build" style="--xf:1256px;--xz:579px"><i></i><span><small>Nov 15</small><b>First Mesh build</b><em>back to the drawing board: an old passion project</em></span></div><div class="em-pt em-up em-ours em-qual" style="--xf:1274px;--xz:727px"><i></i><span><small>Nov 19</small><b>Qualifiers</b><em>we advance</em></span></div><div class="em-pt em-dn em-ours em-today" style="--xf:1340px;--xz:1246px"><i></i><span><small>Dec 3</small><b>Today</b><em>pitching to you</em></span></div><svg class="em-arc" viewBox="0 0 1380 120" aria-hidden="true"><path pathLength="1" d="M1340 80 C 1300 -110, 640 -110, 373 66"/></svg><div class="em-pt em-me" style="--xf:373px;--xz:-6388px"><i></i><span><small>May 11, 2026</small><b>AgentMesh</b><em>Iris&rsquo;s first version, 10 weeks before Buzz</em></span></div>
+    <div class="em-x" style="--xf:1209px;--xz:208px" aria-hidden="true">&times;</div>
+  </div>
+  <p class="em-q">We said Mesh was an old passion project. <span>Can you guess when it started?</span></p>
+  <p class="em-close">Everyone&rsquo;s building rooms for engineers on their own platform. <span>We&rsquo;re building it for everyone, with any AI.</span></p>
+  <span class="cx-steps" aria-hidden="true"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i><i data-step="5"></i><i data-step="6"></i></span>
+  <p class="em-src">Dates from company announcements, GitHub and npm. AgentMesh: github.com/liuboyuniris-ai/agentmesh. Nov 5 assignment date to confirm. Labels describe each product&rsquo;s focus as of Nov 2026.</p>
+  <aside class="notes">[Speaker: Evelyn (Iris can take it; it&rsquo;s her project). Target: about 55 seconds. 6 clicks. Comes right after &ldquo;Who we&rsquo;ve listened to&rdquo; and right before the team.] OPEN on the market: &ldquo;This is an emerging market. Almost everything on this line launched in 2026.&rdquo; Read the dots by who each one is for: Replit Agent 4 put teammates with Replit&rsquo;s agent; Buzz is a chat workspace; Slack Code lives inside Slack; Agentmash warns engineers; Cursor Projects works if everyone uses Cursor. (1) Click, zoom into November: &ldquo;On November 5 we got this case. Our idea: bring Claude, or any AI, into the room with us, so it can interrupt us like a human and keep us on track.&rdquo; (2) Click: &ldquo;Days later, Anthropic launched Claude Meetings.&rdquo; Our idea gets an X and falls off. &ldquo;They have the resources. We didn&rsquo;t have the time.&rdquo; (3) Click: &ldquo;So we went back to the drawing board and picked up an old passion project. Mesh launched on November 15. A week of packaging, status meetings every day. Qualifiers on the 19th.&rdquo; (4) Click: &ldquo;And today, December 3, we&rsquo;re pitching it to you.&rdquo; (5) Click, ask: &ldquo;We said Mesh was an old passion project. Can you guess when it started?&rdquo; Pause; let them guess. (6) Click, the line zooms back out and AgentMesh lands on May 11: &ldquo;May 11. Ten weeks before Block launched Buzz.&rdquo; As the closing line appears: &ldquo;Everyone&rsquo;s building rooms for engineers on their own platform. We&rsquo;re building it for everyone, with any AI.&rdquo; Then click to the team. CAVEATS: say &ldquo;published before Buzz, Slack Code, Agentmash and Cursor,&rdquo; never &ldquo;first ever&rdquo; (Replit Agent 4 in March and AQ in February came earlier). Say &ldquo;the idea behind Mesh started in May&rdquo;; the May version shared code context, and the collision check, shared draft and Push came with Mesh. Never say anyone copied us. If asked &ldquo;isn&rsquo;t this Cursor?&rdquo;: &ldquo;Cursor&rsquo;s version works if everyone&rsquo;s on Cursor. Ours works with whatever AI each person already uses, and a first-timer can follow along.&rdquo; If asked for proof of May 11: Iris&rsquo;s GitHub repo (keep a screenshot if it goes private).</aside>
+</section>
+
+<!-- 2 Meet the team -->
+<section class="slide" data-title="Meet the team" data-hook="team">
+  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
+  <div class="eyebrow"><i></i>The team</div>
+  <h2 class="h-l">We are <span class="hl">Mesh.</span></h2>
+  <p class="lede" style="margin-top:6px">Andrew, Evelyn, Tony, Iris and Sarah. Thank you for your time.</p>
+  <div class="polaroids" id="polaroids" data-interactive></div>
+  <div class="sx-close sx-only" style="margin:34px 0 0;text-align:center"><div class="sx-cta" data-interactive style="justify-content:center"><a class="a1" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener">Try the MVP &#8599;</a><a class="a2" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener">tinyurl.com/meshsandbox</a></div></div>
+  <aside class="notes">[Speaker: Evelyn. The finale, about 15 seconds.] &ldquo;Before you is our team: Andrew, Evelyn, Tony, Iris and Sarah. We are Mesh, and we&rsquo;d like to thank you for your time with us today.&rdquo; Pause, smile, then invite questions. The MVP link is on screen for anyone who wants to try it. People following along can flip the photos to learn about each of us.</aside>
 </section>
 
 <!-- Appendix: how Mesh makes money -->
@@ -2873,7 +2882,37 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
   <aside class="notes">[Appendix.] Estimated monthly operating costs. Early MVP: $70 to $475 a month. At 1,000 active users: $2,350 to $14,300 a month. AI model API calls are the biggest line by far ($2,000 to $12,000 at 1,000 users).</aside>
 </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- PARKED for the Replit cold-open order (Nov 2026). To bring one back, move it and change "slide-parked" to "slide". -->
+<section class="slide-parked center" data-title="Close">
+  <div class="spk spk-evelyn" aria-label="Speaker: Evelyn"><i></i><span><small>Speaker</small>Evelyn</span></div>
+  <span class="cursor c-andrew gather" style="left:1180px; top:140px; --fx:-700px; --fy:-300px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Andrew</b></span>
+  <span class="cursor c-iris gather" style="left:1340px; top:220px; --fx:400px; --fy:-260px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Iris</b></span>
+  <span class="cursor c-sarah gather" style="left:1220px; top:560px; --fx:-640px; --fy:300px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Sarah</b></span>
+  <span class="cursor c-evelyn gather" style="left:1360px; top:640px; --fx:360px; --fy:260px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Evelyn</b></span>
+  <span class="cursor c-tony gather" style="left:1290px; top:390px; --fx:520px; --fy:40px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2l17 8.5-7.2 1.8L9.6 20z"/></svg><b>Tony</b></span>
+  <div class="close-lines">
+    <div>The room makes teams <span>work</span>.</div>
+    <div>Training mode makes it <span>easy to start</span>.</div>
+    <div>The hub makes it <span>grow</span>.</div>
+  </div>
+  <p class="lede" style="margin-top:40px"><span class="pname" data-name>Mesh</span>. Anyone can build, together.</p>
+  <div class="sx-close sx-only"><div class="sx-cta" data-interactive><a class="a1" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener">Try the MVP &#8599;</a><a class="a2" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener">tinyurl.com/meshsandbox</a></div></div>
+  <aside class="notes">[Target: about 15 seconds. Three lines, then 'Mesh. Anyone can build, together.'] Our five cursors gather in the room as the slide opens. End on the three lines, then the last line: "Mesh. Anyone can build, together." Then invite questions.</aside>
+</section>
 
 <!-- Problem 3: people become the go-between -->
 <section class="slide-parked" data-title="People become the go-between">
