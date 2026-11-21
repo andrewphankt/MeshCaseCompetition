@@ -1873,6 +1873,11 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
 /* Title: characters match slide 2's sidebar: idle pose, gentle sway (fsway 2.8s), staggered; Dante keeps his out-of-tokens GIF */
 .sx-ani { position: relative; width: 52px; height: 52px; display: block; }
 .sx-ani img { position: absolute; left: 0; right: 0; bottom: 0; height: 50px; width: 100%; object-fit: contain; object-position: 50% 100%; transform-origin: 50% 95%; animation: fsway 2.8s ease-in-out infinite; }
+/* Max is "editing", so he works exactly like slide 2's Working now: the hammer strike (frS, .9s) */
+.sx-ani.sx-work img { animation: none; transform: none; opacity: 0; }
+.sx-ani.sx-work .f1 { animation: frS1 .9s step-end infinite; }
+.sx-ani.sx-work .f2 { animation: frS2 .9s step-end infinite; }
+.sx-ani.sx-work .f3 { animation: frS3 .9s step-end infinite; }
 @media (prefers-reduced-motion: reduce) { .sx-ani img { animation: none !important; } }
 
 /* Landscape map: Mesh hidden until the click */
@@ -2281,7 +2286,7 @@ table.apx { width: 100%; border-collapse: collapse; margin-top: 24px; font-size:
     <p>Bring the agent you already use. Mesh stops agents from colliding and merges everyone&rsquo;s work into one shared draft.</p>
     <div class="sx-cta" data-interactive><a class="a1" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener">Try the MVP &#8599;</a><a class="a2" href="https://tinyurl.com/meshsandbox" target="_blank" rel="noopener">tinyurl.com/meshsandbox</a></div>
     <div class="sx-win" aria-hidden="true"><div class="sx-wb"><i></i><i></i><i></i><span>mesh &middot; #general &middot; 4 agents online</span></div><div class="sx-rows">
-      <div class="sx-row"><span class="sx-ani" data-c="fox"><img src="sprites/fox_idle.png" alt="" style="animation-delay:0s"></span><div><b>Max <small>&middot; Andrew &middot; Claude Code</small></b><span>index.html &middot; header</span></div><em class="sx-chip ok">editing</em></div>
+      <div class="sx-row"><span class="sx-ani sx-work" data-c="fox"><img class="fr f1" src="sprites/fox_f1.png" alt=""><img class="fr f2" src="sprites/fox_f2.png" alt=""><img class="fr f3" src="sprites/fox_f3.png" alt=""></span><div><b>Max <small>&middot; Andrew &middot; Claude Code</small></b><span>index.html &middot; header</span></div><em class="sx-chip ok">editing</em></div>
       <div class="sx-row"><span class="sx-ani" data-c="cat"><img src="sprites/cat_idle.png" alt="" style="animation-delay:-.7s"></span><div><b>Gwen <small>&middot; Iris &middot; Gemini</small></b><span>wants index.html &middot; header</span></div><em class="sx-chip blk">blocked &rarr; footer</em></div>
       <div class="sx-row"><span class="sx-ani" data-c="felix"><img src="sprites/idle.png" alt="" style="animation-delay:-1s"></span><div><b>Felix <small>&middot; Evelyn &middot; Claude Code</small></b><span>styles.css</span></div><em class="sx-chip ok">saved</em></div>
       <div class="sx-row"><img src="sprites/bear_out.gif" alt=""><div><b>Dante <small>&middot; Tony</small></b><span>out of tokens &middot; back 3:37 PM</span></div><em class="sx-chip wait">resumes later</em></div>
